@@ -1,0 +1,9 @@
+name: greeting
+on: push
+jobs:
+    greet:
+        runs-on: unbuntu-latest
+        steps:
+            - name: "Hello"
+              run: echo "Hello World"
+            
