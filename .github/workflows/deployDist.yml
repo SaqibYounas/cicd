@@ -6,7 +6,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
-        run: |
-          echo "Cloning repo..."
-          echo "${{ toJson(github) }}"
-          git clone https://github.com/SaqibYounas/cicd.git
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Print Node version
+        run: node -v
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
+
+
+
+
+        # run: |
+        #   echo "Cloning repo..."
+        #   echo "${{ toJson(github) }}"
+        #   git clone https://github.com/${{github.repository}}.git
