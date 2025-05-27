@@ -2,8 +2,8 @@ name: greeting
 on: push
 jobs:
     greet:
-        runs-on: unbuntu-latest
-        steps:
+            runs-on: ubuntu-latest    
+            steps:
             - name: "Hello"
               run: echo "Hello World"
             
