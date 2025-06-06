@@ -1,9 +1,8 @@
-name: greeting
+name: Practice
 on: push
 jobs:
-    greet:
-            runs-on: ubuntu-latest    
-            steps:
-            - name: "Hello"
-              run: echo "Hello World"
-            
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Helo
+        run: echo "Hello world"
