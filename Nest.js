@@ -186,7 +186,7 @@ npm run start:dev
 
 
 
-Services Explained | Injectable, CLI, Constructor Injection
+Services injectable, CLI, Constructor Injection
 
 ak asi ts ki type hai jha ham logic likhty hai
 calculatons data fecth krna db sy koi b resuable logic likh
@@ -274,6 +274,32 @@ nest g controller employee
 jab b module bnaye wo import hojana chaye app.module.ts ma 
 
 
+NestJS me import aur export ka matlab 🧠
+1️⃣ imports — andar lana
+Dusre module ki cheezen apne module me use karna
+imports: [AuthModule]
+
+
+➡️ Matlab:
+AuthModule ke providers (services) is module me available ho jayen
+📌 Example:
+imports: [AuthModule]
+Ab tum AuthService ko use kar sakte ho.
+
+2️⃣ exports — bahar dena
+Apne module ki cheezen dusre modules ko dena
+exports: [CustomerService]
+
+➡️ Matlab:
+CustomerService ko dusre modules use kar sakte hain
+📌 Example:
+
+@Module({
+  providers: [CustomerService],
+  exports: [CustomerService],
+})
+export class CustomerModule {}
+
 
 Architecture Explained
 nest.js arcticture kya hai
@@ -332,6 +358,10 @@ ak service function ko contoler ma dpeencyd inject use kiya hai
 contoler fle ma constructur(privaye readonly category:categoryService) ya depnedcy
 inject r rhy ya atomatcally inject krdy ga hmy manually nhi krna pry ga
 
+loose coopling
+“Aik class doosri class pe depend karti hai,
+lekin dependency injection ke through ho
+to usay loose coupling kehte hain”
 
 
 API
@@ -852,6 +882,197 @@ getStatius(){
 return status:thos.databaseServioce.getStatus();
 }
 
+
+
+
+Environment Variables in Nest JS
+
+ya important infomarion hoti hard cord nhi krty env ma rkhty hai securely 
+db urls 3rd api key api key koi or na access kry unko environemnt varbale ma
+store krty hai
+sensitive infomration seculrely store krty hai ham
+
+npm i @nestjs/conifg
+ya enviormnet varible ki configgration krwaye ga net js k sath
+
+roor diretcry ma 
+.env
+DATNASE=mongodb://localhost:500/modngodb
+JWT_SECRET=12345
+
+
+module.ts root wali ma
+importsl ma
+configModule.forRoot({
+isGlobal:true)} global allow kr rhy enko kahi b use kr ksty hai ham
+
+ak ev service bnaye ga ham
+import {configureServise} from "@nest/config"
+constructor (private configureService:configureService
+
+geturlDb(){
+return this.configureService.get<string>('env name )
+}
+
+ab contoller banye ga ham
+
+service inject kry ga 
+construtcur (private readonly eveService:EvService)
+
+@get
+getulr(){
+return this.envservice.getDBurl();
+}
+
+
+
+
+
+
+MoongoDB 
+
+
+Connection moongodb with NESTJS
+ya apni moongodb install kro cpmass install kro
+
+mongodb ny ak loud b diya apko kuch download nhu krna accor reigster kro altas
+direct connect krly ga ap
+
+
+cluster 
+wo server hai jha data store krty hai ap cloud olatform hai server chaye data store krny k liya 
+server chaye ya clutser hota hai ya cloud provider hota region wgira bataty hai ham
+
+
+moongose use kry ga ham
+npm i @nestjs/mongoose mongoose
+en donu ko install kry ga
+
+ya direct hardcode nhi kry ga ham env ma rkhy ga secure data store krwaye ga han
+
+nest i @netsjs/config install kry ga
+
+ab 
+modul.ts ma
+imports:[
+configModule.forRoot(),
+MoogooseModule.forRoot(proccess.env.MONGO_URI!) ya env ki integartion krwani globally apn
+value rovde krni pori application ma
+]
+
+
+Moongodb schemema
+schema db ka storucture hota apky document ka kis stiretre ma store krwana apny
+ap ak structure baatye ga schema batay ega kya deifne kry ga wo sab
+
+nest g module student
+
+ab styduent folfer ma schema banye ga
+student.schema.ts
+import {Prop,Schema , SchemFactory} from "@nets/moongose"
+import {Document } from 'Moongose"
+
+export type StudentDocument=Student & Document en donu cheze kause krky ak type bnani hai
+ya document ka use krkry bn rhi ak student class jo bany lagy hai nichy ham
+
+moongodb ma data document ma store hota jo jo fields hai apky pass
+
+@Schema({timestamps:true}) jab b data insert hoga do filed addd kry ga
+ak created or ak updated field hoti hai
+
+export class Student{
+@Popr({}) jo schma define kr rhy kya kya properties hai apki kon c optional rkhni kon c lazmi hrkhi wo
+batye ga props ma ham
+
+@Propr({required:tue})
+name:string;
+
+@Prop({required:tue})
+age:number
+
+@Propr() prop ka mtlb proepry hai
+email?:number ya optional hai agr na b mily field no ssue
+
+}
+
+export const StudentSchema=SchemaFactory.createForClass(student)
+yha ham class ko moongo db schema ma convert kr rhy hai schame ka name studentSchema hai
+
+moudle.ts
+@Module({
+imports:[
+MonnogseModule.forFeature([{name:Student.name,schema:StudentSchema}]} name kya rhy ga schema ka
+]dosra k konsa sturctiure apka 
+apny moongodb ma ak schema banan sturndet rhy g konsa sturecre follow hoga wo 
+stduentschema hai
+
+
+
+Insert Data in MonngoDB 
+nest g service student
+
+ak schma deifnr kry ga ham
+
+nest g contorleer stduent
+
+service.ts
+construtur(
+@InjectModel(student.name) private studentModel:Model<StudentDocument>		ya nestmonogse ma milta eska kam schma register krwana
+taky suse kr ksy ham intscbale{}
+
+jab b ya run hoga consturture atomatically run hojaye ga
+
+async createStudent(data:Partial<Student>): Promise <Student>
+{
+const newStudent=new this.studentModel(data);
+return newStudent.save();
+}
+
+ya datasave kry ga moongodb ma save insert krta moongodb ma insert krta
+
+
+contoer.js
+constructire(pirvate readonly studentService:StudentService){}
+
+@Post()
+async addStudent(@Body() data:Partial<Student> ya sturture follow kro partial ma diya)
+{
+return this.stiudetnSerice.creaetStudent(data)
+}
+
+
+ab run kry ga application ham
+ab tetsing kry ga postman k zariya ham
+
+
+
+Read Data
+
+get method use kry ga ham
+spefic data get krna unique id dani
+agr sari tu id nhi dani
+ alida alida get methid banye ga ham
+
+service.ts ma
+
+async getAllStudent():Promise <Student[]> multiple data hoga return array
+{
+return this.studentModel.find().exec();ya promise ko ai sy hanlde kry ga agrna use kry ga issue a ksta hai
+best pratcie hai eciuse use kry ga ham
+}
+
+async getStudentbyId(id:string):Promise<Student | null> ya student ya null id galti hoe exist nhi krta null return kry g
+{
+return this.student.findbyId(.exec();
+}
+
+
+contoler.ts
+
+@Get(){
+async getStudents(){
+return this.studentService.getallStudent()
+}}
 
 
 
