@@ -1135,3 +1135,302 @@ async deleteStudent(@Param('id) id:string){
 return this.studetnService.deletreStudent(id);
 }
 
+
+
+
+  Data Relationships In MongoDB
+2 techniques sotre data in db
+
+Embedding
+jitna b related data ak document ma store krna address wagira 
+embedding ka mtlb es sab ko ak docment ma store krna searching fast hojati hai queries b related
+data ak document ma store hoti
+
+Referencing
+jab data zayda hojata data increase hota wha embedding use nhi krty chota data ma embedding krty hai wha alg alg docment ma nhi store krty data 
+jab data zyada hn 
+
+sabko alg lag document ma sotre krwana or link krwana
+es sy strutred rhy ga query slow hogi thori lakin agr data update krna hai apko yha problem nhi hogi
+link k liya ids use krty
+
+data relationship types
+One to one relationship
+one to many
+many to many
+
+one to many 
+ak author multiple books likh skta hai
+many many
+multiple course ma multiple students or multiple students multiple courses ma envolve hoskty hai
+
+
+pros  embdiing
+single document 
+data reterival fast
+small data k liya
+cons
+document size baara hoga problem
+data update krty waqt problem
+
+
+pros rerfencing
+document small
+updation easy
+manage large data
+
+cons
+data retervial slow hogi thori
+
+
+
+One to One relationship
+
+ak record ak sy link hoga ids 
+nest g module employee
+nest g service employee
+nest g contoroler employee
+
+schemas folder name
+profile.schema.ts
+employee.schema.ts
+
+profile.schema.ts
+
+import {prop,schema,schemaFactory} from @nestjs/mongo
+import {Docuemnt} from "moongose"
+
+@Schema(
+export class profile extends Docuemnt{
+@Prop()
+age:number;
+
+@Prop()
+qualification:string
+
+}
+register krwana hai
+
+export const ProfileSchema=SchemafACTORY.CREATEfACTORY(Profile)
+
+employee.ts
+
+
+import {prop,schema,schemaFactory} from @nestjs/mongo
+import {Docuemnt,Schema as MoongoseSchema} from "moongose"
+import Profile from "//profile/chsm
+
+@Schema()
+export class Employee extends Docuemnt{
+@Prop(
+name:string;
+
+@Prop({type:MoongoseSchema.Types.ObjectId,ref'Profile'})
+profile:profile;
+}
+
+export const employeeSchema=SchemafACTORY.CREATEfACTORY(Employye)
+
+
+
+module.ts
+@Moule([
+imports:[
+moongoseModule.forFeature([
+{name:Employee.name, schema:EmployeeSchema},
+{name:Profile.name, schema:ProfileSchema},
+]
+
+employee.service.ts
+
+constructor(
+@InhjectModel(Emplyee.name)private eployeeMode:Model<Employee>;inject kry use kr sky
+@InhjectModel(Profile.name)private ProfielModel:Model<Profile>;inject kry use kr sky
+){}
+
+async createEmplyee():Promise <Employee> {
+const profile=await new this.profileModel()
+age:20,
+qualification:'Masters',}).save()
+
+const emplyee=new this.employeeModel({
+name:'Farzeen'
+profile:profile._id
+);
+
+
+async findall():Promise<Employee[]>{
+return this.employeeModel.find().populate('Profile').exec();
+
+}
+agr populate use na kry sorf ak docuemnt return kry ga id return kry ga prifle ki
+agr populte use kry ga mujhe dosry document ka data b reutrn krna sirf id nhi dani mujhe
+
+
+controler.ts
+
+constructor(private readonly employree)
+
+create(_)
+get()
+
+
+One to Many Relationship
+
+same one to one wala folder structure
+
+schema
+tag.schema.ts
+
+import {Props,Schema} form "nest"
+
+@Schema()
+export class Tag{
+@Prop()
+name:string;
+}
+
+
+product.ts
+
+import {Props,Schema} form "nest"
+
+@Schema()
+export class Product extends Document{
+@Prop()
+title:string;
+
+@Prop({type:[Tag]}){
+tags:Tag[]
+}
+
+
+export const ProductSchema=SchemaFacotry.createForClass(Product)
+
+
+module.ts
+
+@Module({
+imports:[MongooseModule.forFeature([{
+name:Product.name,
+schema:ProduceSchema
+)])
+
+
+service.ts
+
+constructor(@injectModel(Product.name) pricate productModel:Model<Product>){}
+
+async createProduct():Promise<Product>
+cnst prodcy=new this.ProductModel{
+title:'Gaming Laptop',
+tages:[
+{name:'electronics'}
+{name:'gaming'},
+}
+
+return product.save();
+
+}
+
+async getAllProcduts(): Promise<Product[]>
+{
+return this.productModel.find();
+}
+
+
+
+contorler.ts
+
+constrictor(private readonly productservice:ProductService);
+
+methid and call
+
+
+one to Many Relationship Referncing
+
+nest g module library
+nest g service library
+nest g controller library
+
+schemas
+book.schema.ts
+library.schema.ts
+
+
+book.schema.ts
+
+import {Prop,schema,schemaFactory} from "nestjs/moongio"
+imoort {docuemnt}
+
+@schema()
+export class Book extends Document{
+@Popr()
+title:string
+
+@Props()
+author:stirng
+
+
+
+library.ts
+
+import {Prop,schema,schemaFactory} from "nestjs/moongio"
+import {docuemnt,types}
+
+export class library extends docuemnt{
+
+@Prop()
+name:string;
+
+@Prop({type:[type:Types.objectId,ref:'Book"}])
+books:Type.ojectId[];
+
+}
+
+export const libarrayschema=schemafactoy.createforclass(library)
+
+
+
+moduel.ts
+
+imports;[
+MoongoseModule.Feature([
+{name:Library.name,schema: LibrarySchema},
+{name:Book.name,schema:BookSchema}
+]
+
+
+service.ts
+
+constircyire({
+@injectModel(Book.name) PRIVATE bookModel:Model<Book>,
+constircyire({
+@injectModel(Library.name) PRIVATE LibraryModel:Model<Book>,
+
+){}
+
+async createLibrary():Promise<Library>{
+const Book1=await this.bookModel.create({
+title:'JS ka Badshah,author:"No define"
+const Book2=await this.bookModel.create({
+title:'JS ka Badshah,author:"No define"'
+
+const library=new this.libraruModel({
+name:'Central Library',
+books:[book1._id,book2._id];
+})
+
+return library.save();
+
+async getLibrary():Prmise <Library[]>{
+return this.libraryModel.find().populate().execu()
+
+
+agr find use kry ga sirf book ki id aye ga ham chlaty hai id nhi chaye us id sy related data wo b aye sath
+
+ab contoler ma wohi kam
+
+
+
+
