@@ -1075,4 +1075,63 @@ return this.studentService.getallStudent()
 }}
 
 
+@Gte(':id)
+async getstude(@patram:id id:string)
+return tsis.ervicetsudenr.getspaxificu(id)
+}
+
+
+
+Update Data in MongoDB
+
+service.ts ma
+
+async updateStudent(id:string,data:Partisal<Student>):Promise<Student | null>{
+return this.studentModel.findByIdUpdate(id,data,{new true}).exec
+
+}agr id data mil jata wrana null return kry ga 
+
+controler.ts ma
+@Put(":id')
+async updateStudent(
+@Param('id) id:string
+@Body() data:Parartial<Student>,
+)
+{
+return this.studentService.updateStudent(id,data);
+}
+
+
+
+Patch Update 
+
+server.ts
+
+async patchStudent(id:string,data:Partial<Student>): Promise<Studebnt | null>
+{
+return this.studentModel.findByIdAndUpdate(id,data ,{new:true}}.execu()l
+}
+
+put jab apny completely data update krna hai paritally update krna 
+usky liya Patch use krty hai
+
+
+
+Delete Mongodb
+
+id dy ga ham delete hojaye ga student
+
+service.ts
+async deleteStudent(id: string):Promise<Student | null>{
+return this.studentModel.findByIdAndDelete(id).exec()
+}
+
+
+
+contorler 
+
+@Delete(':id')
+async deleteStudent(@Param('id) id:string){
+return this.studetnService.deletreStudent(id);
+}
 
