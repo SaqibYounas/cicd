@@ -1137,8 +1137,7 @@ return this.studetnService.deletreStudent(id);
 
 
 
-
-  Data Relationships In MongoDB
+ Data Relationships In MongoDB
 2 techniques sotre data in db
 
 Embedding
@@ -1432,5 +1431,527 @@ agr find use kry ga sirf book ki id aye ga ham chlaty hai id nhi chaye us id sy 
 ab contoler ma wohi kam
 
 
+
+
+
+
+Many To Many Relationship
+
+many to many embedding k sath nhi kr ksty hai
+one to one mebedding k sath implement kr ksty hai
+one to many ma bhut kam krty hai embedding  sath
+many to many k sath nhi kr ksty embdedding k sath  kyo k alg alg document kasy bnaaye ga
+duplication krny pry ga update krna muskhil hojaye ga
+
+
+2 student k sath embed krwa diya
+kr ksty hai update nhi kr skty problem data bhut bara hojaye ga
+
+
+kuch ma kr ksty one to many ma embedding ma lakin zya tr
+referncing ma agr updatenhi krna zayda dpilication nhi kr skty hai
+
+
+contolrer service generate kry ga ham
+
+schema.ts
+
+import {Props,Schema,SchemFactory} from "
+import {Document}
+
+@Schema({timestamps:true:})
+export class Project extends Dpocuemnt{
+@Props({required:true})\
+title:string,
+
+@Props({type:[{type:Rtpes.ObjectId,ref:'Project'}))
+developers:Types.ObjectId
+}
+
+export const DeveloperSchema=Shema.createForClass(Dveloper)
+
+
+module.ts
+
+imports:[
+Moongose.Module.forDynamic(
+{name:Dveeloiper.name,
+scgem:developer.checma})
+
+
+product.servicd.ts ma
+
+@injectMdel(Devekiper.name) private developer.Model:Mode<Develoepr>
+@injectMdelprojectr.name) private project.Model:Mode<Develoepr>
+
+
+async seed():Promise<{deve1:Developer; dev2:Deeverloper}>{
+
+const [ProjeftA,Projet]=await Promise.all([
+this.projectMode.create([ttiel:'Nest CRM')
+this.projectMode.create([ttiel:'Mongo CRM')
+]);
+
+const [dev1,deve2]=await Prmoiuse.all[([
+this.developerModek.create({
+name:'Farzen",
+projecrs:[ProjecrA._id,ProjecrB._id],
+
+many to many
+project k andr develoepr li detail developer k dandr project kid etail hoig
+await Prmisoe.all({
+this.projefcyModel.findtByIdAndUpdate({
+(projectA._id,{
+@set:{develoepr:[dev1.._id,dev._id]}
+})
+(projectB._id,{
+@set:{develoepr:[dev1.._id,dev._id]}
+})
+
+return {dev1,dev2}
+}
+
+
+asynf get()
+return thisprojectModel.find.().populate('devewlopers).lean();
+
+
+
+
+@Injectable()
+export class ProductService {
+  constructor(
+    @InjectModel(Developer.name)
+    private developerModel: Model<Developer>,
+
+    @InjectModel(Project.name)
+    private projectModel: Model<Project>,
+  ) {}
+
+  async seed(): Promise<{ dev1: Developer; dev2: Developer }> {
+    const [projectA, projectB] = await Promise.all([
+      this.projectModel.create({ title: 'Nest CRM' }),
+      this.projectModel.create({ title: 'Mongo CRM' }),
+    ]);
+
+    const [dev1, dev2] = await Promise.all([
+      this.developerModel.create({
+        name: 'Farzen',
+        projects: [projectA._id, projectB._id],
+      }),
+      this.developerModel.create({
+        name: 'Ali',
+        projects: [projectA._id],
+      }),
+    ]);
+
+    await Promise.all([
+      this.projectModel.findByIdAndUpdate(projectA._id, {
+        $set: { developers: [dev1._id, dev2._id] },
+      }),
+      this.projectModel.findByIdAndUpdate(projectB._id, {
+        $set: { developers: [dev1._id] },
+      }),
+    ]);
+
+    return { dev1, dev2 };
+  }
+
+  async getProjects() {
+    return this.projectModel
+      .find()
+      .populate('developers')
+      .lean();
+  }
+}
+
+
+
+
+
+
+ PostgreSQL & TypeORM Explained 
+
+
+open source relational database hai ya
+stability speed or data accubicay ki waja sy
+ya powerfull database hai
+
+why use postgSQL
+ya free hai mongodb open source nhi hai
+postgress free hai join indexes trigers sabko sport krta hai
+
+secure application bari application scability flexibilty chaye apko
+ap easilty es database ko use kr ksty hai
+
+psotrgress 
+sql + nosql hybrid hai 
+
+mysql hota hamyt pas tales joins milty
+ya b postgresql ma b milty hai
+yha nosql k festure miljaty json full tsxt search ki b mil jat
+dosry ma ya nhi mitli suppoert apko
+bari bair coponies use kr rhi esko
+
+TypeORM
+objection relation mapper hai typescript k liya ya NestJS 
+ya object ornednted ma convert krta nestks ko
+class ki form ma data defie krty
+ya safe hoti query type safe likhnan easy bana deta clean mangeable banata hai
+
+
+
+
+ Connect Supabase PostgreSQL with NestJS | TypeORM Setup 2025
+
+postgress ka market ma chal rha
+supbase
+ap manualyy instakll kry enviment use kro
+
+ajkal jo chlal rha wo supabase hai
+jasy firebase backend as a sevrice paltform hai supabase b 
+athnethcation database storage ya powerfull dtabase deta with ostgress 
+jasy firebase nosql deta ya postgress deta supabase provide krta hai
+
+supabae ma an singup login krna
+
+databse banye ga ham password b dey ga yad rkhna hai
+project banye ga ham
+
+eski confirgaton krwani nestjs k sath 
+project setting ma aye ga m
+phr databse ma aye ga ham
+
+connect click pr kry ga side pr likha hoga ipv4 use kr rhy hoty 
+pc ya ipv6 k sath coompitale hai
+
+nichye hoga ipv4 wala wo lygy connection string 
+nestjs ma env ma dyga ya 
+sirf your-password ma apna likhna databse ka password
+
+
+npm i nest/config
+envormnnt k liya
+
+TypeOrm i krna hai
+postrgress install kry ga ham
+
+npm i @nestjs/typeorm typeorm pg
+ya install kry ga postgress drver hai pg ka
+
+module baey ga ham
+nest g module user
+
+user.entitiy.ts banye ga ak
+impor t{Entitiy,PrimaryGneeratetedColum,colum} form "typerom
+
+@Entitiy apki class ko enentiy ma convert kiya jaye
+
+export class User{
+@PrimaryGeneratedColumn()
+id:number
+
+@Column()
+name:string
+}
+
+ya shme abnana liya
+
+mdule.ts ma enetiy register krwaye ga
+
+imports :[TypeOrmModule.forFeature([User])]
+
+app.modue.ts ma
+imports[confifureModule.forROute(),TypeOrmModelus.fprRoot([
+type:'postgres',
+url:process.env.DATABASE_URL,
+autoloadEntities:true
+synchronize:true
+})]
+nestjs es enentoiy ko create krdy ga supabase ma
+
+type run kry ga ham temrinal ma application run kry ga ham
+ab supabase m create hojaye ga table
+
+
+ab folder ma employees.enentity schema banay k liya ham
+
+
+import {Enitity,PrimaryGeneratedColumn,Column} form "typeorm
+
+@Enoitity ya batye ga esko enenty treat krna
+expport class Employee{
+
+@PrimaryGneeratedColumn() unique id gnerate hogi
+id:number
+
+@Column()
+name:string;
+
+@Column()
+posiion:string;
+
+@Column()
+department:string;
+
+
+emptyess.service.ts
+
+constrictor( @InjectRepository(Employee)
+private employeRepositiory:Repositiotur()<Employee>
+)reporty batata pa crud apply kr ksty esky opr koi b kam crud ka
+
+async create(employeeData: Partial<Emplyee>:Prmoise<Employee>{
+const emplyee=this.employeeRepositiory.create(employeeData);
+return this.employeeRepoisity.save(employee);
+}
+
+
+contoler.ts
+construcot(Private readonly employeeService:EmployeeService){}
+
+@Post
+async createEmployee(@Body() body: Partial<Employee>):Prmoise<eMPLOYEE>{
+{
+return this.employeeSerivce.create(body);
+}
+
+
+
+Fetch Data from Supabase PostgreSQL
+
+service.ts
+async findAll():Prmoise<Employee[]>
+{
+returun this.employeeReposityr.find();
+} get all data
+
+async findOne(id:number):Prmoise<Employee>{
+
+const employee=awat this.employeeRespository.findOneBy({id})
+if(!employee){
+throw new NotFoundExpection(`Employee woth ID${ID})
+}
+
+return employee;
+}
+
+
+contolrer.ts
+
+@Get()
+async findAll():Prmoise<Employee>{
+return this.employeeService.findAll();
+}
+
+@Get(':id')
+async findAll(@Param ('id) id:number):Prmoise<Employee>{
+return this.employeeService.findAll();
+}
+
+
+
+
+Update Data in Supabase PostgreSQL | PUT API with TypeORM 2025 
+
+service.ts
+async updateData(id:number updateData: Partial<Employee>):Prmoise<Employee>){
+
+const employee =await this.employeeRepositiry.findOneBy({
+id)}
+if(!emplotee){
+thorw new not expection(Employee not found);
+}
+
+const updated=Object.assign(employee,updatedData);
+return this.emplyeeRespiorty.save(updated)
+
+
+
+contoler.ts
+@Put(':id')
+async updateEmplyee(){
+@Param('id) id :number,@Body () body:Partial<Employee>,)}
+:Prmoise<Employee>{
+return this.employeeService.update(id,body)
+}
+
+
+Deleete data Supabase
+
+service.ts
+async delete(id:number): Promise<{messae:string}>{
+const result=await this.emplyeeRespostory.delete(id);
+
+if(result.effected==0){
+return notExpecrunFound();
+}
+
+return {message:`Employee with ID $ deleted successfully!`}
+}
+
+@Delete(':id)
+async deleteEmployee(@Param('id) id:number):Prmoise<{message:string}>
+{
+reutrn this.emplyeeServce.delete(id):
+}
+
+
+
+
+
+Filter & Search Data Using @Query()
+jab b data acess krna filter laga kr query paramater lagty hai
+
+emplotess.service.ts ma
+
+async search(filters:{name?:string;department?:string}):Promise<Employee[]>{
+const quey=this.employeeRepository.createQueryBuilder('employee)(filter k liya querybuilder usw krty ham)
+
+if(filters.name){
+query.andWhere('employee.name ILIKE :name', {name:`%{filtera.name}%) (i like cacsecentive hota hai inore kry ga)
+pory name kahi b ali arha percentage ma amtlb eska
+agr percentage na use kry first ko compare kry ga
+
+if(filters.deaprtement){
+query.andWhere('employee.name :name', {name:`%${filtera.name}%) 
+
+return query;
+
+}
+a
+
+ab contoler ma route banye ga ham
+
+async search(){
+@Query('name) name?:string,
+@Query('department') department?:string):Prmie<Employee[]>{
+return this.employeeService.search({name,depatyment})
+
+agr :id opr rkha query agr nichy rkhy tu wo asumen id wala kry ga
+error aye ga error handling use krkry r ksty
+ap id wly ko nicy rkhan esko opr confuse nhi hoga ya
+
+
+
+JWT Token Explained | Authentication vs Authorization
+
+
+Authentication ma user sy credeitials laty agr mily tu thek nhi 
+Authorization  login k ad kin chezo ko wo access kr ksta kis ko nhi wo dekhty hai
+
+JWT(JSON WEB TOKEN)
+eska use authentaion k liya ya secure file hoti jo server or user k darmyn dat excnage krny k liya use hoti
+es my user ki secure information hoti es screure file ma store krty hai
+
+server or user k darmyan data exchnage krna hamny
+server ko nhi yad rhta ap kon hai dobara crendetials dn 
+apko bar bar server sy request krni pri tu es problem ko solve krta hai
+jab user aya server token bnan deta hi ap 
+ny koi b reuqets krni ap header ma wo token dyda ga wo server ;lyga wo lyga pehnchan lyga 
+apko response krdy ga apko credentiual dany ki zarorat nhi hogi
+
+
+
+
+
+Supabase JWT Authentication with Login API 
+supabase token dy ga us ka use krky verify kry ga ham
+
+env ma
+SUPABASE_JWT_SECRET=
+supabase ma jana project setting ma
+wha jwt keys nazt aye gi legagacy jwt secret hoga wo copy krna 
+env ma paste kr dena
+
+main.module.ts ma
+configure.forRoot){
+isGlobal:true: enoment varible ko kahi b use kr ksy ham)}
+
+nest g guard auth/supabase -auth
+ya check krty ap athenticate user hai ya nhi
+
+supabase-auth
+import * as JWT from 'jsonwebtoken'
+import {Request} from 'express';
+
+constructor(private configureService:ConfigureService){}
+canActivate(
+contet:ExcutionContext,):boolean | Prmoise<bollean> | observable<bollena>{
+const request=context.switchToHtpp().getRequest<Requets>;
+const authHeader=request.headers['authorization'];
+if(!authHeader || !authHeader.startWith('bearer')} statndar keyword hota tken k liya user kryty 
+throw new UnauthorizedExpection('No token provide')
+}
+const token=authHeader.spilt(' ')[1];
+const JWTSecret=this.configureService.get<string>('SUPABASE_JWT_SECRET;);
+if(!JWTSecret){
+JWTSecret throw new UnauthorizedExpection('JWT Scestre njot provide');
+}
+try{
+const decode=jwt.verify(tojen,jwtsecret);
+request['user]=decode;
+return tue;
+}
+catch(error){
+throw new UnauthorizedExpection('Invalid Token');
+}
+
+cotoler.ts
+@UseGuard(supabaseAithGuard);
+@Get()
+ab autorezed hona lazmi user ka 
+
+supabase ma authentication ma akr user bnaye ga ham
+project setting ma jaye ga ProjectID hogi 
+postmane ma
+https:projectid.supabase.co/auth/v1/token?grant_type=password
+body ma aye ga 
+information dyga ham
+
+
+
+What is GraphQL? GraphQL Vs REST API
+esko facebook ny develope kiya tha 2012 or 12015 ma opensource krdiya tha
+modern appprocash hai api handle krny k liya
+
+ya ak query language hai api k liya use krti hai
+ya help krta jo data chaye wohi aye na zayda ya kam
+
+why develop facebook kyo kiya.
+jab rets api thi phr esko banaya hi kyo need kyo hoe
+
+esliy develop kiya restapi major issue face krny pry
+overfaecting and underfechting 
+
+overfetchin
+user k data sy sirf user chaye rest ma sara data ajata tha
+
+underfechting
+jab user name chaye orderid chaye 
+rspapi ma multipple endpoint ma kam krti thi hamy extra netowkr sever pr rquest 
+krny prti apki application ma effect ata tha
+
+ya singleednpoint pr kam krta multiple pr nhi
+agr get krna user agr 1 ko get/1 krtty thy 
+
+apki application ki performace sai krta hai
+resapi multipe endpoint por kam krta tha
+
+respai ma akser jab user ka name chaye sevrer proi profile ka adata bhj deta tha
+ya overfetching
+jab data milta tha mulrtiel request krni prti thi ak request su nhiarha tha
+ya underfecthing thi
+
+esi problem ko graphql ny solve kiya
+
+resapi ma ahr resource k liya alg endpoint hota hai
+grpahql maak end point hotha hai
+respai verisoning ka use krta tha v1 v2  pornay dlelete nhi hoti api v1/v2
+versinoing ka use krty thy
+grpahql ma nhi hoti ham query k zariya new data define krty hai
+
+graphql wha use krty jha complex requets krni hoti fetchin k liya complex query krni
+har jaga nhi use hoti 
 
 
