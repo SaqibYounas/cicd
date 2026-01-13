@@ -1955,3 +1955,306 @@ graphql wha use krty jha complex requets krni hoti fetchin k liya complex query 
 har jaga nhi use hoti 
 
 
+
+add previouse text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Prisma ORM & Neon DB Explained 
+
+ak modern orm hai sab sy zayda chla rha hai wo prisma
+jo chezy typeorm ma complex hoti wo prisma easy krky deta hai
+typeorm ma b kr skty jen chezo ma wha time lgta wo easy bana di prisma ny ya backend code ko d sy connect krta typeorm sy secure way provide krta hai
+
+
+why use prisma
+atotmatically type generate krta typeorm ma krna rta es sy bugs kam hojaty hai auto complete hota buit in milti chezy 
+
+
+what is NeonDB
+neondb ak freee servdvelss db hai cloud ma hota firebas b deta noen ak free serverless db hai postgress k luya singup krna or db url ln or save kro
+
+
+why prisma+noeonDB perfect
+combo mana jata hai prisma+noeondb or nestjs best combo hai
+
+
+
+Build Full CRUD App with GraphQL, Prisma & Neon DB
+
+npm i @nestjs/graphql @nestjs/apollo grpahql apollo-server-express
+
+prisma install
+npm i prisma --save-dev development depency mtlb save ka
+npm i @pisma/client tbale create krny k liya use krty ya
+npx prisma init (inlizie hoga prisma app ma )
+
+
+nenon ma account bnaye ga 
+connect kry ga
+.env ma jaye ga connect kry ga
+
+schema.prisma
+
+model Book{
+id string @id @default(uuid())
+title String
+author String
+createdAt DateTime @default(now())
+)
+
+ak command run kry ga db sy connect k liya
+npx prisma db push
+
+npx prisma generate
+
+nest g module prisma
+nest g service prisma
+nest g controller prisma
+
+
+nest g module book
+nest g service book
+nest g resolver book
+
+
+ak dto folder bnaaye ga 
+valitdation k liya
+create two files
+
+create-book.input.ts
+update-book.input.ts
+
+
+prisma.service.ts
+import {PrismaClient} from 'generated/prisma
+
+@Injectable()
+export class PrismaService extends PrismaClient implemts OnModelueInit,OnModuelDestory{
+async onModeulInit(){
+await this.$connect();
+}
+async OnModuelDestory(){
+await this.$disount();
+}
+
+
+app.moudle.ts
+
+imports:[GraphQLModuel.forRoot(<ApploDriverConfig>)({
+driver:ApolloServer,
+autoSchemaFile:join(process.cwd(),'src/schema/gql;
+sortSchema:true,
+palyground:true)}) yha grpahql ka chemahoga
+
+
+create-book.input.ts
+
+import {InputType,Field} from @nest/grpahql
+@InputType
+export class CreateBookInput{
+@Field()
+titile:stirng;
+
+@Field()
+author:string
+
+}
+
+
+UPDATE-BOOK.INPUT.TS
+
+export class updatedBook extends PartilaType(createdBookInput){
+@Field()
+id:stirng
+}
+
+
+prisma.module.ts
+
+exports:[PrismaService]
+
+book-module.ts
+
+imports:[prismaModuel]
+
+
+book.model.ts
+import {ObjectType,Field} from "@nestjs/grpahql}
+
+@ObjectType()
+export class Book {
+@Field()
+id: stirng
+@Field()
+title: stirng
+@Field()
+author: stirng
+@Field()
+createdAt: date
+}
+ya api handle k liya response ma dena es liya essy zayda return krny k liya nhi kr skty ham
+
+model
+ya model api handle krny k liya
+
+
+book.service.ts
+
+constructor (private prisma:PrismaService){}
+
+create(data:cretedBookInput){
+return this.prisma.book.create({data});
+}
+
+findAll(){
+return this.prisma.book.findMany()
+}
+
+ffindAll(id:string){
+return this.prisma.book.findUniqe({
+where:{
+id})}
+
+update(data:UpdatedBookInput){
+return this.prisma.book.update({
+where:{id:data.id},
+data:{
+titiel:data.title,
+author:data.author
+}
+
+remove(id:stirng){
+return this.prisma.book.delete({where:{id}})
+}
+
+
+
+resolver.ts
+constructor (private readonly bookService:BookServie){}
+
+@Query(()=>[Book]) multiple book return kr skta
+getAllBooks(){
+return this.bookService.findAll();
+}
+
+@Query(()=>Book)
+getBook(@Args('id) id:string){
+return this.bookSerivde.findOne(id)
+}
+
+@Mutation()=>Book)
+createBook(@Args('input')input:creaeBookInput){
+return this.bookService.create(input)
+}
+
+@Mutation()=>Book)
+updateBook(@Args('input')input:creaeBookInput){
+return this.bookService.update(input)
+}
+
+@Mutation()=>Book)
+deleteBook(@Args('id')id:string){
+return this.bookService.remove(input)
+}
+
+
+
+ab run application
+localhost300/graphql
+
+mutation{
+createBook(input:{
+totole:
+author:})
+{
+id
+titile
+}ya reutn kya ena apny
+
+
+queyry({
+id,
+titile
+author
+}
+
+
+
+mutation{
+updateBook(input:{
+id:id dn
+totole:
+author:})
+{
+id
+titile
+}ya reutn kya ena apny
+
+
+
+
+
+: Implement Rate Limiting Using Throttler 
+kitny time ma kitni dfa geenarte kr skta otp
+password apply kr skty time duration dy skty limit lagaty hai
+
+nestjs thortler
+npm sy pacage install kry ga ham
+
+
+
+moduel.ts ma\imports:[
+THortlerModuel.forRoot:[
+throttlers:[
+name:'defualt'
+ttl:second(60) kitny rime am krhan
+limit:3 aak mint ma 3 dfa request kr skty hai ham
+],\errorMessage:'Too many request please wait a mint a again!'
+})
+
+providers:[AppService,{
+provide:AppGuard gurd apply kry ga ya
+useClass:ThrottlerGuard 
+})
+gaurd ka concept apply kry ga ya 3 sy dfa reuqets tu nhi ki tu kam nhi kry ga message show krwaye ga ya
+
+
+cotnorler.ts
+
+@Get()
+@Throttle({default:{limit:3 ttl:60000}})
+getHello():string{
+return 'this is a limit route'
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
