@@ -2248,6 +2248,17 @@ return 'this is a limit route'
 
 
 
+Command / Library	Use
+@nestjs/graphql	NestJS me GraphQL enable karne ke liye
+@nestjs/apollo	Apollo GraphQL integration NestJS ke liye
+graphql	Core GraphQL functionality (schema, queries, mutations)
+apollo-server-express	GraphQL server Express ke upar run karne ke liye
+prisma --save-dev	Prisma CLI install (development dependency)
+@prisma/client	Prisma runtime client for DB queries
+npx prisma init	Prisma setup + schema file create
+npx prisma generate	Generate Prisma client for app use
+npx prisma db push	Create/update tables in DB based on schema
+npx prisma migrate dev --name init	Create + apply migration files for DB
 
 
 
