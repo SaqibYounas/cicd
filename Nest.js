@@ -1956,21 +1956,273 @@ har jaga nhi use hoti
 
 
 
-add previouse text
+
+Build Full GraphQL CRUD App with MongoDB & NestJS 
+
+install pakcages
+npm i @nestjs/apollo @nest/graphql opollo-server-express
+class-transformer class validator graphql
+
+appolo grpahql ka server hai ya nest ja k sath intgartion krwya ega
+ya packages install krny hai hamny
 
 
 
+nest g module book
+nest g service book
+nest g resolver book/resolvers/book -flat (ab book dirctorry ma reoslver aye gi phr resolver file i yae
+
+
+contoler ki tara krty resolver b yhi krty  jab b client sy requets sy wo reolsver k pas ati wo service k 
+pas bhj dy jaye gi ya contoler hoty graphql k
+
+ak model bnaye g book ma or ak dto ka folder ma
+
+app.moidule.ts
+
+imports:[
+cpnsfigure.foroot(isgolbla:treu)
+GrpahQLModule.forRoot(<ApploDriverConfig>){
+driver:ApolloDriver,
+authSchmeFile:join(process.cwd(,),'src/schem.gpl)	jab run kry grpahql atomatic sschema bnaye ga
+grpahql atomtoica generate kry ga graphql 
+sortSchema:true;
+playGround:true;
+jab ham npm run kry ga hamy webpased mily ga wha run kry ga query test kry ga
+}
 
 
 
+model 
+book.model.ts
+
+import {Prop,Schema,SchemaFactory}  
+import {PDocuemnt}  form 'moongose'
+import PObjectType,Fiedl,ID} form 'graphql'
+
+@Schema()
+@ObjectType() ya grpahql sy aye jo class banye ga esko as a object treat krna
+export class Book extends Document{
+@Field((=>ID)
+declare readonly _id:stirng (sirf readonly hogi error nhi aye ga)
+
+@Prop({required:true:}}
+@Field()
+title:stirng
+
+@Prop() agr reuqets nihi ya optional hogi
+@Field({nullable:true)
+description?:string ?eska mtlb null ya string
+
+@Porp({required:true})
+@Field()
+aurthor:stirng
+
+}
+
+export const BookSchema=SchemaFactory.createForClass(Book)
+
+
+book.module.ts
+imports:{MoongoseMoule.forFeature([{
+name:Book.name,schema:BookSchema
+][)}
 
 
 
+dto
+create-book.input.ts
+updatevook.input.ts ya baye ga ham
 
 
 
+create-book.inputs.ts
+
+import {InputType,Field{ form '@nestjs/gtrpahql
+import {IsNotEmpty,IsString} 'class-valudtor)
+
+@InputType()
+export class CreateBookInput{
+
+@Field()
+@Istriong()
+IsNotEmpty()
+tittle:stirng
 
 
+@Field({nullable:true){} ya optional hoajye gi grpahql k liya
+@IsSting()
+description?:string
+
+
+
+@Field()
+@Istriong()
+IsNotEmpty()
+author:stirng
+
+
+}
+
+
+update-book.ts
+
+import {CreateBookInput} from "./create-book.input'
+improt {INputeTye.field,PartialRype,Id from nestgrpahql
+import {IsnotEmpty{ form 'classvaitladot'
+
+@InpuType()
+export class updateInputextends PartialType(createBookInput){
+jab ap data update kr rhy fields opr wali dani esliya inherit kiya best practioce ki reuse kiya code hmany
+partial ka mtlb es class ki sari na aye fields esliya partial use kiya hmnay
+jab ap data create kr rrhy phr phli jab ap update kr rhy tab apko id b batani hai 
+esliya ya class bana  rhy
+
+@Fiedl((=>ID)
+@IsNotEmpty()
+id:stirng
+
+}
+
+
+
+serivce.ts
+@Injectablel()
+export class BookService{
+constritor (@InjectModel (Book.anme) private bookModel:Mode<Book>{}
+
+async create(input:createBookInput):Prmose<Book>
+{
+
+const created=new this.bookModel(input);	save kr rhy db ma
+return create.save();
+
+}
+
+async finfAll():Promise<Book[]>{
+return this.bookModel.find().exec(); rpmise sai dela hn exec sy
+
+}
+
+async findOne(id:string):Promise<Book>{
+const vook=await this.bookModel.findbyid(id).exec();
+if(!vook) throw new expectionNotFound("Not found Book)
+return book;
+)
+
+
+async updatebook(input UpdateInput():Prmise<Book>{
+const existingBook=await this.bookModel.findById(input.id);
+if(!existingBook)throw new expectionNotFound("Not found Book)
+Object.assing(exisintnBook,input);
+reuttrn exisitnBook.save(); jo update kiya save krkry return kry ga ya
+
+async remove(id:stirng):Prmose<boolean>{
+const result=await this.booikModel.findBydiAndDelete(id);
+ya tur false reutrn krta mil gya dlete 
+if(!result)throw new expectionNotFound("Not found Book)
+return true;
+
+}
+
+bussiness logic khtm
+
+
+resolver.ts ma
+
+import {Quert,Reolver,Muattaion} from 'qgrphqlnest
+
+@Resolver(()=>Book)
+exirt classresolverBook(){
+
+constrictir(private radonly bookService:BookService(){}
+
+@Query(()=>[Book],{name:'getAllBooks}))
+query ka use wha krta kjha data fecth krna hn mutation ka jha data ma update krna deleterkna wha 
+
+async findAll()
+return this.,bookservice.findAll();
+}
+
+@Query(()=>,{name:'getBook}))
+async findOne(@Aargs('id',{type:()=>String) id:stirng) grphaql ma krty requets masy argument ko getr kr sky ha,
+return this.,bookservice.findOne(id);
+}
+
+
+@Mutation(()=>Book)
+async createBook
+(@Args('input') input :CreaeBookInputDto){
+return this .bookService.create(input)
+}
+
+
+@Mutation(()=>Book)
+async updateBook
+(@Args('input') input :UpdateBookInputDto){
+return this .bookService.update(input)
+}
+
+
+
+@Mutation(()=>Book)
+async deleteBook
+(@Args('id') ,type()=>String}){id:stirng}  ){
+return this .bookService.deletebook(input)
+}
+
+
+
+yha pr run kry apllicaiton phr test
+loclahost run krky
+/grpahql kry  ga playground aye ga wha pr query likh ksty hai etsv krt skty hai
+
+
+create k liya mutuauon krty use ham
+
+mutation{
+createBook(input:{
+all data jo bate model ma
+}}
+
+
+mutation{
+createBook(input:
+ttitle:"nestskjs'
+author:"tecthzone:
+}){
+id,
+title,
+author}
+
+phr run kry ga db ma dekhy ga ajaye ga 
+
+
+query{
+getAllBooks{
+_id,
+title,
+authoir
+}
+
+undefetching
+iverfetching cover hogi yha
+
+
+query(id:")
+{
+getAllBooks{
+_id,
+title,
+authoir
+}
+
+mutation{
+updateBook(input:(
+id;
+author
+title
+}
 
 
 
@@ -2259,6 +2511,9 @@ npx prisma init	Prisma setup + schema file create
 npx prisma generate	Generate Prisma client for app use
 npx prisma db push	Create/update tables in DB based on schema
 npx prisma migrate dev --name init	Create + apply migration files for DB
+
+
+
 
 
 
