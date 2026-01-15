@@ -1,0 +1,2841 @@
+Next Js is a full stack framework
+build in React js and nodejs
+
+client side hissa wo side react pr based 
+backend server ka hissa node js pr based hai
+
+
+
+Vite rendering only one option
+Next js 3 options prpvide
+server side rendering 
+Client side Rendering
+Static site Generation
+
+SEO BEST Next js
+
+Vercel ak compoany hai jesny Next js ko develop kiya hai 
+Open source framework hai
+for buidling fast production-ready
+
+
+
+Key Features:
+File-based Routing:
+pages/ folder mein file banate ho to wahi route ban jata hai. (e.g. about.js → /about)
+Rendering Types:
+SSR (Server Side Rendering): Page server se har baar ban kar aata hai.
+SSG (Static Site Generation): Page ek baar build mein ban jata hai, fast hota hai.
+ISR (Incremental Static Regeneration): Static pages ko bina poora site rebuild kiye update kar sakte ho.
+CSR (Client Side Rendering): Page browser mein render hota hai (React jesa).
+
+API Routes:
+Backend code bhi likh sakte ho (e.g. /api/hello route backend handle karega).
+Image Optimization:
+Images ko fast aur lightweight banata hai (lazy loading, resize, WebP).
+TypeScript & CSS/Sass Support:
+Direct use kar sakte ho without setup.
+
+Middleware:
+Request aane se pehle logic run kar sakte ho (like authentication check).
+
+Deployment:
+Serverless aur Edge (global fast) deploy easily ho jata hai.
+
+✅ Fayday (Benefits):
+SEO Friendly: Search engine easily page ko index karta hai.
+Fast Performance: Pages jaldi load hote hain.(ssr ki waja sy).(1st ite data kis soeed sy ata)
+Better UX: Smooth transitions, Fast Refresh for devs
+Flexible: Choti se le kar badi apps tak bana sakte ho.
+Developer Friendly: Setup asaan, routing aur configs easy.
+
+📌 Use Cases (Kahan Use Hota Hai):
+E-commerce Websites: Fast loading aur SEO se sales badhti hain.
+Blogs, Docs: Static pages ke liye best.
+Enterprise Apps: APIs + Hybrid rendering se scalable hoti hain.
+Real-time Apps: SSR + CSR mix for performance + interactivity.
+
+
+Next.js = Fast, flexible, production-ready React framework. Ideal for SEO, performance, and scalable web apps.
+
+
+npm create-next-app@latest
+
+koi aisa extenson jo hamry dom ko modify k rha error aye ga
+
+1️⃣ Client-Side Rendering (CSR)
+Definition:
+Browser me JavaScript execute hota hai aur HTML generate hota hai.
+Server sirf JS bundle aur empty HTML shell bhejta hai.
+Content render hone me thoda time lagta hai jab tak JS load aur execute ho.
+
+Next js
+server side render file hai 
+agr ham jo display nazr arhi inspect kr ky dekhty hai server sy aya hota html 
+donu cases ma node server use horha http server create kr rhy lochalhost server start kr rha
+yha inspct dekhy sara server sy aye ga code
+
+yha pr main file app hoti next js ma
+public folder ma serve horhi files publicly file serve hrohi
+usmy page.js main file hai homepage ka content rhta app.js ki tra
+
+agr ma react jsma console.js kro or console ma dekhu nazr aye ga
+agr ma next js ma kro console.js tu nazr nhi arha console ma
+ya next js ka server pr code excute hota client pr nhi hota
+browser request bhj rha next js ko or next js ka code server k opr excute horha
+jsx ka code server pr excute horha hai react server compoennt ka use krky
+babel coplie kry ga react ma convert kry ga js bny jab ya react.create elemnt ma convert hota tu phr usko simple html ma convert krty or es html ko send 
+krty client ko yahi sy html ma bna kr dety hai
+prdoction mode wo hota jo ham server build kr ky start krta
+
+agr hamy client pr code run krna tu 
+'use client' krna hota ya compoennt client component bn jaye ga
+ya code server or client donu pr run hoga ya add krky
+use client ka code server pr run hota phly phr html bna kr client ko send krty
+kuch b intercvity chaye clik krna use client kry gy
+brower ka code nhi run kry ga error aye ga terminal ma
+
+next js react code ko server pr run krta html generate krky  phr clinent ko send
+client side react ma yha empty html send ki jati phr js ati phr html ata 
+
+static server
+ya request aye gi files serve krdy ga
+Agar React app hai (JSX code), browser JS ko execute karega aur content render karega.
+SEO me problem hoti hai kyunki search engine pehle JS execute karne ke baad content dekhta hai.
+
+dymanic server
+serve b krta or ya react js ka code jsx ka code pr excute b krta
+es sy seo imporove hoty seo html code dekhty page pr request kry gy html content dekhy gy vote khali html bhjy ga
+next js html ka sara connent jata search engine ko mil jata cintent
+faster load time 
+vite ma phly plain html load hoga phr usky bad js load hoga
+next js serve krty waqt pora conetnet hota page jaldi load hota
+
+React js
+react js clinet side render hai
+agr yha view page dekhy yha koi content nhi likha only empty root hota hai content nhi arha only biloer plat code arha
+port wagira node modules ma hota node js hota node modules ma
+node js ka use krky srver start horha vite pr
+5173 likha hota wha constant file ma node js use horha yha b
+\blocal\b regex use kr ky searching krty vs code ma
+agr .listen krky dekhy http server sy bna hota ya server
+node_modules/next/dist/server/lib/start-server.js location server kis
+fronted run hota server run hota ya simple server static server vite ma file serve kr rha ak port pr start hogay domain name localhost
+html css js ko serve kr rha broswer ma ham dekh rhy 
+bable tool hai jsx ko porani js ma convert ma krta
+ya jsx simple js ma convert hoa vite ka static server wo server tk js ko serve kry ga
+jo b html css ya js ma serve hoga vite convert krta serve sy phly js ma convert sirf root hoga html ma
+babel complie kry ga react ma convert kry ga js bny vite broswer ko send krna broswer load krta dom ko
+
+1. React app browser me load hoti hai
+2. Browser pe JavaScript run hoti hai (React DOM)
+3. Component render hotay hain (e.g., <Navbar />, <Home />, <Card />)
+4. React state & props ke through updates karta hai
+
+
+Step 1: Client request
+Browser pehle server ko request bhejta hai (GET /home ya koi page).
+Server respond karta hai ek bundle ke saath.
+Step 2: Bundle conten
+Server jo bhejta hai, wo hota hai:
+JS bundle – React ka compiled JS code (usually Babel + Webpack se).
+HTML – basic structure ya index.html.
+CSS – styling, either separate file ya inine.
+Images / assets – linked ya included.
+
+Step 3: Browser (Client) actions
+Browser HTML parse karta hai.
+Agar SSR nahi hai, index.html e usually <div id="root"></div> hota hai.
+Browser JS load karta hai:
+JS bundle execute hota ha.
+React code DOM me render hota hai, yaani <div id="root"> ke andar actual content aata hai.
+Babel ka kaam:
+Agar JS modern syntax me hai aur browser old version hai, Babel transpile kar deta hai JS ko browser-friendly JS me.
+Ye runtime ya build time dono jagah ho sakta hai.
+CSS apply hoti hai:
+Agar separate CSS file hai → browser usko load aur apply karta hai.
+JS bundle ke rendr hone se HTML me content dikhta hai aur CSS usko style karta hai.
+Summary (Roman English)
+Server: bundle (JS + HTML + CSS + images) bhejta hai.
+Client:
+
+HTML parse → <div id="root">.
+JS execute → React render hota hai DOM me.
+CSS load → styling apply hoti hai.
+Babel sirf JS ko browser-friendly banata hai agar zarurat ho.
+
+
+Har browser ko sirf plain JS chahiye. JSX ko samajhne ke liye Babel ya koi transpiler zaruri hai. Server ya build time me JSX → JS me convert hota hai, phir browser me run hota hai.
+
+
+used this better then .../../
+
+{
+  "compilerOptions": {
+    "baseUrl": "src/",
+    "paths": {
+      "@/styles/*": ["styles/*"],
+      "@/components/*": ["components/*"]
+    }
+  }
+}
+
+script file ma
+npm run lint → next lint command run karega
+
+Ab lint kya hota hai?
+lint ka matlab hota hai code ko analyze karna aur errors / warnings nikalna jo coding style ya best practices ke against ho.
+Ye tumhare code ko run nahi karta, bas check karta hai ke:
+syntax theek hai ya nahi
+unused variables to nahi
+coding style follow ho rahi hai ya nahi
+bugs aur potential problems to nahi
+
+
+Next.js me next lint
+Next.js internally ESLint use karta hai.
+Jab tum npm run lint chalaoge, to ye tumhare project ki saari .js, .ts, .jsx, .tsx files ko scan karega.
+Agar .eslintrc.json ya .eslintrc.js file me rules set hain, unhi ke hisaab se check karega.
+
+
+
+vite.config.js = settings ka control panel jo decide karta hai ki tumhara project dev server aur production build dono me kaise chalega.
+
+
+
+Routing Next js
+
+by default 404 page dekhta agr wo route nhi hai
+layout.js (react index js hoti estra layout js hai yha) yha children ma rendered horha page ka contnet ma
+page.js(esmy actual code hota)
+
+jo route banye usky name sy compoent banye gy
+jitny page bannay ham us page ka folder phr usmy page.js banye gy
+ham Link compoent ka use krty route change pr page load na hn react ma
+react ma to attribute dena next ma href dena attribute
+
+
+
+Nested Routing
+
+services page hai
+umsy app developement we developement
+ab services ma web-dev folder bny ga file bny gi
+case sentstive route hoty a A diffenrt hai donu
+
+
+
+Dynamic Routing
+
+props ak simple object hai
+agr console kry do thing hai params,searchparams 
+ya donu promise hai
+compoenent ma async lga skty
+{} estra ham destructre krty desrect props k object sy
+consoel.log(await params,seaerchparams)
+by default ya donu ak empty object rhta hai
+
+agr ham ? key=value dy serach parmas ma wo value ajaye gi
+ya serach params ma mily gi
+ya parms har compoennt ma avaible rhta empty object await krky
+har jga props k andr parms milta usko await krky ak empty object milta
+
+ak blogs page hai esmy hazro blog hai ham blog1 blog2 estra nhi bna skty
+ham dunalicly route banty hai
+folder ma [kuchbhi] squre racket ma likhty name usmy page.,js file blog ki nested
+tu jo b route ma dy gy kuchbhi k sath object bn jaye gy
+[slug] esko slug khty dymanicly path bnta
+parent hoga jo folder tu usky child ma squre use kry gy slug k liya
+
+const {blogID} =await params;
+
+
+ham ak folder banaya usmy page file uski
+ab squre bracket ma banye gy folder us my page file usmy params use kryu ga
+folder name key hojaye gi dosri jo b value jo route ma dygy
+
+Ye question tab uthta hai jab aap Next.js ke dynamic route (app/blogs/[blogid]/page.js) me kuch aise code 
+dekhte hain jo promise return karta hai, lekin usme async/await ka use nahi hota.
+
+
+jo folder ka name square bracket ma dyga wohi ham pamars sy destrcut kr rhy hoigy
+
+
+
+
+Nested Dyamic Routing
+
+blog pr comments ka feature hota hoskta hai
+ham chty hai 1 blog ma kitny comment hai wo nazr ajaye
+blog/1/comments
+
+ham [name] es folder ma file bnaye gy folder baney gy page.js rkhy gy 
+eska roule hai aisy page bnanay hai
+ab esky parent k jo parms wo recived hogy
+
+const parmsobj=await params
+conts {blogID} =paramsobj;
+
+ham blog.1.comments/1 dekhna chty ham dynamicalyy or nested donu hai
+ab squre bracket ma bnaye gy folder usmy page
+child folder ma parent ki values b milti objet ma
+
+ak folder usmy squre phr usmy folder phr squre folder nested hai
+nested ma parent ka slug mil jata
+
+Agar aap client component me ho ('use client' likha hai), to aapko params lane ke liye useParams() hook use karna padega.
+
+✅ Correct Client Component Code:
+
+'use client';
+import React from 'react';
+import { useParams } from 'next/navigation';
+
+export default function Comments() {
+  const params = useParams();
+  const { objID, newId } = params;
+
+  return (
+    <div>
+      <h2>Comments</h2>
+      <p>Object ID: {objID}</p>
+      <p>New ID: {newId}</p>
+    </div>
+  );
+}
+
+agr use client k sath params use kro
+
+Jab tum use client likhte ho to wo component client component ban jata hai.
+Client component ko directly params nahi milna chahiye, kyunki props server → client pass hote hain.
+
+⚡ Lekin tumhara code isliye chal raha hai kyunki:
+Tumhara page.js ek Page Component hai jo framework-level special file hai.
+Next.js usme { params } injection karta hai chahe wo client ho ya server.
+
+
+
+Catch All Routes
+
+ham ak file manger bnana chty hai file ka path dy images/png/filename
+aisa koi type kry es server pr jo file pri wo ajaye
+mtlb ham kitni b route pr path dy wo hojaye
+level of nesting hn
+image/png/hi/pnh.js
+jo b route wo ajaye 
+ 
+ham squre brackets ma [...filePath] esmy components banye gy
+tu ya khul jaye ga koi b apth hamy value mil jaye gi array ma /1/1
+estra kisi b route ko capture kr kstty hai
+
+koi aisa route hard couted hai majod hai wohi khuly ga na k dymaically ko
+
+const {filepath}=await params;
+{filepath.join("/")} string ma bna rha ham api call kr ksty path milgya hamy
+
+ham files ka name ka hardcoded dy gy 
+/files/f/h///g/fg estra dy skty ham file ko open krna chta usr
+folder ko... foilder ma rkhy gy file ma root directory ma mil jaye content
+
+
+
+
+Optional catch route 
+ham es ko aisa bna skty hmy file ka page na banana pry tabhi yahi compoent open hn
+[[...filepat]] estra 
+single required route file k abd kuch hn []
+
+agr ham route optional catch route ya .route sy conflict kry ga esliya malsha hai 
+/sy ahmara main page open hota
+
+[[]] optional catch route
+[] cath route
+
+
+
+[...slug] → kam se kam 1 segment zaroor chahiye.
+/blog/a → slug = ["a"]
+/blog/a/b → slug = ["a","b"]
+/blog → ❌ error (match nahi karega)
+
+[[...slug]] → segment optional hai, zero ya zyada ho sakte hain.
+
+
+app/
+├── catch-all/
+│   └── [...slug]/
+│       └── page.js
+├── optional-catch-all/
+│   └── [[...slug]]/
+│       └── page.js
+
+
+✅ Valid URLs:
+/catch-all/hello
+/catch-all/hello/world
+/catch-all/one/two/three
+
+❌ Invalid URL:
+/catch-all → ❌ 404 (no param provided)
+
+🔹 [[...slug]] → Optional Catch-All
+Kam karta hai bina kisi path ke bhi (i.e. optional).
+
+✅ /blog → ❗ Kaam karta hai
+✅ /blog/abc
+✅ /blog/abc/xyz
+
+👉 Yani first route bhi optional hai.
+
+
+Catch-all [...slug]
+
+Matlab kam se kam ek segment lazmi hona chahiye.
+
+Example:
+
+/blog/a ✅
+/blog/a/b ✅
+/blog ❌ (segment missing, error)
+Optional Catch-all [[...slug]]
+Matlab segment optional hai (ho bhi sakta hai, na bhi ho).
+
+Example:
+
+/blog ✅ (segment missing but allowed)
+/blog/a ✅
+/blog/a/b/c ✅
+
+
+
+
+Layout kasy bnaty
+header or footer wagira
+
+usky liya layout.js hota hai
+root layout componenet hai ya
+esmy html or body return krna hota
+
+yha alg alg page akr rendered hogy yha jo ham dy har page pr present rhy ga ya common chez har page k liya run kry ga
+yha {chikdren} ma run krty all component hai
+
+agr children na kry render layout ma sirf layout render rhy ga
+agr ak file usmy koi or common dekhana tu us folder ma b layout.js bnaye gy
+phly layout run hota or usmy chiildren k rop ma hamy actual ma page ka compoents nazr aty
+jes page ma jaye gy uska code children ma ajaye ga tu sab ma layout page content nazr aye ga
+andr waly html or body tag nhi rkhna jo b run kry gy wo amin layout m aaye ga
+
+
+
+
+
+Metadata API
+
+metadata: ak page hai usky elawa b extra infomration hoti wo nazr hi ati body wala nazr ata head ka nhi head metadata batat 
+title ak metadata hota title bata
+agr ham title set krna jes page ma ajey wo aye op favicon ma
+metadata import krna hota object export krna hai
+
+metadata api ka use krna chaye
+metadat object export krna hota aplyout sy kr skty ya page file sy
+ak object export krna hai 
+
+layout.js main
+export const metadata={
+title:'technical agency';
+}
+har page k liya set hoajye ga
+ya har page ma same dy ga tile
+layout ma commoon hajye ga
+
+jha hma chaty hai har page k liya alida hn tiltle page k mutabik
+agr home compoennt hau
+
+layout.tsx → poore section ya app ke liye default metadata.
+page.tsx → sirf us ek page ke liye metadata.
+generateMetadata function → agar aapko dynamic metadata banana ho (e.g. slug ke hisaab se title change karna).
+
+export const metadata={
+title:'home';
+}
+estra ham alg page ma set krty hai taky har page ka laida title nazr aye
+
+layout.js
+ export const metadata={
+title:{
+template:"%s | company name"
+defualt:'technical agency';
+}
+}
+%s ki jga har page ka name ajaye ga
+title wala
+
+
+title ma dymaically value kasy set kry
+dymaically data set krna title ya description ma
+
+generatemetdata ka use kry ga
+file usmy ma jha dynamically use kr rhy params wha
+
+export async function generatemetadat({params}){
+const {blogid} =await params 
+return P
+title:blog ${blogid}
+}
+
+har page k liya dymaicaly set hogi
+
+title{
+absolute:'files'
+}
+
+mtlb extra chez remove hojaye gi | lga kr jo diya tha wo remove hijaye gi
+
+metatage ma desription kya hoti
+esko ham seo k liya use krty hai 
+
+Jaise:
+
+<title> → tab ke upar dikhai deta hai, page ke andar nahi.
+<meta name="description"> → Google search results me dikhai deta hai.
+<meta property="og:image"> → Facebook/WhatsApp share karne par thumbnail banata hai.
+👉 Is liye Next.js automatically metadata ko head section me inject karta hai, UI me nahi.
+
+Important Note ⚠️
+Google hamesha tumhara diya hua description 100% use nahi karta.
+Agar Google ko lagta hai ke page ke content se koi aur text zyada relevant hai, wo apna khud ka snippet bana sakta hai.
+Lekin agar tumne metadata.description sahi diya ho aur content bhi match kare, to mostly wahi show hota hai.
+
+
+// app/page.tsx
+
+export const metadata = {
+  title: "My Portfolio - Saqib Rana",
+  description: "I'm a full-stack web developer specializing in MERN stack.",
+  openGraph: {
+    title: "Saqib Rana | MERN Stack Developer",
+    description: "Portfolio showcasing full-stack projects built with React, Node, MongoDB.",
+    url: "https://mysite.com",
+    siteName: "Saqib Portfolio",
+    images: [
+      {
+        url: "https://mysite.com/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Portfolio Screenshot",
+      },
+    ],
+    type: "website",
+    locale: "en_US",
+  },
+};
+
+export default function HomePage() {
+  return <h1>Welcome to My Portfolio</h1>;
+}
+
+Jab aap apni website ka link kisi social media app (jaise WhatsApp, Facebook, Twitter, LinkedIn) par share karte ho, to jo image, title, aur description preview me dikhte hain —
+wo sab openGraph metadata se hi aate hain.
+
+
+
+
+404 page design
+
+layout ka kam 404 page ma b nazr ata hai
+agr ham kisi particular condition pr not found page nazr ajaye
+
+if(blogID==test){
+notFound();
+}
+estra ham redirect kr skty kisi specific route sy not found page pr redirect krna call krna 
+ya function hai nextnavigation sy import krna notfound page ko
+
+/oprarrow\s+$/.test('123') agr ak b chacter day gy fr false aye ga
+ya regular expression hai
+
+agr not found page cutomize krna khud design krna ham
+not-found.js ki file banye gy es name sy
+main folder ma
+ab es file ma jo dy wo aye ga
+
+agr ham dymaically routing wala name dkehana chaty hai
+tu ham us file ko us folder ma rkh dy gy tu us file route ka eror aye ga wo dkehye ga
+jes folder ma jo found page dy gy wo dkehy ga
+not page ma params nhi aty
+agr dekhna ham usepathname import kry gy
+const a=usepathname();
+usePathname() Next.js ka ek React Hook hai jo aapko current URL path return karta hai (browser ke address bar ka path).
+
+
+regular expression
+🧠 Basic Syntax:
+Pattern	Meaning	Example Match
+\d	digit (0–9)	3, 9
+\w	word character (a–z, A–Z, 0–9, _)	A, b3
+.	any single character	a, 1, @
+*	0 or more	ab* → a, ab, abb, abbb
++	1 or more	ab+ → ab, abb, not a
+?	optional	colou?r → color or colour
+^	starts with	^abc → abc123 ✅
+$	ends with	xyz$ → hello xyz ✅
+[]	character set	[a-z] → any lowercase letter
+
+Symbol	Use
+^	Start of string
+$	End of string
+\d	Digit
+\w	Word character
++	1 or more
+*	0 or more
+{n}	Exactly n times
+{n,m}	Between n and m times
+
+🔑 Extra Important Regex Symbols & Tokens
+Symbol	Meaning	Example Match
+\s	Whitespace (space, tab, newline)	" ", \t, \n
+\S	Non-whitespace	a, 1, @
+\D	Non-digit	a, @, -
+\W	Non-word character (not a-z, A-Z, 0-9, _)	@, #, !
+()	Grouping (sub-expression)	(ab)+ → ab, abab
+`	`	OR (alternation)
+?:	Non-capturing group	(?:ab)+ (groups without saving match)
+?=	Positive lookahead	\d(?=px) → digit followed by "px"
+?!	Negative lookahead	\d(?!px) → digit not followed by "px"
+?<=	Positive lookbehind	(?<=\$)\d+ → digits after $
+?<!	Negative lookbehind	(?<!\$)\d+ → digits not after $
+\b	Word boundary	\bcat\b → matches "cat" but not "catalog"
+\B	Non-word boundary	\Bcat → matches "concatenate"
+.	Any single char except newline	a.b → "acb", "a1b"
+(?i)	Case-insensitive flag	(?i)abc → matches "ABC", "abc", "AbC"
+(?m)	Multiline mode	^abc matches start of each line
+(?s)	Dotall mode (. includes newlines)	a.*b matches across lines
+
+
+🔹 Example by Languages
+1. JavaScript / TypeScript
+const pattern = /hello/;
+console.log(pattern.test("hello world"));  // true
+console.log(pattern.test("hi world"));     // false
+
+
+👉 JavaScript ke andar RegExp ek built-in object hai.
+
+g → global (all matches)
+i → ignore case (case-insensitive)
+m → multiline (^ aur $ har line par apply hote hain)
+s → dotall mode (. newline bhi match karega)
+⚡ Summary:
+/pattern/ → sirf pehla match
+/pattern/g → saare matches
+/pattern/gi → saare matches, case-insensitive
+
+Breakdown of (?=.*[A-Za-z])
+(?= ... ) → lookahead start
+.* → matlab "koi bhi characters (0 ya zyada)"
+[A-Za-z] → ek letter (uppercase ya lowercase)
+👉 Iska combined matlab:
+
+
+
+
+
+Route Groups  Next.js
+
+ak route page
+ak blog page
+ak file ka page
+agr ham 2 categores ma banth skty hai 
+services hai marketing ma rkh skty
+ab ham chaty by defult route hai marketing route k bad service aye ga
+agr ham chty marketing k bagir service page pr jaye ham route group ka use krty
+(foldername)
+ya banckend ka code logial group ma sperate hogaya
+application folder ma baki folder groups kr ksty 
+esko groups routing khty hai
+
+agr ham category wlaa layout dkehan chaty tu us main page file ko us folder ma dal dy gy uska layput nazar aye ga
+agr ham not found page pr jaye wha sy header footer remove kr skty hai
+
+
+
+
+Private Folder
+koi aisa folder banan k wo page na bany hamra
+
+compoennets 
+test.js file bany gi
+tu estra hamra page nhi bny ga
+agr ham page.,js file ban jaye ga page
+agr ham aisa nhi chaty tu esko private folder banye gy
+_compoent banye gy
+wo esko routing ma conserderd nhi kry ga
+
+agr ham chty hai _conpoent ka page chty hai_ acespt krna hai
+ham %5 use kr ksty underline ka url code hai
+%5compoents tu _compoent ka route bn jaye ga ya provate route nhi rhy ga agr undersore bannaroute ya use kr ksty hai
+
+
+
+
+
+Rendering Paradigms 
+
+ya har tra ki rednering ko accept krta hai
+static site generation
+ increment site generation
+client side geenration
+server side generation ya hoi rendering 
+ak sy zayda 
+
+hamry webiste ka html kha banaya jata hai
+i)server pr server sy html aye ga broswer smjh kr web page banye ga
+broswer ko nhi fariq prta abi bna page ya phly ka bana renderd hokr
+ii) clinet side renderd
+ham server sy khail bahjy gy html root ata react ma ka bari file js bahjy gy js ka kam dom k andr elemnt k andr create kry
+
+
+Server-Side Rendering (SSR)
+Server pe HTML pehle se ready hoti hai.
+Browser ko sirf wo ready-made HTML mil jati hai.
+Browser ke liye ye new page hai ya cached page, usko farq nahi padta → wo sirf HTML ko parse karega aur dikhayega.
+Example: PHP, Next.js (SSR mode).
+
+Client-Side Rendering (CSR)
+Server mostly ek empty HTML skeleton bhejta hai aur JavaScript (React, Vue) ke zariye browser hi page ko banata hai.
+Browser tabhi page dikha payega jab JS load aur run ho jaye.
+
+angulare framework
+dosra react librayr
+vue b hai
+enhu ny client side rendering ko bnaya 
+
+ya ssr porana tariq jab kam hota tha web ma use
+phr csr aya 2010 ma sara logic ui ma rhta js k thorw send kr deta tha
+usky bad webapps i usko webapps khny lgy
+csr ka seo acha nhi hoita tha
+jab b server sy html file ati wo khali hoti thi wo scroll seo waly html ka content dekhty 
+phr rank hoti website
+
+server side ma pora content ata tha seo acho hoti thi
+ya tb tk chlta jab tk next js nhi i
+
+nexj js ny donu kiya 
+ajky time ma cleint side render ing or sever side rendering krta hai
+
+ssr ka part
+server site generation
+incremental side rendering 
+
+client sid ema akhi tarika csr bas react only csr krta next js donu
+
+
+React Vite APP
+production ma html css js file rehti hai
+server sy send krty file network ma dekh skty
+js code ko ak bnadle ma server kiya jata
+
+jab ba ham production ma run kry eski
+main npm run build
+ak dist folder bny ga usmy 4 file aye gi uski serve krta hai
+main npm run build preview
+kry tu hamry pas theen file ati html jesmy rott hoga div ki id
+ak js file jis ma sab files ka bundle hoga jitny b pages thy unko ak file ma krky send kry ga js bna kr
+main contnet sab pages ka ak js page ma aye ga
+ak css file or ak icon 
+
+ak hi server pr html jo send kry ga server 
+ham jab dosry page pr jaye server pr request pr nhi jati wo client pr hai js code
+jasy ham dosry page pr jaty tu page load hojata phly koi network request nhi jaye gi
+agr kisi page ko reload kro phr wohi 4 request jaye gi html css ja file wohi aye gi server sy
+agr jes route pr jaye path pr csr website hai react ka server hai noide js ka use krky run kr rha
+jes page ma jaye yhi 4 pages serve kry ga client ko pata es url ko dekh kr kya renderd krna hai
+pori ki por repsonsinty client ko di js file send krdi jes route pr kya dkehana
+js ko smj es route pr kaya dekhan ya dkeye ga 
+
+ya csr rednerign hai
+
+Mode	Urdu Explanation
+Development Mode	Developer banate waqt use karta hai. Sab kuch visible hota hai taake debugging ho sake.
+Production Mode	Jab website live hoti hai real users ke liye, to production mode use hota hai — fast aur secure.
+
+
+Next.js Rendering
+production mode ma dkehy gy jab use krta production mode ma use krta 
+
+ak .next folder hai esi sy files ko serve kiya jata
+ak app folder ma fodler hai usmy file hai jestra routes hai yha sy chezy serve ki jarhi files data
+
+phly.next ka name chnage krky
+
+main npm run build 
+.next folder banye ga usmy sevrer folder hoga wha about.html ki file hogi pages ki tra sara html likha hoga wha
+usky bad npm install krna production mode ma run krni application hamny
+npm start krna
+ya wohi server pr run hoga react ka change tha sever prduction mode ma
+
+agr ham network k response ma dkehy tu ak html page aye gi html blank nhi aya hai
+server sy aya hai already render krky page bhjta ya  es page ko bnanae ma koi kam nhi kiya broswer ny
+server sy aya page broswer ny dkeha diya
+
+rsc react server component file ka name hoga ak
+hamry services ma kya dekhy ga wo hoga likha hoga es file ma us page ka pora structure nazr aye ga
+ak simple file send kr rha dekha rha kya nzar aye ga es page ma
+
+agr simple page ki request bhjy ak request jarhi favicon 
+ab ham kisi b page pr ajye sara data load hai dekhaye ga broswer ma
+next js ny server side render krky page send kiya html provide kiya
+ya content diya k kis page pr jaye odhr kaya dkehna virtual dom send kiya
+yha ab client side rendering horhi ab jes page pr jaye client side rendeirng hogi
+
+ak page pr hai request send kry reload krky page jo html aye ga us page ka hoga 
+es sy seo improve hoga first page ka load fast hota jo client pr dkehana kuch clien tpr build nhi krna 
+
+pr react ma agr ak page ma reload kry page phly khail html aye gi phr js aye gi excute hogi phr conent aye ga
+agr disbale krdy js chali jaye gi css nazr aye gi html content nazr nhi aye ga
+agr js ka bundle bara hojaye bhut sari chezy krni hoti dynamicaly js run kry ga ya slow hai seo usko achy sy smjh nhi paty
+
+
+agr next js ma disable kry nazr aye ga wo html ma hai 
+next js ka server es url ko smjhy ga jes route pr wo html file send krdani 
+react ma esko fariq nhi wo koi b page hn sara js send kry ga
+agr ham about page pr jayte chnage page krky jaye kisi or page pr client pr load kry ga esko
+
+agr ham pagename.src page ma chnage kry kuch tu new nhi chnage aye ga
+ya esliya hai ham jes page pr uska content arha rsc sy nhi bn rha eska use kry dosry page bn rhy 
+agr ham ak page pr reload kry tu dosri page ka src aye ga sath 
+ab new src aye ga ab agr us page pr jaye chnage aye ga agr esko refresh kry yha sy html sy page build horha
+jes page ma requst krty serever ko us page ka html ata dosry page ka rsc ata hai
+
+agr jes page sy reload kiya jo active nhi page unka src aye ga agr zayda pages hai jenki k links visile nhi 
+unka src nhi mangaye ga jaisy jesy visble hoagy unka src magye ga papulate krly ga dosry pages ko
+
+jo js file ati aari pata hai k src ko use krky data build krna hai enko pata hai ya compare html k chota hai src
+ya fetch call k muatbik mangaya jata ya server sy es plain text ko js smjhati us page or jaye jeska 
+src esko dekh kr page banye ga un page ko src ka us ekry page bnaya jata hai
+
+
+
+
+
+
+
+Staic vs Dynamic Rendering
+jitni b rendering ya sab server side rendering hai
+
+
+jo page hoty wo static page hai jo blog k andr page wo dynmaicaly rednering hai
+agr home pr jao home aye ga agr blog pr jao 
+jo b code sever pr hoga console kry gy server pr nzr ata sai developemt ma b server pr nzr aye ga
+jab page chnage krty server us page ko build kry ga send kry ga
+
+wo dynamically page jo wo blog wala hai dynamcially page ka code server pr run hoga
+page 1 pr jaye wo page nazr aye ga agr ham about pr jaye wha pr about dobara nhi send hoga server sy
+
+main npm run build kry 
+koi b html file nazr nhi aye gi
+npm run dev kry gy sa js file excute hogi jasiy request aye gi ya pora excute hogi htm lol
+bnaye gi send rkdy gi development ma hota estra
+
+ham npm build kry production mode ma
+agr us page pr colsole hota wo run hota build k time 
+bad ma list nazr aye gi ktiny page build hovy hai
+jo dymanicaly routiing hai [] bracket wala ya dynmeicaly rendering hai
+f wala dymicaly page hoga jab ja requets aye gi ya run hoga 
+jo static page khali gola hoga wo server pr dobara run nhi hoga
+
+dynimaicaly wala build k time nhi bny ga run time pr bny ga
+
+main npm start
+developemt ma 1 2 second ka time lgta 
+production ma ya page bna hota server pr send krd eta jab requets ati 
+agr koi console hova cleint pr nazr nhi aye ga 
+static page ka code 1st time run hota jab build hoti applictaoions
+agr ham dymaically page pr jaty yha pr next js ka server js code ko run kry ga print hoga console pr jp hoga console
+
+jab koi chnage kry file ma phr npm build kry gy phr hoga aye ga updated code
+agr dobara npm build kry jo b chnage hogy wo ajye gy
+
+
+statci rendering build k time bnty ya server side renderd hai client kuhc b run nhi kr rha npm build krty
+server build kr rha page
+dynamically redering dymiclly route pr ati request pora code rednerd horha hota 
+ya har request k time pr rendner hoga server pr 
+
+ya donu server redering ka part hai
+
+client side rendeirng next js ma akhti hoti server side redieng b 
+ham network ma dekhy individual pgae k src payload ajata next js dekh jata based on link wo 
+src page manga leta 
+ham jes page pr jaye js ka bandle ata ya sari file mil kr client side rendering bnati hai
+
+agr ma blog 1 pr ja o ya fetch call kry gy jo updated compoent hai wo updated value dy ga
+jasy jaye gy request jaye gi server pr ak json respoisne aye ga cleint side esko renderd krky dekhaye ga
+agr page 2 pr jao request jaye gi server pr api call kry ga fetch extra data manga rha server sy
+
+ak dfa ajaye fetch phr call nhi jaye ga client pr hai wo page dekha dy ga kuch time k bad calls krny lgy ga us pages ko dynamically ko
+rsc text page bhjta
+
+agr ma server page pr jao client side rendeirng hogi wo dekhye ga page
+agr dymaiclay rednering pr jaye request jaye gi server pr
+
+koi aisy page pr jata jes ka data cleint pr nhi eska data server sy aye ga blog/10 kry ham
+es page rcs request nhi jarhi json nhi fetch kr rha 
+
+agr ham dumaiclly ui sy jaty fetch call kiya jata hai server sy renderd ata jo final value hoti send kiya jata
+hamra broswer usko dekhta hai
+estra dymaically or static redering hoti jasi b hn rendeirng client zaroro hogi
+
+Agar aap React 18+ ya Next.js App Router use kar rahe hain to:
+Har component server pe render ho sakta hai
+Uska .rsc file browser ko milta hai
+Browser us .rsc ko read karke React app ko hydrate karta hai
+
+
+
+
+
+Static site Generation
+
+ya server die ka hisa hai jo dymaically renderd page hai run time pr rednerd hoty enko build time pr render krly
+agr blog 100 1000 hoksty hma kitny pages ko build time pr rednerd hogy 
+
+agr 10 blog dekhaye list dkehaye hae wo us pr jaye ga usko statci site build krty wo dobara na banye 
+user uspr jaye usko wo build na kry buil howay hai phly sy server sy
+
+
+frquently visted page hai kuch 3 4 ham esko build time pr generate krly aisa kuch kry 
+ak function hota 
+
+export function generateStaticParams(){
+return [
+{blogID:'1} ya slug k equal honi chaye
+{blogID:2"} estr ham pages dy skty jo frquelty use hoty 
+}
+ya pges gneerate time pr ban dyga pages
+jo folder ka name hoga [] wala wohoi array ma retunr krna
+next js npm build kry gy wo function ko ly gy array return hohra blogid ko dekh kr pages generate krdy ga
+gol circle 
+ak f wala 
+ak field circle nazr aye ga build ma wo static site generation hoga 
+ya compoent banye hai id waly
+ya build time pr rednerd hogy pages field cicrle nazr aye ga icon ma
+
+
+
+SSG static site generation
+agr next folder ma server ma dekhy [] folder ma usmy page hogy generate hojaye gy server sy send hogy
+es sy page ka dymiclay pages performaer hogy server pr jaye load hojaye gy
+
+agr page ka content dynamcilay chnage hota us case ma ya method nhi kam aye ga
+kuch aisa ka conetne hai har din ma har ghanty pr udpate chaye
+increment site regetnration 
+es kas standard generation ha 
+
+generatestatciparams ma api call kr skty hai fetch krna hai
+{ham arrya object return kr ksta hai}
+
+totdo link lykr statci site generation kry gy
+
+function async generatStaticparams(){
+const reponse=await fetch("link")
+const data=await response.json();
+data jo mily ga array of object hoga
+return data.map({id})=> [ ak aisa array retrn krna key ki value object hn
+({blog:`${id}`) ya bna dy ga build time generate blog ki jaga folder ka name dyga ham
+]
+}
+
+ya fetch kry ga api code kry ga server ka code
+jitni id hogi utny page genearate hogy
+
+static site build time pr hota
+jitni dfa ham page pr jaye routng pr page code run hota tah static k bagir
+
+agr ab ham page pr jaye e pr ya server pr render nhi hoga 
+ya esliya fast hota server pr already genrate wo serve kr deta
+
+agr ham us staic page pr jaey wo statco generate nhi dyanamiclay genrate hoga
+ham dynamicly genration ma static page kr skty build time pr generate pr
+
+wo code tab run hoga jo page static nhi hai 
+
+
+
+dynamicParams static site generation
+
+hamny 200 pagfe banye agr ham estra page pr jaye jo genertae nhi wo run time generate hojata
+agr page 500 pr jaye koi user first time pr jaye ya page server pr generate hojaye ga
+dobara user page pr jaye wo existing page ko serve krdy ga
+
+ham chalty build time pr generate hovy wohi dkehye dosry or jaye not found dekahye
+
+export const dynamic=false; by default true hota ya
+
+jo hamny static function ma diya page wo build hojaye gy staic time pr
+agr user new page pr aye jo gnerate nhi wo hty rhny gy build run time pr
+
+static site build time pr bad ma jo page nhi phr b hoty generate pages
+
+ab koi new page nhi bnye ga hamny false krdiya 
+404 page dekahye ga
+agr bnana true rkhna by default wo true hi rhta 
+static site maham dyanmiclay ko flase kr
+koi aisa page static jo build time opr nhi bna hamny false kiya tu 404
+erorr aye ga
+
+
+
+
+🔹 Static Site Generation (SSG)
+
+Sabhi pages build-time pe generate hote hain.
+Agar tumhare paas 1000 blog posts hain, aur tum next build chalate ho → to Next.js un 1000 ka HTML bana deta hai aur CDN pe serve hota hai.
+Problem: Agar naye posts aate hain, to tumhe dobara build karna padega.
+// pages/index.js
+export async function getStaticProps() {
+  const res = await fetch("https://api.example.com/posts");
+  const posts = await res.json();
+
+  return {
+    props: { posts }, // yeh props component ko milti hain
+  };
+}
+
+export default function Home({ posts }) {
+  return (
+    <div>
+      <h1>Posts</h1>
+      <ul>
+        {posts.map((p) => (
+          <li key={p.id}>{p.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+
+🔹 Dynamically Static Site Generation (Incremental Static Regeneration - ISR)
+
+Pages pehle se sab generate nahi hote.
+Sirf kuch popular ya limited pages build-time pe bante hain.
+Baaki pages tabhi generate hote hain jab user unko first time visit kare.
+Once generate ho gaye → wo static file ki tarah cache ho jate hain → agli baar dobara generate nahi hote, directly serve hote hain.
+Tum “revalidate” time bhi set kar sakte ho taake page periodically update ho.
+
+
+
+
+
+Incremenetal Static(site) Generation
+
+static site ka ak standard generation hai
+jha ham static site generatuon krwaty hai wha hi incrmenetal site generation krwaty hai
+
+agr 200 page generate krwaliya hai 201 pr jaye gar flase nhi aye ga
+ya pages dobara renderd nhi hoga atomatically 
+agr esko build na kry nhi bny ga
+agr koi page aisa hai dyunamically fetch kr rhay page ma 
+thori dair bad content arha wo chnage horha page tu ham kya kry gy to ham atomatically kuch dair 
+bad regenerate kr skty hai
+
+esky liya ham ak varibale or export krna hai
+export const revalidate=5(kitny time bad regenrate krwana hai second ma dena by default ya flase rhti  ham false value dy ya second dy gy)
+false dy gy esko dobara regenarte nhi krna agr 5 diya 5 seocnd k bad atomatically generate hoga 
+es page ko har 5 second bad server nhi generate kry ga jab user 5 se k bad us page aye ga tab hi regenerate kiya jaye ga
+
+
+ham date generate kr rhy nazr aye gi
+h1 {new date().toLocalestring()}
+ya refreshhs hokr nazr aye ga generate bad esko refersh kry ya har bad build hoga developemtn mode ma
+
+production time ma ya ak dfa build kiya jaye ga har bar nhi bny ga
+jo b build k time generate hova page wohi time rhy ga ab refrsh kry nhi chnage hoga
+
+agr ham revalidate lga dy 5 second phr ham build kry 
+dobara sy start kry esko
+agr ham refersh kry 5 secind bad ya generate hoga har 5 second k bad generate hoga ya page
+generate kry ga page lakin esmy porana nazr aye ga page new  page bny ga refresh pr 
+broswer pr dobara time aye ga jo server hai user ko wait nhi krwana chta usny page ko generate kiya next time 
+new user aye ga usko latest page dekhya jaye ga 
+
+agr 1 bar refsh kry nhi aye ga new time agr dosri dfa kry refresh phr ya chnage hoga page ka time
+
+ya revaildate tab krna chaye jab hamary page ka contrent chnage hota rhy 
+hmary page ko conetent 1 mahinay bad chnage hota ak din ma 24 ghnty hoty 60 mint 1 mint 60 second
+1 mint ko 60 likhy gy 60*60 1 ghnta bn jaye ga
+60 * 60*24*30 ak mahinay bad aye ga server running hai ak mahinay tk wo content pra rhy ga
+
+ak fetch krkhy await fetch(url)next;{revalidate:5}} ya same kam kry gy 5 second bad data fecth hoga har 5 bad
+opr wala hata doiya nichy wala wasy hi kam kry ga
+server pr page bn jaye ga pr borswer pr uswaqt nazr nhi aye ga new iuser k liya rkh ly ga wo page
+
+statci site ko dobara generate kiya jata regenarte us time k bad 
+jab static site generation hogi phr hi ya incremental generation hogy
+
+ISR me page build bhi hota hai aur update bhi hota hai — lekin background me silently.
+Pehle se build hua page serve hota hai, new page background me regenerate hota hai, aur next request me naya page dikhaya jata hai.
+
+✅ Agar tumhe hamesha fresh data on every visit chahiye:
+revalidate: 0 → har request pe fresh build (jese SSR).
+Ya phir Server Side Rendering (SSR) use karo:
+
+export async function getServerSideProps() {
+  const res = await fetch("https://api.example.com/posts");
+  const posts = await res.json();
+
+  return { props: { posts } };
+}
+
+
+👉 Matlab: ISR = balance between performance (fast static) aur freshness (periodic regeneration).
+Agar 100% fresh chahiye → SSR best hai.
+
+❗ Page sirf tabhi dobara build hota hai jab 5 second ke baad koi next request aati hai.
+Yeh automatically background me khud build nahi hota jab tak request na aaye.
+t = 4s	Background regeneration complete ho gaya	✅ Page cache me update ho gaya
+t = 5s	Second user ne request ki	✅ ✅ ✅ Naya page instantly serve ho gaya (jo already ready tha)
+t = 4s	Background regeneration complete ho gaya	✅ Page cache me update ho gaya
+t = 5s	Second user ne request ki	✅ ✅ ✅ Naya page instantly serve ho gaya (jo already ready tha)
+
+🔄 Aapka Example Step-by-Step:
+Time	User	Kya hua?	Kya dekha user ne?
+t = 0	User 1	Page pehli baar open kiya	❇️ Purana page (static)
+t = 0		revalidate expire ho chuka tha	🔧 Background me new page build start
+t = 2	User 2	Page open kiya	❇️ User 1 wala purana page (kyun ke regeneration chal rahi hai)
+t = 3		Background build complete	✅ Naya page ready (User 3 ke liye)
+t = 4	User 3	Page open kiya	🆕 User 2 ke baad regenerate hua naya page milta hai
+t = 10	User 4	5 seconds guzar chuke	🔧 Phir se background regeneration hoti hai\
+❗ Regeneration sirf tab hoti hai jab koi HTTP request aati hai — time expire hone ke baad bhi page automatically regenerate nahi hota.
+Step	Description
+✅ Page build hota hai (getStaticProps se)	
+⏳ revalidate: 10 ka matlab: 10 second tak page valid rahega	
+🔚 10 second guzar jaate hain → page "stale" mark ho jaata hai	
+❗ Us waqt koi request aaye to:	
+🔄 ✅ Page background me regenerate hota hai	
+📦 Jab regeneration complete hoti hai → next request se naya page serve hota hai
+
+
+
+Dynamically Rendering Static Pages
+
+static page sbuild time jo ban jaye staticly build hojty wo hoty 
+dynamically hai wo dynamically render hoga 
+eskliya code nhi likhna
+code likha ssg server side generation k liya 
+ISR k liya code likhna
+
+dynamically or staticly route pr depend krti
+dynamically route render hogy 
+
+static pages ko dynamically render krwa skty kuch code likhty hai
+
+staticaly page ko porcefully dunamicaly render krwa ksty hai
+by defualt staticly generte hota koi code nhi likhna prta npm build sy
+
+agr ham static page pr refesh kro ya compoennt nhi run hoga
+
+esko ham forcefully dynmacily gneerate krwa ksty hai
+
+1.export const dynamic=force-dynamic;
+
+dobara build kry behaviour chnage hojaye ga sara
+ab empry circle tha static ka wo f bn jaye ga dynamically render
+jes page ma likhu ya wo dynamicaly bn jaye ga jab jab requets aye gi wo bn jaye ga
+f ko legend khty
+
+ya dynamiclay render hoga jitni bar refsh kry gy ya renderd hoga 
+jab k ya sttaic page hai esko force kiya dynamicaly render hoga
+
+ham fore k esko dynmaiclay render krdy
+
+2.props ma {searchparrams} ly la
+const serach=await serachparams;
+itna use kry ya dynamiclay page bn jaye ga ya build time pr nhi bnay ga
+
+agr ham sirf destruction kry ya dynamicaly render nhi hoga
+function h({serachparams}) ya ba dymaicly nhi rhy ga agr use na kry esko await kry
+
+3.ham cookies ka use kr ksty
+
+const mycookies-await cookies();
+consoel.log(mycookies) ya dynamically compoeent bn jaye ga
+ya run time pr run hoga ya ab
+browser sy jo b aye cookie nazr aye gi
+ya cookie server tk ati hai
+estra page dynamicaly bn jaye ga
+
+
+
+
+4.Headers
+
+ya http headers hai request wally
+types
+dynamic api cookies header connection dreaftmode unstable_nostore 
+
+1st part export const dynamic='auto' by defult hoti value 
+agr search parma sya my cookies use horhy hoty ya header wala koi b ak method ya aouto
+atomatoically dynamiclay bna deta agr nhi hohr ause atomaicaly static bna dy
+agr use na kry agr force-dynamic krdy na b dosry use kry dynamic rhy ga
+
+force-static use kry 6 types waly koi value nhi dy gy empty dygy real nhi dygy agr use horhy hai
+agr force-dynamic nhi auto bna dety dynamiclay agr koi method use horha 6 masyu
+empty object aye gabuild time request bhj nhi rha browser
+
+error set krdy dynamic value agr ham build krdy agr error rkha hai dynamicaly method use kr rhy 
+ya build time pr erorr dy da ga
+next js esko static bna rh atha nhi bna paya 6 masy koi method use kr rhy ham
+esko static bnany page forcefully agr 6 method masy koi use kr rhy banna nhi page erorr dena enka
+
+
+🔑 6 Methods/Options jo static page ko dynamic bana dete hain
+1. export const dynamic = "force-dynamic";
+
+Force karta hai ke page always server-rendered ho.
+export const dynamic = "force-dynamic";
+
+2. export const revalidate = 0;
+
+Incremental Static Regeneration (ISR) disable ho jata hai → page har request pe fresh render hota hai.
+export const revalidate = 0;
+
+3. export const fetchCache = "no-store";
+
+Next.js ko batata hai ke fetch result cache na kare.
+Isse har request pe API call hoti hai → page dynamic ban jata hai.
+export const fetchCache = "no-store";
+
+4. cache: "no-store" in fetch
+
+Agar aap fetch use karte ho aur caching disable kar dete ho, to page static nahi banega.
+const res = await fetch("https://api.example.com/data", { cache: "no-store" });
+
+5. getServerSideProps (pages directory)
+Agar aap pages directory use karte ho, to ye method hamesha server pe run hota hai aur har request pe fresh HTML generate karta hai.
+
+export async function getServerSideProps() {
+  const res = await fetch("https://api.example.com/data");
+  const data = await res.json();
+  return { props: { data } };
+}
+
+6. cookies() ya headers() usage
+
+Agar aap server component me cookies ya headers access karte ho, to page automatically dynamic ho jata hai (kyunki ye request-specific hote hain).
+
+import { cookies, headers } from "next/headers";
+
+export default function Page() {
+  const cookieStore = cookies();
+  const token = cookieStore.get("token")?.value;
+  const userAgent = headers().get("user-agent");
+
+ return <p>User: {token} | Agent: {userAgent}</p>;
+}
+
+
+
+Streaming in Next.js
+Real-time Rendering Explained
+
+Streaming 
+kuch component add kiya view like ka commnts ka compoenent
+3 banaye compoent 
+esi name sy bnaye page phr
+import kry gy
+<view/>
+<likes/>
+<Comments>
+
+ab ham component pr delay lga skty 
+async bnaye view comopoent ko 
+await new prmise((resolve),=>{
+settimeout(resolev,300
+)
+
+agr ham refresh kry ga 3 second sara page load hoga 
+3 second lagye ga jha esko import kry view compoenent ko
+time ma dekh skty network ma kitna time lag esko
+
+ya sai nhi baki dosry compoent sai load horhy break nhi lga
+jab hamry sab compoent ka content load hojaye phr page aye ga
+
+esko ham streaming ka use kr optomize kr skty hai
+
+ham esko Suspense compoent ma warp krydy ga
+<Suspense fallback="loading views ">
+<view/>
+
+ab refesh kry baki sara nazr aye ga fetch wala pr fallback ka text nazr aye ga
+jitna time lyrha wo delay hoga
+agr api call kr rhy view arha data time lg rha suspense use kr skty hai loading fast bnaye ga
+page load hoga jaldi 
+
+jitna time lgy tab tk loading hogi esliya suspene ka use kry ham compoennt kahi or page ma use krna hai
+fallback ma div b dy skty 
+server sy data chnk ma ata await krky wait krty ham
+
+ham apna conetent sy stream kr rhy hai
+jo b slow api hogi usko time lgy ga fast jaldi hoga load api
+agr koi blocking compoennt hai susupense ma dd krna chaye fallback ma koi b dosra comooent dekha skty hai
+
+<Loading children=views} loaidng compoent sy aye ga children props pass horha
+
+
+
+
+Client Components vs Server components
+
+by default server component hoty
+server compoenet excute only the server
+client compoennt server or cleint donu pr excute krty hai
+
+client compoennt server pr phly excute krty uska code cleint pr send 
+kr deta wha pr nazr aty
+jo b kam broswer pr hn aisa kam perform krwana hn client componenet bna na hota hai
+
+hamny window object dkehana ya client pr hota but hamara server compoent hota
+yha erorr arha hota
+hmay console pr nazr aye ga dvelopemnt mode ma lakin wo actual cleint ma run nhi horha hota 
+agr local storgae kry uska b error aye ga
+
+es compoennt ko client compoent bnanan hota
+"use client" 
+estra client compoennt bn jaye ga
+sources map debunging k liya help krty inspect ma
+
+server pr error arha hoga wha nhi hai local storage
+if(typeof localstorage!==undefined) ab error nhi aye ga server pr
+typeof localstrage kro estra undefined aye ga error nhi aye ga
+agr wo variable exist nhi krta undefined aye ga
+agr if ma kry akela error aye ga
+aisy window ko b kr ksty hai
+
+agr client hata dy browser pr kuch nhi aye ga server pr run horha wha undefined ho rhy ga 
+
+agr onClick lga dy error aye ga server pr event handles not pass in cleint componenet ma nhi pass kiya jaska
+agr click wali functionality chaye eski clinet error bnao
+ab server pr error nhi aye ga next js ko pata k ya client ka hai esko server pr run nhi kry ga
+console.log server pr excute hoga
+onlcick ko ignore krdy ga server
+react undeifnd value ko dom ma nhi dekhata react
+
+agr usestate krna tu cleint component bnana pry ga
+agr ak parent compeont ko client bna diya agr us compoent ma or compoennt use kiya hai import kiya hia
+wo sab client component bn jaye gy
+next ko pata usestae ka code client pr run hoga next js ko ignore krdy ga
+real ma defined hoga usestae [state,settate]=usestate();
+
+agr ham parent compoent  ko use client bnaye child b bn jaty import 
+ya file client ma ati server sy network sy dekh skty hai
+production mode client ka code aye ga
+client ka code js ma convert hokr aye ga
+
+cleint ka code server pr run krta eska code cleint pr send kiya jata
+server ka code client pr send nhi kiya jata
+agr hai child ma code parent ma compoennt unka code client tk aye ga 
+developer mode ma client tk jata code taky ham debug kr sky dekh sky
+
+agr ham client tk compoent k parent ko bna daye
+jha ham cleint ka kam nhi kr rhy usko na kry client component
+jitna code client ko send kry gy otna overload barhy ga
+kisi asy parent ma import kiya jaye compoennt jo parent khud hi client hai dosry atomatocally bn jaty client
+
+ak button compient bna dy uska code hi client ko send kiya jaye ga
+sirf us compeont ko bnaye client jo interctivety hn
+
+agr sab file ko bnaye client overhead kry ga client js file bari hojaye 
+
+
+Pure page ko kabhi use client mat banao.
+Sirf chhote-chhote components ko use client rakho.
+Example:
+
+// app/products/page.tsx (server component by default)
+
+import ProductList from "./ProductList";
+import AddToCartButton from "./AddToCartButton";
+
+export const generateMetadata = async () => {
+  return {
+    title: "Products - MyShop",
+    description: "Browse latest products at best prices",
+  };
+};
+
+export default function ProductsPage() {
+  return (
+    <div>
+      <h1>All Products</h1>
+      <ProductList />   {/* Server component */}
+      <AddToCartButton /> {/* Client component */}
+    </div>
+  );
+}
+
+
+👉 Yahan:
+Page server component hai → metadata kaam karega.
+Button interactive hai → sirf uska JS bundle browser ko milega.
+
+🚀 Trick for Fast + SEO
+
+use client sirf chhote isolated UI ke liye rakho (buttons, dropdowns, modals).
+Page aur major layout ko server hi rehne do.
+Agar cookies/session use karni hain to server components me data fetch karo → phir client components ko props bhej do.
+
+
+
+
+Hydration 
+
+Hydration kya hota hai
+
+Next.js ya React Server Side Rendering (SSR) me:
+Server pe HTML ban ke browser ko bhej di jati hai.
+Browser pe React JS load hota hai aur server wali HTML ko React ke virtual DOM ke sath “hydrate” karta hai.
+Agar dono match karte hain → sab smooth chal jata hai.
+Agar match na kare → Hydration error ⚠️.
+
+Hydration ek process hai jisme server se aayi static HTML ko React ka JavaScript functional app banaya jata hai browser me — taake page interactive ho jaye (buttons, dropdowns, etc. kaam karen).
+the process of prerendering
+
+
+hydration is the process of
+ak page hai blog ka server render krky browser ko send krta hai 
+blog ka page generate hokr send kry ga server ko
+prerenderd compoennt hai server pr redner hokr ata hai
+
+ak event listen lagya ya server pr nhi hota client pr hota 
+server sy page aye ga sath js aticleint ki excute hogi dhondy gi server pr generate kiya usko add krdy ga 
+ham phr us sy interact kr sky gy
+
+kya hydration tb hi hota jab ham clent compoennt use kry
+hydration hoga event listner attach hai
+
+anchor tag by defsault ka by default behvaiour page reload krna hamny event lga kr preventdefault krky kiya 
+agr hamry page pr koi links hai hydration hoga
+agr hamny link pr click eevent lgana 
+hamry page pr client compoent nhi sirf server compoennt hai hydration joga
+kyo k links add hai
+
+agr link hata dy phr b hydration hoga
+check kry ga server ny jo send kiya wohi hai
+jo hamny likha wohi renderd horha agr nhi tu hydration error dyga
+cleint compoent nhi bnayaa nav links nhi lagaye hydration aye gi
+server sy send kiya gya tha html client pr match nhi kiya links k bagair
+
+
+continue
+
+ham ak extension on kry jo dom ko modify kry error aye ga hyrdration ka
+ham aisy broswer pr on kry jes pr extension nhi error nhi aye ga
+ya error developemnt mode ma ata hai bas
+production mode ma hydration nhi aye ga
+hydration client compoenet ma ati hai jab use krty ham
+
+use client
+comments compoennt ko ban diya
+ham if(typeof window==="undeifned"){
+return <div>500 comments server</div>
+}
+retrun <div>500 commetns client
+ya hydration error dy ga
+ab hyrdtarion error aye ga
+server sy html aya usny client ko match nhi kiya
+server sy jo b render kiya network ma nazr aye ga
+hamny render kiya server commencts client 
+asyi condtion lage server pr or code cleint or koi or error 
+user o hmara page chnage hota nazr aye ga
+user jaisy page open kry kuch or tha jaldi jaldi badal jaye ga
+
+devleopment ma error aye ga
+lakin producation 
+sevrer ys renderd html hai jasy hi hydrartion ka process hoga tu wo hydration process ma
+js code run kry ga tu wo chnage krdy ga output ko use cleint banaya tha
+pora js code dobara run hota client ma
+
+phly server ka code nazr aye ga phr cleint ka code js ka aye ga
+sevrer pr render kiya gya client pr render kiya gya match nhi horha 
+
+network pr slow krky dekh ln 3g krlo
+load hoga server ka redner phr hydration process hoga client ka js run hoga
+next js developemnt ma bata dtea kuch glt kr rhy  hai jo user k liya sai nhi
+server pr render kiya or client pr render kiya match nhi kiya ga
+agr same rkhy condtion ma div cleint or server pr error nhi aye ga
+
+
+❌ Incorrect Code (hydration error cause)
+export default function Home() {
+  const width = window.innerWidth;
+
+  return (
+    <div>
+      <h1>Screen width: {width}px</h1>
+    </div>
+  );
+}
+❌ Problem:
+window is not defined on the server.
+Jab server page generate karta hai, window ka reference hi nahi hota.
+Client pe window.innerWidth mil jata hai → Mismatch between server & client render.
+
+math.random b error dyga server pr kuch or error client pr kuch or error dyga
+client pr tue server pr false aisy
+
+date.now():true?false
+
+server sy html client sy bnaaya gya generate na match kiya 
+hydration erorr esliya ati k user ka experience khrab na hn 
+server sy kuch sy or vlaue ati browser usko chnage krdeta hai
+makesure krna jo server sy send krna wohi nzr aye client pr
+
+
+
+const date = new Date().toLocaleTimeString(); // SSR vs CSR conflict
+✅ Right:
+
+
+const [time, setTime] = useState("");
+useEffect(() => {
+  setTime(new Date().toLocaleTimeString());
+}, []);
+
+Client-Only Components Ko Server Render Na Karein
+Next.js mein:
+'use client' // React 18+
+import dynamic from 'next/dynamic';
+
+const NoSSRComponent = dynamic(() => import('./OnlyClientComponent'), {
+  ssr: false,
+});
+Ye code client-only component ko server-side rendering se exclude kar raha hai, taake:
+Server par load na aaye us component ko render karne ka.
+Client-side JavaScript ke through hi wo component rendr ho.
+Initial page load fast ho aur hydration optimized rahe.
+
+dynamic(() => import(...), { ssr: false }):
+dynamic from next/dynamic allow karta hai dynamic import components ka.
+
+{ ssr: false } ka matlab hai:
+👉 Ye component kabhi bhi server pe render nahi hoga, sirf browser (client-side) mein render hoga — even during initial load.
+
+2. ClientComponent:
+Ye dynamically import ho raha hai ./components/HeavyClientOnly se.
+Yeh component JS load hone ke baad client pe dikhai dega.
+
+
+🔹 Reason:
+
+Server Render (SSR) sirf initial HTML generate karta hai.
+React ke lifecycle hooks (useEffect, useLayoutEffect) sirf client/browser par run hote hain.
+Iska matlab: useEffect ke andar jo bhi code likha hoga wo server render me skip ho jayega.
+
+
+🔹 Hydration error control kaise karein
+✅ 1. Client-only cheezein useEffect me rakho
+"use client";
+import { useState, useEffect } from "react";
+export default function Page() {
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, []);
+
+  return <p>Width: {width}</p>;
+}
+
+
+👉 Server pe initially 0 render hoga, client mount hote hi update ho jayega.
+
+✅ 2. Random / Time values ko client side pe calculate karo
+"use client";
+import { useEffect, useState } from "react";
+
+export default function Page() {
+  const [now, setNow] = useState("");
+
+  useEffect(() => {
+    setNow(new Date().toLocaleTimeString());
+  }, []);
+
+  return <p>{now}</p>;
+}
+
+✅ 3. suppressHydrationWarning use karo (agar temporary ignore karna ho)
+<p suppressHydrationWarning>{new Date().toLocaleTimeString()}</p>
+
+
+👉 Warning chupi rahegi, but phir bhi mismatch ho sakta hai (production me carefully use karna).
+
+✅ 4. Dynamic import with ssr: false (Next.js me)
+Agar koi component sirf client pe chalna chahiye:
+import dynamic from "next/dynamic";
+
+const ClientOnlyComp = dynamic(() => import("./ClientOnlyComp"), {
+  ssr: false,
+});
+
+export default function Page() {
+  return <ClientOnlyComp />;
+}
+
+
+
+
+
+Data Fetching in Client Components 
+
+
+data fecth kry gy jsonplaceholder sy
+useeffect ko async nhi bna skty hai ham
+es sy data fecth kiya client sy data gecth hova ai
+client side sy call hova api 
+'use client use ry gy compoennt ma '
+
+
+
+Data Fetching in Server Components
+
+server compoent async ko support krta hai
+server sy data fecth krky bhjy ga client ko page ma build krky
+server dy html redner hokr aye ga
+jo ham fetch use krty ya next js ka fecth hai normal nhi hai
+next js api use krty normal nhi broswer wali extedned hai extended hai api ya fecth
+
+next:{
+rvalifdate:5000}
+har 5 second k bad page bny ga incrmeent site rednring hai ya fecth api ma use krty hai
+agr fecth check kry donu ko consoel.log() krky donu differnt hogy
+server ka code client tk nhi jata page ban kr jata hai
+
+
+🔑 Faraq (Normal Fetch vs Next.js Fetch)
+Feature	Normal Fetch (Browser)	Next.js Fetch (App Router)
+Kaha chalega	Sirf client/browser	Server + Client dono
+Caching	Default none (manual)	Automatic caching enabled
+Revalidation	❌ Nahi hai	✅ next: { revalidate: n }
+SEO Friendly	❌ Nahi	✅ Yes (server render hoga)
+Streaming Support	❌ Nahi	✅ Hai (React Server Components)
+cache: "force-cache" → ek baar fetch → sab users ko wahi data milega (fast, lekin old data ho sakta hai).
+cache: "no-store" → hamesha fresh data aayega (slow, lekin always updated).
+next: { revalidate: n } → dono ka mix: cached data milega, aur har n sec me fresh data update hoga.
+
+
+
+
+Handling Loading State While Fetching Data
+
+agr ham api call kr rhy hai loading ka nazr nhi aye ga fast hai api hamari
+time dykr use krty settimeout lga kr k itni dair bad aye response 
+let sloresponse=await fetch()
+const data =await slowrwponse.json():
+ya load hoga 2 response aye ga hang hojaye ga page hamra jab response success hoga phr page oad hoga
+tb tk es ka response nhi aye ga client tk   
+
+es chez ko hnalde krny k liya loading state ma dekhana hai
+suspense ma wrap krky streaming ma wrap krky dekha skty hai fallback am dkeha skty hai
+yaha pr ham dosra tarika kry gy handle krny k liya loading state koo
+
+loading.js file banani 
+ak compoent bnana hau
+<div>loading </loading> 
+itna compoent bna dy ham atomatically loading dekhye ga
+loading handle hogya user ko nazr aye ga kuch respons earha 
+es file ko page k bara hona chaye jha call horha hai 
+heading ma dekha skty kuch load horha haoi
+
+ham lenght kr skty shimmer effect dekha skty load hoty waqt 
+loading pr shmmer effect nazr aye ga
+
+🔹 React (Client Side Rendering)
+
+Tumhare diye hue code me:
+useEffect(() => {
+  async function loadData() {
+    const res1 = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+    const post1 = await res1.json();
+    console.log("👉 Post 1 mil gaya:", post1);
+
+    const res2 = await fetch("https://jsonplaceholder.typicode.com/posts/2");
+    const post2 = await res2.json();
+    console.log("👉 Post 2 mil gaya:", post2);
+  }
+  loadData();
+}, []);
+
+
+➡️ Behavior:
+
+Jab pehli API resolve ho jaayegi, turant uska console.log chalega (UI ya state update bhi turant ho sakta hai).
+
+Dusri API tabhi call hogi → aur jab wo resolve ho jaayegi tab uska data dikhayega.
+👉 Matlab ek-ek karke turant update hota hai.
+🔹 Next.js (Server Components / SSR)
+Agar tum fetch server component me use karte ho:
+
+export default async function Page() {
+  const res1 = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+  const post1 = await res1.json();
+  const res2 = await fetch("https://jsonplaceholder.typicode.com/posts/2");
+  const post2 = await res2.json();
+
+  return (
+    <div>
+      <h2>{post1.title}</h2>
+      <h2>{post2.title}</h2>
+    </div>
+  );
+}
+
+➡️ Behavior:
+Server dono await complete hone ka wait karega.
+Jab dono data ready hoga, tabhi poora HTML ek sath client ko milega.
+Client turant dono posts ek sath dekh lega, na ke ek-ek karke.
+
+🔑 Main Difference
+
+React (CSR) → data aate hi ek-ek karke render/update hota hai.
+Next.js (SSR/Server Components) → server poore data ka wait karta hai, phir ek sath HTML bhejta hai (unless tum streaming/Suspense use karo).
+
+
+
+
+Using Suspense to Handle Loading State
+
+streaming ka use kab krty ham kis casses ma 
+jab ham ham kisis aisy compoent ko apny page ma import krty hai jes ko load hony ma time lgta blocing compoent hota hai 
+tab ham suspense ka use krty hai 
+
+
+fectch api ma koi compoent block nhi horha yha pora page block horha hai 
+hamy apny page ma kuch api call krni pr rhr ak api 2 second ma response kr rhi ak 4 second ma response kr rhi
+kitna time b lg skta ak api ko call krty waqt 
+hamy actual ma page ko nhi block nhi krna 
+
+jab sba kuch load hoga phr nazr aye ga page 
+hamy ahr api k liya ak ak compoent bna dena hai
+
+agr hamy suspense krna 3 api use kr rhy har api k lia compoenent bnana pry ga
+us compoent ma ak ak api call kry gy
+
+phr ham main page ma import kry gy compoent or suspense add krdy gy
+<suspense fallback>
+<suspense >
+estra jo jo data load hoga ajye ga
+paralele data call horha alida liad compeont hai 
+sab k opr usi waqt request ajey gi 2 seocnd ak ko phr 3 secnd dosri 3 seocnd jaisy loading data one ata 
+usy ky 1 secodn k bad dosra data ajata hai
+
+jo api fast hai wo jaldi kam kry gi jo slow wo jaldi ajaye gi
+
+agr aisa nhi chaye ui ma behaviour hamy jab pora data dekhan jab ajey sara data phr page ma dkehaye
+phr ham sari api ak parallel kry gy 
+
+
+
+
+Parallel Data Fetching in Next.js 
+
+esmy pora page at load hoga jab api sary successful call hojaye 
+agr 3 api call horhi ak response aye ga phr dosrai api call kr rhri
+ya sai nhi hamri dosri api first api pr depeneded nhi hai
+
+koi aisa case hai k depend nhi response ham 
+prmoise.all() ka use kry gy
+
+agr 3 api 3tenu reponse krny ka wait kr rha ham tenu ko combine kry ak hi await krdy gy ak hi bar await hn
+plain js hai
+const [todo,slow1,slow3s] =promoise.all([fech(api),fetch(api),[fetch(api)]);
+ab tenu ko ak sath await kr skty hai 
+
+consoel.log(a) kry ak array for response aye ga
+ya repsosne array ma mil jaye ga array of response  
+ya tenu api ka alg alg respons ehoga
+
+const[data1,data2,data3]=await promise.all([todo.json(),slow1.json(),slow3.json()];
+estra hamy tenu response mil jaye ga 
+
+jo alida alida api 5 second ma horha 
+ya 3 second ma hjaye ga sari api ak sath call hogi parallel hogi 
+
+jha hamy multiple api ko call krni tu ya api ak dosry pr depended b nhi ham pralel api call kr skty hai
+
+wo sequentail api hai alida alida
+api call kr rhy loading lagna chaye next js send krdy loading wala nazr ata rhy
+
+
+
+
+
+
+Rendering Server Components inside Client Components 
+
+jab kisi server componeent ko import kiya jata agr use hai client ow b by defult cleint compoenent bn jatata hai
+ak client componenet hai usmy server compoenent run kry gy 
+
+
+
+ak header use kiya usko client bna diya hai
+jha es compoent ko import kry gy wo server hai 
+
+server list ma serveriteme ko import kiya ak client ko import kiya wo clien thai compoennt usny
+impoort waly server ko b client bna diya
+
+agr use client hatye ya server compoent bn jaye ga
+jab client compoennt banye gy developer mode ma wo js file ma serve  hogy hai
+
+jo code server pr run krna tha wo nhi aye ga
+jab ak compoennt bn jaata uska jitna b js code client tk ajata phr excute hokr ata hai
+jsx jo likhty wo js hi hai js payload ma hi aye ga
+jsx ka code js ma convert hota ya sabkuch js ma convert hokr ata agr ya client compoennt bn jata hai
+
+
+esko ab server compoent ki tara use kr skty hai use client ko hata kr bina
+
+ab ham jo client compoient hai client ma send krna as a  props send krna hoga data server data ko
+agr aisa compoent jo server hai usko client ma import krna data k liya ham
+server compoent ko usko as a props send kry gy client compoent ma usko hamny render kr liya
+as a server compoent
+
+ak cleint compoent ma server compoent run krwana as a props kry ga
+aisa krny sy server compoent server compoent ma rhy ga 
+
+yahi pattern use krty redux or contex api ma
+parent client rhy ga server compoent server compoennt rhy ga
+
+
+
+1. Redux / Context Store → Client Side State
+
+Redux aur Context dono Client Components ke liye design hue hain.
+Iska matlab:
+Store ka data browser memory (JS runtime) me hota hai.
+Agar aap page reload karte ho, to store reset ho jata hai (jab tak aap persistence add na karo localStorage / cookies ke zariye).
+Matlab yeh server side state nahi hai, yeh client side global state hai.
+
+2. Server Components → Server Side State
+Server Components me data server pe hi resolve hota hai (DB, API calls, file system).
+Ye data client ko props ke through bheja jata hai.
+Client ko sirf result milta hai, na ke pura server logic.
+
+
+How to Use Context API and Redux in Next.js
+
+
+kisis b compeint ma ak hook use kry ga wo state mil jaye ga
+dark mood vlack mood implemement kra hai
+
+context folder banye ga
+counterCountex.jsx
+
+createContext import krna
+const counterContext-=createcontext();
+export function themeProvider({children}){
+const isDark setdark=usestate(true);
+localstage.getitem(isdark)==false?false:true (ya first vlaue di ajye gi first time set hoti renderd hota)
+function toogleTeme(){
+setisark(prev)=>!prev true hai false false hai true
+}
+useeffect(()=>{
+localStroage.setitem(isdark,isdark)
+if(isDark){
+docment.docuemntElement.classList.add("dark)(ya html docuemnt represent krta hai
+}
+else{
+docment.docuemntElement.classList.remove(dark);
+},[isDark]
+
+return <themecontext.provider value={{isDark,toogletheme}}>
+{children}
+}<themecontext.provider>
+
+
+main.jsx ma warap kry ga
+esko ab use krna hai header compeont ma
+
+jha use krna esko
+const [isDark,toogletheme]=useContext(ThemeContext);
+consoel.log(isdark) true aye ga
+
+onclick ma call kry ga button ma toogletheme ko
+
+refresh ma defualt mood rhta dobara
+esko local storage ma store kr rksty k refesh pr default vlaue na aye
+ab refresh kry ga 
+ak turnary logic lga sty hai 
+
+
+next js ma context ka folder copy kry ga droped krna app folder sy bahir
+js name dy ga compoent k name
+
+esko client compennt banna pry ga usestaeuse kr rhy useeffect kr rhy
+esko ham layout ma warpo krty hai themeprovider ko import krky children ko wrap krdy ga
+
+localstorage error aye ga kyo k compoen tphyl server pr redner hota hai
+
+function usetheme(){
+retrun usecontec(themeconstnext) ya kry gy contex ma
+}
+jha use krna 
+const {isdark,toogle}=useTheme();
+
+ya sab ham client component ma use kr ksty hai redux or esko
+
+redux ma
+store banye ga usko wrap kry ga layout ma
+app sy bahir folder banna sara code likh kr warp krna 
+jes tra react ma krty yha  kr skty hai 
+
+
+
+Error Handling
+ham cmpoenent us ekr rhy hai
+koi error thorow kry ham kisi componenet ma
+production mode ma hamri app crash hojaye gi
+developemnt ma sorf error nazr ata hai
+
+server k logs hoty unko logs file ma store krna hota hai
+main npm start >server.log
+eska output server.log file ma aye ga
+terminal ma jo putput arha tha usko redirect krdiya log file ma
+esmy error nhi aye ga extra code krna pry ga wo extra stirng hoti
+main npm start >server.log 2>&1
+ab error b aye ga log file ma
+
+main npm start >>server.log 2>&1
+agr append krna log ko
+agr koi production ma error aye usko log file store kr ksty or dekh skty hai
+
+npm start > server.log 2>&1
+> server.log → stdout (normal console output) ko file me redirect karta hai.
+2>&1 → stderr (errors) ko bhi usi file me redirect kar deta hai.
+
+throw new Error("no page ")
+ya error nazr aye ga developemnt mode ma production mode ma nhi aye ga zar crash hogi application
+
+npm start > server.log 2>&1 chalane ka matlab yeh hota hai ke:
+jo bhi normal logs (console.log) aayenge → wo server.log file me likh diye jayenge
+jo bhi errors (throw new Error(...), console.error, unhandled promise rejection) aayenge → wo bhi isi file me save ho jayenge
+client ko sirf generic message milega (jaise "Something went wrong") — error ka pura stack trace client pe leak nahi hoga
+
+esko handle kr skty error.js file bna kr
+us erorr file k componene tm alikh ksty hai somethin was wrong
+ham usko clien tcompoenent bna dety error file ma hona zarori hi  client componenet 
+ya pori application crash nhi hoe bas yahi page crash hoga 
+
+function error(error){
+console.dir(error) error.message error.digest
+}
+ya error boundirng ki tara kam krta hai
+production mode ma error nazr nhi aye ga
+ya jo b error aye ga server error aye ga bas client ko bta ty someting wrong
+error.message nhi send krna acha nhi 
+
+ya esliya krty koi error aye ya page nazr ajaye 
+ya na bnaaye file por application white hojati
+
+ak layout page banya
+usmy errorboundary sy wrap kry gy uski fallback value error.js poage hojaye ga
+next.js error handling website ma dkh skty ham
+
+
+🔎 2. Error Boundaries vs. Server Errors
+
+Client Error (React Error Boundaries)
+Agar koi UI crash ho jaye client side pe (state update / render bug), to error boundary ek fallback UI dikhati hai.
+Example: "Something went wrong".
+
+Server Error (Next.js Server Component)
+Agar server pe error aaya (DB fail, API fail), to by default Next.js us error ko client pe leak nahi karta (for security).
+Client ko sirf generic message milta hai → "Something went wrong".
+
+Matlab: error.message server se client tak nahi jata production me. ✅
+
+
+
+How to Recover from Errors in Next.js
+ak random numer bna rha or thorw kr rhy error ham
+
+function (error,reset){
+button
+reset();
+}
+ab try again hai reload nhi hoga page
+server ka code run hona chye ab nhi horha hai reset ki waja sy server ka code run nhi hohra
+hook use kry ga
+useRouter next naviagetion sy krna
+const router=useRouter();
+button
+reset
+router.refersh();</button>
+ab server ak code run hoga ya request jaye gi server tak
+ab cleint ka compoenent update nhi horha hai request jarhi server tk
+
+
+start trasiation use kry ga
+startTransititon()=>{ reset(),router.refresh()}
+number generate kr rhy 0.5 sy bara jab ajata show hojata wrna somtehting wrong aye ga
+
+router.refersh server tk request send kr rha taky update information aye
+reset ya compoenet hamry page ko render krwata hai
+start transtion ya wait krta data any ka
+reset dat k any ka wait nhi krta tarnsition with krta hai data any ka
+
+
+Cheez	Wajah
+startTransition	React ko batata hai: "Yeh update urgent nahi, smooth karo"
+
+
+
+
+Error Handling in Nested Routes 
+
+ak folder usmy blog ka page har page k indivaidual erorr handle kr ksty 
+multiple route k error parent ma rkh dy file error.js 
+2 page hai blog ka error kry ga usku child ka b kry gi
+
+jo error hoti hai bubble krti child route k andr error aye hai parent route tk jaye gi wha dehkhy gi k yha error boundary hai wha
+handle hojaye gi
+
+
+age error.js child ma rkhi as child ka error handle kry ga
+agr parent folder ma rkh dy agr parent ma aya error handle krdyy ga child ka b handle kry ga error
+ham nested route k estra error hanlde kr ksty hai
+
+agr hamny layout page banye child folder ma blogid ma comment ka page hai ak common layout create kr skty haoi
+layout banya children props recive hog
+ab error.js chly gi layout k code b ayae ga
+agr parent ma dal dy error.js ya layout ka code b replace hojaye ga
+ya compoent hericacial k aroudn hoga
+
+page ma jo b erorr aye ga error boundary catch lry ga error compoent ka nazr aye ga error
+saby andr page hota phr error boundary hota error bpoundary ka code layout wrap krta layout bara hai erro boundary sy
+
+page error phr layout
+sabsy opr laouy
+phe error.js 
+phr page
+agr error ko parnet directory ma dal dy ay layout sy bara hojaye ga
+page ka error aye ga wo layput k bad erorr boudray ma hoga 
+laypout andr aye ga replcae hoga 
+
+error boundary
+layout 
+errorBoundarey fallback
+<page>
+
+
+k layout ma eror ajaye usko kasy hnalde kry ga
+layout m ereor thorw kry ga
+thoro new error("jo marzi")
+layout a code agr same level pr hai layout or error tu nhi handle hoga
+error usky andr jo error ata usko hanlde krta error.js ko aprent ma rkhy gy 
+ab child k laypout ko hanlde kry ga error ko
+
+
+error.js
+laypout.js
+page.js
+ab es page ak error eroor.js hanlde kry gi layout nazr aye ga
+agr laout ka handle krna chaty eror parent ma error.js banaye ga
+ab layout ma eror aye ga parent ka eror.js handle kr ly ga
+
+agr ham chaty laout ka coide nazr aye child ka usmy error.js rkhn pry ga
+
+agr error home page ma jaye error. kasy handle kry ga app.js ma ham error.js file banye ga 
+ab agr home page ma aye error ya file handle kry gi error 
+
+
+
+
+Handling Client Side Exceptions
+
+errors.js kry tu file handle nhi error kry gi ya kisi kam ki nhi file
+ab jo b error aye gi wo server sy aye gi ya server pr redner horha 
+
+agr hamara client compoennt hota usmy error aya hota phr kasy nazr aye ga client side nazr aye ga
+ya console.log wali error nhi hai jab rendering ma erro ata phr white ki tra ka page nazr ata 
+
+agr redneirg ma error aye client ma b nazr aye ga
+cleint error or file ma rhy or server ka alida file ma
+
+use client kiya client componenet bn jaye ga
+ab cleint ka error aya pora page white nhi hova jaisy server error thorw krta pora page white hojsta
+rendering ma maslah aye popr khul kr aye ga server sy jo error ata hai
+ab client ma popr aye ga side ma application normal chly gi pori application bnd nhi hogi
+
+developemt mode ma nazr aye ga popr cleint ka erorr production ma nhi aye ga nazr
+sab kuch chly ga
+error aye renderd nhi horhi crash hojaye gi application
+
+ham cleint side erro ko hanld ek loy b error.js banaye ga file
+ab button pr reset function ko call kr dy ga kam hojaye ga page refesh hokr rnder hoajey ga
+ya error.js file server side or client side donu ko handle kry ga
+error object ma sra nzr aye ga kya eror aya hai
+console.dir(error);
+pora stack nazr aye ga kya error aya kha sy aya
+yha digest ka erro nhi hoga ya client ka erorr hoga
+
+
+
+
+Global Error Handling in Next.js 
+
+yha ham dkehy gy root level k error laypou ko kasy hndle kry ga
+using global error handling
+
+ham app k page ma ak error.js file bnaaye ga
+layout error boundary sy pr bhta ta hai
+home k error ko handle kry gi error.js app ma file
+agr root laoyut ma error aye kasy kry ga hanlde ya statoc hota 
+
+ab ya error.js layout ka eror nhi hndle kr rhi ekso kasy handle kry ga
+
+ak file banaye ga
+global-error.js file bnaye ga
+ya ab global error ko hanlde kry ga
+es file ma html ka biloer plate code dena hoga es file ma
+
+ya error developemnt ma nhi chly ga ya prodcution mode ma chly ga global-erro.js 
+producation mode ma trigger kry ga
+ 
+es file k code ko minimum rakhna hota 
+ya last option hai error hanlde ka es file k error ko hanlde nhi kr ksty hai
+agr hmtl na set kry blank nazr aye ga
+
+
+
+
+Adding Styles in Next.js 
+
+by defualt global css rhta 
+import filename
+estra use kr sky gy 
+
+body style dyga jo b element match hogy chly ga
+agr home pr hai aye ga color ksii dosry page pr jaye chly ga agr refrsh kry chla jaey ga
+ya body style har page pr hai elemnt hai apply hoga ya style load hogya hai
+jasiy hi ham home..css file bnae usjo main page pr use kr rhy 
+wo apply hoag ahr pages ma load hogya hota wo css 
+
+hamara page ahrd reload horha wo gayeb hojaye ga jo b connected style wo aye gi
+
+agr ham kisi b compoenet ma css file improt kry 
+agr hamny inernal componeent ma css file import ki ak parent compoennt ma css hoe jab tk 
+eska apna nhi tha tu ya parent ka route css load hova tha wo apply hoga
+agr esky andr style kry import ya chly ga
+
+agr 2 file hai css ki import kiya nichy waly ki periorty zayda hogi 
+link tag ma opr waly ko override krdy ga html ma
+
+agr ka compeont ma style hai wo sary compoennt ma apply hoga
+estra tab use krna jab globally use krna hai
+
+agr compoenent m important krdy tag styling matu ya apply hoga
+
+
+
+1. Global CSS (default behaviour)
+
+Agar aap styles/globals.css ko _app.js / layout.js me import karte ho:
+import '@/styles/globals.css';
+Ye poore application pr apply hota hai, matlab har page aur component pr chal jaata hai.
+Example:
+
+body {
+  background-color: lightblue;
+  color: black;
+}
+→ Ab ye background aur text color har page pr apply hoga (refresh ya route change dono pr).
+
+
+
+
+Using CSS Modules in Next.js
+
+
+blogid.module.css es ka bn jaye gi file css file ka
+import styles from filename
+
+ak style object mily ga
+jo b file ma likha hai css sko styles .classname (id name estra dy skty)
+ya class k opr hi kam krta hai css module
+
+ya jo class ka name diya usky mutabik impor tkr ksty css ko
+
+import {title} form file name
+
+
+
+TaiwlindCSS
+
+version 4
+
+next js k pornay version ma ak twlwind ki file milti thi
+tawilnd.confi. file ma dety hai jo b class wo use kr skty hai apny project ma porani css ma tawilnd ma
+
+agr colors ko theme ma likh dy file ma bas wohi phr use kr skty hai colrs overide hojaye ga
+
+
+new next ma ham global.css ma dy skty hai
+
+@theme ma dy skty hai jo color set kry ga ajaye ga agr jo b name rkhy usko use kr ksty clolor ko 
+media query k liya
+--breakpoint-media500:500px minwidth lgy ga 
+ham esko use kr ksty hai apni classes define krky(media500) estra use kr skty hai
+
+
+
+
+Setting Up Tailwind v4 in Existing Next.js 
+
+taiwlindcss website sy dekh kr insatll krly
+
+
+
+
+
+Image Optimization in Next.js
+
+ak compoenent deta next js nextimage eska used krky web page ma lagty hamri image khud hi optomize hojati hai
+
+
+<img src="" alt=""/> ya am tarika image dekhany ka
+agr image choti hai utni mb ka hi load hoga
+
+imprt image from "next/image"
+<Image src=""/> ya width or hieh manghta hai wo dena hota hai
+
+es image ko next js atomatically compressed krky send krta hai
+by deualt qualtiy 75 hoti hai ham set kr skty hai agr 1 krdy low qaulti hoti seize b kam hogi ab
+jo width heihgt dy esky mutabik esko compressed krdy ga next js
+unoptimized kry tu wo img wala kam krty 
+public ma image rkhy us ekry compoenent ma
+
+
+agr bahir sy image use krni ham
+unsplalash url dlay use kr skty hai img waly simple ma
+
+
+agr next js ka image use krty ya by defualt external server ka use nhi krta hamy confiq file ma batna prta hai
+allow krna prta hai
+
+images:{
+remotePatterns:[
+hostname:"image.unsplash.com" 
+]
+}
+ya dy ab chly gi image
+agr client side us ekr image compoennet ko nhi usta use kry ga
+
+Image  loader={src,qualilty,width}=>{
+return src;
+}
+🔹 Why Image Optimization in Next.js?
+
+Automatic resizing → Image har device (mobile, tablet, desktop) ke hisaab se size adjust hota hai.
+Lazy loading → Images tabhi load hoti hain jab viewport me aati hain (faster page load).
+WebP conversion → Browser support hone par images ko WebP me serve karta hai (chhoti size, better quality).
+Caching & CDN support → Optimized images cache hoti hain aur CDN ke through fast load hoti hain.
+
+
+🔹 Key Features in next/image
+
+Responsive Images
+
+<Image
+  src="/banner.png"
+  alt="Banner"
+  fill   // parent div ke size ko fill karega
+  style={{ objectFit: "cover" }}
+/>
+
+
+Lazy Loading (default)
+
+Images automatically lazy load hoti hain.
+
+Agar tumhe disable karna ho:
+
+<Image src="/logo.png" alt="Logo" width={100} height={100} loading="eager" />
+
+
+Priority Images
+
+Above-the-fold images ko pehle load karne ke liye:
+
+<Image src="/hero.png" alt="Hero" width={1200} height={600} priority />
+
+
+Remote Images Allow Karna
+
+Agar tum remote image (jaise https://picsum.photos) use karte ho to next.config.js me domain allow karna padta hai:
+
+// next.config.js
+module.exports = {
+  images: {
+    domains: ['picsum.photos'],
+  },
+}
+
+
+Fronted End NEXT.JS
+
+
+
+
+
+Webpack (purana system)
+
+Language: JavaScript me likha hua.
+Hydration bundle: ek bada client.js ya webpack-hmr.js aata tha development me.
+
+Speed:
+
+Large projects me build aur hot reload slow ho jata hai.
+Har change pe rebuild zyada time lagata hai.
+Output: Bundles thode bade ho jate hain.
+Mature ecosystem: Bohot saare plugins aur community support milta hai.
+
+Example (Network tab me):
+_next/static/chunks/main-xyz.js
+_next/static/chunks/webpack-hmr.js
+
+client.js
+
+🔹 Turbopack (Next.js 13+ ka naya system)
+
+Language: Rust me likha hua (bahut fast).
+
+Hydration bundle: ab single client.js nahi banta → har component aur page ke liye chhote-chhote modular chunks bante hain (app_user_page_abc.js, app_layout_xyz.js).
+
+Speed:
+
+Incremental bundling karta hai (sirf wahi file dobara build hoti hai jo change hui ho).
+Dev server bohot tez hota hai (HMR fast hai).
+Output: Bundles zyada optimized aur chhote hote hain.
+
+Still new: Thoda unstable hai, sab features Webpack jese mature nahi hue.
+Example (Network tab me):
+app_user_page_abc.js
+
+app_layout_def.js
+
+[turbopack]_browser_dev_hmr-client.js
+
+🔑 Short Summary
+Feature	Webpack	Turbopack
+Language	JavaScript	Rust
+Speed (Dev)	Slow (large apps)	Very fast (incremental bundling)
+Hydration bundle	client.js + webpack-hmr.js	Modular app_*.js chunks
+Ecosystem	Mature, many plugins	New, plugins ecosystem abhi kam
+Default in Next.js 14+	✅ (fallback)	✅ (recommended for dev)
+
+👉 Matlab:
+
+Agar aapko stable aur production safe chahiye → Webpack use hota hai.
+
+Agar aapko fast dev experience chahiye → Turbopack recommended hai.
+
+
+
+
+🔹 Vite ka kaam (React ke sath)
+
+Vite khud ek bundler nahi hai — wo ek dev server + build tool hai jo andar se esbuild (Go based) aur Rollup use karta hai.
+Dev Mode me:
+
+Vite aapke React JSX ko esbuild ke sath super fast compile karta hai → Vanilla JS banata hai.
+Example upar wala code ban jata hai:
+import { jsx as _jsx } from "react/jsx-runtime";
+
+function App() {
+  return _jsx("h1", { children: "Hello World" });
+}
+
+
+Yeh ab normal JS hai jo browser samajh sakta hai.
+
+Build Mode me:
+Vite Rollup use karta hai → saare code ko bundle karke optimized files banata hai (bundle.js, CSS chunks, assets etc.).
+Yeh bhi wahi Vanilla JS hoti hai, minified + optimized form me.
+
+
+
+git rm --cached .env
+
+
+
+
+
+ESLINT Next js
+
+
+ak project hai multiple developers kam kr rha koi semicolon rky ga koi kuch tu hmara project consiste styling nhi follow kry ga
+es k liya kuch rules kuch setup krty hai taky har developers k liya wo atomatically set hijaye 
+styling formating ka kam na krna pry tool ko setup krty hai ham
+
+
+
+linter kya hai
+eslint ak linter hai
+lint is static code ananlysis tool hai that checks your source code for poetinal errors
+ya code ko bina run kiya check krta hai aisy b tool hai jo code ko run krkry use hoty
+wo dynamically ananlysis tool hai debugger vs ka ya sab kuch code ko run krky code check krta hai
+
+ya bina run kiya check krta hai
+ya stylish issues k liya linter use nhi krna chaye formatter use krna chaye ya b krta hai
+
+potenial errors statndard violoations k liya use krna chaye
+
+sytanx erorr check krna
+ak stayle ak consisitency code pr force krta folw kro nhi tu error dyga
+catch potential bugs early
+promte best practice 
+
+kuch k liya error deta kuch k liya warnning deta hai
+
+ESlint
+ya a popular js or typecript code ko lint krny k liya use hoita hai
+lint mtlb apky code ko staticlay analysiss krna 
+
+
+phly eslint@rc use hota tha ab js use hota hai
+
+npx create-next-app@latest bnaye ga new project ham
+
+eslint 
+eslint-config-next
+eslint/eslintrc
+ya extra packages ko insatll kr rha hai
+
+
+devdependices jo b cooling ka kam hota hai wo sara dev dependices ma ata hai
+
+
+🔹 dependencies
+
+📦 Yeh wo packages hote hain jo runtime pe required hote hain — yani jab tumhara app production (live) pe run karega, to yeh packages zaroori honge.
+🛠️ Example:
+react
+next
+axios
+
+tailwindcss (sometimes, depends on setup)
+
+🧠 Next.js mein, ye packages user ke browser tak "indirectly" pohchte hain, isliye yeh live code ka part hain.
+✅ Automatically install hote hain jab koi aur tumhara app install karta hai (e.g. on production server or deployment).
+
+🔸 devDependencies
+🧪 Yeh wo packages hote hain jo sirf development ke time pe chahiye hote hain — production mein use nahi hote.
+🛠️ Example
+eslint → linting ke liye
+prettier → formatting ke liye
+@types/react → TypeScript ke types ke liye
+tailwindcss → Agar tum Tailwind CLI use kar rahe ho, to dev dependency ho sakta hai
+
+
+ak eslint file aye gi ham dekh skty hai
+
+npm run lint 
+kry ga scripts ma likha hai
+ya next lints ko run krta hai
+
+ya har file ko check kry ga ya lint k rule sy match kr rha hai k nhi
+npm run lint
+
+end pr warning ma @next estara kry ga ya rule hai jo b aye ga warning k end pr
+
+extends ko chenge krky config kry ga eslint file ma 
+...compat.config([
+{
+extends:["next/core"],
+rules:{
+@next/.next/no:off "jo b off krna hai warning m aya tu off hoajey ga wo"
+} ab vs code pr nazr aye ga error
+}) agr : erro set krdy error aye ga
+jab run kry ga npm run lint
+
+search kry ga eslint nextjs config
+ham rules dekh ksty atomcaticly kaya kaya enable krta hai
+
+abi koi error nhi arha vs code ma eslint extensio use krty hai
+wo eslitn file sy configration othata hai wo bina run kiya wo show kr deta hai
+main npm run lint wala hai 
+
+
+ham extension use kry ga run nhi krna pry ga wo khud dekahye ga
+ham extension insatll kry ga wo eslint configeation ko read krkry direct error dyda ga rule b naxr aye ga 
+vs code ma
+
+hamy terminal pr run nhi krna pry ga file ma nazr ajaye ga
+
+agr ham script src kry use error aye ga ham off krdy rules ma config file ma
+terminal ma rn krna chaye eslint k fialer nazr ajaye 
+npm run kry ga jha jha maslah dekha dyga kya maslah kha pr
+
+by default rule set rhny dy best practice hai on off  nhi krna chaye rules ma
+jab build krty atomatically lint run krta hai
+
+
+ham leta=5
+a='hii'
+error dyga type error hai ya 
+ts error show hoga 
+ham jab npm run build krta tu type b check krta or eslint ka b error check krta hai
+
+liniting sy linting error or validalty sy typescript error pkry ga
+jab ham npm run build kry ga tb ya 2 chezy check kry ga vaidaltry or eslint
+
+
+agr eslint install nhi tu ya check nhi kry ga ya build time pr messge tu dekhta hai tu wo check nhi krta lint
+bas type ko check kry ga lint ko nhi kry ga
+
+npx tsc --noEmit
+ya command run kry gi error dygi type ki
+npm run lint kry ga tu next-lint use krta wo es lint ka use krta hai
+
+npx eslint filename ya all k liya .
+ya all file ko lint kry ga
+
+ya b eslint ko hi run krti hai
+npx next lint b esi ko use krti hai
+
+kahi sari chezy defult eslint ka hai wo use krta hai
+error aye ga wo
+
+exisitng project ma npm run lint kry ga install hoga lint hamara
+ya porana tarika hai 
+npm run lint kry ga ya warning dyga by deafult warning hoti hai
+
+
+extends kiya ya plugin hai 
+yha ham dety rule next js ko rule batay hai extend ma 
+plugin bata rha hai kya use nhi krna kya use krna hai
+
+npx tsx --noEmit mtlb ts ko js ma convert na kro
+by default krd eta hai ya convert
+
+extends[next/core/web next/typescript/] ya use kry error aye ga ts ka 
+agr hata dn end wala nhi aye ga ts ka
+agr koi error nhi chaye jo by deafult hai copy krkry
+rules ma off krdy ga error nhi aye ga warn set kr skty hai
+
+
+
+1️⃣ extends
+Ye ready-made rules ka set hai jo aap apne project me use karte ho.
+Matlab: “Ye sari rules automatically apply karo, jo kisi aur ne already define ki hain”.
+Example:
+"extends": ["next", "next/core-web-vitals"]
+Yani:
+]
+"next" → Next.js ki default rules use karo.
+"next/core-web-vitals" → Performance aur best practices ke rules bhi use karo.
+Simple words: Ye shortcut hai, sari rules manually set karne ki zarurat nahi.
+
+2️⃣ rules
+
+Ye specific rules ko change ya set karne ke liye hai.
+Matlab: “Mujhe ye rule on/off karna hai ya warning/error set karna hai”.
+Example:
+
+"rules": {
+  "no-console": "warn",       // console.log use karoge to warning aayegi
+  "semi": ["error", "always"] // semi-colon missing ho to error dikhao
+}
+
+
+Simple words: Yahan aap apne rules customize karte ho, jo extends se inherit nahi hote.
+
+
+
+
+Formatter
+formate ko dkehy ga semiclon use hoga ya nhi tap use kry ga 
+linter b formatting ka support deta hai
+lakin hmay eslint nhi use krna chaye ya slow krta hai
+formatter ko use krna chaye hai
+
+formatter ki treha use krna hai rule active krny hai
+ham chaty hai semicilon na use krny pr error aye ga
+npm install --save-dev --save-exact prettier
+
+
+rules:{
+semi:error
+}
+ab semiclon na use krny pr error aye ga rule set kry ga
+formatter ka mtl save pr error dy agr rule pora nhi jo define kiya hamny
+eslint ka use krky formtter kry ga ham
+
+ham setting folder file bnaye ga
+.vscode
+setttings.json ya file bnaye ga 
+
+{
+editor.defaultFormatter:"dbaenum.vscode"ham kah rhy default formateer eslint hona chaye
+
+}
+
+
+edistor.codeAactionOnSave:{
+source.fixAll.eslint:"always"
+}
+
+ab save kry ga cntrol s tu atomtcaly jo rule hai wo add hojaye ga code ma
+jab b code save kry eslint fix kry jitna hosky
+
+
+agr json ma npx lint ---fix dy ab run kry 
+npm run lint kry ab fix b kry ga sath lint k sath
+phly fix phr check kry ga
+agr semicoln hata dy jha chaye phr npm run lint run kry ga tu wo fix hojaye ga
+autofixble error ko fix kry ga
+
+
+lint command nhi chage krty new command add kry ga ham
+lint:fix:next lint --fix
+
+ab ham npm run lint:fix run kry ga phly fix kry ga phr check kry gi
+
+es tara as a formatter use kr skty hai esko ham
+jo auto nhi esko ham manually fix kry ga
+
+ab rules:{
+quotes:["error","single]
+}
+ab single quotes use kry ga ham
+error aye ga double quotes pr
+
+by defualt npm lint jhai app lib folder waly ko fix kry ga
+
+
+next config.ts ma
+eslint:{
+dirs:[,'app',models,'lib','auth.ts']
+}
+ab esko add krly ga code ko  jo jo folder track rkan add kry ga ham
+ham .mjs ma kr skty add pr acha tarika nhi next. file ma add kryu ga ham
+
+npm run lint kry ga jo jo add kiya wo aye ga 
+
+ham rules ma{
+indent:[error,2] eska mtlb 2 space ka use kkry intentaion hn ..  slect kaye ga slect pr 
+}
+tab use kr skty 2 ki jaga ham
+
+ya sab use nhi krna pritter use kry ga ham
+
+
+
+
+
+
+
+Prettier Setup formatter
+
+pritter install kry ga prettier documentation dekh kr google sy
+
+npx prettier ./app/page.tsx --check (--write) write krny k liya hai
+ya formate krny k liya command hai 
+
+jo b default configration hoga apply hojaye ga 
+.prettierc file hogi wha pr custimazation kry ga
+
+{
+"singleQuote":true
+semi:true
+tabwidth:4 (by default 2 hota hai
+}
+ya indentsaiton b set krtaa hai ctrl+save pr
+ab single quote apply hoga 
+ham pritter extension use kry ga atomatically formate hoga save pr run hogan
+
+⚙️ Step 1: .vscode/settings.json file banao
+
+Project ke root me jao (jahan package.json hoti hai)
+Aur ek folder banao:
+
+.vscode/settings.json
+
+setting ma jakr foramter on kry ga ham vs ma
+local project ma hogi setting,json global waly sy hata dani hai
+
+
+ "editor.defaultFormatter": "esbenp.prettier-vscode"
+formate.onsave:true(by defualt false rha hai
+
+jasy save kry ga ya formate hojaye ga
+
+pritter or eslint ma confalict ajata hai eslint ma enable nhi krna formating rules ko
+
+hamy eslint.config.pritter use krna chaye jo extra rule hota disable hojata hai
+plugin install krkt set krna hota next.js ma documetaion ma dekhy ga
+
+jab confleciting rule na hn alg alg kam kry ga
+esliya ya plugin use krty hai jab conflecting aye ya ya chta dosra ya chta
+
+npm i --save-dev eslint-config-prettier
+
+  ...compat.config({
+  extends:[
+'next/core-web-vitals','next/typescript','pritter'
+  ],
+  }),
+end pr pritter add kry ga ham
+
+plugin use nhi krna eslint.plugin.oritter ko 
+
+agr unsltall krna package
+npm un namepackage ka
+
+by default pritter ka kam sliecty hona chaye developer kam krta rhy o atomcaticLAY
+set hojaye 
+
+ham framter ka command likh skty hu
+
+format:"prettier . --write"
+format:check:"preooter . --check"
+
+package json ma dyga ham ya command run kry ga ya format 
+krdy ga har file ko estra hamy har file ma jana nhi pry ga fomrate k liya
+
+
+ham taiwnd classes ko orgnaize kr ksty hai
+
+agr mutliple add ki taiwnd classes code same ay pichy kr rha hai
+agr same classes hai same order ma krna chaye
+ya ham taiwnd plugon ka use krky kr ksty hai
+tawind preitter use kry ga google pr 
+command copy kry ga pritter chor kr agla i krna hai
+
+ab ham .pritter
+ma
+plugins:[preitter-plugin-taiwindcss" add kry ga ham
+
+ya sort kry ga har classes ma sort krta hai ya b krna chaye setup
+
+npm run lint:fix
+jo nhi fix horhi chez wo dekha dyga 
+
+npm install -D prettier-plugin-tailwindcss
+
+
+
+
+Lint Staged
+
+
+
+agr many kuch chnage kiya kisi file ma
+const{user{
+consoel.log(user)
+
+jab b commit krna hai npm run lint:fix
+check kry ga lint tu thek hai sab
+ya ak ak file ko fix krta hai agr ak file pr lint ya pritter run kry ga hamra pritter or lint ka 
+ya fast hojaye ga
+
+esliya lint staged used krta hai 
+ya staged file pr lint ya pritter run krny ki facilty deta hai
+
+ya staged usi pr run kry ga jes pr cahed kiya hai
+
+npm i --save-dev lint-staged 
+ya install kry ga ham
+
+.lintstagedrc.js file bnaye ga root ma
+
+eslint.config.mjs ma ham ignores ma dy skty hai
+ignores:[filename] li ya ab ignore kry ga esko
+
+npx lint-staged ya run kr ksty hai stage k liya command
+lint staged staged file pr run krta modeified waly ma
+
+package.json ma command add kry ga ham
+lint:staged:lint-staged
+ya kry ha ham
+npm run lint:staged
+ya run kry ga ham
+
+jab run kry ga chnages wala gyeb hoga pohr ajaye ga jab command complete hoijae ga 
+lint js sjx k liya run hn
+pritter har file k liya run krna chye wo formatting krta hai
+
+eslint unhi run k liya run krta js programming files k liya
+
+kuch add krna code lintstaged  file ma tu pritter b run hoga eslint b 
+npm run lint-staged 
+chlany ma
+
+estara hamy har file pr run nhi krna pry ga proitter or eslint ko
+esliya lintstaged ma code add krna hai 
+
+
+const path = require('path')
+
+const buildEslintCommand = (filenames) =>
+  `next lint --fix --file ${filenames
+    .map((f) => path.relative(process.cwd(), f))
+    .join(' --file ')}`
+
+const buildPrettierCommand = (filenames) =>
+  `prettier --write ${filenames.join(' ')}`
+
+module.exports = {
+  '*.{js,jsx,ts,tsx}': [buildEslintCommand, buildPrettierCommand],
+  '*.{json,css,scss,md}': [buildPrettierCommand],
+}
+
+
+
+Husky Setup
+
+ham ksi tara pre hooked add kry ga
+jes tara commit kry ga user lint-staged khud run hojaye ga
+
+pre hooked mtlb kisi b command ko run krny
+commit krny sy phly kisi b coommand ko run kry ka tarika deta hai 
+hsuky use krty hai ham
+
+npx husky init ya run kry ga ham
+
+ya git commit krny sy phly jest run hoga ya 
+
+
+pre-commit
+echo "runnungi staged"
+npm run lint:staged ya add kry ga es file k name ma
+
+echo "running completet"
+
+ham commit kry ga code tu 
+
+jasy ham commit kry ga tu commit krny sy phly jo command likhi hogi file 
+ma tu run hoajye ga chnages hojaye gi
+
+
+agr type check krni varibale ki
+
+tsc --noEmit
+ya add kry ga command ham
+ab commit lkry ga ham chages k bad
+
+Command	Description
+tsc	Compile & emit .js files
+tsc --noEmit	Type-check only (no .js output)
+
+
+1️⃣ Husky install karo locally
+npm install husky --save-dev
+
+2️⃣ Husky initialize karo
+npx husky install
+
+
+Ye project me .husky folder create karega.
