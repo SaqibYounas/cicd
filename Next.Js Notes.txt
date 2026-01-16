@@ -1140,6 +1140,12 @@ esko ham forcefully dynmacily gneerate krwa ksty hai
 
 1.export const dynamic=force-dynamic;
 
+2️⃣ Options for dynamic in App Router
+Value	Meaning
+"force-static"	Page fully static, build time generate
+"force-dynamic"	Page always server-side rendered
+"auto"	Next.js decide automatically (default)
+
 dobara build kry behaviour chnage hojaye ga sara
 ab empry circle tha static ka wo f bn jaye ga dynamically render
 jes page ma likhu ya wo dynamicaly bn jaye ga jab jab requets aye gi wo bn jaye ga
@@ -2839,3 +2845,4 @@ npx husky install
 
 
 Ye project me .husky folder create karega.
+
