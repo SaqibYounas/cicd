@@ -2559,7 +2559,11 @@ Example:
 
 Simple words: Yahan aap apne rules customize karte ho, jo extends se inherit nahi hote.
 
-
+Command	Kya check karta	ESLint / TS effect	Use case
+npx tsc --noEmit	TypeScript types	❌ ESLint ignore	Type validation only
+npm run lint	ESLint rules (Next.js default)	❌ Type errors normally	Project style / best practices
+npx eslint filename	ESLint rules manually	❌ Type errors normally	File/folder specific lint
+npx next lint	Next.js ESLint rules (same as npm run lint)	❌ Type errors	Next.js integrated linting
 
 
 Formatter
@@ -2846,5 +2850,6 @@ npx husky install
 
 
 Ye project me .husky folder create karega.
+
 
 
