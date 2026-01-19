@@ -2201,7 +2201,8 @@ Setting Up Tailwind v4 in Existing Next.js
 
 taiwlindcss website sy dekh kr insatll krly
 
-
+hook form submit
+us  const [state, formAction, pending] = useActionState(createPost, initialState);
 
 
 
@@ -2845,4 +2846,5 @@ npx husky install
 
 
 Ye project me .husky folder create karega.
+
 
