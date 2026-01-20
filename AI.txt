@@ -130,3 +130,74 @@ ELIZA duniya ka pehla chatbot tha, jise Joseph Weizenbaum ne banaya.
 
 English:
 ELIZA was the world’s first chatbot, created by Joseph Weizenbaum.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Artificial Intelligence (AI)
+
+When human capabilities such as thinking, learning, and decision-making are embedded into machines, it is called Artificial Intelligence (AI).
+
+1️⃣ Narrow AI (ANI – Artificial Narrow Intelligence)
+Definition: Designed to perform only one specific task.
+Capabilities: Cannot do tasks outside its programming.
+
+Examples:
+Google Search
+Siri, Alex
+Facial recognition software used in security systems.
+
+2️⃣ Artificial General Intelligence (AGI)
+Definition: AI that can understand, learn, and perform any task a human can.
+Capabilities: Flexible, human-like intelligence across multiple domains.
+Status: Theoretical; does not exist yet.
+
+3️⃣ Artificial Super Intelligence (ASI)
+Definition: AI that exceeds human intelligence in all areas.
+Capabilities: Outperforms humans in creativity, decision-making, reasoning.
+Status: Purely hypothetical / futuristic.
+
+
+A humanoid robot is a robot designed to look and act like a human, including:
+
+Human-like body structure (head, torso, arms, legs)
+Human-like movements and gestures
+Sometimes even facial expressions and speech
+
+]
+
+
+
+
+
+1️⃣ Artificial Intelligence (AI)
+
+Definition: AI is a broad field that enables machines to simulate human intelligence.
+
+2️⃣ Machine Learning (ML)
+
+Definition: ML is a subset of AI where machines learn from data without being explicitly programmed.
+Learns from structured and labeled datasets.
+Requires human input for training and corrections.
+Uses algorithms such as regression, clustering and decision trees.
+Improves accuracy with more data.
+Examples: Amazon recommendations, Netflix suggestions, spam detection.
+
+3️⃣ Deep Learning (DL)
+
+Definition: DL is a subset of ML that uses deep neural networks to perform complex tasks.
+Excels in tasks like vision, speech and natural language.
+Examples: Self-driving cars, facial recognition, voice assistant
+4️⃣ Generative AI (GAI)
+
+Definition: Generative AI creates new content, such as text, images, or code.
