@@ -1,0 +1,385 @@
+Differnce between flutter and react native
+cross palfrm k liya bnaty same technology pr same code likhty thy hai ios andriod
+phly nhi tha ya 
+
+recat nativ
+faceboook ka hai 2013 ma laya
+google
+facebook
+flutter 
+ya js ka framework hai ya
+
+donu ma hot reload mily ga chcnegs ko dkehan refresh nhi krna pry ga
+state managemnt donu ma follow hoti wieght tree form ma hoti
+reactnative ma custome compoennt milta pre built inty nhi hoti 
+khud bnanai hoti phr third party use krty hai
+eski coimmmunity hai large
+esmy js bridge hota jo allow krta ios andriod sy kasy communciate krta
+react native ki performance hojati es sy
+fluter ki performace better hai  
+apko aniamtion ui dkehni haevay calculation dekhani fluter k sath jaye
+flutter ka ui apna hai render krta smoot grpagpc hoti
+
+ya ak kis sdk google laya tha
+alibaba
+google
+ya dart language hai 
+ya zayda syntx c# or java sy milta hai ya object oreindted hai
+simple to learn hai
+widght already built hoty use krna hoti
+dart runtime error sy macnicusm milty
+null milta
+
+
+Flutter
+andoriod folder andriod pr kam krna ios ma ios linux ma linux ma krna chnages macos ma chaye chnages wha krye ga
+apko cmaera acess lena alg hai ios ka andorid ka linux la alida
+
+lib folder
+lib libarray hai sara code lib ma likhy ga
+test folder ma uni tests likhy ga ham
+
+pubspec.ymal
+esmy sab wo hota ak appliation ko chlany ki zaroroat hoti wo sab
+name version sdk fluuter version
+depnedcies kya kya hai 
+packages kon kon sy use kr rhy ham
+dev dependices kya kya hai
+
+material ui flutter
+acha hai design 
+
+
+main.dart lib ma hai
+
+mian function
+phly sab sy dekhy ga nhi hai nhi chly ga main k andr method wo chlaye ga
+app ma chaly ga method
+app ma homepage hai wo chly ga jo hai usmy chal jaye ga
+
+
+run krna
+flutter run -d chrome
+Method 2 (Direct web)
+flutter run -d web-server
+Phir browser mein open karo:
+http://localhost:5000
+
+weidgth
+every feature is a weidgth
+
+statelessfull weidget or statlesfull weidght
+stl sy statless
+slf sy statefull ana
+
+
+stl likhy ga statess ajaye ga
+
+jab b application start hn metrial app sy start kry nhi tu error aye ga
+
+return Text("Saqib")
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(home:Text("Saqib");
+  }
+}
+
+saby sy opr main application nichy weidgth hoga phr metrial app hona chaye
+opr wala fluter ny banaye nichy hmany return wala hmany bnayaa
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(scaffold(body:Text("Saqib");
+  }
+}
+scaffold ya ak auto relate banata jha sab chezy rkh ksty hai
+scaflod ak structure hai usmy ma kay rhy ga header b hai body b hai 
+ak page ba hai
+opr header nichy footer drmyan ma kya likhna darmyan ma nazr aye ga
+by default opr rhy ga header hai phr nhi chpeky ga
+
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(scaffold(appBar:AppBar(
+backgroundColr:colr.red,),
+body:Text("Saqib");
+  }
+
+apppBar opr jaye ga
+ya ak property deta har ak area ko lag lag treat kr ksy ham
+scaflod ak structure deta jha lag lag parts ma deivde krty header footer lag lag dovde krty
+
+wedigths
+jo b dekh rhy hnflutter ma text 
+weigth hai appbar dekha weoght hai 
+contenr dekha button dekha kuch b eleknt dekha image deki 
+wiegth hai woi
+
+react ma compoennt hota har ak chez
+weidght ak chota part hai 
+
+
+statelessWeidgth
+satatefull widght
+stf likhy ga ham
+
+statelessWeidgth
+kabi b change nhi hoskta
+
+whatsapp likha textma wo likha rhy ga sttaic text hai usko chnage nhi krna prta usko
+statless ma likhty ham
+
+
+satatefull widght
+kabi b chnage kr skty ham
+jab ham dkehty kint message aye wo chnage hota ya
+statefull hota wo chnage hota
+jah chnage horha wo statfull hai wo
+
+
+
+AppBar
+appbar hamesha scafold k andr rhy ga scalford hi hmy wo property deti appbar ko useknry ka
+appbar mtlb abr rhy ga paty rhy gi opr
+
+Appbar pr hover kro wo koi prefreed weidht lyga jo hai usky pas
+appBar:appBar() ya lyga ya prefferedsizewidgeht hai 
+jitni application hai calculate krky pori weidth lyga
+
+appBar:AppBar(contorl+space dobao ky a kya property hai esmy
+
+AppBar
+
+appBar:appBar(
+backGround:Colors.blue,
+centerTitle:true,
+title:Text("Saqib Younas")
+actions:[
+listofweidght leta hai ya
+Icon(Icon.home) ya right ma aye ga
+Icon(Icons.search()) ya b right ma aye ga
+Icon(Icons.heart())
+]
+leading:CirculaeAvator(child:Text("N) 	ya stating ma ata
+ttile center leading citcle start ma or icon end ma
+)
+
+),
+body:Center(child:Text('Saqib",
+style:TextStyle(
+color:Colors.Red,
+fontSize:50
+fontWeidgt:fontWeidght.Bold
+letterSpacing:2 damryan ma wrods k sapce ktina rhy ga
+
+)
+flutter guide enable kro
+
+
+Row and Column
+pora application depend krta hai kitna sai use kr skty hai ap
+speed kitni apki application ki
+
+body:Column(children:[
+Text("Saqib),
+CircleAvatar(chikd:Text("S")
+Container(
+Width:300,
+height:300,
+color:Colrs.pink
+])
+
+
+body:Row(children:[
+Text("Saqib),
+CircleAvatar(chikd:Text("S")
+Container(
+Width:300,
+height:300,
+color:Colrs.pink
+])
+
+
+column mtlb mobile height pora mobile hmara
+
+child mtlb ak bacha ak weidght
+children mtlb zayda bachy mtlb zayda weidht
+
+
+body:Center(child:Contaier(width:300,
+mrgin:EdgeInsest.all(20),
+padding:EdgeInsets.all(20) all trf sy
+docration:BoxDecoration(
+,color:Colors.pink,
+borderRadius:BorderRadius.circular(20.0), hover krna nazr ajye ga kya likhna
+child:Text("Saqib) conter k andr child bnye ga
+height:300),
+
+
+image
+
+
+jab b docration likhy colr usky andr hn opr nhi
+image lano use krna agr imgage name folder banye ga wha rkhy ga image ham
+flutter ma koi assests used krty tuabana pry ga permission dani pry gi
+61 one comment pr uncoment krna hai 
+image path dena
+-image/saqibyounas.png
+jab b kuch chanhe kiya pubspec tu flutter bnd krkry onkrna
+hot reload nhi hoga load pr ya
+
+
+body:Column(children:[
+Container(
+margin:EdgeInstes.all(10),
+paddding:EdgeInsets.all(5),
+decoration:BoxDecoration(
+borderRadius:BorderRadius.circyualr(10),conter hova cicular
+child:ClipRRect(
+boderRadius::BorderRadius.circyualr(10),
+childe:Image.assest("Image/saqibyounas.png"),
+)
+
+child:Image.network(link)
+
+
+assest mtlb jo downlod hai file mtlb file k format hai
+memery mtlb binary ma hai
+network mtlb nternet sy sued krna
+
+
+
+
+Button
+
+body:Column(children:[
+Container(
+margin:EdgeInstes.all(10),
+paddding:EdgeInsets.all(5),
+decoration:BoxDecoration(
+borderRadius:BorderRadius.circyualr(10),conter hova cicular
+child:ClipRRect(
+boderRadius::BorderRadius.circyualr(10),
+childe:Image.assest("Image/saqibyounas.png"),
+)
+OnPressed:(0{
+print("I am click the button):}
+ElevatedButton(onPressed:(){},child:Text("Saqib")),
+TextButtononPressed:(){}:Text("Saqib"),
+IconButton(OnPressed:(){},icon:Icon(Incons.home),
+ElevatedButton(Onpressed(){
+Navigator.pushReplacement(context,MaterialPageRoute(
+builder:(context)
+ProfilePage()
+},child:Text("Profile page ma jana")
+
+)
+
+
+onpressed mtlb mehtof hai jab click kry yahi chly ga
+jo  b logic likhy onpressed wo chly ga jo b logic hoga wo 
+excute hoga
+
+
+Navigation
+
+new page banaye ga 
+lib folder ma
+
+profilePage.dart
+
+statlessWidget{
+
+retrun Scaffold(
+appBar:appBar() ya y defualt back ka button deta hai jasy back kro click page ht jata home nazr ajaye pr hma chaty haty na 
+body:Center(child:Text)"Ya mera profiel page hai "),
+}
+
+
+porana code 
+home.dart
+statless weidght bana dyga
+images button wala
+ab main file ma call kry ga home page
+pushreplament use kiya wapis ka button nhi hoga ab page chipk nhi rha
+agr user back button mobile sy kry app bnd hiajey gi
+agr loin kiya user ny home pr jaye ham chaty user login k bad back
+button use kry login pr kyo jana exit krdu esko
+
+
+
+
+
+Project 1: Profile Page UI Design
+
+main.dart
+
+return MaterialApp(
+home:HomePage()
+)
+
+home_page.dart 
+
+statless banye ga ham
+
+retrun Scaffold(
+backgorundColor:Colrs.deeplPurple.shade200,
+appBar(backgorundColor:Colrs.deeplPurple.shade200,),
+body:Padding(paddingLEdgeInserts.all(20),
+)
+leading:Icon(Icons.home.color:Color.white,
+actions[IconButtron(onPressed(){}.icon(icon.search,colo:colro.white))],_
+child:Column(Children:[
+circleAvatar:[
+radius:50,
+backgorundColor:Colro.deepPurple,
+child:Text("N.styel:TextSrtyle:{
+fontsize:40,
+fintWeight.bold),
+Text("Saqib"styleTextStyle(fontSizeL40,
+fontWedght:FontWeidght.bold,
+color:Colors.deepPurple
+),
+Text("My name is saqib full stac developer flutter and nodejs"),
+SizedBox(height:10),text or row ma difenrce chaye
+Row(
+MainAxisAligment:MainAxisAligment.spaceBetween,
+Children:[
+Continer(width:200,height:100,color:Colors.red,
+decoration:BoxDecoration(
+colr:colorPepurple,
+border:BorderRadius.circular(20),
+),
+child:Column(childres;[
+Text('Total"),
+Totla('523+',style:Textstyle(
+fonrSize:40,
+finrWeidgth:FontWeight.bold(),
+color:Colrs.White,
+),
+
+Continer(width:200,height:100,color:Colors.red,
+decoration:BoxDecoration(
+colr:colorPepurple,
+border:BorderRadius.circular(20),
+),
+child:Column(childres;[
+Text('Total"),
+Totla('523+',style:Textstyle(
+fonrSize:40,
+finrWeidgth:FontWeight.bold(),
+color:Colrs.White,
+),
+
+
+
+
