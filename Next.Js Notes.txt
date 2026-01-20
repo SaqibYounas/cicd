@@ -2598,6 +2598,15 @@ edistor.codeAactionOnSave:{
 source.fixAll.eslint:"always"
 }
 
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  }
+}
+npm install --save-dev prettier
+
 ab save kry ga cntrol s tu atomtcaly jo rule hai wo add hojaye ga code ma
 jab b code save kry eslint fix kry jitna hosky
 
@@ -2614,8 +2623,28 @@ lint:fix:next lint --fix
 
 ab ham npm run lint:fix run kry ga phly fix kry ga phr check kry gi
 
+2 command add packagwe.json ma
+
+   "lint:fix": "next lint --fix",
+  "format": "prettier --write 'app/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
+bata rhy kha hai files jinko formate krna
+
+Option 3: Ignore files
+.prettierignore me folders/files list karo (node_modules, build etc.)
+
+node_modules
+.next
+dist
+
+  "format": "prettier . --write",
+  "format:check": "prettier . --check",
+  "lint": "next lint",
+  "lint:fix": "next lint --fix"
+
 es tara as a formatter use kr skty hai esko ham
 jo auto nhi esko ham manually fix kry ga
+
+.prettierrc file ma
 
 ab rules:{
 quotes:["error","single]
@@ -2768,7 +2797,7 @@ ignores:[filename] li ya ab ignore kry ga esko
 npx lint-staged ya run kr ksty hai stage k liya command
 lint staged staged file pr run krta modeified waly ma
 
-package.json ma command add kry ga ham
+package.json ma command add kry ga ham "lint:staged": "lint-staged" npm run lint:staged
 lint:staged:lint-staged
 ya kry ha ham
 npm run lint:staged
@@ -2787,7 +2816,7 @@ chlany ma
 estara hamy har file pr run nhi krna pry ga proitter or eslint ko
 esliya lintstaged ma code add krna hai 
 
-
+lint-staged.config.js
 const path = require('path')
 
 const buildEslintCommand = (filenames) =>
@@ -2853,3 +2882,85 @@ Ye project me .husky folder create karega.
 
 
 
+1️⃣ Install dependencies
+
+Project root me terminal se run karo:
+
+npm install --save-dev husky lint-staged
+
+2️⃣ Enable Husky
+
+Husky ko Git hooks ke liye enable karo:
+
+npx husky install
+
+
+Package.json me "prepare" script add karo (optional, automatically hooks enable ho jaye):
+
+"scripts": {
+  "prepare": "husky install"
+}
+
+
+Agar pehle se "prepare" hai, overwrite karne ki zarurat nahi
+
+3️⃣ Add pre-commit hook
+
+Pre-commit hook add karo, jisme lint-staged run ho:
+
+npx husky add .husky/pre-commit "npx lint-staged"
+
+
+Ye command .husky/pre-commit file create karega:
+
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx lint-staged
+
+4️⃣ Configure lint-staged
+
+Option 1: package.json me directly
+
+"lint-staged": {
+  "*.{js,jsx,ts,tsx}": [
+    "next lint --fix --file",
+    "prettier --write"
+  ],
+  "*.{json,css,scss,md}": [
+    "prettier --write"
+  ]
+}
+
+
+Option 2 (recommended, dynamic): lint-staged.config.js file create karo project root me:
+
+const path = require('path')
+
+const buildEslintCommand = (filenames) =>
+  `next lint --fix --file ${filenames
+    .map((f) => path.relative(process.cwd(), f))
+    .join(' --file ')}`
+
+const buildPrettierCommand = (filenames) =>
+  `prettier --write ${filenames.join(' ')}`
+
+module.exports = {
+  '*.{js,jsx,ts,tsx}': [buildEslintCommand, buildPrettierCommand],
+  '*.{json,css,scss,md}': [buildPrettierCommand],
+}
+
+
+Ye sirf staged files pe run karega
+
+JS/TS files → ESLint fix + Prettier
+
+JSON/CSS/MD → Prettier
+
+5️⃣ Optional: Test manually
+npm run lint:staged
+
+
+Ye command staged files par run karega
+
+Commit se pehle bhi automatically run hota hai via Husky
