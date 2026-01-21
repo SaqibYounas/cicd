@@ -1,0 +1,775 @@
+ya ak framework hai django web ka flask sy b bana skty hai flask ma customization nhi milti jo django ma milti hai
+
+
+jab b django kry tu virtual environement ka use krna hai
+
+python -m env foldername
+.env kry ga top pr rhy folder ma or name b rkh skty hai
+
+ab active krna hai virtual envirmnet ma 
+agr ham bina virtual k koi b library install kry ga wo hamry main sytem ma hogi insatll na k virtual environement ma
+
+enviornment ma activeps1 file ma
+
+terminal ma
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+
+ab ham vs ma command run kry ga execute kry ga virtual envirment ko
+
+.\.env\Scripts\Activate.ps1
+virtual envoment activate hojaye ga library install kry ga
+wo virtual enviment ma hoga install
+
+pip install django
+
+jab b ham django ko start krty 
+django-admin startproject nameproject ka
+
+ab folder bny ga files aye gi
+mange.py main file hai project ko midfy nhi krna jo rkha startproject krty waqt
+files ko modify krna pry ga 
+setting ma control krty project ko kya kya kry  kya hoga kasy hoga 
+database property assign krty konsa use krty hai time zone b customize kr ksty hai
+urls.py yha pr ham urls define krty hai jasy instagram krty visit url hoti wha 
+yha ham define krty kon kon c url hogi kya hoga usmy wo alg file ma hogi
+
+jab b code run krna ham
+sab sy phly mange wali directory ma jaye ga
+python ./manage.py runserver
+
+
+Django Setup
+create virtual environment
+python -m venv foldername
+
+active command
+.\.env\Scripts\Activate.ps1
+
+if error face run command terminal on window
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+
+after run this command if you are faced error again run active command
+
+install django
+pip install django
+
+if asked update run this command
+python.exe -m pip install --upgrade pip
+
+create project
+django-admin startproject nameproject 
+
+
+run server
+python ./manage.py runserver
+
+
+
+run hoajye ga ya url aye ga
+ham views.py file banye ga
+ya apps ma bnti hai
+
+from django.http import HttpResponse
+
+def home(request):
+	return HttpResponse("Hello World")
+
+urls file ma access krnwana hai esko
+from . import views
+urlpatterns=[
+path('',views.home)
+]
+
+ab hello world aye ga
+
+ab ham root ma templates folder banye ga 
+ab html page banye ga
+ab esko render krna hai
+view.py ma 
+from django.shortcuts import render
+return render (request,"index.html")
+ya return hogi
+
+error aye ga template not define
+define krna hota kha sy load krna apny template ko
+setting ma
+templates ma 
+DIRS :[template] dena hai 
+
+agr na hn os library ka use kry ga ham
+dirs:[os.path.join(BASE_DIR,'templates)]
+load hogi error nhi aye ga
+or b bhut tareky hai render k liya
+
+agr template ma folder hai or usmy file hai
+tu path ko modify krna pry ga
+
+static file 
+js css images wli hai files
+ak static folder banye ga usmy hogi static files or link kry ga html k sath
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+error aye ga 
+html k statring page ma
+{%load static % } ya dyga
+
+css load k liya setting hai
+settings ma static urel hoga name
+STATIC_URL = '/static/'  # recommended to have leading and trailing slash
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATICFILES_DIRS={os.path.join(BASE_DIR,'static}
+ab link hojaye gi 
+
+
+templates kya hota
+mtlb cnave ma use krty thora chnage k bad ma chnage k bas use kr ksty
+esmy b use kr skty hai mutiple use kr skty modify k bad alg alg use kr ksty hai
+
+base.html kry ga
+bootstrap use kry ga
+
+template inheritance ma include or exclude hoti
+
+index.html
+{}%include "base.html%}
+
+ab load hojaye ga page ya wala jo template ma hai
+
+ab extend use kr ksty include ki jga 
+donu ma differnce hai
+include ma html text include krty hai
+extend ma varibale ka use kr ksty hai
+
+helo.html
+ab base.html ma
+ma {%include "nav.html kry ga}
+{% block content%}{% endblock%}
+darmyan ma
+
+ab index.html ma use kr skty 
+{% block content%}{% endblock%}
+ab inde.xhtml ma likhy ga biloer code k bagir ajaye ga base.html ma
+{% block content%}Home Page{% endblock%}
+{% block content%}
+<h1>Hello world</h1>
+{% endblock%}
+
+
+
+django template engine
+hamry html file ko dynamic template ma convert krta hai
+html code ma logic likh skty hai
+
+ham chaty titile har view k hisab sy aye
+ham view.py ma aye ga
+
+def home(request)
+return render(request,"index.html","title":"django",user_name:saqib)
+
+ab eska use kr skty index.html ma
+
+{% block content%}{{title}}{% endblock%} ab ajye gi value 
+
+nichy waly h1 ma
+
+{% block content%}{{user_name}}{% endblock%} ab ajye gi value 
+
+view.py
+ab loop use kry ga
+
+d={
+"title":"django",user_name:saqib
+languages:[pyton,js,html]
+}
+def home(request)
+return render(request,"index.html",d)
+
+
+{% block content%}{{% for lang in Languages}
+<h3>{{lang}}</h3>
+}{% endblock%} ab ajye gi value 
+
+jo b code likha python am logi
+{%esmy likhy ga%}
+
+
+
+
+
+multiple projects app bnaye ga
+multiple files hoti section hoty prodcut desgin wagira
+agr error ajaye pora project bnd hojata
+
+app banye ga
+virtual envormnet active kry ga
+
+.\.env\Scripts\Activate.ps1
+python .\manage.py startapp accounts
+ya app ma accounts ka kam handle hoga
+
+
+project link krna
+setting ma ana 
+install apps ma enter krna
+accounts
+
+app include hogi hai use define nhi kiya accounts app ka
+ham urls.py ma control transfer kry ga
+ham main projeect ma urls.app hai control transfer kry ga
+from django.utls import path,include
+urlpatterns;{
+path('accounts/',include('accounts.urls'))
+}
+accounts ka control transfer kr rhy hai 
+accoutns ma urls file nhi hogi folder ma ham bnaye ga
+urls.py file bnaye ga ham
+contorl ab new urls ma tranfer hoga urls sy main project ma
+
+jab b ham apps k sath kam kry unky sath ise kry ga andr usky folder app k
+
+ham usmy templates bna kr use kr skty hai html files ko
+
+app ma 
+migrations folder ma db hai
+admin.py admin inteface define krty kon kon sa tbale nazr ana chaye
+apps.py app ki sari customization krty hai
+models.py yha ham database kod define krty kitny tables hogy kitni fields hogi
+tests.py 
+
+jab b 10 sy zayda apps hogi hai folder ma apps rkh ksty hai 
+setting ma b chnages krni hoti
+
+setting ma jaye ga 
+installed apps ma 
+'apps.accounts' app folder ma hai accounts ma
+urls ma apps.accounts.urls estra kry ga
+
+apps.py ma aye ga app ma
+name=apps.account kry ga ham
+
+
+admin panel kya hoty
+whastapp group bnty admin
+adminwo jo websote bnata hai 
+admin db edit kr skta delete kr skta
+ak sy zayda admin ho skty hai
+
+./.env/scripts/activate.1
+
+urls.py ma admin ka url hota by default
+db dekhny k liya
+python ./manage.py makemigrations
+datbase structure define hota kis tara hai wha
+ya ham project ma krwaye ga na k app ma
+python ./manage.py makemigrations foldername
+
+python ./manage.py migrate 
+
+ya follow krna migeate ka
+python manage.py makemigrations        # detect model changes
+python manage.py migrate               # apply changes to database
+
+
+login page ajaye ga ab
+django ma by defult milta hai hamko
+
+python ./manage.py createsuperuser admin ko khty superuser
+email dyga 
+password dyga ham
+again password daly ha
+
+admin run pr
+group hoga file group bana skty instagram jasy
+users ma jitny b users hogy regiter wohogy
+espr click kry admin pr
+password hased pr hoga encrypted hoga
+reset password kr ksty hai ham
+personal info b milta section pocha jata hai
+permisions b hai kitni permission dani kr ksty hai
+superuser sab kuch kr skta wha hoga likha
+group hoga ma add nhi kisi pr hn
+user permission hai dy skty user ko hata skty
+nochy data time ka hoga 
+by defult us time hota django ma
+
+settings ma jaye ga
+Time zone ma Asia/Pakistan
+time chage hojaye ga
+USE_TZ=false kry ga ham
+
+
+ham add user kr skty create kr kty name passowrd dy kr kr skty hai
+
+
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'Asia/Karachi'
+USE_I18N = True
+USE_TZ = False
+
+
+
+
+Database kya hota
+ak mnagament sytem db ko mange krta form wgira ko file ma store krta zaroroat pr use krta
+
+yha djanog ma setup krna hai setting ma or use kr skty hai usko
+by defualt sqllite hota hai
+
+db static website ko dynamic banta hai
+jab b db bnaty models ma defoine krty yha sy hi db bnaty hai
+db ka blueprint bnaty usko models khty hai
+jab b kisi class ka object bnty usko blueprint khty hai 
+
+models.py
+jes name sy class bnaye ga us name sy db bany ga
+
+class Student(models.Model):
+BRANCH_CHOICE={ "CS":"Computer Science","AI":"Artificial Intelligence","DS":DATASCIEN}
+name=models.CharField(max_length=100) mtlb kitni length tk ka data store kr skta charfiel mtlb type
+email=models.EmailField(max_length=250)
+age=models.IntegerField()
+image=models.ImageField(upload_to'images/') 
+branch=models.CharFiel;d(max_lengt=20 ,choices=BRANCH_CHOICE)
+date_time=models.DateTimeField(auto_now_add=True)
+
+db ma store nhi hogi db ma directory ma store hoti 
+agr image use krna pilo use kry ga
+ya command use kro virtual envoment ma use hojaye gai
+
+phly virtual envient active krna hai
+phr server run krna hai
+
+ab django ma batna hota usko db ma dekha o bhut sari table db ma show nhi krwaty
+admin.py ma aye ga
+from .models import Student
+
+admin.site.register(Student)
+ab nazr ajaye gi admin dasbaord ma student s lgy ga bu defualt end ma
+
+yha hamy bnatna hota 
+python ./manage.py makemaigrations
+ab create hoakjye ga table
+ab ma confoirm krny k liya ya create hogya
+python ./manage.py migrate
+
+
+jab b object banye ga ibject create hoga
+ham chaty name show hn student
+python -m pip install pillow
+
+class ma
+
+def __str__(self);
+	return f"self.name - self.brnanch
+
+key nazr aye gi branch value dekhani hai
+homework hai
+
+agr image use krna pilow use kry ga
+image add k bad migration command run krni hogi
+ab choose aye ga add kr skty hai
+
+delete krna opr delect krky delct kr skty
+agr db sy data show krwana apni website ma
+
+ab template ma list.html bnaye ga ham
+
+{% extends "base.html"%}
+{blockcontent%}yha code {%endblock%}
+
+urls ma render kry ga ham 
+ya template ham app ma bnaye ga
+
+views.py ma
+from /modesl impoert stduents
+def students(request)
+students=Student.objects.all() jitna b data objects hai jaye ga
+	return render(reqyest ,'student_list.html","students":student)
+
+ab froned ma for loop run
+{$ for in students}{%endblock}
+
+data show krwana
+card title{{}student.name}}
+estara show krwaty hai data ham
+
+data show krwaye ga
+image kasy render krna hai
+jab ba db ma data save hota  id by default assing hoti
+
+image kasy render krwana
+setting.py 
+ma batana kha images kah sy render krwana
+MEDIS_URL='medis/' media foldersy return krna
+MEDIA_ROOT=os.path.join(BASE_URL,'medis')
+ab run kry ga ham image render nhi krwa skty
+
+urls.py ma
+import django.conf.urls.satctic from static
+fron django.conf impoty settigs
+
+urlPatterns=[
+include url+static(setting.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+]
+
+AB img src={{student.image.url}}
+ab image ajaye gi hamari
+
+
+Ab db ma modification krwani CRUD Operations 
+
+CREATE READ UPDATE DELETE
+
+ak form bnaye gi details fill krwaye ga phr db ma store kry ga ham
+
+{%extends "base.html" %}
+
+{% block content%}
+
+code html
+{% endblock %}
+
+views.py
+
+def add_student(request):
+	if requtes.method=="POST"
+	name=request.post['name']
+print (name)
+return render(request,"add_student.html")
+
+urls.py ma url create url dyga app waly ma
+path('addstudent/',views.add_student,name="add_stduent" name ki base pr url ko find kr skta esko)
+
+gref({% url stduents %}}) ya a ma dy anchor ta ma 
+navbar ma
+
+eureka service discovery important appura ny batayua
+form method=post kry ga
+
+{%crf token} likhna html file ma
+request.post.get(name) exit nhi krta null store oga error nhi aye ga
+opr waly ma error aye ga 
+ 
+	if requtes.method=="POST"
+	name=request.post['name']
+	email=request.post['name']
+	age=request.post['name']
+	image=request.FILES['name']
+
+student=Student(
+name:name
+email:email
+)
+student.save() 
+return redirect(page name) redirect hojaye g student page ma
+ab save hoiajye ga db ma data
+
+ab frotned sy fetch kry ga
+ya add_student ma add krna 
+
+jab b fornted ma file input lyty 
+<form method enctype='multirype'>
+
+
+def update(request,id):
+return redirect(page,'update_page.html)
+
+update kasy kry ga
+kisi primary key ka use krty id object ki object ko midfy kry ga
+ak update.html
+banye ga page form ko 
+
+
+ab urls.py dyga
+path('update-student/<int:id>',view.upate_student,name='update-stduent')
+anchor tag ma {% url student.id} ya dyga 
+
+
+views ma aye ga page ma
+stident=student.objects.filter(id=id).first()
+	if requtes.method=="POST"
+	name=request.post['name']
+	email=request.post['name']
+	age=request.post['name']
+	image=request.FILES['name']
+student.name=name
+student.email=email
+if image:
+student.image=image
+
+student.save() 
+return redirect(stiudent)
+
+
+
+delete
+def detelt_student(request_id):
+stident=student.objects.filter(id=id).first()
+student.dleete(
+return redirect("students')
+
+ab url ma daly ga page dleete ka
+
+
+
+
+
+RelationShips Database
+app bnaye ga new ham
+python ./manage.py startapp relatipnshoip apps (apps folder ma bny gi)
+ab setting ma bataye ga new app i hai hmaari
+
+
+one to one relationship
+ak bf or gf ka hota donu ma data share hoga
+jitny b user hoty kisi b profile ka data hn dosry table user ak profile or profile ka 
+ak user hoga one one relationship
+
+class User(models.Model):
+name=models.CharField(max_length=100)
+email=models.charfield(max_lenght=250)
+
+class Profile(models.Model):
+user=models.oneTooneField(user,onDeete=model.CASCADE)
+bio=models.TexField()
+age=models.IntegerField()
+
+ab admin page ma
+from .models import User,Profile
+admin.site.register(User)
+admin.site.register(Profile)
+
+python ./manage.py migrate
+kry ga new table bnaye hai esliya
+ab runserver krdy ga ham
+ 
+user ajye ga register kiya 
+utni profile bny gi jtini user hai do dfa ak user k nhi bnye ga user
+
+
+ab ak user mutilpe user sy conected hai
+one to many
+kis i b ecommerc3 ma dekhy wathc ctegories ma mutliple watches hogy hai
+
+Many To one Relationship
+
+class category(nodels.Model):
+name=models.CharField(max_lenght=100)
+
+class Product(modesl.Model):
+name=models.charField(max_lenght)
+price=models.charField(max_lenght)
+categorymodels.ForeignKey(category,ondleete=casecade)
+
+
+ab admin.py 
+ma enko regitser lkry ag classes table ko
+
+
+
+
+Many To Manu
+class course(models.model):
+name=models.charField)max-lehti)
+descirption
+
+class Student(models.model):
+name=models.CharField(max-lenght=100)
+email=models.emailField(max_length)
+cource=modes.ManyTo ManyField(course)
+
+
+
+
+Django Forms
+jab b user sy data lena fom sy lety 
+user sy input lyga ham
+
+app bnaye ga ham setting ma connect kry ga ham
+urls ma include kry ga taky redirect hn dosri app ma
+
+{% extends "base.html" %}
+{% blovk content %}
+
+ {%endblock%}
+
+
+ab app ma forms.py bnaye ga
+
+from django imports form
+
+class conatctForm(form.Form):
+name=forms.CharField(max_length=100,label="Name") text show hoga lable likha
+name=forms.EmailField(max_length=100,label="Email")
+
+views.py 
+form .form import ContactForm
+
+define (request)
+form =cintactForm()
+return render(request,"conatct.html",{form=form})
+
+
+ab blokcconte ma html ma 
+<form>
+{{form.as_p}}
+<button type=submit>submit</button>
+</form>
+
+
+user sy data lygy ham
+
+
+define (request)
+if request.method=POST:
+form=ContactForm(request.POST)
+if form.is_valid():
+print(form)
+form =contactForm()
+return render(request,"conatct.html",{form=form})
+
+
+<form>
+{% csrf_token %}
+{{form.as_p}}
+<button type=submit>submit</button>
+</form>
+
+
+
+view.py ma
+define (request)
+if request.method=POST:
+form=ContactForm(request.POST)
+if form.is_valid():
+name=form.cleaned_data['name']
+name=form.cleaned_data['Email'']
+form.save()
+print(name) jo b name enter kry ga ajaye ga terminal ma
+form =contactForm()
+return render(request,"conatct.html",{form=form})
+
+
+model.py ma aye ga ham
+class ContactFoem(forms.form):
+name=forms.CharField(max_length=100,label="Name") text show hoga lable likha
+name=forms.EmailField(max_length=100,label="Email")
+
+
+def _-str__(self)
+return self.name;
+
+forms.py ma
+class ContactForm(form.Modle.form)
+   class Meta:
+model=Contact
+fields=["name","email","messgae"]
+
+ab migrate kry ga db ma inztalize krny k liya table ko
+
+ab admin.py ma 
+import .models import contact
+
+admin.site.register(contact)
+
+
+
+Media files store and render
+
+app bnae settign ma include kry ga ham
+
+path add kty ga include or wha pr app ma ridrect kry ga ham
+
+forma banye ga
+form="POST" ya methidy dy ga form am
+
+view.py ma
+def upload(request):
+if request.method=='POST'
+file_name=request.POST("file_name"]
+upload=reques.Files("upload_files_
+return render(hrml)
+
+
+models.py
+
+class modelesFiles(models.Model):
+file_name=models.CharField(max_field=100)
+upload_files=modls.FileField()
+
+def __str__():
+return sellf.name
+
+dobara view.py ma
+
+form .models import MediaFile
+
+def upload(request):
+if request.method=='POST'
+file_name=request.POST("file_name"]
+upload=reques.Files("upload_files)
+MediaFile.object.create(
+file_name=file_name
+upload_files=upload_files)
+return render(html)
+
+
+a settign ma
+static ma
+MEDIA_URL="media/"
+MEDIA_ROOT=os.path.join(BASE_DIR,'media') ya root add krty 
+
+urls.py main ma settign wlay
+
+from.confg.uls.statc import static
+from django.conf import  settings
+
+urlspatterns=[
+path('upload/',inlcude(apps.media_app.urls)+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROT)
+]
+
+store krwa ksty or render krwa skty hai
+
+mikgration krwaye ga ham database k liya
+phr migrate karty hai
+
+views.py
+
+def upload(request):
+if request.method=='POST'
+file_name=request.POST("file_name"]
+upload=reques.Files("upload_files)
+MediaFile.object.create(
+file_name=file_name
+upload_files=upload_files)
+)
+upload=MediaFile.object.all()
+return render(html),{"uploads",:uploads})
+
+
+frontend ma
+
+div
+{% for file in uploads}
+{% with file.upload_file..url | slice :"-4:"as extenctions %}{ endwidth%} extension ajye ga .png jpg ajaye ga extension varibale ma
+{% if extension in jpg.png.gif'} 
+img src={file.upload.url}
+{$ elif extension ==".mp4"%}
+<video heigt=100 width=344 controls><source src="{{file._upload.url}}>
+p>{{file.filename}}
+
+
+
+
+{$ elif extension ==".mp3"%}
+<audioheigth=100 width=344 controls><source src="{{file._upload.url}}>
+p>{{file.filename}}
+
+
+
+
