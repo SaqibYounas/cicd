@@ -1,0 +1,41 @@
+evard ak sceintis hai unho ny life cycle diya tha
+
+workstation wo hai jes pr kam krty ap wo laptop hoksta pc hoskta apka
+
+system ko server k zariya mange krty hai
+server client model k zariya
+
+ak life cylcel diya tha wo machine server machine hoskti mobile device hoskti hai 
+
+hamry jo computers hai en lifecyle sy smjhy ga
+
+ham jo device bazar sy by krty hai ham
+wo device new state ma hoti hai
+
+ak machine ki 5 state hoti hai
+
+machine open krty window install krty hai wo clean state ma chlai jati hai k konsi window use krni hai hamny 
+wo build state sy guzary ga wo clean install ma chal jaye ga
+
+many presention banani jesky liya tool install kr ty hai 
+jestara sy configure krty hai usko intizlize krty hai
+
+ya clean state sy configure state sy 
+wo state hai jo jawani ki state hai independt hai 
+kam krna start kr deta hai configure state pr 
+
+working state hai jes state pr time lagye 
+
+clean system pr aya window ki window nhi hoe tu wo dead ma gya off ma
+kisi kam ka nhi death hoggi hai configure sy b detah ma jaskta hai
+
+aisa hota k configure state sy aisa aisat problem ni ajata hard hardware motherboard ma Esko entrophy hai jasy brf piglithi hai brf pani ma hoajti 
+
+configure sy inknow ma jany k liya choty choty problem any lgty tu woo dead ma chala jata hai
+
+update agr system ko jawani ma dekhni usko update kry Microsoft sy ati jo update 
+
+rebuild k mtlb k itny malshy hai unknow sy ap window krni hai window krty wo clean state ma jati hau
+
+choty choty problem ko debug kry window update kry system dead state sy bach jaye ga 
+ak computer ka 3 saal year hai debuguing chalye 3 saal ttk issue nhi aye ga
