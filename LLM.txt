@@ -1,0 +1,705 @@
+LLM
+
+Large Language Model
+is a type of llm 
+data sy train kiya 
+ai understand generate and ineract using human language.
+input dngy output dyga phly jo b train nhi tha phly
+LLM jab aya prompt likhty wo answer data
+
+prompt mtlb ak word hai llm ma promt khty ham question
+llm bhut sary data sy train hota hmany data machine ko diya jo pochy wo answer dyga
+chatgpt 
+gemini  
+
+LLM se pehle chatbots “rules follow” karte thay,
+
+LangChain = Train track 🚆 (straight path)
+LangGraph = Google Maps 🗺️ (many routes, decisions, loops)
+
+prompt instructions ety llm ko wo text generate krky deta answer
+
+llm
+gpt
+claud ai 
+
+market ma hai use kr skty Hai ap
+
+every llm apny tariqy sy banaya gya hai
+kisi ki speed zayda accuracy multilingual abililites
+
+cloud bangle ma bat nhi kr ksta gemeni kr ksta hai
+bhut sary model text ma bat krty image wgaira ma nhi
+
+cloud ma code likha skty usko train hi aisy kiya gya hai
+accuracy ma bar kry claude ki zyada hai
+
+twitter ny grok launch kiya hai
+
+llms
+real world use case
+cahatbots:like bots 
+summarizers;NEW PPS PDF
+Trasnlation:cinvert English Urdu 
+automation:ai code reviews
+
+llms use kr skty hai 
+llm kam kasy krta   hai
+
+jo text diya ya output nikalny  phly kya krta process wo
+tokenization:
+embedding
+transformer
+prediction
+
+tockenization:jo b text likha hai usko tokenization krty 
+parts ma divide krty hai ham usko tokens khty hai
+input=most famous cheese in France
+toekns[most,famous,cheese,in,france]
+array ma convert krty ak space b matter krta hai model meaning nhi nikal skta hai
+
+embedding
+token ko vector ma convert krty hai ham
+chhese ak world hai array of vector ma distribute krty hai
+
+i love ai model s
+
+[0.01,] har token ma vectore deta hai jo number hai 
+jo llm model ko smjhny ma eska mtlb kya hai usko words smjh nhi aye ga
+
+USKO embedding khty hai
+har model ka apna hisa hota kasy token bnata hai
+
+vector apple hai
+har model apna dyga kasy wo train hai
+embedding wagira
+
+
+Transformer
+pora sentence dekhta konsa word important hai kis pr focus hona chaye
+
+what is important
+what words are related
+what to focus on
+
+the model learns that cheese frnace hai wo focus kry ga konsa important hai word
+
+wo human ki tar kry ga hmm
+output b token ki format ma deta hai
+jeski zayda probability hai wo pick kry ga 
+har model apny hisab y krta hai
+usny socha kis pr focus krna model output generate kry ga human answer ma
+
+
+es satge pr work krta hai
+input leta token k formate ma output b deta token ki form ma
+probability ki base pr answer deta hai 
+
+input text
+tokens
+embedding
+transformer blocks
+output embedding 
+tokens output tokens
+
+prediction model kasy krta
+
+deep learning is very 
+bhut sara output diya multiple words 
+har wo probability deta hai jeska zayda hota wo dy deta hai
+token sy text ma convert krty ham
+multipe token generate krta wo probabailty wala deta zayda 
+
+
+prediction depends on
+traingin dtaa 
+the prompt 
+temperature
+max token length
+
+
+the dog sat on 
+text sy inputm ma convert kiya hamny
+phr ya llm ma gya ya dimag lagta jitna train hai
+the mat pad enki probabailty zayda hai
+ab scond highest probabitly return krty hai
+
+zarori nhi jeska output zayda o output dena hamny
+
+sampliing strategies kya ai
+ak outpu kasa dena wo change kr skty probability konsa chaye
+
+apna soch k mutabik output dena hai 
+
+the boy wnet to the
+usmny multiple results diya ham chaty hai low probability kam wala dn  hmy
+
+ham prameter change krty kis pr wo sai deta hai output alg alg simplify startegies krty ai
+
+
+1.Temprature
+agr temparture kam hai
+tu jo b ouptu token hota hai uska probailtiy hota wo zyda hota
+
+ak ka 60 percentage
+40 
+10 
+1
+apko pick krna 60 wala kry ga ham
+apko milta
+80
+79
+81
+75
+85 ab choose krna muskhil sai lg rha confusing answer dyga
+yha temparture ata
+kam rkha tu 2nd wala output milta
+
+lower 0.2 rkhty acha milta result
+1.0 confuse kry ga
+
+jasy tmepature bhrty aye ga wo similar mily ga dekh nhi ksy khy ga konsa pick kry ga
+tempareyre am simpliy sai milgy ga
+
+
+2.top-k-sampling 
+jo output mil rha sabsy acha ala pick krna hai
+agr koi khrab nhi aye ga choose krna easy rhy ga
+ 
+top wose sorted hota set k=2
+top 2 elelment dyga ya nichy wala discard krdu 
+
+
+
+
+Top p Sampling
+picks smamleste set token jeski
+aisa set token la kr dn jeska probability 0.9 sy zauda hn
+
+ham khy ga starting k 3 la dn
+jo token krna jeska top 3 sy zayda hoga
+
+top p wo chaye 
+
+sampliy
+
+
+3.Min-p
+
+minimum 
+jp b min-p ka value hoga 0.1 hai es sy kam wo hata dn Esko
+
+top k fixed output chaye topki 
+top p k agr cummulaitce sum hamy set of token la kr dn jeska sum top sy zayda hn
+top min kya khta hai wo discard krdu jeski probability kam hai  ham output sample nikal skty hai llm k zariya
+
+kasy kam krta token kasy krty ouptu sample kasy krty ham
+
+Frequency Penalty
+LLM jab jawab likhta hai aur same word / phrase bar-bar repeat karne lagta hai,
+to frequency_penalty us repetition ko punish karta hai.
+
+
+
+
+
+Hugging Face Basics + Open-Source LLMs
+
+chatgpt hai wo paid hai ak point k bad paisy dn use kro response nhi sai mily ga
+ap jo data likha many personal chezy di apni mera ya data chpt k server pr jarha hai
+
+open source llm
+jo open source hai paisy diya bagir llm
+
+ak llm trian krny k liya medical k liya open source hota ham apna contribution dy skty hai
+
+gemma ak model hai google deta hai 
+gemini paid hojata gemma free hai open source hai 
+jes gemeini sy trian kiya gemma b us sy 
+
+huging face aisa platform ml models datasets ko tools ko host kr ksty hai taky dosry develoers use kr ksy
+
+Hugging Face ek open-source AI platform hai jo pre-trained models, datasets aur tools provide karta hai jisse hum NLP aur LLM applications build, train aur deploy kar sakte hain.
+
+
+esmy models dataset models infrenceapi b mily gi
+ai jo train hota bana hova usko use krna inference khty hai 
+
+datasets difference dta milta jesko use krky train kr skty hai
+GitHub pr code rkhty hugginface ma ai model rkhty apna 
+hamny web application banye usko directy use kr skty hai wha sy
+jo banye hai gamama llma use kr skty bina apna cpu use krky
+
+
+har model mathematician calculation solve krny k liya dimage chaye hardware cpu gpu
+
+gpt hosted hai apny openai pr hi usky server hota hai
+open source hai Esko use krky krty apny system ma
+
+hugging face api dety jesko use krky model use krty hamra cpu chota 
+
+model choose kiya hugging face Esko hose krta apny server pr
+apko api dy diya ham jo b input bhjy hugging face khud handle kry ga
+
+
+ai ko use krny k liya hmy gpu ki zarorat hoti hai
+gpu jo hai wo multiple clauclation krny k liya bana hai parallel
+cpu ko trian kiya kuch kuch task liya os app run krny k liya
+cpu ak bar ma ak task kry ga ak math problem ak time ma
+
+gpu graphical processing unit
+graphic ko jaldi render kr ksy phly
+1000 math problem ak sath use kr ksta parallel cpu ak hi
+cpu ko kho 1000 kro solve time lyga cpu 1000s lyga
+gpu ko 1 second ly ga 1000 problems k liya 
+
+ai model ka kam next word predict krna ai bhut sara mathemitcal krta 
+calculation ki zarorat hoti hai 1000 clacualtion krni hoti ak word k liya gpu use hota esky liya 
+
+cpu 4 score
+cpu 4 core mltb 4 task paralle ma kr skta esky bad krna ya khtm hoga phr hoga 
+
+gpu ma hundered or hazar prlbme ak sath solve kr skta
+
+nvidia rtx 4090 16384 ak time ma
+
+ai ko run krny k liay gpu use krty hai
+
+kya model ko cpu ma run kr ksty hai kr skty slow hoaga wo 
+
+zayda model ly hang krny lg jaye distilbert tinyllma etc small model mtlb
+
+hugging face ak website model mily ga hamy account banye ga 
+models datasets mily ga 
+
+models konsy dekh skty 
+
+gemma-3-4b-it ya model image lyga jo b hai usko dekhy answer lakr dyga jo ham query dyga
+
+
+model paramteters ka mtlb
+ai model ma paramters is a number hai jo model learn krta sekhta during traing 
+jab model train krty datsets hai jab wo model train krty hai jo wo sekhta hai usko number ma store krta hai usko parameter jeska zayda parmater hai wo zayda sekha hai
+
+4b hai itni learning hai 27 billion laearning ki hai
+
+ai model ka kam next word predict kry kisi model ko hindi sy translation enlgish ma billon rules weights skhta hai 
+wo number ma store krta hai
+
+gpt-2 ka 124million parameter hai 
+gpt-3 k pas 175billion 
+
+jab model train krta wo different chezy sy skehta hai ak hota
+weight
+value 
+rule 
+
+weight ma 2 word great ko value 0.95 diya 
+value jo actual store kry ga
+rule ai ma if else nhi hoti
+mtlb ak car k extrat kasy krna speed dani kam krna ya khud krta hai llm ya past training pr depend krta hai 
+ai har word ko value deta witgh deta kab kitna dena lana hai wo training ma depend krta hai ya paramters khty hai
+
+jo sara data sekha wo numbers ki form ma store krta input deta calculation krta phr output deta kitna zayda hoga utna train hai
+
+agr llm ko cpu ma krna computation wo ram ma krta 
+cpu jb b calculation krta ram sy data leta hai
+
+model 15 gb ka hai pora model run kry ga 
+3gb ka 7 gb ka hai ram ma load kry ga run kry ga ham
+
+model size kis pr depend krta ya number 
+float32 int8 int4 ma 
+
+float 32 4 byte ka leta
+int 8 ak byte int 4 0.5 byte
+
+model ka size parmater ma depend krta hai
+jes intger ma store usko multipley kro 
+
+agr gpt 2 14m hai float32 ma hai 124*4 kry ga 496mb hai
+
+
+formula
+size*parmatersize
+
+quantization
+ jo model ka parmter hai usko high percison sy low precision ma kr dety hai small or fast hoajye ga
+
+
+
+Low-size-model
+yhi hai model k actual model use na krky quantatize version use krty hai ham 
+
+Naming conversion of models
+name ajeeb hai muskil hai 
+
+
+ham llma othaty hai cloud othaye ga organization hai opensource hai ap apny hisab sy customize krly
+
+first name + model architctire +parmater size+ version + quantized models
+thebloke+mistral+7b+instrcut-vo-1+GGUF
+
+google-gemma-7b
+ya text generation k liya sai hai
+
+
+
+Transfomers Library
+har ak liya paossible nhi wo model download kry run kry apny system ma
+
+ak library hai python ki transformer
+ap kisi b model ko thorw a pyhton load kr ksty run kr kstyy
+
+google coolab kry ga use ham
+
+
+from transformers import pipeline
+
+generator = pipeline("text-generation", model="gpt2")
+
+output = generator(
+    "Pakistan ka AI future",
+    max_length=50,
+    num_return_sequences=1
+)
+
+print(output[0]["generated_text"])
+
+
+max length 50 token sy deal kry ga input token or output ka token 50 hoga
+varencies ktiny hai 1 kiya
+pip k zariya install kiya usko usekntk liya pipeline banya 
+generortor ana r diya or parameter diya kuch
+
+
+
+
+Run LLMs Locally with Ollama & LM Studio 
+
+
+
+
+Ollama
+ya ak cli hai terminal hai
+terminal ma llm ko run kry ga ham
+
+ak enviroment eta Jha llm file dyga ya run kry ga 
+
+wsl install krna hai
+ak envoiemnt eta linux ko chla skty hai apny system ma ham
+
+phi ak open source hai micrsoft dia hai
+
+Ollama kyun use karte hain?
+
+Local AI chalane ke liye (internet ke baghair bhi)
+LLM (LLaMA, Mistral, etc.) apne PC par
+
+Fast & private
+API jaisa use (chat, apps)
+
+Matlab:
+ChatGPT jaisa AI, lekin apne laptop par
+
+ollama run tinyollama ya run kry ga ollama ka chota version ka size chota hai original ka zayda hai
+
+yha quontize hi model run kr ksty hai ham apny system ma
+ya llm mery local system ma chal rh amera locally memeory wagira use kr ha
+
+PS C:\Users\Saqib> ollama list
+NAME                ID              SIZE      MODIFIED
+tinyllama:latest    2644915ede35    637 MB    5 minutes ago
+PS C:\Users\Saqib>
+
+
+by defult ak pi deta run krta port pr 11434 ma 
+
+localhost//11434/api/generator
+
+aagr koi offline model run krna
+.gguf milna chaye hai
+
+
+
+
+ollama run mistral 
+ya doenload krna start krdy ga ya
+
+express server run kry ollama ak api deta hai eska use krky kr ksty pora chatbot bana skty hai ak frinted bana dena ap chatbot sy bat kr ksty api k zariya
+
+
+apny locahost ma kiya express sy server sy banaya donu ko commence kr krty hai
+
+
+commands
+
+ollama pull model
+ollama run model
+ollama list
+ollama rm model 
+
+
+
+ollma dedicating hai local ma run krny k liya
+personal projects k liya ollama
+ollama local chlta
+hugging global libarray mmilty 
+ollama local k liya Jha sy quantatize model mil jaty hai
+
+
+
+
+Lm Studio
+ya desktop app hai run la language models k liya
+yha b model daly ga question pochy ga answer dyga ya hmy
+
+
+
+RAG = Retrieval Augmented Generation
+
+Iska seedha matlab:
+
+Pehle apne data se relevant information nikaalna (Retrieval)
+phir us information ki madad se jawab banana (Generation)
+
+
+
+Prompt Engineering
+
+hamara prompt jitna sai hoga utna sai hoga answr
+act like a trave guide kon hn exmalin 3 places top 3 n Pakistan
+
+prompt structure
+
+who the ai is
+instrcutions
+response kasa chaye 
+
+types of prompting
+
+roleplay prompting
+act-like a startup co-founder and explain ai to a 12-year old
+
+chain of thought prompting
+hamny kha llm ko loud thing kro 
+har step by step chez hn 
+
+few shiort prompting
+
+phly expel dy input otput dykr 
+phr wo estara sy response sy lakr dyga
+
+
+
+
+
+
+
+
+LangChain
+
+langchain  framework hai llm powered applications bnaty hai ham
+
+react ak framework hai esky bina b ham fronted bana skty thy react k zariya easy hogya fronted sy bana skty
+
+llm bulitn in features deta hai
+
+
+key features
+
+llm:brain hai ya
+prompt:llm sy kya krwana chaty hai ap
+
+output parser: llm apko desired ma output lakar dyga jes my ap khy ga
+
+jab b gpt sy pochty hai ak word hota context hai
+aj yha day 1 sy pocha 
+agr day 1 sy 5 tk aye usko yad nhi rhta usko chat ma ya yad nhi usko
+
+cntext ko memory khty jo b llm k sath krty usko save krty hai ak dafa bata diya name usko yad rhy memory ma ad krty hai
+
+chain:ya k srequence flow hai Esko prompt diya wo llms kpas jaye ga wo outpu dyga
+
+agr langchain use kry chan bana o ya agnet 
+
+chain ma dimag nhi wo llms k pas jaye ga wo usko process kryga reply dyga
+agent khud ka dimag lgaya ga 
+mujhe esky answer k liya koi tool use krna kry ga reply dyga
+
+
+chain
+chai banaty 
+biolld water 
+add tea leaver 
+pout into cup
+serve 
+ya chan process dimag nhi lgana hamny
+
+jo prompt llm k pas jaye decision lyga output dyga ya
+
+koi dimag nhi lgya rule follow kry ga 
+
+qna chatbot bnaty koi question bnaty wo answer drtsa
+
+
+Agent
+khud sochta reply deta
+agr flight dekhan current time ka 
+indigo ixgo api deta flight k liya
+
+agent search flight api use kry ga sab sy chepest dekhy ga flight
+
+
+ya langchian
+chain
+agent deta hai
+
+langchain bhut kuch deta
+
+nodejs+gemien sy bnye ga ham
+
+langchain k framework hai jo isa frmaweok jo functionality deta 
+tools deta ak chain hai or ak agent hai
+
+chatbot banan ai text summarizer langchain anana
+
+text summarize bhut bara diya wo chota krdy ga
+
+Jha ai ko decide krna pry search krna tool krna real time update esky liy agent use kry ga ham
+
+
+agr nodejs gpt api use krky chain bana skty ya manually hai
+
+agr tool use kry ya help krty hai prompttempalte function hai outputpraser outpu lakr dyga achy sy
+
+
+agent k liya langchain haye builtin tool k liya chyae ya 
+
+basic prompt k liya bina langchain
+logic flow multiple prompts without langcahin
+tools memory decision making k liya lanchain use kry ga
+
+
+ak chian dlay ga wo process kry ga outpu dy ga
+
+npm i langchain @langchain/openai dotenv
+
+openai ki api use krna chty dosra package install kry ga ham
+
+langchain
+prompt tool
+lms sy connect krwata 
+
+langchain openai k tool hai 
+
+openai use krna zarair hai ollama sy b api milta local sy b 
+
+langchain/chat_models/ollama ab local sy connect kry ga
+
+llm chaye kahi sy b hoskta local b gemeini ka mistel ka hoskta hai 
+
+
+openai k liya apenai key chaye
+
+aistodi.google.com website ma jana
+get api key mily ga option
+getapi option pr click kry ga ham gemini ka use kry ga jo online hai
+
+
+chain.js 
+
+env ma key 
+GOOGLE_API_KEY=key apna 
+
+import {config} from 'dotenv'
+config()
+
+iports
+{ChatgOOGLEgENERATEIVEAI} 
+{LLMChain} 
+{PromptTemplate} esky throw hi llm ko prompt dety hau ham
+
+
+const model0new ChatGoogleGneeratoveAI({
+model:|modelsgemini-2.5-flash|,
+maxoutputToekns:2048,ya bhut bara token ka na dy ouptu 
+temperature:0.7,
+apiKet:process.env.Google_API_Key)}
+
+const prompt=PromptTemplate.formTmeplate(
+"Expalin the concept og {topic} to a biggner"}
+);
+
+
+const chain=new LLMChai (ya output lakr dyga
+llm:model,
+prompt:prompt
+)
+
+const res=await chain.run(computing)
+
+langchain prompttmeplae+model+logic ya chain hau prompt use krty promptemeplate 
+
+
+
+
+LCEL
+ya tarika hai function likhny ka
+
+langchain expression language
+
+ak chain bana rhy prompt ka wo llm k pas jarha wo outpu dyrha
+
+new tarika kya hai
+ham llm pipeline bana dyga ham
+
+
+lcel_Chian.js
+
+import config
+config();
+ChatGoogleGenerativeAI 
+promptTempalte
+
+
+
+const model0new ChatGoogleGneeratoveAI({
+model:|modelsgemini-2.5-flash|,
+maxoutputToekns:2048,ya bhut bara token ka na dy ouptu 
+temperature:0.7,
+apiKet:process.env.Google_API_Key)}
+
+const prompt=PromptTemplate.formTmeplate(
+"Expalin the concept og {topic} to a biggner"}
+);
+
+
+const chain=prompt.pipe(model) hamny pipe k andr model dy diya
+
+const repsonse=await chain.invoke({
+question:"what is the future of ai")}
+
+
+markdown website hai dekh skty friendy 
+
+prompt .pipe(llm) dydiya chain hogya call kry ga
+
+outputpraser use kry
+
+ak desired formte ma output chaye hamy 
+import 
+
+const outputPraser=new StringOuptuPraser();
+const choan=prompt.pipe*chain)/pipe(outputPraser)
+
+desired output ma chaye ya
+
+water filter system
+sab sy phly prompttemplate kry ga input formate
+phly model ko dyga wo output lakr dyga usko ouptu[raser kry ga
+
+
+
+
+
