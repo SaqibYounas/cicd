@@ -92,7 +92,7 @@ usny socha kis pr focus krna model output generate kry ga human answer ma
 
 
 es satge pr work krta hai
-input leta token k formate ma output b deta token ki form ma
+input leta token k formate ma output b data token ki form ma
 probability ki base pr answer deta hai 
 
 input text
@@ -384,7 +384,7 @@ Ollama
 ya ak cli hai terminal hai
 terminal ma llm ko run kry ga ham
 
-ak enviroment eta Jha llm file dyga ya run kry ga 
+ak enviroment deta Jha llm file dyga ya run kry ga 
 
 wsl install krna hai
 ak envoiemnt eta linux ko chla skty hai apny system ma ham
@@ -504,8 +504,13 @@ langchain  framework hai llm powered applications bnaty hai ham
 react ak framework hai esky bina b ham fronted bana skty thy react k zariya easy hogya fronted sy bana skty
 
 llm bulitn in features deta hai
+LangChain ek framework hai jo LLMs (ChatGPT, Ollama, etc.) ko:
 
-
+tools
+memory
+databases
+APIs
+ke sath connect karta hai.
 key features
 
 llm:brain hai ya
@@ -698,6 +703,413 @@ desired output ma chaye ya
 water filter system
 sab sy phly prompttemplate kry ga input formate
 phly model ko dyga wo output lakr dyga usko ouptu[raser kry ga
+
+
+
+
+import fs from "fs";
+import { pipeline } from "@xenova/transformers";
+import hnswlib from "hnswlib-node";
+
+const embedder = await pipeline(
+  "feature-extraction",
+  "Xenova/all-MiniLM-L6-v2"
+);
+
+// Load data
+const text = fs.readFileSync("data.txt", "utf-8");
+
+// Chunking
+const chunks = [];
+for (let i = 0; i < text.length; i += 500) {
+  chunks.push(text.slice(i, i + 500));
+}
+
+// Create index
+const dim = 384;
+const index = new hnswlib.HierarchicalNSW("cosine", dim);
+index.initIndex(chunks.length);
+
+// Embeddings
+for (let i = 0; i < chunks.length; i++) {
+  const emb = await embedder(chunks[i], {
+    pooling: "mean",
+    normalize: true,
+  });
+  index.addPoint(emb.data, i);
+}
+
+// Save index
+index.writeIndex("index.bin");
+fs.writeFileSync("chunks.json", JSON.stringify(chunks));
+
+console.log("✅ Data indexed successfully");import fs from "fs";
+import hnswlib from "hnswlib-node";
+import { pipeline } from "@xenova/transformers";
+
+const embedder = await pipeline(
+  "feature-extraction",
+  "Xenova/all-MiniLM-L6-v2"
+);
+
+// Load index
+const chunks = JSON.parse(fs.readFileSync("chunks.json"));
+const index = new hnswlib.HierarchicalNSW("cosine", 384);
+index.readIndex("index.bin");
+
+// Local LLM (light model)
+const generator = await pipeline(
+  "text-generation",
+  "Xenova/phi-2"
+);
+
+export async function ask(question) {
+  // Question embedding
+  const qEmb = await embedder(question, {
+    pooling: "mean",
+    normalize: true,
+  });
+
+  // Fetch relevant chunks
+  const ids = index.searchKnn(qEmb.data, 2).neighbors;
+  const context = ids.map((i) => chunks[i]).join("\n");
+
+  // Strict RAG prompt
+  const prompt = `
+Answer ONLY from the context below.
+If not found, say "Information not available".
+
+Context:
+${context}
+
+Question:
+${question}
+
+Answer:
+`;
+
+  const out = await generator(prompt, { max_new_tokens: 150 });
+  return out[0].generated_text;
+}
+
+
+
+
+LangChain Agents
+
+
+chain 
+agent
+
+agent sochta hai decide krta phr act krta hai 
+chain sedha sedha process jo llm k pas jaye ga output yga lady ga
+
+koi query pochi usmy google search required or  agent use hota hai
+
+hamny lllm sy pocha wo ecide krta koi tool required hai ya nhi
+agr wether current wo batany ma galti kiya
+data pr train kia 224 tk maximum pata hoga
+current time kya horha current weather jana esky pas nhi hoga eska data wo wetsher api call kry ga
+agr external time kya hai 
+
+tools dekhta agr zarorat
+web search
+caluclaotr
+document eader
+databas query apka jo 
+adapter real time databse ko gent sy conntec krta
+python code exuextuon
+
+
+langcahi adapter eta hai jesky zriya ham openai use krty hai
+
+google-genia es adapter k zariya use kr rhy ham
+agr weather api chaye agent sy connect krlo wo call kry ga
+
+
+packages
+langchain install krna hoga 
+base tools chaye agent bhut use kr ksta hai 
+@langchain/ore ya install kry ga
+prompt formatted krna
+chain connected 
+lel chaye
+
+@laginchain/community
+ya external service sy connected krny b madad krti hai
+current nes chaye ham google sy kry ga
+ham third api use kry ga
+SerpApi google api use r skty hai
+PineCorn Vector b
+Huggingface models
+
+enko use krny k liya pacjage chaye wo langchain/community hai
+
+
+@lagchain/openai
+@lagnchain/google-genai 
+
+@langchain/core
+jo b package se krna core hona lazmi hai
+
+
+official documents
+langchain ka
+top ma api resfernce r jaye mil jaye ga 
+custom tool b bana skty hai ham
+
+chat.langinchain.com
+yha lanchain sy poch skty hai koi package ni mil rhy 
+esmy change hota rhta enka version lanch horha hai 
+
+agr relatime hatbot chaye relatime llm  pas nhi
+esky pas required data hai ya tool use kry ga google search 
+
+SerpApi tool
+google search api hai
+jo b question es sy pochu
+ya geographic ki base pr ata result
+agr Pakistan diya 
+
+ya kam serpapi use kry ga ham
+
+google search ak search engine hai
+Esko jo b relative info lgti wo dydata hai wo kis news channel ka hoskta koi koi or
+serpapi json a deta jo googleserach a ta wo
+
+snippets preview hota 
+ak url titile ak message es message ko preview khty hai search krny k bad jo ata message 
+
+jasy wheatspp ta mesgae chota preview khty usko
+
+sarpapi register krna hai
+usky bad api key pr jana mil jaye gi
+
+JAB npm ak library jah package mlty bhut sry hmy
+
+jab b pakcgae install krty jo exsiiting package k sath shae krta npm 
+dotnv k sath comaptibale i rrent 
+jab b package isnatll kry 
+--legacy-peer-deps 
+jo arha issye solve hoaye ga k compatible nhi dotenv k sath lanchain
+
+ya flag sy ya dpeendcy isuuse ignore krd
+eta hai
+
+
+Agent Ai Power News
+
+llm nhi kr ksta tool use kry ga direct nhi kr ksty langchain sath ry ga connect adapter mil gya 
+
+api key dotnv ma
+
+imports
+{chatGoogleGneratioveai}
+{initialieAgentExcutiveWithOptions
+SerpApi 
+
+
+const model=new ChatGoogleGneerativeAi({
+model:"model/gemini-2.50flash",
+maxoutput:2048,
+temattrue:
+apikey:
+(}
+
+const agent=await inilizeagentexcutorwithoptions(
+[seat=rchapi,wesatehrtool] ya khud agent decide kry ga kya hcyae wo khud use kry ga agr nhi llm sy jwab dyga 
+model
+}
+
+const res=await agent.invoke({
+input:'waht is the latest news about isro"
+)}
+
+
+
+Bonus Point
+
+LLM Wrapers opneai
+chains
+agents
+tools 
+memory cntext
+propmts
+outputpraser kya onach chaye json xml
+docuemntloader text spillters
+vector db
+runnables
+
+
+summary
+
+langchain
+chain ->llm chaye bas
+agent->llt+tool khud decode kry ga konsa tool chaye
+
+
+
+
+
+
+
+
+MCP Server Explained for Beginners
+
+
+model context protocol
+ak llm or ak external data eksy darmyan ma mcp chaye
+ya ak standard vise protocol hai ak tariq hai jesky thorw external data k sath connect kr ksty hai
+
+ak llm kisi data set pr train hai aisa bhut sara data hai jo external hai
+jasy services data
+jasy personal data jo gpt gemni k pas nhi
+
+ak kya choty storage k liya upload krdu 
+agr gbs ma data hai tu ya estara nhi kr ksty
+jasy finicail hai march 2025 ka wo gbs ma hai
+
+ag ksii company ka data 15 20 gb ka hai llms k pas es ka conection hn wo msp k zariya krty hai
+
+
+mcp tool box hai multipe hoskty hai
+ya protol hai jesky thorw externdata ko llm k sath connect krty hai 
+
+
+bina mcp k kry skty thy
+llm sy external db sy connect krna wo excel sheet ma wo sql ma wo mongodb ma hoskta wo audio hoskta 
+
+agr na kry difference compines alg tariq nikaly ga llm sy connect krny sy
+
+excel or krta sql or krta har type of data sy connect k liya connectivity chaye
+
+esny kha ak protocol hona chaye ak data ko external sy connect llm kr ksy hai
+
+har company kry security issue
+ak standard protocol hona chaye tha
+
+mcp sy tools bnaty hai ham
+
+
+where can use mcp
+tool hai
+weather mcp server
+currenct convertor mcp server
+database mcp server 
+
+
+StdioServerTransport
+communciton t ry ga mcp server communicate kry ga llm or user k sath
+
+modelconextsevr packagehai 
+
+
+ham jo b mcp server bnaye ga us ko use krny k liya mcp client chaye
+set of tools ko use krny k liya mcp client chaye hamy
+
+mcp har koi deta 
+cloud b mcp 
+vscode b mcp ki tara kam krta
+cursor b mcp ki tara kam krta hai
+
+set of tools hai jesko usekrny  k liya mcp client chaye
+
+koi b currency cinvertor ana rhy hai ham
+eska mtlb koi b bdna 100 dollar ko convert krdo kis b country k currency sy
+
+mcp tool bnata Esko llm use krta jab zaroart hn ya protocol ko use krky bnata
+
+vscode ma
+
+library install
+npm i \2modelcontextprotocol/sdk zod
+
+
+currencyconvverted.js
+import
+McpServer @
+stdioServerTransport llm or mcp k sth connect k liya
+import {z} from 'zod'
+
+
+const server=new McpServer({
+name:"currencyconvertor mcp server,
+version:"1.0.0"
+})
+
+server chlany k liya stdio chaye
+
+async function startServer(params){
+const transport=new stdioServerTransport();
+await server.connect(transpirt)
+}
+
+startservr().catch(error)=>{
+console.log("failded to sart mcp server|,error
+process.exit(1)
+}
+
+
+server.tool(
+"convertCurrency",
+"Conver amount from one curenct to another" ll ko kab pata kgy ga chlana Esko
+{
+amount.a.number().describe("amount to convert")
+from:z.strin.describe("base urent code eg USD",
+to:z.string().describe(target current code eg INR")
+)
+
+Esko input parameter dy rhy ya outpu dy ga paramters
+
+
+async (amount,from,to)())>{
+try{
+return {content:[
+{
+type"text",
+text:converted currency is 100 INR'
+} tool output dy g input lyga format batye ga
+}}
+catch(error){
+return content[{type,text)}]
+
+
+ya cirrencu convert ry ga llm ko call kry ga jab curreecny k bary ma pochy ham
+
+
+ab cliud install kry ga desktop ma
+cloud ma opr setting ma jaey ga develoeprs ma jaye ga
+eidit config ma jaye ga es file ko vs code ma on kry ga
+
+ab json file ma 
+pwd krky terminal ma oath dyga wha
+
+currency convertor:[
+command:"node"
+args:[path]
+]
+
+
+
+
+
+
+
+Build AI Agents + Workflows in 2025 
+
+agr telegram ma msg kiya agent kasy drive sy meri idcard laye ga
+
+multipe patform hai bana skty 
+n8n best hai
+
+n8n open source hai local ma run kr skty free trail dety ya start ma
+
+
+
+
+ab hsieng er ma open kry ga\
+hostinger open kry ga
+vps choose kry ga 
 
 
 
