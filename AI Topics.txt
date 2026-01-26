@@ -1,0 +1,43 @@
+What is AI?
+types of ai 
+ai subsets.ml,dp,gai
+humanoid robot 
+who is Alan Turing 
+what is Turing Test
+Birth of Artificial Intelligence
+First Chatbot
+before llm work chatbot.
+what is llm.
+llm workflow
+Tokenization
+Embedding
+Transformer 
+what is important
+what words are elated
+what to focus on
+Prediction
+Sampling Strategies (temperature,top-k,top-p,Min-p,Frequency Penalty)
+Hugging face (parameters mean, parmaters values,
+model calculate formula 
+float 
+int8
+int4
+quantization
+Low-size-model
+Naming conversion of models
+Transformers Library
+Ollama
+Lm Studio
+RAG = Retrieval Augmented Generation
+LangChain
+Difference between Chain and Agent
+Practical llm model
+LCEL(langchain expression language(
+
+
+
+pandas
+numpy
+sentence-transformers
+torch
+scikit-learn
