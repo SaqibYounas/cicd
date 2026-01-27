@@ -1,0 +1,476 @@
+Git & Github Tutorial
+
+Git is a version control
+1.Track the Histroy             
+2.Collborate (Team k sath kam krna)
+
+Git is a version control system that helps track changes in your code.
+GitHub is a cloud-based platform where you can store, share, and collaborate on Git repositories.
+
+Git ak software hai jo ham computer k andr use kr skty
+
+
+Gihub 
+Ak website hai jha ham apna code upload krty or odsry log k code dekh skty
+ham yha apny project link dy skty wo pra pora code check krty
+enko ham folder ki shakal ma sotre krty
+ham folder ko Repository Kahty hai
+
+Intial commit ka mtlb hamny kya chnage kiya esko tack krta
+changes ko ham github ma commit krty
+two changes in github
+add commit
+commit ka mtlb eska sss lylo esko save krlo eski horstoy hau
+Redme ma ham changing k liya html use kr skty
+
+
+Check version Git
+git ---version
+
+
+clone Command
+remote jo folder github pr hoty
+local laptop pc copy krny k liya
+
+
+Ek branch codebase ka independent version hota hai jahan aap naye features, bug fixes, 
+ya experiments kar sakte ho bina original (main) code ko affect kiye.
+
+
+jab hamny github sy folder koi apny project ma lana hn 
+git clone or Http link dyga
+
+
+Status command
+git status
+
+nichy dyga nothing to commit mtlb koi chnage ni kiya hamny
+jo code github ma han wohi vs code ma
+
+hidden file
+ls -a
+cd
+
+jab b ham kisis file ko modeifie krdety tu hamy do step krny hoty
+1.add or 2.commit
+jab tk ham ya ni krty hamy midife nazar aye ga
+
+untrak file wo hai jeska github ko pta ni hamny new file add krdi
+
+
+
+4 topics github
+
+1.untracked
+new file that git not track new file add krna or github ma upload na hn esko na ota hn eska
+2.modified
+changed file change ki
+3.staged 
+file is ready to commited  esko ham add na kry wo commited k liya ready ha
+4.unmodifed
+koi chnage ni kiya wohi hai sab
+
+Untracked
+Matlab:
+Wo files jo abhi tak Git ke under track nahi ho rahi hain. Matlab, aapne nayi file banayi hai ya project mein add ki hai, lekin Git ko abhi ye nahi pata ki is file ko track karna hai ya nahi.
+
+Kaise hoti hai:
+Jab aap ek naye file ko project folder mein add karte hain, aur git add command nahi chalate, tab wo file untracked state mein hoti hai.
+
+Action:
+Agar aap is file ko Git repository mein track karna chahte hain to git add <filename> use karein. Agar nahi karna chahte, to file wahi rahegi.
+
+2. Modified
+Matlab:
+Wo files jo Git ke under track ho rahi hain, lekin ab unme changes kar diye gaye hain. Matlab, Git ke paas file ki purani version hai, lekin ab usse different hai.
+
+Kaise hoti hai:
+Jab aap ek file ko edit karte hain (kuch naya add ya remove karte hain), tab wo file modified state mein aa jati hai.
+
+Action:
+Aap modified files ko Git ko batane ke liye git add <filename> chalate hain. Isse file staged state mein chali jaayegi.
+
+3. Staged
+Matlab:
+Wo files jo commit ke liye ready hain. Matlab, aapne file ko modified state se utha kar Git ko bata diya hai ki "ye file ab commit ke liye ready hai".
+
+Kaise hoti hai:
+Jab aap git add <filename> chalate hain, tab wo file staged state mein chali jaati hai.
+
+Action:
+Aap staged files ko commit karne ke liye git commit -m "<message>" chalate hain.
+
+4. Unmodified
+Matlab:
+Wo files jo Git mein tracked hain aur abhi unme koi changes nahi kiye gaye. Matlab, file waise hi hai jaise last commit ke baad thi.
+
+Kaise hoti hai:
+Jab aapne file ko commit kiya aur tab se us file mein koi bhi change nahi hua, to wo file unmodified state mein hoti hai.
+
+Action:
+Aapko unmodified files ke liye koi action lene ki zarurat nahi hoti, kyunki unka status waise hi rahta hai.
+
+
+
+
+
+git add = Aapka file "packing" ke liye ready hai.
+git commit = File "courier" ke through permanent storage mein save ho gayi.
+git push origin main 
+origan ka mtlb github or main ka mtlb branch jha ham push kr rhy
+local sy remote tk bhjny k liya ham push use krty
+
+add 
+new ya modifed file ko add krdety
+git add file name
+jabhamry pas zayda file hn ham git add . 
+mtkb sari file add krdo
+
+
+git fetch
+branches fetch krny k liya github sy agr new i koi
+git fetch all
+
+git remote -v
+ceck krna connect hai gutuhub sy vs code
+git remote add link
+add connection github sy vs code ka
+git remote -
+
+init command 
+local to remote ma push krna
+git init(phly inilize krty)
+mkdir folder create ls -a check .git local check krna remote bani ya ni
+folder link torna
+
+git remote  origin
+
+git push --force origin master
+
+🔹 1. origin kya hota hai?
+By default jab aap repo clone karte ho, Git remote ka naam origin rakhta hai.
+
+Example:
+git clone https://github.com/username/project.git
+Ab remote list dekhen:
+
+git remote -v
+Output:
+
+origin  https://github.com/username/project.git (fetch)
+origin  https://github.com/username/project.git (push)
+Agar aap is remote connection ko delete karna chahein:
+
+git remote remove origin
+🔹 2. github, upstream, ya custom naam
+Kabhi kabhi aap manually ya kisi tutorial mein dusra remote add karte ho aur uska naam github, upstream, production, etc. rakh lete ho.
+
+Example:
+git remote add github https://github.com/username/project.git
+Check remote:
+
+git remote -v
+Output:
+
+github  https://github.com/username/project.git (fetch)
+github  https://github.com/username/project.git (push)
+Toh is remote ko delete karne ke liye:
+
+git remote remove github
+✅ Summary Table:
+Remote Name	Remove Command	When to Use
+origin	git remote remove origin	Default remote after clone
+github	git remote remove github	Custom remote added manually
+upstream	git remote remove upstream	Forked repos or secondary remotes
+
+🟡 2. Existing Project Ko Git Repo Banana:
+Agar aapne pehle se koi folder bana liya hai jisme files hain, aur ab usme Git ka use karna chahte hain:
+
+cd existing-folder
+git init
+Ab ye folder Git se track hone lagega.
+
+⚠️ Note:
+git init sirf local repo banata hai.
+
+git remote add origin link 
+git remote -v (check repositty)
+git branch
+git branch -M rename
+git branch -u origan main(agr ham bar bar push krna hai kafi dair kam krna project ma tu hamy phr origiun nhi likhna pry ga)
+
+merge krna donu k andr same krna code ko
+ham ya branches esoliya bnaty taky hr developer har beanch pr alida kam krta bad ma copy bnata phr main k stash merge kr deta
+
+git brnach
+git branch -M rename
+git checkout brachname another
+git checkout -b newbranchname
+gir checkout -d delbranchh name
+git diff brnachname
+git merge branchname (confilicts merge automaticly konsi file ka chnage chahye)
+git pull origin name (jb b hmay remote chnege ko local ma lana hn or match krna hn)
+
+
+
+
+commit
+git commit-m "mesage"
+hamny meaning full meassge rkhna hoit amtlab button add kiya paragraph add kiya meassge wagoira
+
+
+
+Push Command
+push kr rhy github k opr mtlb 
+local sy remote tk bhjny k liya push use krty
+jo hamri branch hai wha push kr rhy
+jo hmany clone liya wha ham push kr rhy
+git push origin main
+	
+
+
+ls -a hidden file dekhny k liya
+
+
+
+Init Command
+used to create a new git repoto
+sab directy bnany k liya
+cd directy k andr jana
+
+
+mkdir foldername(new folder banana)
+1.git init 
+git repo bany k liya 
+ check the status ls -a
+jab ham ya chalty hai tu to dfa dot aty eska mtlb ya github ma ni hai hamry aps git ka folder hi ni hai
+Jab aap git init chalate hain:
+Ek .git folder aapke project directory mein create hota hai.
+
+phly add krty phr commit
+
+phly add kry gy phr commit
+
+
+project ko github ma psuh krny k liya phly repositry bnaye gy phr push kry gy
+agr ham redme pr click kry gy usko hamy local system ma lana pry ga
+
+
+
+2.git remote add origin ek local repository ko ek remote repository ke saath link karta hai. 
+Iska kaam hota hai batana ki aapke local repository ke changes kis remote server (e.g., GitHub) par push honge.
+Ye command ek local repository ko ek remote repository ke saath link karti hai.
+Iska kaam hai remote ka URL add karna, jahan aap apne code ko push ya pull karte ho.
+
+git pull origin master --rebase
+agr --rebase nhi likhy gy kabi kabi extra field add kr deta eslya likhty
+
+
+3.git remote -v
+Ye command aapko currently configured remotes ki details dikhati hai. 
+Iska use hota hai ye check karne ke liye ki kaunsa remote URL aapki repository ke saath link hai aur wo push/pull ke liye kaise use hoga.
+
+
+4.git branch 
+check brnach
+
+ak main project hota jes my har ak apni branch nikaly gi 
+check krna ham kon c branch ma hai
+
+
+5.git branch -M 
+name change krna branch ka
+
+
+6.git push origan main
+
+push krna gothub ma
+
+
+git add
+git commited -m
+git push
+
+workflow
+cline 
+chanages
+add 
+commit
+push
+
+
+git push:
+git push ka kaam hota hai aapke local repository se changes ko remote repository mein bhejna.
+
+
+
+git pull:
+git pull ka kaam hota hai remote repository se latest changes ko aapke local repository mein lana.
+
+
+
+branches ham use krty hai new code likhny k liya or bad ma usko merge kr dety main sy
+PR sy
+
+Branch Commands
+git branch
+ceck branch
+git branch -M main
+rename branch name
+git checkout 
+ak branch sy dosri branch 
+git branch -b name
+new create branch name
+git branch main
+main m aany k liya
+got branch -d
+del branch
+git diff branchname
+git merge branch name
+
+
+
+
+
+
+
+
+GitHub par Pull Request (PR) ek request hoti hai jo batati hai ki aap apne changes ko kisi repository 
+ke main branch (ya kisi aur branch) mein merge karna chahte hain.
+
+Jab aap kisi branch pe kaam karke code main branch ya kisi aur branch mein merge karwana chahte ho, to PR banate ho.
+
+Ye ek collaboration tool hai jo logon ko team environment mein code review aur feedback ka process smooth 
+banane mein madad karta hai.
+
+Git merge request
+atomatically merge tab hota hai jab hoskta hai k miin k andr kuch or likh hai apny kuch or likha hn 
+commit likhtty k apny kya changes kya kiya chnage
+
+Resolving merge Conflicts
+two tariqy hai merge krny k ak pull request create krlo
+dosra ham git merge likh dy
+
+git merge second brnanch
+ak file k andr same jga pr ak branch ny change kiya ir dosri jga dosri branch ny b same line wohi change kiya 
+git ko smjh ni ata kis ka git final rkhna hai commit
+donu k confilicts smjha nhi ata github ko hamy manually batana prta hai
+konsa rkhna chnage
+
+Kab Conflict Aata Hai? (Example ke Saath)
+🧑‍💻 Scenario:
+Dono developers same file pe kaam kar rahe hain: app.js
+
+
+
+undoing chnages
+git reset file name
+rest krny k liya chnages
+wapas chnges lany k liya 
+agr kuch delete hoajye chnages reset hojaye 
+
+
+git reset HEAD~1
+agr ham kisis chez ko galti sy del krdiya
+add or commit sy phli ki satge
+jo b comints hai usko github pr save kr rhy hai
+yha head ka mtlb hai jo lasyt chnages thi usko ak step pichy ly ja o
+ham chaty  commit 4 hai ham 3 pr jana chaty jo porana wla change wo latest bn jaye ga 
+
+
+git log 
+commit hsh
+konsa commit kiya kon c branch ma
+
+multiple commint ko pichy ly jany k liya
+3 sy 1 tk
+git reset <hash commit>
+
+
+fork 
+apni khud ki copy bana kisis k code sy
+
+
+
+
+
+
+
+ Repository Ko Apne Local System Se Link Karen
+Ab apne local machine se repository ko link karen:
+
+Apni local directory ko open karen jahan par aapka code ya files rakhe hain.
+
+Git ko initialize karne ke liye terminal (Command Prompt ya PowerShell) mein yeh command likhen:
+
+
+git init
+5. Git Remote Link Set Karen
+Github repository ka remote link set karna hoga taake local changes remote pe upload ho sakein.
+
+
+git remote add origin https://github.com/USERNAME/REPOSITORY_NAME.git
+Yahan USERNAME ki jagah apna Github username aur REPOSITORY_NAME ki jagah apni repository ka naam likhen.
+
+6. Files Ko Staging Mein Add Karen
+Ab aapko apni files ko staging area mein add karna hoga taake unhe commit kiya ja sake.
+
+
+git add .
+Yeh command sari changes ko staging mein daal dega.
+
+7. Changes Commit Karen
+Ab apni changes ko commit karen:
+
+
+git commit -m "Your commit message"
+Yahan Your commit message mein aap wo likhen jo aapke changes ko explain kare.
+
+8. Remote Repository Pe Push Karen
+Ab apni changes ko Github ke remote repository mein push karen:
+
+bash
+Copy
+Edit
+git push -u origin master
+Yeh command aapke local repository se code ko remote repository mein upload kar dega.
+
+9. Future Mein Code Push Karna
+Agar aap future mein apne changes ko push karna chahte hain to simply:
+
+git push
+Summary of Steps:
+Create a Github account.
+Create a new repository on Github.
+Initialize Git in your local directory.
+Set the remote repository URL.
+Add your files using git add ..
+Commit your changes using git commit -m "message".
+Push the changes to Github using git push.
+
+
+🔹 Agar sirf last commit undo karna hai (changes wapas chahiye)
+git reset --soft HEAD~1
+
+
+👉 Ye last commit hata dega, aur files wapas staged rahengi (jitna tumne git add . kiya tha).
+
+Agar staging se bhi hataana hai:
+
+git reset --mixed HEAD~1
+
+
+
+
+
+
+
+
+
+
+Switched to
+\\
+PS D:\Projects Working\New folder (3)\tradehub-techtomyy> git reset --hard HEAD~1
+
+git merge --abort
+merge cancle krni request 

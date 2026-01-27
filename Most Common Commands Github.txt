@@ -1,0 +1,1315 @@
+1. Version Control (Changes ka Record)
+GitHub, Git ke sath mil kar kaam karta hai. Iska matlab hai:
+
+Aapka har code ka version save hota hai.
+Agar kuch galat ho jaye, to aap purane version pe wapas ja sakte ho.
+Har change ka track record hota hai (kis ne kya change kiya).
+
+🤝 2. Collaboration (Team Work)
+Agar aap kisi project pe team ke sath kaam kar rahe ho:
+Sab log apna code upload kar sakte hain.
+GitHub sab ka code merge karta hai.
+
+Koi conflict ho to GitHub help karta hai usay solve karne mein.
+
+☁️ 3. Backup & Remote Access
+Aapka code cloud mein safe rehta hai.
+Kisi bhi device se GitHub pe login kar ke code access kar sakte ho.
+
+🌍 4. Portfolio & Resume
+Apne projects GitHub pe rakh kar aap apna portfolio build kar sakte ho.
+Companies aksar candidates ka GitHub dekh kar unki coding skills evaluate karti hain.
+
+🔄 5. Open Source Contribution
+GitHub pe bohat saare open-source projects available hain.
+Aap un mein contribute karke experience gain kar sakte ho.
+
+📦 6. Project Management Tools
+GitHub boards aur issues ki madad se aap apne tasks ko organize kar sakte ho (jaise Trello).
+Aap bugs aur features ka record rakh sakte ho.
+
+
+
+
+
+1. git diff
+Example:
+git diff
+Yeh command batayegi ke aap ne koi file edit ki hai lekin usko staging area mein add nahi kiya.
+
+2. git commit -a -m "commit message"
+Example:
+Command	Stages new changes?	Commits staged files?	Notes
+git commit -m	❌ No	✅ Yes	Pehle git add zaroori hai
+git commit -a -m	✅ Yes (for tracked files only)	✅ Yes	git add ki zarurat nahi for modified files
+
+git commit -a -m "Fixed login bug"
+Isse aap jitni files pe changes kiye hain unko commit karenge aur ek message "Fixed login bug" ke sath.
+
+3. git status
+Example:
+ 1. git status kya karta hai?
+Yeh batata hai:
+
+Konsi files modified hui hain
+
+Konsi files staged hain
+
+Konsi files commit hone wali hain
+
+Konsi files tracked ya untracked hain
+
+📌 Example:
+bash
+Copy
+Edit
+git status
+🔸 Output ho sakta hai:
+
+
+modified:   file1.txt
+new file:   file2.txt
+Sirf naam aur state batata hai — content nahi.
+
+🔍 2. git diff kya karta hai?
+Yeh dikhata hai:
+File ke andar exact kya change hua hai line-by-line.
+Kaun si lines add hui hain, kaun si delete hui hain.
+
+📌 Example:
+git diff
+🔸 Output ho sakta hai:
+- Hello
++ Hello World
+Yani file ke andar kya difference aaya — yeh detail mein dikhaata hai.
+
+git status
+Yeh command aapko batayegi ke kaun si files changes hui hain, staged hain ya untracked hain.
+
+4. git add file_path
+Example:
+
+git add index.html
+Yeh command index.html file ko staging area mein add karti hai.
+
+5. git checkout -b branch_name
+Example:
+
+git checkout -b feature-login
+Yeh command ek nayi branch feature-login create karti hai aur uss branch pe switch kar deti hai.
+
+6. git checkout branch_name
+Example:
+
+git checkout main
+Yeh command aapko main branch pe le aati hai.
+
+7. git commit --amend
+Example:
+
+
+git commit --amend -m "Updated commit message"
+Yeh command last commit ko update karne ke liye use hoti hai. Isme aap commit message ko change kar sakte hain.
+
+8. git push origin branch_name
+Example:
+
+
+git push origin feature-login
+Yeh command feature-login branch ko remote repository (e.g., GitHub) pe push kar deti hai.
+
+9. git pull
+Example:
+
+git pull
+Yeh command remote repository se latest changes ko apne local repository mein merge kar deti hai.
+
+10. git rebase -i HEAD~3
+Example:
+Tum ek feature bana rahe ho — let's say login page.
+Aur tumne git mein kuch commits kiye:
+
+🧱 Initial login form banaya
+🎨 CSS fix ki
+🐛 Login validation bug fix kiya
+Ab tum chahte ho ke:
+Ye 3 commits ko 1 hi commit mein mila do
+Takay git history clean ho aur har feature ka 1 commit ho
+
+📌 Step-by-step:
+
+git rebase -i HEAD~3
+Editor open hoga:
+
+pick abc123 Initial login form banaya
+pick def456 CSS fix ki
+pick ghi789 Login validation bug fix kiya
+Ab aise karo:
+git rebase -i HEAD~3
+Yeh command last 3 commits ko interactively rebase karne ke liye use hoti hai.
+
+
+11. git clone
+Example:
+
+git clone https://github.com/user/repo.git
+Yeh command ek repository ko GitHub se download karne ke liye use hoti hai.
+
+12. git merge
+Example:
+
+git log --oneline
+
+git revert
+Yani agar ghalti se koi file delete ho jaye aur tumne us deletion ko commit bhi kar diya ho, to git revert se us file ko wapas laa sakte ho — bina pura history tod-phod kiye.
+
+git checkout main       # First, switch to the branch you want to merge into (main)
+git merge feature-branch  # Now merge feature-branch into main
+Result:
+
+Feature	Description
+Code	Wapas ho jata hai (undo ho jata hai)
+Commit	Delete nahi hota — history mein rehta hai
+New Commit	Create hoti hai jo pehle wale commit ko ulta karti hai
+
+Agar koi conflicts nahi hote, toh Git automatically merge kar dega.
+
+Agar conflicts hote hain, toh aapko unko manually resolve karna padta hai.
+
+Handling Merge Conflicts: Agar dono branches mein same lines of code change ki gayi hain, toh Git aapko merge conflict dikhayega.
+ Aapko manually file ko edit karna padta hai aur conflict resolve karna padta hai.
+
+Example Conflict Resolution:
+Git will mark conflicting lines with markers like <<<<<<<, =======, and >>>>>>>.
+Aapko manually decide karna hota hai ki kaunsa change rakhna hai.
+After resolving the conflicts, you commit the changes.
+Aapko manually yeh decide karna padta hai ki kaunsa change rakhna hai (current branch ka ya feature branch ka).
+ Aapko <<<<<<<, =======, aur >>>>>>> ko remove karna padta hai aur file ko edit karna padta hai.
+Jaise hi aap decide karte hain aur file ko sahi karte hain, file ready hoti hai commit ke liye.
+
+
+git merge feature-login
+Yeh command feature-login branch ke changes ko apni current branch mein merge kar deti hai.
+
+13. git log --stat
+Example:
+
+
+git log --stat
+Yeh command commit history ko file changes ke saath dikhati hai.
+git log --stat command Git ke commit history ko display karne ke liye use hoti hai, lekin iske saath --stat option add karne se, har commit ke saath file changes ka summary bhi dikhta hai, jaise ki kaunsi files modify hui hain aur unmein kitna content add ya remove hua hai.
+
+Breakdown:
+git log: Isse aapko puri commit history dikhai deti hai.
+
+--stat: Yeh option har commit ke saath ek summary of changes dikhata hai, jaise ki kis file mein kitna change hua (insertions, deletions, etc.).
+
+git stash: Agar aap ne kuch changes kiye hain, lekin abhi unko commit nahi karna chahte, aur aap temporarily unko save karna chahte hain, toh aap git stash command use kar sakte hain.
+
+
+git stash  # Stash changes to temporarily save them
+Isse aapki current working directory clean ho jati hai, aur aap agle kaam pe concentrate kar sakte hain. Stash mein aapke changes save ho jate hain.
+
+git stash pop: Jab aapko apne saved (stashed) changes ko wapas laana ho, toh aap git stash pop ka use karte hain. Is command ke through aap apne stash ko apply kar sakte hain aur uske baad stash ko remove bhi kar sakte hain.
+
+
+git stash pop  # Apply the most recent stashed changes and remove from stash
+Agar aap git stash pop run karte hain, toh jo aapne stash mein save kiya tha, wo wapas aapki working directory mein apply ho jata hai aur stash se remove ho jata hai.
+
+Summary:
+
+ Git tries to merge stashed changes + current file together.
+Agar same line pe dono ne changes kiye hain, to ❌ conflict aayega.
+Agar alag lines hain, to ✅ dono merge ho jayeinge.
+
+
+
+
+
+16. git reset HEAD~1
+Aapne jo aakhri commit banaya tha (git commit se), git reset HEAD~1 us commit ko history se hata deta hai, lekin us commit ke andar
+ jo file changes the, wo changes wapas working directory mein ajate hain — jaise aapne git add bhi nahi kiya ho.
+mtlb commit ko hatana 
+
+17. git reset --hard
+Example:
+
+git reset --hard HEAD~1
+➡️ Last commit, uske changes, aur files sab delete ho jati hain.
+Matlab: Jaise aapne woh commit aur uska kaam kabhi kiya hi nahi
+
+Yeh command last commit ko undo kar deti hai aur saath hi saath changes ko bhi discard kar deti hai. (WARNING: Irreversible)
+git reset HEAD~1
+Kya hota hai? Yeh command aapke local (apne computer) par last commit ko undo kar deti hai, lekin jo aapne changes kiye
+ the woh working directory mein reh jate hain. Matlab, aapka code abhi bhi local computer par hai, lekin commit history mein woh commit nahi rahega.
+Jab aap git reset HEAD~1 ya kisi aur command ka use karte ho, toh aap apne last commit ko undo karte ho. Iska matlab hai:
+Aapne jo last commit kiya tha, usko remove kar diya jayega
+Lekin, aapke file mein jo changes kiye gaye the (jo aapne code mein kiya tha), woh abhi bhi aapke local system mein honge. Bas unhe commit history se hata diya jayega.
+
+Example:
+Aapne kuch code likha aur git commit kiya.
+
+Agar aapko lagta hai ke aapne galat commit kiya, toh aap git reset HEAD~1 use kar ke us commit ko undo kar sakte ho.
+
+Isse commit remove ho jayega, lekin aapke code mein jo changes kiye gaye the, woh abhi bhi waisa ka waisa rehenge.
+
+
+Remote pe kya hota hai? Agar aapne yeh commit remote (GitHub ya GitLab) pe push kiya tha, toh remote pe woh commit 
+abhi bhi rahega. Matlab, local mein aapne undo kiya, lekin remote pe woh commit abhi bhi visible rahega.
+
+2. git reset --hard
+Kya hota hai? Yeh command aapke local repository ko bilkul reset kar deti hai. Isse aapka last commit bhi delete ho jata hai aur aapne jo changes kiye they woh bhi discard ho jate hain.
+ Matlab, aapka code aur commit history dono puri tarah se reset ho jati hai.
+Remote pe kya hota hai? Agar aapne yeh reset remote (GitHub ya GitLab) pe push kiya tha, toh remote pe bhi woh commit delete ho jayega. Lekin yeh changes remote repository mein 
+reflect karne ke liye, aapko force push karna padta hai.
+
+18. git revert
+Example:
+
+git revert abc123(commit id hai abcd)
+Yeh command commit abc123 ko undo kar deti hai ek new commit ke through.
+git revert HEAD~2..HEAD
+Yani last 3 commits ko undo karo with new reverse commits.
+
+mtlb ap ny jes commit pr wapas jana agr wo delete hogya usk liya
+
+19. git cherry-pick commit_id
+Example:
+
+
+git cherry-pick abc123
+Yeh command abc123 commit ko apni current branch mein copy kar deti hai.
+Yeh command kisi aur branch ke commit ko uthakar aapki current branch mein ek naya commit bana deta hai — same message aur same code changes ke saath.
+
+
+
+🧠 Simple Words Mein:
+"Ek branch mein ek kaam sahi hua tha (ek commit), mujhe sirf wahi kaam apni current branch mein chahiye — puri branch nahi."
+
+✅ Use case:
+Aapki ek feature branch mein sirf ek hi commit acha hai — baaki sab incomplete.
+
+Aap us ek commit ko directly main branch mein lana chahte hain.
+
+git cherry-pick <commit-hash>
+🔧 Example:
+Step 1: Aapke paas yeh commits hain feature branch mein:
+
+commit a1b2c3d (adds feature A)
+commit b2c3d4e (fixes typo)
+Step 2: Aap main branch mein ho, aur sirf "fixes typo" wala commit chahiye:
+
+git checkout main
+git cherry-pick b2c3d4e
+✅ Ab wo commit main branch mein add ho gaya — bina feature A ke.
+
+🎯 Kab Use Karte Hain?
+Situation	Use cherry-pick?
+Sirf ek specific change chahiye	✅ Yes
+Puri feature chahiye	❌ No (Use merge or rebase)
+Emergency hotfix lana hai ek branch se	✅ Y
+
+
+git log
+This will show you a list of commits with details like:
+
+Commit ID (hash)
+Author
+Date
+Commit message
+
+
+git log --oneline
+Example:
+
+a3c1e0d Added login functionality
+
+20. git branch
+Example:
+
+git branch
+Yeh command sab branches ko list kar deti hai.
+
+
+21.git reset
+Unstage files (keeps changes)
+Example:
+git reset
+Yeh command changes ko staging area se hata deti hai, lekin aapke local files mein changes reh jati hain.
+Iska matlab hai ke file ab commit ke liye ready nahi hai, lekin changes abhi bhi file mein hain.
+
+
+git revert abc123  # Commit abc123 ko reverse karne ke liye naya commit create karta hai
+mtlb commit mesage reverse ktny k liya new commit ma
+
+git log
+commit dekhny k liya
+
+Agar dono branches mein same line ya same code ko modify kiya gaya ho, toh merge conflict hota hai
+
+
+command
+22.git restore . ka matlab hai:
+
+Ye current directory ke saare files ko last commit wali state me wapas le aata hai.
+Matlab jitne bhi changes aapne kiye (jo commit nahi kiye) wo delete ho jayenge aur file exactly waise ho jaayegi jaise last commit me thi.
+
+
+Tumhare paas ek notebook hai jisme tum final essay likh rahe ho (main branch).
+Achanak tum sochte ho ke:
+
+“Ek naye idea par try karta hoon, lekin original essay kharab na ho.”
+
+To tum ek photo copy bana lete ho — us copy par try karte ho.
+Woh photo copy = Git branch hai.
+
+
+| Term            | Meaning                                           |
+| --------------- | ------------------------------------------------- |
+| **Integrate**   | Kisi cheez ko project ya system ke sath jodna     |
+| **Integration** | Wo process jisme do systems milke kaam karte hain |
+
+
+
+
+what is ci/cd
+ci(continoues integration)cd (continoues delvery)
+ham ak single application pr kam kr rhy ai or b developer hai ak application ak dfa nhi bny gi
+koi new feature add kry ga bug fix kry ga ham.sdlc khty hai esko
+
+ham develop krty hai application sabsy phly ham
+sabsy phly jo b feature hai bnaye ga ak main branch hai har developer apni branch ma
+chnages krty hai sary developer main branch pr commit krty hai
+commit k bad build stage ati hai (building developing artificate code) dependinsec source code wagoira akhti krty  hai ham ak build file bnaty hai
+develop->build>test
+build k bad test krty hai unit testing intgarion testing regration testing krty hai regration testing hoti porani sai working horhi chezy
+test->realase
+test k bad realase krty hai realse ma deploy hota hai part
+deploy ka mtlb kisi platform ma deploy krna hai
+dev staging ma developers k liya
+dev ma developers k liya
+producation ma users k liya 
+staging ma pre application kisi manager ko dekhani hn statnig ma krty hai
+kuch application deploy k bad hoty hai end to end testing ma
+cicd sy phly ham manual krty thy kam tu errors wagira aty thy
+har application ma koi new feature add kry baki pichly phr test krny pry ga reform krny pry ga human ko 
+en step ko atomatic krna hn scripts likhty hai atomatic krty hai 
+
+ham atomaticaty krty hai cicd khty hai esko
+
+
+build +test ko atomcatc krty ci khty
+realase deplyment ko atomtoc krty cd khty hai
+
+application ko stating ma deploy krdy auto deploy kisi leader ko akr dekhna prdocation sy phly
+deploy krna ya manual step add hojta esko continoues delivery khty hai
+
+atomatic deployment use krty jha direct deploy hojati hai application
+ya har code k sath trigger hota cicd
+
+manual ma kya pronlems thi process ma
+
+commit build test realse deploy prod
+ya kam manualy krty problem kya ati
+multiple developers ak chez pr kam krty wo apni khud ki branch pr chnages krta commit krta 
+ya chnages k bad ak aisa point aye ga integrate krna hai jab b develiopers k code ko marge kry ga 
+issues aye ga kafi zayda time lgy ga 
+
+agr manualy krliya code freeze krna pry ga error prone time confusing maslh hai
+agr manulaty ma time lgy ga user ko nhi dy sky g application
+
+en prblems ko dekha 
+error prone 
+time confusing
+
+
+agr koi developer apni branch pr push kry ga dekh ly ga code sai chal rha hau
+agr test fail hojaye tu wo dekh ksta error kya aya hai
+
+
+
+delevery vs deploymenet
+build + test ya ci ma ata hai
+
+ham apny code ko staging ma deploy krty phr e2e test krty hai phr manager approved krta phr deploy krty
+producation ma ya ya delivery hai
+agr manual ko hata dy test k bad esko conditues deploymewnt khty hai
+
+bank app ma ham bina manuall chnages k nhi agy jany dyga senestive data hoga
+netfilx app ma development use kry ga data sensitve nhi hai
+
+
+deployment stragtegies
+blue green deployment 
+ham apni application k liya 2 sperate envirment use kry ga ak green hai new envirenemnet
+alida alida rkhy ga v3 v4 to agr v4 ma error tu prives ma krdy ga redirect
+
+canary deployment
+ham ak dfa redirect nhi krty new version ma ham ak ghnty ma kuch use redirect kry ga
+ham progressevely new app pr redirect kry ga
+agr error aye ga tu porany ma shift kry ga
+
+rolling
+load balncer hai multiple instance pr forward hoti
+ham kuch intsance pr new app deploy krty agr chezy sai hai tu dosry instances ma
+new version deploy krty hai
+
+
+
+
+
+
+
+Github Actions
+CI (Continuous Integration) ka matlab hai code changes ko automatically test karna aur integrate karna, jisse development process fast aur bug-free hoti hai.
+
+CD (Continuous Deployment) ka matlab hai ki code ko automatically production environment mein deploy kar dena jab tests pass ho jayein.
+
+GitHub Actions
+
+CI (Continuous Integration) means automatically testing and integrating code changes to make the development process faster and bug-free.
+
+CD (Continuous Deployment) means automatically deploying the code to the production environment once all tests pass.
+
+
+
+
+
+
+
+CI ka main purpose hota hai ke jab bhi koi developer code push kare, wo code automatically test ho jaye. Isse errors ya bugs time pe pakar liye jaate hain aur team ka kaam smooth chalta hai.
+CD ka matlab hota hai ke agar sab tests pass ho jaayein, to code ko automatically production ya server pe deplo
+y kar diya jaye, bina manual process ke.
+
+continouous integration & contionous delivery (CICD) build test deploy
+Direct GitHub Integration
+Easy to Use & Configure (AML-based)
+Pre-built Actions Library
+Built-in Secrets Management
+Free CI/CD Minutes (especially for public repos)
+
+Integration with Other Tools and Services
+Free for Open Source	
+Task Automation
+
+Automatic workflows
+github new contributes ko welcome kr ksty
+code quality stlying 
+publisher docker automatic push hoita code
+Documentation Generation (jo b code new likh uski base pr new documentaion khud bn jaye gi)
+notification &communications
+shcduel tasks har ghnaty chlana repeadted task
+cross platform testing linux mac es sy bhut jga testing kr ksty
+
+
+Benfits of github actions
+no software reqid install 
+jenix krty khud ka harware manage krna prta ar ona setup krna prta
+espr koi instalation ki zarorat nhi direct integartion github
+apen source reposirty rkhty public private
+jinix pr harware mange krta kitni dair ma kitni process chla skty
+
+Easy to use
+highly scable
+ 
+job pipleni ko define krty wo ham yml file ma krty githb reposirty k andr hi e
+node js project install krta or buidl krta
+
+exmaple ya hai
+
+
+name:CI/CD Pipeline (github actions ma jo name nazr ata wo)
+on :push (ya pipleine kab chlni chaye )jab b kisi branch ma push kry ga tab chly gi
+on:push:branch opr waly ma modify [tests,main] estra brances dy skty jab koi es branch ma push kry ga phr chly gi ya on kisi or pr nhi chly gi
+on:schedule:-cron:'0 5***"(es  my ham time spesfic utc m time dena prta valid 10:30 ya roz chly ga 1030 pr cleanup krna notifcation krna kuch b action ly skty
+on:wrokflow_dispatch ja yo hota ya b event manually chalny ko actions website pr manually triger kr skty esko
+
+group kr ksty
+on:schduele:-cron::workflow
+
+https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#registry_package 
+jobs:jobs name:runs-on:steps:-name:run
+test ka job build ka job 
+each job have can multiple steps
+runs on: esmy operating system batana hota k usko kon sa operating systen
+runs-on:unbuntu-latesl
+spescifc version
+macos-13
+windows-lates
+wo public repostry free hai private repositry paid hai miutes milty kitny mint tk chla skty
+self-hosted jo b github action chalye ga server pr apky
+steps: pipeline ma kya krwana
+steps:-name:install dependecies run:npm install kuch b command chlta skty terminal ma
+ak sy zayda bna skty 
+  steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+actions/checkout@v3 → Ye GitHub repo ka code clone karta hai
+
+GitHub har pipeline run ke liye nayi temporary machine banata hai — jisme tumhara code automatically available nahi hota.
+👉 Is liye har baar checkout step likhna required hai, warna pipeline fail karegi.
+
+with:	Us action ko kaunsi settings ya inputs chahiye
+
+ Jobs (jobs:)
+Job ek complete task hota hai jo GitHub Actions run karta hai — jaise build, test, deploy, etc.
+🔸 Ek YAML file mein multiple jobs ho sakte hain.
+Har job independently run ho sakta hai ya dependencies ke sath.
+obs tab chaltay hain jab workflow trigger hota hai (jaise push, PR, schedule, etc.).
+Multiple jobs ek hi file mein ho sakte hain.
+Ye parallel bhi chal sakte hain (agar dependency define na ki ho).
+. Steps:
+Steps tab chaltay hain jab ek specific job run hoti hai.
+Har step sequentially (ek ke baad ek) run hota hai.
+Step ya to run: hota hai (command run karna), ya uses: (koi GitHub action use karna).
+
+ Jab build job chalega, tab uske andar ye steps ek ek kar ke chalayenge.
+
+
+# 📛 1. Workflow name (for identification in GitHub)
+name: CI Workflow
+
+# 🚀 2. Triggering event (when should workflow run?)
+on:
+  push:                # Jab koi code push kare
+    branches:
+      - main           # Sirf main branch pe
+  pull_request:        # Ya jab koi PR banaye
+push event: Jab koi code push kiya jata hai main branch pe, tab workflow run hota hai.
+pull_request event: Jab koi pull request open, update, ya merge hota hai, tab workflow run hota ha
+
+
+ Benefits of on: push even with manual commits:
+🔍 Scenario	✅ Faida
+Aapne kuch code change kiya aur push kiya	Workflow turant chalega – build, test, deploy
+Galti se koi bug daal diya	Tests fail ho jayenge, aapko warning mil jayegi
+Project break ho gaya	Aapko email ya notification mil sakti hai
+Koi aur team member ne code push kiya	Aapko pata chal gaya kya build/test sahi chal raha
+
+name field ko likhna workflow ko identify karne ke liye hota hai, taake jab aap multiple workflows bana rahe ho, 
+toh aap easily samajh sakte hain ke kis workflow ka kya purpose hai. 
+
+
+name: CI Workflow
+Iska matlab:
+Ye workflow ka naam hai. GitHub ke "Actions" tab mein ye naam dikhai dega.
+
+✅ Faida: Alag alag workflows ko pehchanna easy hota hai.
+
+🔷 on: push aur pull_request
+Iska matlab:
+Ye workflow tab chalega jab:
+
+Koi main branch pe code push kare
+
+Ya koi Pull Request banaye
+
+✅ Faida: Har dafa jab code change hota hai, workflow check karega ke sab kuch sahi chal raha ya nahi.
+
+🔷 jobs:
+Workflow ke andar hota hai job, jo basically ek kaam hota hai (jaise: build, test, deploy).
+
+🧱 build: (Job ka naam)
+✅ Aap multiple jobs bana sakte ho, jaise: build, test, lint, deploy, etc.
+
+🔷 runs-on: ubuntu-latest
+Iska matlab:
+Ye job GitHub ke server pe Ubuntu (Linux) environment mein chalega.
+
+✅ Faida: Aap specify kar sakte ho kis OS pe kaam test karna hai (Windows, macOS, Ubuntu)
+
+🪜 Steps Inside Job – Har step kya kar raha hai?
+🔹 - name: Checkout Repository Code
+uses: actions/checkout@v3
+Iska matlab:
+Ye step aapke GitHub repo ka code checkout karta hai (local bana ke run karta hai).
+
+✅ Faida: Code ke bina build/test kaise hoga? Isliye sabse pehle code laaya jata hai.
+
+🔹 - name: Set up Node.js
+uses: actions/setup-node@v3
+with:
+  node-version: 18
+Iska matlab:
+Node.js (version 18) install karta hai taake JavaScript/Node.js ka project chalaya ja sake.
+
+✅ Faida: Aap specific version ke sath test kar sakte ho.
+
+🔹 - name: Install Dependencies
+run: npm install
+Iska matlab:
+Project ki sari required packages install karta hai (package.json se).
+
+✅ Faida: Build aur test tabhi chalayenge jab dependencies install hon.
+
+🔹 - name: Run Build
+run: npm run build
+Iska matlab:
+Aapka code build hota hai (e.g., React/Vue app banana, backend compile karna).
+
+✅ Faida: Build errors agar hon to yahan hi pakar liye jate hain.
+
+🔹 - name: Run Tests
+run: npm test
+Iska matlab:
+Automated tests run karta hai — unit tests, integration tests, etc.
+
+✅ Faida: Aapko pata chal jata hai koi code change ne kuch break to nahi kiya.
+
+🔹 - name: Deploy (Optional)
+if: success()
+run: echo "Deploying..."
+Iska matlab:
+Agar upar ke steps successfully complete ho jayein, to deployment commands chalayein (filhal bas echo likha hai example ke liye).
+
+✅ Faida: Sirf tab deploy karein jab sab kuch pass ho jaye (build + test).
+
+uses: JamesIves/github-pages-deploy-action@v4	Ye action deploy karta hai
+branch: gh-pages	Ye batata hai ke code kis branch me deploy hoga
+folder: build	Ye tumhara compiled folder hai jo deploy hoga
+GITHUB_TOKEN	GitHub ke taraf se milta hai workflow ke andar auto-push ke liye
+
+Aur tum backend ke andar npm install chalana chahte ho, to working-directory:
+ backend likhna hoga warna woh root folder me dhoondhega, aur error dega:
+package.json not found.
+
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        working-directory: backend
+        run: npm install
+
+      - name: Run Tests (optional)
+        working-directory: backend
+        run: npm test
+
+
+
+
+folder name 
+.github
+workflow
+deploy.yml
+name:
+on:kab chalna
+push: branches:[main]
+workflow_dispatch: donu pr chly ga maunyally b triger kry ga
+
+permisssion:
+content:write
+
+jobs:
+	build_and_deploy{name hai}:
+	  runs_on:unbuntu-lates {jo b eska latest version us pr chly};
+
+steps:
+	-name:chackout reposrty {es code pr work krna}
+	uses:action/checkout@v3{es actions ko use hai githy pr copy kry ga}
+
+jes sy kam wo kro
+
+-name:setup node.js
+usesu:actions/setup-nodev@3
+with:node-version:18
+-name:install dependices
+run L:npm install 
+-name:build project
+run :npm run build
+
+
+yha tk build hoga jo hai project
+ab push krna esko
+ak or action use kry gy jo kisi or ny banaya
+name:Deploy to gitub pages
+uses:JamesIves/github-pages-
+with 
+brances:gh-pages
+folder:builde 
+ab permission dai push ki pipline ki
+
+
+
+backedn complete
+agr pipline na krty khud buikd push krna prta ab pipline sy ya khud kry ga
+
+
+Github action important multilpel operating system pr run k liya
+
+
+
+
+
+
+
+
+
+Jab b ham cicd pipline likhty wha ham workflow likhty
+ham workflow bnaty usmy jobs define krty hai ak workflow ma multiple jobs hoti hai
+ak repostry ma multiple workflow attch kr ksty hai
+
+ak react app k liya ak test k liya 
+workflow
+job1
+job2
+
+
+.github/workflow (folder name)
+.yaml file
+
+
+
+start
+
+name :greeting              workflow name
+
+on : push                     ya workflow kab trigger hoga ya on event hai ak event dal skty multiple dal skty array ma dal skty event
+
+jobs:                            ya workflow koi task perofrm kry ga usko ham jobs ma likhy gy
+        greet:	                job ko name diya greet
+		jo b ham code run kry gy wo remote machine pr chly ga ham choose kr skty remote machine
+      runs-on:unbuntu-latest
+     steps:		jo hamny kam krna multiple steps dal skty
+     name:"greet user"
+     run: echo "Hello World"	linux ma print k liyaa echo use krty
+
+
+ya jo likha yml ya manullay run hoga jab b push hoga ham chaty hai ak button mily ham esko khud run kr sky ja chaye
+
+on : [push,workflow_dispatch]
+ya likh ksty hai ham
+
+secoind tareka multiple values likhny ka
+on:
+      - push
+      - workflow_dispatch
+ya ham list of items dal rhy hai array k andr string value tu array use kr skty jab complex value hogi ham list bna skty hai
+
+# comments k liya 
+
+2. ab hamny jo code hai hamra sara react k jo hamny likha usko move krna hai unibuntu machine ma 
+ two tareqy hai krny k
+
+name: deploy
+on: [ push,workflow_dispatch]
+jobs:
+    test:
+            runs-on: ubuntu-latest    
+            steps:
+            - name: get code
+              run: |		jab hamko multiple command run ma code likhana ham pipe lga kr krty hai
+	echo "cloneing repo"
+	echo "${{toJson(github)}}	github ham ko sepcal syntax provide krta hai by defaul varible avaible hota jha values hotiu uska name github
+				json ma convert kr rhy varibale ko usmy values jo
+	git clone https://github.com/SaqibYounas/cicd.git	ab esko hamy dymaically bnana hai  
+ 	https://github.com/${github.repository}}.git		
+ varibale ka kam
+Ye line GitHub Actions ka built-in github context ko JSON format mein print karne ke liye hai.
+ Iska purpose debugging ya output dekhna hota hai — jaise ki kis user ne push kiya, kis branch pe
+ push hua, repo ka naam kya hai, etc.
+
+
+{github.repository}}
+dynamically url k liya jo hoga wo ajaye ga repostroy ka name
+
+
+
+dosra tareka 
+marketplace hota github ki team action provide krti ham use kr ksty kisi dosry na opr wala code likha hoiga usko ham use kr skty
+dosry devloper b apna apan action bna kr post kr ksty github actions ma
+run ki jgaa ya
+uses: actions/checkout@v4
+hamara code remote machine ma agya usko test krna hoga
+test used krty koi b tool jest used krty ham
+
+
+uses: actions/checkout@v4
+-name Install Node 20		ua ham esliya kr rhy hai k wha machine pr porana version na hn esloya new install krna version new jo use krna
+uses:actions/setup-node@v4		jab ham third party  actions/checkout@v4 ya use kr rhy hgy tu hamy uses likhna hoga
+with: har heading k bad 2 space dani (again koi kam krna hn usk bad woth use)
+      node-version: 20
+     -name:print node version
+     run:node -v
+-name: Install dependecies	taky us machine pr install hojaye packages jo ham apny code ma use kr rhy hai
+run: npm install
+-name: run test
+run:npm run test		code ko test kr rhy hai
+
+
+
+ja b ham function likhty unko test krny k liya alida file bnaye gy
+estra
+Aapke paas 3 functions hain:
+
+npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
+
+// src/components/Counter.jsx
+import { useState } from 'react'
+
+export default function Counter() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div>
+      <p data-testid="count-text">Count: {count}</p>
+      <button onClick={() => setCount(count + 1)} data-testid="count-btn">
+        Increase
+      </button>
+    </div>
+  )
+}
+
+
+
+// src/components/Counter.test.jsx
+import { render, screen, fireEvent } from '@testing-library/react'
+import { describe, test, expect } from 'vitest'
+import Counter from './Counter'
+
+describe('Counter component', () => {
+  test('renders initial count', () => {
+    render(<Counter />)
+    expect(screen.getByTestId('count-text').textContent).toBe('Count: 0')
+  })
+
+  test('increments count on button click', () => {
+    render(<Counter />)
+    const button = screen.getByTestId('count-btn')
+    fireEvent.click(button)
+    expect(screen.getByTestId('count-text').textContent).toBe('Count: 1')
+  })
+})
+render, screen, fireEvent React Testing Library ke functions hain, jo components ko test environment me render
+ karte hain aur interact karne dete hain.
+describe, test, expect Vitest ke functions hain jo test cases likhne aur assertions karne ke liye use hote hain.
+Counter React component jo hum test kar rahe hain.
+
+Pehla test check karta hai ke component initial state sahi render kar raha hai (count 0 se start hota hai).
+Doosra test check karta hai ke button click karne se count increase hota hai (functional behavior).
+
+
+vite.conf ma hn
+
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom'
+  }
+})
+
+
+
+agr ham commit messga ema [skip ci] likhy tu hamara workflow atomatically trigger nhi kry ga
+git commit -m "add  [skip ci] " 
+git push -u orogin main
+ab hamy origin nhi likhan prhy ga bar bar -u ki wjaa sy ak branch ma hai ham
+
+
+
+name: deploy
+on: [push, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Print Node version
+        run: node -v
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
+
+npm test -- --watchAll=false
+Iska matlab hai:
+
+Tests sirf ek baar run hon, continuously "watch mode" mein na chalein.
+
+🔍 Detail Explanation:
+npm test normally run karta hai:
+npm test
+Agar tum React app mein create-react-app ya Jest use kar rahe ho, to ye by default:
+
+Watch mode mein chala jaata hai
+
+Yani: File save karte hi tests dobara chalte hain
+
+first job thi hamari first
+ab second job dalna chaty hai deploy
+
+deploy:
+//runner machicne chaye job 2 k liya
+
+	runs-on:unbuntu-latest
+	steps:
+	
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Print Node version
+        run: node -v
+
+      - name: Install Dependencies
+        run: npm ci
+
+        -name: build project  
+         run:npm run build 	ya hamari mini html css file ko deploy kry ga
+        - name:Deploy
+          run:echo "deploy successfull"    abi ham print kr rhy
+
+do jobs hogi ab ak test ki or ak deploy ki
+estra ya paralle run horhi hai ham chaty phly test run hn phr deploy run hn
+
+deploy:
+//runner machicne chaye job 2 k liya
+	needs:test			ab phly test run hoga phr hi deply hoga run
+	runs-on:unbuntu-latest
+	steps:
+
+
+ab donu ma common hai wo dependoces install krni en donu ko same dependices chaye esko ham fast kr ksty 
+esko - Cache kr ksty 
+marketplace ma hai cache kr ky ata wo use kr ksty ham
+jab ham dosri bar job ma npm install kr rhy tu cahche ka folder create hoga cgache version used hn depnedices quickly install
+hn
+
+
+. ~/.npm (NPM Cache folder):
+Ye folder dependencies ke tarballs (zip files) rakhta hai jo NPM registry se download hoti hain.
+Jab tum npm install chalaate ho:
+Agar cache available ho: local se install ho jata hai 💨 fast!
+Agar cache na ho: dubara internet se download karega 🐢 slow!
+✅ Isliye hum ~/.npm ko cache karte hain.
+
+
+ ~/.npm ka matlab:
+🔹 ~ = Home directory of the current user
+🔹 .npm = NPM ka internal cache folder
+🧠 Is folder mein npm wo sari files store karta hai jo npm install ke dauraan download hoti hain — jaise .tgz packages (compressed dependency files)
+
+Symbol	Meaning
+~	Current user ka personal folder (home directory)
+
+
+name: deploy
+on: [push, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Print Node version
+        run: node -v
+       -name:Chache dependices
+       uses:actions/cahche@v4
+       with:	extra kam k liya
+       path:~/.path	ya used krta npm cahce k liya path 
+       key:${{runner.os}}-node-${{hashfiles('**/package-lock.json')}		unique key selct kry gy marketplace sy
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
+jab b job 1 run hoajye gi dependices install hojaye gi tu ya ak folder create kry ga cache ka with unique key
+ya key:${{runner.os}}-node-${{hashfiles('**/package-lock.json')} bnaye gi #unbuntu-node-uniquevalue banye gi package.lock change hogi key ki value chnage hogi or chanche change hogi
+jab pakcage.lock change hoga key change hgi tu cache dobara bnaye ga
+hasfile github deta inbult hai file ki base pr key banye chche invalid hoga dobara bani gi key lock file ki base pr ci 
+lock file ko read krta
+
+jab b cache depndices doabra aye ga usko key mil jaye ga wo use kry ga
+
+
+
+
+restore-keys: |
+  ${{ runner.os }}-npm-
+🔍 Matlab:
+Agar exact key: ka cache na mile, to GitHub restore-keys: ke base par nearest match dhoondhne ki koshish karega.
+
+3.Ab ma chta hn jab ma main branch ma code push kro phr hi workflow trigger hn 
+dosri barach k liya na hn
+
+
+name:Deploy
+	on:
+	push:
+	branches:
+	-main
+	-feature**/
+	paths-ignore
+	- '/github/workfloes/`		agr hamri es directory ma kuch change hoga workflow ko trigger na kry
+	workflow_disptach:
+
+
+
+
+
+
+Artificats🔹 Artifacts = Wo output files jo tumhara CI/CD workflow generate karta hai, aur jinhe tum baad mein download ya use kar sakte ho.
+
+
+ak or job daly gy build
+
+build:
+	needs:test			phly test chly ga phr build chly ga
+	runs-on:unbuntu-lates
+	steps:
+	- name: Get code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Print Node version
+        run: node -v
+       -name:Chache dependices
+       uses:actions/cahche@v4
+       with:	extra kam k liya
+       path:~/.path	ya used krta npm cahce k liya path 
+       key:${{runner.os}}-node-${{hashfiles('**/package-lock.json')}		unique key selct kry gy marketplace sy
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
+	-name:npm run buld
+	-name :upload artificats
+	uses:actions/upload-artoficats@4
+	with:
+	name:dist-file	unique name dy rha same name deploy ma use krna hoga
+	path:dist
+
+
+deploy:
+needs:build
+steps:
+	- name: Get code
+        uses: actions/download-artoficats
+
+with:
+	name:dist-file	unique name dy rha same name deploy ma use krna hoga
+	path:dist
+	
+
+
+
+
+
+
+build k bad ak dist folder bny ga
+web application ma dist file atomatication process ma koi aist genrate hota usko artificats khty
+yha dist hohra bn rh aesko artifacts khty esko donwload kr ksty hai
+deploy krty waqt dist ki zarorat hogi usko deploy krna 
+depoly ma download or build ma bnaye gy
+dist ma zip file hogi html css files hogi
+airfcats ko upload krna or download krna dekha esmy
+Artifacts wo files hoti hain jo build/test process ke baad generate hoti hain, aur jinhe aap future use ke liye store, download, ya deploy karte hain.
+
+ 
+
+
+
+
+
+Deploy page github pages pr react deolpoy pr static webiste 
+
+deploy.yml
+
+name: Deploy React to github pages
+on:
+    push:
+        branches:
+            - main
+            - 'feature/**'
+        paths-ignore:
+            - '.github/workflows/*'  
+            - README.md  
+    workflow_dispatch:        
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get Code
+              uses: actions/checkout@v4
+            - name: Install Node 20
+              uses: actions/setup-node@v4
+              with: 
+                node-version: 20
+            - name: Cache Dependencies
+              uses: actions/cache@v4
+              with: 
+                path: ~/.npm
+                key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            - name: Install Dependencies
+              run: npm ci 
+            - name: Run Tests
+              run: npm run test
+    build:  
+        needs: test
+        runs-on: ubuntu-latest   
+        steps:
+          - name: Get Code
+            uses: actions/checkout@v4
+          - name: Install Node 20
+            uses: actions/setup-node@v4
+            with: 
+              node-version: 20
+          - name: Cache Dependencies
+            uses: actions/cache@v4
+            with: 
+              path: ~/.npm
+              key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          - name: Install Dependencies
+            run: npm ci 
+          - name: Build Project
+            run: npm run build  
+          - name: Upload Dist Artifact
+            uses: actions/upload-pages-artifact@v3 //ya b use krna hoga
+            with:
+                name: github-pages
+                path: dist
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest   
+        # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+        permissions:
+          pages: write      # to deploy to Pages
+          id-token: write   # to verify the deployment originates from an appropriate source
+    
+        # Deploy to the github-pages environment
+        environment:
+          name: github-pages
+          url: ${{ steps.deployment.outputs.page_url }}
+    
+        steps:
+          - name: Deploy to GitHub Pages
+            id: deployment
+            uses: actions/deploy-pages@v4 
+            with:
+                token: ${{secrets.GITHUB_TOKEN}}
+
+
+steps.deployment.outputs.page_url 
+ya esliya likh rhy id dali hai agr id or phr or use krna deployement ki jga
+
+
+ token: ${{secrets.GITHUB_TOKEN}}
+ya ka sepecial scret ka name hai ya atomatically create hojata github ya kr deta create 
+hamy manually github pr add nhi krna pry ga pages ma jakr
+
+
+
+packgae.json ma
+homepage: http//repostryname link 
+
+vite.confg
+ ma base:'/yha end wala repostiry name dalana hoga'
+
+
+
+
+
+Next
+
+Ak junior hai usko code push krna hai  usny code likha usny main ma merge krna hai dev branch ka code ma chata n code ki quality check krna chta hn sai hai qyality us code ki
+agr code ki quaity nhi sai ham imporve nhi kro ga issues bata o ga sai kro code quality check kr ksty hai
+
+Sonarcloud use kr ksty hai quality check krny k liya
+
+ya improve krny k bad hi next ham merge kr skty agr issues aye gy wo send kry gy 
+
+
+
+
+
+Type	Description	Example
+📁 Build files	React/Vite app ka dist/ folder	index.html, main.js, CSS, images
+📄 Logs	Test ya error logs	test-report.txt, errors.log
+📄 Reports	Code coverage, lint reports	coverage/index.html, eslint-report.xml
+📦 Output files	Jo bhi tumne manually banai ho	.zip, .pdf, .json, etc.
+
+
+
+
+
+
+
+
+
+actions/checkout@v4 ek built-in GitHub Action hai jo hamare repository ka code GitHub runner (remote machine) pe clone karta hai.
+Agar hum ye step skip kar dein to baaki saare steps (jaise npm install, npm run build) fail ho jaayenge, kyunke unhe koi code milega hi nahi run karne ke liye.
+
+
+
+
+
+Agar aap npm run test chala rahe ho aur error aaye: "No test files found" — to aap kaise debug karoge?
+
+
+Ye error tab aata hai jab test runner ko koi test file nahi milti — matlab ya to test files banayi nahi gayi, ya unka naming pattern test runner ke config ke mutabiq nahi hai.
+Debug karne ke liye:
+
+Pehle check karenge ke test files exist karti hain ya nahi.
+Ensure karenge ke file names test runner ke include patterns (e.g., *.test.js, *.spec.ts) ke sath match karte hain.
+Agar koi config file (like vitest.config.js ya jest.config.js) hai to usme exclude/include settings check karenge.
+Finally test scripts package.json me sahi defined hon ya nahi.
+
+
+
+
+ Secrets kya hote hain?
+Secrets aise sensitive information hote hain jo aap apne CI/CD pipeline me securely use karna chahte hain, jaise:
+
+API keys
+Passwords
+Tokens
+SSH keys
+Ye information aap publicly nahi rakhna chahte, isliye GitHub me Secrets ki form me store karte hain.
