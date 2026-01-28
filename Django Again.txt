@@ -347,3 +347,117 @@ blog folder k template ma file ma ajye ga ham
 jo main hoga base wo rpjedt ma hoga app k bahir
 
 
+
+Templates #1 Basics & Variables
+
+django-admin startproject
+a application bnaye ga
+python manage.py startpp blog
+
+file register kry ga or dir ma tmeplate
+app:true mtlb har app ma b base tmepale sy acess kry ga true hona chaye
+
+blog/view.,py
+
+
+from datetime import dataetime
+
+
+class User:
+	def __inti__(self,username,age):
+	self.name=name
+	self.age=age 
+
+def home(request):
+context={
+"name:saqib,
+age:22,
+skill:Full stack developer
+user:User("saqib",33")
+blog:{
+title:"My first blog",
+content:"this is blod",
+creatdate:datetime(2025,8,18,10,30)
+}
+empty_value:None,
+}
+
+return render(request,"home.html",context) context=cintect ,dsra tariqa [contxt} agr array hai
+
+tempaltes/blog/home.html
+
+<title>Tmepalte basic<template/>
+
+{%comment%} {%endcomment%} django ma estara krty yhi recomend hota comment
+{#comment#} ya single line
+
+Single variable
+<p>Name:{{name}}<p/>
+
+list access kry ga
+<p>{{skill.0}}</p>
+
+
+
+urls set kry g ham ab
+
+
+
+
+ Templates #2 Filters(Text, Numbers, Date)
+
+blog/views.py
+
+def blog_detail(request):
+
+post={
+title:"My scoend tempalte",
+descriptions:diagno is a hgh level language,author:none,
+creatred_at:datetime(2025.8.19.10.30)
+comments_count:5.
+tag:[django,python,web developemnt]
+}
+
+return render(request,blog/blog_detail.html,{"post":post}
+
+
+blog/template/blogdetail.html
+<h1>blog foilter page<h1/>
+
+text filter
+<p><b>Title (normal):<b/>{{post.titile}}</p>
+<p><b>Uppercase (normal):<b/>{{post.titile|upper)}}</p>
+<p><b>lowecase (normal):<b/>{{post.titile|lower)}}</p>
+<p><b>captizer (normal):<b/>{{post.titile|capfirst)}}</p>
+<p><b>title (normal):<b/>{{post.titile|title)}}</p>
+<p><b>transcate (normal):<b/>{{post.titile|trancatechars:20)}}</p>jitny chaye otny dydo baki display nhi kry ga
+<p><b>title (normal):<b/>{{post.titile|tarncatewword:2)}}</p>
+{{post.number|add;5}} add kr skty hai
+{{post.price|divisible:2%}}
+{{endif%}}
+
+
+list fileters
+{{post.tags|first}} first nazr ajey ga
+{{post.tag:len}} lenght ajye gi array ki
+{{post.tag|slice:2}}
+{{post.tag|join:","}}
+
+
+Yes No plurazie
+{{post.author|yesno:"Yes,No,MayBe"}} na ya yes tha na no maybe aye ga author none tha
+pularize pipe k bad s lg jaye ga end pr
+
+
+datetime filter
+{{created_at|date;"D d M Y"}}
+time:"H:i"
+
+enciding anf formating
+posyt:title|urlencode
+post.titile|florarformat:2
+
+
+
+
+
