@@ -1,0 +1,349 @@
+Django
+
+high level frmaework pyhton ka 
+ya automatic apis authentcaiton manage krta esko high level esliya kthy
+open source hai free hai 
+community driven update krti rhti
+Follows MVT (Model vew template) arhticture krta follow
+
+motto
+the web framewrok prefrectionsits woth 
+ya kam time pr project delver krta hai
+
+key features
+butin in ORM admin pannel authenctication
+directly use r skty haiu
+ya scable hai (for small apps to large scale patform)
+secure Protects agains SQL injection XSS CSRF
+ya cross flatform hai kisi b os ma run kr  skty hai
+strong communicty hai
+
+why useDjango
+fast developemtn
+seacurity
+scability handles high trafic and small
+built in admin
+resuable code
+
+real wordl use case
+Instagram socal media
+Pinterset Image sharing palfrom
+Mozilla Add ons store
+
+ka use kry
+new webiset ecommerce socail website k lia
+
+indentation python
+
+
+MVT Artciture in django
+model datase k liya
+view bussines logic k liya
+tmeplate html k liya
+ya process skrty or resposne bnaty hai
+
+
+MVC
+mvt ia varinet mvc ka
+modle view contolre
+view jo kam krta wo controller kam krta hai
+data represent kam krta hai donu 
+
+
+pip 
+python manager package 
+eska kam package install krny k liya djnago flask sab pip sy install hoty hai
+
+
+django i
+pip i virtualenv (agr multipe projects hai version conflitcs na kry)
+ab pory sytem am agya hai
+
+
+project steup
+virtualenv myenv
+myenv\script\active virtual enviroment setup hoaye ga
+python -m venv env
+env\Scripts\activate      # Windows
+
+pip install django
+django-admin startProject myproject
+cd myproject
+python manage.py runserver
+
+
+
+folder structure
+outer folder k andr hota inner folder
+outer folder ma manae.py hoti outer folder project container hota hai
+
+manage.py 
+commnd line file hai
+commands run krny k liya
+
+inner folder
+actual project ki setting hoti
+
+settings.py
+installed apps jo jo aps insall yha link hogi
+middleware hota session contrib k liya
+tmeplates hota time zone 
+ya sab setting ma likhi jati
+
+urls.oy
+url map krta hai
+
+asgi.ul 
+ya ascyninos ka entry point hai
+ya model deployment k liya work krta hai
+
+web server gateway 
+wsgi.py
+ya production
+deployment k liya work krta hai
+
+
+__inti__.py
+yaha entry file deifn kr ksty hai 
+__init__.py — Short Points
+
+✅ Folder ko Python package banati hai
+✅ Django ko batati hai: ye app hai
+✅ Package import hote hi code run hota hai
+✅ Clean / short imports banane ke kaam aati hai
+✅ Django signals & setup register karne me use hoti hai
+✅ Empty bhi ho sakti hai (normal hai)
+
+jab run kry ga chache lykr rkhi gi fast hogi application apki
+
+
+
+
+View and Urls  Basics
+jab b user browser url enter krta django dekhta konsa function run hona us url pr
+
+create app
+python managepy. startapp blog app multes alg feature k liya
+
+blog/views.py
+from django.http import HttpResponse
+
+def home(request);
+return HttpResponse("Hello Home")
+
+rootproject/urls.py
+from blog.views import home
+
+urlpatterns=[
+path('blog/',home,name='home')
+]
+
+
+ab setting.spy 
+esmy register kry ga application ham apni
+
+ab app ma ulr.py open kry ga
+url.py
+from . import views 
+from django.urls import path
+
+ulrpatterns=[
+path('',vews.home,name=home,)
+]
+
+best way hai ya
+
+urls.py
+from django.urls import path,inlciude
+path('),include(blog.urls')
+
+
+Create first App
+
+app independent module jo ak feature handle kry ga agr blog bana app banye ga ham
+
+app create pyhton manage.py startapp myapp
+
+migrations ka mtlb databse inzlixe krny k liya
+
+admin.py
+django configration  k liya 
+apps.py app ki configration detail jo use hota
+models.py
+esmy databse model bannay k liya
+tests.py
+testing k liya
+view.py
+busnnies logic k lita
+
+
+
+
+Create multiple apps with View and URL
+
+en tenu sy use kr ksty hai urls
+path ,re_path ,kwargs
+
+dynamically route
+
+views.py
+def post_detail(request,post_id):
+return httpResponse(f"<h1>Detail of post {post_id})<h1/>
+
+def user_profile(request,username):
+return httpResponse(f"<h1>Profile of user {username})<h1/>
+
+urls.py
+urlpatterns=[
+path(post/<int:post_id>/,view.post_detail,name='post_detail') dynamic path diya 
+path(user/<str:username>/,view.username='username') dynamic path diya 
+
+main url.py
+path(blog/,include(blog.urls))
+
+
+re_path ko regex khty hai 
+complex pattern match krny k liya pattern match krny k liya 
+kabi kabi path possible nhi hota apko str integrer likha esliya ham repath use krty hai
+
+
+urls.py
+import repath
+
+urlpaatter=[
+re_path(r`^article/(?P<year>[0-9]{4})/$`,views.article_by_year,name='articl-by-ear)) regex hai yai
+
+
+def article_by_year(request,year):
+retrun httpResponse()
+
+kwargs
+multiple paramter handle krny k liya path sy b kr ksty hai
+
+def article_details(request,year,month):
+return httpResponse(f"<h1> articile{year})
+
+urls.py
+path(articile/<int:year>/<int:month,views.article_details)
+
+keyawordrgument hai
+jab b us ekry ga likhy ga argmuemnt likhy ga code mdoifciton na kry dynamic k loya
+ya path ka part hai ya core feature hai python ka paramter handle krny k liya
+
+def show(**kwargs) multiple k liya jitny marzi pass kr skty hai ham
+jo b output aye ga ditniary ma output k liya hai
+ya best tariq hai dynamic route banay k liya
+
+
+def article_details(request,**kwargs):
+return HtppResponse(kwargs['year'"-kwargs:['month])
+
+
+path(articile/<int:year>/<int:month><str:days,views.article_details)
+
+
+
+
+Templates
+mc articure follow krta hai 
+yha ham html likhty hai kyo k html zayda bara hota hai
+
+template used types
+app level template
+har app ka alg 
+project level template
+jo pory projetc k liya common hota centrlize level pr hota
+
+
+tempalte folder banaye ga name sy 
+usmy home.html file baaye ga ham
+
+ab setting ma
+trmpalets ma aye ga
+APP_DI:True mtkb jha hoga tmeplae dhond lyga
+DIRS:[os.path.join(BASE_DIR,'template) ya batna hoga kha hai ya folder wo 
+
+views ma
+from djang.sgortuct import render
+eska kam view ko render mtlb run krwana
+
+def(request)
+return render(requet,'home.html')
+
+urls.py
+urlpatterns[
+path('admin/',admin.site.urls)
+path(',view.home,name=home)
+
+
+
+Template folder setup
+mutiples apps ma
+
+ab 2 app banye ga connetc kry ga main prject sy usko
+
+ak app ka name blog aak ka name shop hai
+
+ab main project ki setting ma 
+installedapp ma dyga ham
+
+
+ab setting.oy main ma
+'DIR':[os.path.join(BASE_DIR/'templates')
+
+
+blog app ma
+
+folder banye ga templaet ham
+post_lits.html 
+
+views.py
+def post_list(request):
+retrun render(request,'blog/post_list/html);
+
+
+ab shop ma
+def product_list(request):
+retrun render(request,'shop/product_list/html);
+
+
+tmeplate folder banye ga phr html file
+/product_list.html
+
+main project ma url ma
+
+path(shop/,inlcude(shop.urls)
+path(blog/,inlcude(blog.urls)
+
+
+ab shop or post ma url file create kr path dena
+
+Project Templates Connect with Apps
+
+ab abse.html ko kasy connect lry 
+hmy bar bar body bioler plate na likhan pry code
+
+configration kry ga recode kr sky app ma 
+
+base.html bnaye ga 
+
+<titile>{%block title%}My django project {%endblock $} <title/><\ esmy jo b likhty other m permisison dy rhy kuch b likh ksty 
+
+body 
+<hr>{%block content%} {%endblock %}<h1> ya b dynamic bn gya hai
+
+
+
+blog folder k template ma file ma ajye ga ham
+
+{%extend "base.html%} bata rhy kha sy extend krna hamny
+
+{%blcok title%} Blog pposts {endblock%} jo b darmyan ma likhy ajey ga
+
+{%block content%}
+<h1>blog posts <./h1>
+{%endblock%}
+
+jo main hoga base wo rpjedt ma hoga app k bahir
+
+
