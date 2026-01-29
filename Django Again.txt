@@ -460,4 +460,223 @@ post.titile|florarformat:2
 
 
 
+Templates #3 Tags (Control Flow)
+
+views.py
+
+from dtaetime import dtaettime
+def blog_list(request):
+	blog=[
+	{
+	title:"django basic",is_fearured:true,author:saqib
+title:"django basic",is_fearured:false,author:saqib
+title:"django basic",is_fearured:false,author:saqib	}]
+	context={
+	"blog":blogs	
+	todat:datetie.now(),
+	htmlk_code:my page
+	}
+	return (request,"blog/blog/html',context
+)
+
+
+
+template/blog/blog_list.html
+
+if else
+
+{%if blogs.0.isfeatrured%}
+h2 fetured:{{blog.0.title}}
+{%else%}
+no fetaured blog
+{%endif%}}
+
+for loop
+
+{% for blog in blogs%}
+<li>
+{{blog.title}}
+{{forloop.counter}}.{{blog.titile}}  counter mtlb 1 sy start jitni list wha t 
+{%empty%}
+{%endfor%}}
+
+
+
+with tag
+
+list ki lenght batat with
+{% with totolblogs=blogs|length%}
+{{total_blog}}
+<% endwith%}
+
+cycle
+blog in table
+<table border=1 celpadding=5 cellspacing=0>
+{% for blog in blogs%}
+atyle=backgorund-color:{%cycle 'lightblue; lightgren"%} ya alternate deti rhy gi colros ya
+
+alterate color dany k liya cycle use krty ham
+
+firstof 
+Author{% firstof blog.1.author "Anonomous"%} agr author ma name nhi tu author ka name dy skty firsoif k zairya upodate kr skty hai ham
+
+autoescape
+
+default (safe escape):{{html_code}} tag text bn jaye ga jo vairale ma jo ai
+{autoscape off%}
+{%endautoscape%}
+
+
+
+
+Templates #4 Inheritance & Static
+
+blog 
+urls.py
+
+
+urkpattern=[
+views.home,
+views.about
+
+vews.py
+def home 
+return render)(request,blogabout.html')
+
+
+def about
+return render)(request,blogabout.html')
+
+template/base/htnml
+
+{%block titile%} My site{%endblock%} dynamic haojey ga jo b likhu dra,yan
+
+{%load static%}
+link rel=stylesheet href="{% static 'css/styles.css'%}>
+import krty css 
+
+{%include "navbar.html%}
+
+div
+{blockcontt%}
+<footer>
+
+<script src=s'{%static 'js/script.js'%}
+
+ya base file bn gi apki
+
+
+{%extends base.html%}
+{%load static%}
+
+{%block title%} hom page {%endblock%}
+
+{%blockcontent%}
+h1 welcome home page
+img src-={%static 'image/home.page.png%}
+{%endbloc%}
+
+form method=POST
+{%crf_token%}  cross side request ya security featute hai automatic hota attack hony cy
+banhta ya atomatic detect krta form kis ecurtiy khud handle krta
+input agy
+
+
+a href={%url home} ya name dikhy ga path ka jo url ma dety hai ham
+
+setting ma stati register kry g
+
+ Templates #5 Advanced & Rare Tags
+
+regroup
+ya ak tag hai use krta list ko modfy krta hai
+
+
+def blog(request);
+student_;list=[
+{name:saqib,clas"99}
+{name:saqib,clas"99}
+{name:saqib,clas"99}
+{name:saqib,clas"99}
+
+return request blog/htm student_liat
+
+
+{%regroup student by class as group_student%}
+<ul>
+{%for group in groupstudent%}
+{{group.grouper}}
+ul
+foir student in group.list
+{{student.name}}
+
+
+
+withratio
+perctngate cluclate krny k liya
+
+
+spaceless
+line remove krny k liya 
+{%spaceless%}
+jemdsy jo b likhu ga ham dar,yan ma text ma space diya wo remove krdy ga extra
+{% endspalecss%}
+
+
+{5filter%}
+ak blog filer ak inline filter hota
+{%filter upper%}
+this rext will upper case
+uper case ma ajyega aya text
+
+static file tb load hogoi jab laod static likhy ga ham
+
+Bootstrap in Django
+
+cdn k throw fast
+downlaod fast kasy
+pip install bootstrap
+
+
+
+install download bootstrap
+zip ma downlaod kry ga bootstrap
+
+css folder open kry ga 
+wha file ogi bootstrap.min.css 
+
+ya copy krly niu hai file
+static css ma jaye fa wha paste 
+css folder hogi
+
+ab js ma
+bootsrap.min./js ko cpoy kry ga
+js folder ma [aste kry ga
+
+link style href={%static css/bpootstrap.min%}
+script src={%static 'js/bootstrap.bundle.min.js %}
+js end pr likhna
+
+
+pip i bootstrap
+pip install django-bootstrap5
+
+ab app ma add kry ga
+djnago-bootstrap5 reister kry ga setitng ma aapp ma
+
+{$ load bootsratp %}
+{$ bootsrap_css %}
+{$ bootarap_javascript %}
+
+
+
+
+Tailwind css
+
+tailwnd install krna hai
+npm  install taiwndcss taiwndss/.cli
+
+staticfolder/srcfolder/input.css
+@import tailwidncss
+
 
