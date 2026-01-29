@@ -1,0 +1,871 @@
+Redis Cache Memory
+
+🔹 Redis Data Storage Detail:
+✅ Primary Storage: RAM (Memory)
+Redis sabse pehle data RAM mein store karta hai.
+Isi wajah se Redis bohot fast hota hai (microseconds latency).
+Iska use caching, real-time analytics, sessions, queues, etc. ke liye kiya jata hai.
+
+✅ Secondary Persistence (Optional): Disk
+Redis optionally apna data disk par bhi save kar sakta hai, taake agar server restart ho to data loss na ho.
+Ye do modes hote hain:
+RDB (Redis Database Backup) – periodic snapshots.
+AOF (Append Only File) – har write operation ko log karta hai.
+Aap settings ke zariye decide kar sakte hain ke aapko persistence chahiye ya nahi.
+
+🔹 Redis Cloud (Free Tier)
+Agar aap Redis Cloud (like Redis Enterprise Free Tier) use kar rahe ho:
+Woh bhi RAM ko use karta hai as primary storage.
+Lekin backend par woh automatically persistence enable kar leta hai taake aapka data safe rahe.
+Aapko manual backup ka option bhi milta hai (depending on provider).
+
+
+
+docker run --name my-redis -p 6379:6379 -d redis
+
+hmaary pas ak user hai wo interact krta server sy ya server databse sy interact krta ak user aya usny vist kiya
+hamy kuch query krna prta databse sy bhut sari queries sy data ata hai ajb user ny server pr hit kiya
+ya server db k pas jaye ga bhut sari queries ko run kry ga lookup kry ga ak data compute krky laye ga
+bhut sara data show kiya jata insta ma recent chat b dekhi b jati profile alga alg table sy data query hokr ata
+
+all architecture is work
+
+ak user aya usny sath hi sath refersh krdiya kuch data dekhny k bad hmara server phr databse k pas jaye ga or pora data query krky 
+aye ga jes sy unnecessary tum data ko query kr rha bill br rha user ka waiting time b brh rha kyo k alg alg table sy query hokr arha hai
+
+first problem requery kr rha data ko 
+second ham data ko query kr rha bhut sary table sy jes sy hamara response time increase horha hai 
+user boly ga bhut slow hai abi refersh kiya
+
+
+en sab ko problem kis tara solve kry
+
+en sab ko solve krny k liya redis jasi servies hai
+commonly used hoti redis
+
+
+Redis is in memeiry data store primary memory fast hoti pr wo temporray hoti
+jab b hamara user db ko ask kry ga hit kry ga server kry ga ya server redis ko pochy ga koi data hai dekhny k liya 
+redis khyga ma khali hn abi aya user server databse k pas jaye ga us sy data query krky lata hn server jaye ga query run kry ga
+lets see ya query expensive hai time ly gi redis ko khy ga ya data ko yad rkhna jo data query kiya usko future purposes k liya
+catch krly ga store krly ga computed data store kry ga user ko return kry ga agr user refesh kry ga server redis sy pochy ga tery pas data hai 
+server us cahce sy data lakr dy ga jes sy fast resposne mily ga bar bar data query nhi krna pry ga
+user is happy bhut jaldi data mila 
+
+
+computed Database
+ya jo data hota jab b tum chat kr ry kisi k sath apky pas ak table hai es table k ander chat message store hai let see apny user ko count dekhan hai
+hmary pas unread message hai ya count hai hmany yha table ma count kiya hoga k kinty message hai jo unread hai bascially hamny data ko 
+compute kiya hai kuch computauion krni pri esko lany k liya
+ham computaution k liya redis agr user ko unread count dekahna user ko first time databse ys kr ksty k kinti rows hai
+kitny message hai jo unread database boly ga 10 hai 10 ka count aye ga ham es computed ko 10 redis ma rkhy gy store rkhy gy next time user ko dekha gy ya hai message unread
+jab user ko new message aye gy ham esko databse ma store kry gy hi plus ham es value ko yhi incremant kr skty
+hamy bar bar database ma jakr compute na krna pry
+
+
+speed optimize database ko
+
+redis or redis stack
+ham docker conatiner ka use kry gy ham es ky andr redis server ko run kry ga redis ak server hai hai ya service 6379 pr run krti
+ham docker sy esko export kry gy ya command line pr chlta hai ham jo b redis pr chache kry ham interctive way sy dekh sy visulize kr ksy
+es k liya hma gui chaye jes sy ham dekh skty es redis k andr kya horha hai
+
+8001 k opr ham visulize kr ksty  kya hai esmy(ham dekh ksty hai data ko visilize kr ksty)
+6379 actual run kry ga redis  
+
+Redis ek in-memory data structure store hai jo aksar cache ke tor par use hota hai.
+Jab ek user website ya app pr aata hai aur server ko hit karta hai, to uski request backend tak jati hai jahan alag alag queries database se data fetch karti hain.
+Ye process thoda waqt leta hai, is wajah se user ko response milne mein delay hota hai.
+Ab agar wohi user page ko refresh karta hai, to dubara wahi queries chalengi, dubara se time lagega — jis se user experience slow ho jata hai.
+Solution? — Redis!
+Jab pehli dafa user request bhejta hai, aur queries ka result mil jata hai, to hum wo data Redis cache me store kar lete hain.
+Phir agar same user (ya koi aur) dobara wahi page access kare, to server pehle check karega:
+🔹 "Kya ye data Redis me already mojood hai?"
+🔸 Agar haan, to Redis se turant (super fast) response milega, bina database ko dobara hit kiye.
+
+
+
+ping ka mtlb active hai pong aye ga reposne cli sy
+
+ak container bna hai jesmy hamara serve rchal rha hai 
+
+docker ps 
+kry gy jo continer chal rhy wo ajaye gy
+
+us container k andr recte kr na hai 
+docker exec -it continer id bash
+ha redis server ko docker containe rk andr chlaya tha usmy agy hai wha bash run kiya hai
+redis-cli 
+kry gy hamara continer redis server k sath connect hojaye ga
+ping 
+pong
+
+Docker ek lightweight container banata hai jisme koi bhi software (jaise Redis) apne 
+saare dependencies ke sath run kar sakta hai — bina tumhare main system ko ganda kiye.
+
+redis ak store hai in memeory
+data ko store krny k liya data structure ki zarorat hai
+redis out of box sary data structure dety hai
+
+
+jo b cli ma chla rhy usko ham dlkh skty gui redis jesko docker sy banaya install krky
+production ma cli use hoti zayda gui not used karna
+
+
+Data Structures
+
+
+Data Types
+
+string:
+normal data 
+set key value (syntax)
+get key (get syntax value dekhna)
+
+<entity>:<id> value 
+hamry pas ak database hai id hogi value hogi 
+1.saqib
+
+set user:1 value
+ya ahca tariqa hai pata lg rha kya kr rhi ya key
+descripting name dety estra en key ko group b kr ksty hai
+
+nx function 
+eska mtlb store string vlaue id does not exit key
+set msg:2 h nx
+ham chakty ya value tab hi hn insert agr ya exit nhi krti key
+
+
+mget function
+ak hi opreation ma multiple get krny hai 
+
+mset function
+multiple set kr ksty
+ak hi gow ma multiple chezy set kr skty
+
+incr function
+agr ak valaue store ki usko incrment b kr ksty
+incr count
+incr count
+
+DECR
+
+incrby count 10 
+ya 10 sy incrment krdy ga
+ham check kr skty aj hamri website pr kinty log aye increment kr ksty
+
+by defualt single stirng 512 mb
+hoskti string ki
+
+delete string
+DEL key
+
+
+Bitwise operator redis
+
+1. SETBIT — Login Tracking
+SETBIT userlogins 123 1
+✅ User ID 123 ne login kiya, toh bit 123 pe 1 set karo.
+
+ 2. GETBIT — Check if User Logged In
+GETBIT userlogins 123
+➡️ Output: 1 if logged in, 0 if not.
+
+🔹 3. BITCOUNT — Total Logins
+BITCOUNT userlogins
+🧮 Count of all users who logged in (i.e. number of bits set to 1)
+
+🔹 4. BITOP — Merge or Compare Activity
+BITOP AND activeToday userlogins userPurchases
+➡️ Finds users who logged in AND purchased today.
+operation:
+AND
+OR
+XOR
+NOT (sirf ek key pe apply hota hai)
+
+BITOP AND result key1 key2
+GET result
+Yeh key1 aur key2 ke bits ko AND karega, aur result result naam ke key mein save karega.
+
+BITOP NOT result key1
+GET result
+Yeh key1 ke har bit ko invert karega (0→1, 1→0), aur result mein save karega.
+BITOP ki time complexity O(N) hoti hai — jitni badi string hogi, utna zyada time lagega.
+
+SETBIT <key> <offset> <value>
+📌 Parameters:
+<key>: Redis string key jisme bit store hoga
+<offset>: Bit ka position (0-based index)
+<value>: Bit value — must be 0 or 1
+
+SETBIT userlogins 5 1
+To iska matlab hai:
+“Ek key hai jiska naam hai userlogins, usmein 6th position (index 5) par 1 value rakh do.”
+Ye hum bit level pe kar rahe hain. Har bit kisi user ko represent kar sakta hai.
+Agar tumhare paas 10 users hain, to tum unke logins ko track kar sakte ho ek hi string mein (bit ke form mein):
+Index:    0 1 2 3 4 5 6 7 8 9
+Value:    0 0 1 0 0 1 0 0 0 0
+Yahan:
+2 aur 5 index wale users login hain (unka bit 1 hai)
+Baaki sab logout/inactive (unka bit 0 hai)
+
+Memory bohot kam lagti hai (bit level)
+Fast searching: BITCOUNT, GETBIT, etc.
+
+🔸 Advantages in Redis
+✅ Low memory usage (1 bit per user vs 1 string per user)
+✅ Super fast operations even on millions of users
+✅ Ideal for analytics, flags, tracking
+
+SETBIT and GETBIT are O(1). BITOP is O(n), where n is the length of the longest string in the comparison.
+ Redis Strings & Time Complexity:
+Redis mein strings usually efficient hoti hain, aur unke operations ka time complexity O(1) hota hai.
+Yani:
+
+GETRANGE key start end
+🔹 Kya karta hai?
+Yeh command ek string ka sirf selected part (substring) return karti hai — start se le kar end tak.
+🔸 Example:
+SET mykey "Hello, World!"
+GETRANGE mykey 0 4
+Output: "Hello"
+Matlab: mykey ke value ka 0th se 4th character ka range liya gaya (H, e, l, l, o)
+
+SETRANGE key offset value
+🔹 Kya karta hai?
+Yeh command string ke andar kisi specific position (offset) pe naya data replace ya insert karta hai.
+🔸 Example:
+SET mykey "Hello, World!"
+SETRANGE mykey 7 "Redis"
+New value of mykey: "Hello, Redis!"
+Matlab: 7th position pe "Redis" replace ho gaya, jahan pe pehle "World" tha.
+
+Jab tum badi strings ke saath GETRANGE ya SETRANGE karte ho, to performance slow ho sakti hai — O(n) time lagta hai.
+
+Bitwise Operations ke Types:
+AND (&)
+
+Only bits set in both operands will remain set.
+Example: 1010 & 1100 will result in 1000.
+
+OR (|)
+
+If any of the bits are set in either operand, it will be set in the result.
+Example: 1010 | 1100 will result in 1110.
+
+XOR (^)
+
+If the bits are different, the result will be 1.
+Example: 1010 ^ 1100 will result in 0110.
+NOT (~)
+
+Inverts all bits.
+Example: ~1010 will result in 0101 (binary inverse).
+
+
+Package install 
+redis io 
+to used node.js
+npm i ioredis
+
+client.js file ma
+const {redis}=require('ioredis');
+const client =new Redis();
+module.exports=client;
+
+ya by defualt 6374 sever pr hit kry ga
+es client ka use krky ham apny server k sath interact kr skty
+
+const client=require('./client')
+
+async function init() (
+    await client.set('msg:34', 'he')
+await client.expire("msg:6",10) eska mtlb k 10 second bad esko saf krdu
+    let data=await client.get('msg:34')
+    console.log(data)
+}
+
+
+init()
+
+Redislabs (Free Tier)
+Redis Labs ka free tier bhi available hai jisme aap limited resources ke sath Redis instances use kar sakte hain.
+Yeh ek achha option hai agar aap development aur testing purposes ke liye Redis ko use karna chahte hain.
+
+
+ham keys k opr expiry kr skty
+k time set krskty kab tk rhy gi
+await client.expire("msg:6",10) eska mtlb k 10 second bad esko saf krdu
+    let data=await client.get('msg:34') 
+
+
+hamary pas ak user hai ak server
+hamar sai wala data jo b hai wo db ma store hai
+user ny db ko hit kiya wo cache dekhy ga agr wo cache ko read kry ga usko dta fresh mily ga hi nhi 
+tu ham chace ko expire krna prta haikhty 6 ghnty bad expire krdu agr redis ma value nhi tu wo db sy dekhyt ga server
+
+
+
+
+List Data structure
+
+list ak array hoti hai
+list i s mstly used stack and queue
+esko hamstack k liya b use krsty or queue ki tra b
+is array redis
+ham array k andr push kr skty or end sy nikal skty 
+
+Lpush (left sy push)
+rpush (right sy push kro)
+
+lpush message hey
+lpush message helo
+rpush messag bye
+
+[ hello,hey,bye]
+
+
+
+agr tum har bar left sy insert kro or right sy remove kro (ya ak queue hai)
+agr ham left side sy inset or left sy remove kro ya ak stack hai
+
+your choice kis tra use kr ksty
+
+lpop (left sy chezo ko nikalny k liya)
+rpop (right sy pop hoga)
+
+llen (lenght return kro array ki)
+
+lmove LMOVE – List se item uthao aur doosri list me daalo
+LPUSH list1 a b c d  => list1: d c b a
+LPUSH list2 x y z    => list2: z y x
+LMOVE list1 list2 LEFT RIGHT
+🧠 Iska matlab:
+list1 se LEFT se (first element) uthao → d
+list2 me RIGHT me (end) daalo
+🔹 Result:
+list1 → c b a
+list2 → z y x d
+
+ltrim
+LTRIM list start stop
+Yeh list me sirf start se stop index tak elements ko rakh kar baaki sab remove kar deta hai.
+
+
+
+Blocking commands
+
+BLPOP 
+
+ya elemt ko pop kry ga or return kry ga kya dlete hova
+blocking mode ma pop krna wait krna 10 second
+ja array khali hojaye ga jitna time diya otni dair tk block kry ga
+wo kidn wait kry ga koi mesage aye jaisy aye ga print kry ga jitna time dyga ham
+
+ Yeh command list ke right side se ek element ko remove karke return karta hai. Agar list empty hai, to yeh command client ko block kar deta hai jab tak ki element available na ho jaye.
+Command	Kya karta hai
+BLPOP	Blocking version of LPOP (left pop from list)
+BRPOP	Blocking version of
+
+ RPOP (right pop from list)
+
+
+BLMOVE queue1 queue2 RIGHT LEFT 10
+queue1 ke right se pop
+queue2 ke left mein push
+10 seconds tak wait karega agar queue1 khali ho
+
+read
+lrange namelist 0 -1 sary ajye gy
+lrange namelist 0 4
+
+dlete
+> DEL new_bikes
+
+keys user:*
+user sy shoru hony wali sari eys ajye gi
+
+Performance
+List operations that access its head or tail are O(1), which means they're highly efficient.
+ However, commands that manipulate elements within a list are usually O(n). Examples of 
+these include LINDEX, LINSERT, and LSET. Exercise caution when running these commands, 
+mainly when operating on large lists.
+
+Alternatives
+
+
+Json Data type
+
+ Step 1: Store JSON data
+JSON.SET user:1001 $ '{"name": "Ali", "age": 22, "skills": ["HTML", "CSS"]}'
+user:1001 → key
+$ → full JSON root
+value → JSON string
+agr ham same key pr dobara json add kry phla remove hojaye ga
+
+🔹 Step 2: Get full JSON
+JSON.GET user:1001
+Output:
+{"name":"Ali","age":22,"skills":["HTML","CSS"]}
+🔹 Step 3: Specific value get karna (jaise name)
+
+JSON.GET user:1001 $.name
+Output:
+["Ali"]
+
+🔹 Step 4: JSON update (age change karna)
+JSON.SET user:1001 $.age 25
+🔹 Step 5: Add skill in array
+
+JSON.ARRAPPEND user:1001 $.skills '"JavaScript"'
+
+node js ma
+
+await client.sendCommand([
+  'JSON.SET',
+  'user:1',
+  '$',
+  JSON.stringify(data)
+]);
+or
+const res1 = await client.json.set("bike", "$", '"Hyperion"');
+
+JSON.DEL <key> [path]
+
+
+
+Set { 1, 2, "hello" }
+
+Set:
+Set mein unique values store hoti hain, yaani duplicate values nahi ho sakti.
+Set mein values ka order nahi hota, yaani values ko kisi specific order mein store nahi kiya jata.
+Set mein values ko add karne ke liye SADD command ka use hota hai.
+Set mein values ko retrieve karne ke liye SMEMBERS command ka use hota hai.
+Array:
+Array mein values ko specific order mein store kiya jata hai, yaani values ka index hota hai.
+Array mein duplicate values ho sakti hain.
+Array mein values ko add karne ke liye LPUSH ya RPUSH command ka use hota hai (Redis mein).
+Array mein values ko retrieve karne ke liye LRANGE command ka use hota hai (Redis mein).
+
+
+Sets
+string integr float add
+list k opr set kya hai
+set ak kaisa data stuture hai jo duplicate ko allowe nhi kry ga
+unique strings 
+track unique oitems
+
+
+add
+sadd key value
+
+remove 
+srem ip member konsa krna
+srem ip 3
+
+sismember kya wo value exist krti hai ya nhi
+sismember ip 1
+true aye ga exist krti
+
+
+Sinter 
+sinter command
+yha pr 2 list ka name dy skty jo common lemts wo ajaye gy
+sinter 
+kon 
+SINTER multiple sets ka intersection return karta hai — yani jo elements sab sets mein common hote hain.
+
+SADD set1 "a" "b" "c"
+SADD set2 "b" "c" "d"
+
+SINTER set1 set2
+Output:
+
+1) "b"
+2) "c"
+
+scard
+SCARD ek set ke andar kitne unique elements hain, ye batata hai (i.e., set ki length).
+SADD myset "a" "b" "c"
+SCARD myset
+Output:
+(integer) 3
+
+limits 2 power 32
+Most set operations, including adding, removing, and checking whether an item is a set member, are O(1). 
+
+
+Feature	Redis Hash	JSON Data Format
+Structure	Key → field → value (mini dictionary)	Nested, structured data (object/array/etc)
+Nesting allowed?	❌ Nahi (only flat key-value pairs)	✅ Haan (deeply nested structures allowed)
+Data type support	Sirf strings (all values are strings)	Numbers, strings, booleans, arrays, objects
+Command use	HSET, HGET, HGETALL etc.	Requires Redis module: ReJSON
+Performance	Fast & lightweight	Thoda heavy due to nested parsing
+Storage use	Kam memory consume karta hai	Zyada memory agar deeply nested ho
+Use case	Simple structures like user profile	Complex objects like full API responses
+
+
+
+Multiple fields ko ek hi key ke neeche store kar sakte hain: Hash mein aap ek key ke neeche multiple fields ko store kar sakte hain, jisse aapke data ko organize karna aur access karna easy ho jata hai.
+Data ko efficiently store kar sakte hain: Hash mein data ko store karne se aapke data ko efficiently store karne mein madad milti hai, kyunki aap sirf un fields ko store karte hain jo aapke liye zaroori hain.
+Data ko easily update kar sakte hain: Hash mein data ko update karna easy hai, kyunki aap sirf un fields ko update kar sakte hain jo badle hain.
+Haan, bilkul! Redis mein Hash (HSET) mein field names aur values dono string mein store hote hain.
+Agar aap number ko field name ya value ke roop mein use karte hain, to woh automatically string mein convert ho jayega.
+
+Hased
+
+esmy ham key value pair rkh skty esko hases khty hai
+node js
+h.set(namefield{
+key:value,
+key:value
+}
+ HSET bike:1 model Deimos brand Ergonom type 'Enduro bikes' price 4972
+
+HGET — Hash key se value lena
+➤ Kya karta hai?
+Kisi hash ke andar se specific field ki value return karta hai.
+HGET key field
+ Example:
+HSET user:1 name "Ali" age "25"
+HGET user:1 name
+Output:
+"Ali"
+user:1 ke hash mein name field ki value "Ali" hai.
+
+HINCRBY — Hash field ko increment karna
+ Kya karta hai?
+Hash ke kisi numeric field ki value ko increase karta hai by a given number.
+🔹 Syntax:
+HINCRBY key field increment
+Example:
+HSET user:1 age 25
+HINCRBY user:1 age 1
+26
+ age ki value 25 thi, ab 26 ho gayi.
+
+
+HPEXPIRE
+Field ki expiration milliseconds mein set karne ke liye.
+⚡ Highly used in real-time applications where timing needs to be precise.
+HPEXPIRE user:1 name 5000  # name field expire after 5 seconds (5000 ms)
+
+
+ HTTL / HPTTL
+Field ki bachi hui zindagi (TTL) seconds ya milliseconds mein dekhne ke liye.
+🔍 Debugging aur expiration check karne ke liye most used.
+HTTL user:1 name      # TTL in seconds
+HPTTL user:1 name     # TTL in milliseconds
+
+HPERSIST
+Field ki expiration hataane ke liye.
+🔒 Jab kisi field ko expire hone se bachana ho.
+HPERSIST user:1 name  # ab 'name' expire nahi hoga
+
+
+Most Redis hash commands are O(1).
+
+A few commands, such as HKEYS, HVALS, HGETALL, and most of the 
+expiration-related commands, are O(n), where n is the number of field-value pairs.
+
+2 power 32
+
+
+
+Sorted sets
+ham jab b queue k andr elements dalty wo priority k basis pr sort hojaty hai
+set k andr jab b value datly uski priporit dal skty wo hamesha sort hokr mily gi
+
+zadd score 10 saqib
+zadd score 1 a
+synatax:
+zadd key score value
+
+sorted sort 
+1, 10 
+aye ga
+ya hamesha sorted ma rhy ga
+
+it is additonal aruments is score sorted ma
+
+zrange score 0 -1
+ya sorted hova score k base pr
+
+zreverserng filed 0 -1
+mtl har kuch reverse ma return kro
+olta hokr aye gi valyes
+
+zrank score josh
+mtlb kis position pr hai ya
+kisi ak user ki rank search kr krskty
+
+
+Command	Description
+ZADD	Add element with score
+ZRANGE	Get elements in ascending score order
+ZREVRANGE	Get elements in descending order
+ZSCORE key member	Get score of specific member
+ZREM key member	Remove a member
+ZINCRBY	Increase score of member
+
+
+
+Most sorted set operations are O(log(n)), where n is the number of members.
+
+
+
+
+Redis streams
+ham data ko thorow kr ksty ya primary memeory ko use krta
+fast data ko notice krny k liya
+
+Append-only: Messages ko stream mein append kiya jata hai, aur woh kabhi delete nahi hote.
+Ordered: Messages ko stream mein order mein store kiya jata hai, aur unhein order mein hi retrieve kiya ja sakta hai.
+Consumable: Messages ko stream se consume kiya ja sakta hai, aur unhein process kiya ja sakta hai.
+Redis Stream ka use:
+Message Queue: Redis Stream ko message queue ke roop mein use kiya ja sakta hai, jahan messages ko produce kiya jata hai aur unhein consume kiya jata hai.
+Event-driven Architecture: Redis Stream ko event-driven architecture mein use kiya ja sakta hai, jahan events ko stream mein publish kiya jata hai aur unhein subscribe kiya jata hai.
+Real-time Data Processing: Redis Stream ko real-time data processing mein use kiya ja sakta hai, jahan data ko stream mein append kiya jata hai aur unhein real-time mein process kiya jata hai.
+
+
+Real-time data/messages ko store karta hai
+Har message/event ke sath ek ID hoti hai
+Ye data time-ordered hota hai
+Kafka jese systems ki tarah behave karta hai
+
+
+Event sourcing (e.g., tracking user actions, clicks, etc.)
+Sensor monitoring (e.g., readings from devices in the field)
+Notifications (e.g., storing a record of each user's notifications in a separate stream)
+
+jitna fast generation data usko dump krksty redies stream ma
+
+commands
+xadd
+xread
+xrange
+xlen
+
+. Add message to stream:
+XADD mystream * name "Ali" message "Hello"
+* ka matlab Redis khud auto-ID generate karega (based on timestamp).
+
+Ye ek record/message add karega with key-value pairs.
+
+🔹 2. Read messages:
+XRANGE mystream - +
+Output kuch aisa ho sakta hai:
+
+ardui
+1) 1713798700173-0
+   1) "name"
+   2) "Ali"
+   3) "message"
+   4) "Hello"
+📥 Real-time read (like listening):
+
+XREAD BLOCK 0 STREAMS mystream $
+Ye command block karega jab tak naya message nahi ata.
+
+Jaise koi "listener" hota hai jo message ka intezar karta hai.
+
+📦 Consumer Group (advanced):
+Redis Streams mein Consumer Groups bhi hote hain jise multiple consumers mil kar stream read kar sakte hain (distributed processing).
+XGROUP CREATE mystream mygroup $ MKSTREAM
+Phir har consumer is group se XREADGROUP se data le sakta hai.
+
+
+add
+xadd temp key * data jo dump krna
+yha pr ak timestamp aye gi return
+ya depit krti ya entry kinty bhjy bany gi agy jo value kitni bar bani ya
+agr same time pr zayda data aya tu wo 3 4 return kry ga us hosab sy
+
+xadd key key1 value
+
+read
+xread temp value+2 phli 2 ki  vlaue read kry gy
+
+block krksty
+performance add O(1) accessign in O(n)
+
+xrange range k liya
+
+
+
+
+Geospatial data
+“Aisi data jisme location (latitude, longitude) ke basis par kaam hota ho”
+Matlab: Redis aapko cities, shops, logon ke locations store karne, unke beech ka
+ distance nikalne, aur kisi radius ke andar cheezen dhoondhne ki facility deta hai — Google Maps jese use-cases ke liye best 🔥
+
+
+jab wo dleevery krty ak resurant ka adreess hoti
+en k beach jo clau hoti esky zariya kr skty
+
+ak hotel one hai eska latitude ya hai or longituude ya
+second hotel ma b ya
+
+ab ma dkehna chty 5 kilomter m akon kon c hotel hai 
+geoadd key longitude latitude byridus 5
+5 radius ma jo jo hai usko ly gy
+search ma geoserach ma
+
+ham user ko khy gy curent lcation kon c
+ham us 
+
+geoadd key longitude latitude 
+
+geosearch key fromattitude
+
+
+
+ Important Commands:
+✅ 1. GEOADD
+Location add karta hai kisi key ke andar:
+GEOADD cities 67.001 24.860 Karachi
+GEOADD cities 74.3436 31.5204 Lahore
+GEOADD cities 73.0551 33.6844 Islamabad
+Syntax: GEOADD key longitude latitude name
+
+✅ 2. GEOPOS
+Kisi location ka lat/lon retrieve karo:
+GEOPOS cities Karachi
+✅ 3. GEODIST
+Do cities ke darmiyan distance find karo:
+GEODIST cities Karachi Lahore km
+Output: e.g. 1021.45 (km)
+
+
+✅ 5. GEOSEARCH (recommended)
+GEOSEARCH cities FROMLONLAT 67.001 24.860 BYRADIUS 500 km
+
+
+Step 1: Cities ko Store Karna — GEOADD
+GEOADD cities 67.0011 24.8607 Karachi
+GEOADD cities 74.3436 31.5204 Lahore
+GEOADD cities 72.8777 19.0760 Mumbai
+GEOADD cities 73.0551 33.6844 Islamabad
+Yahan:
+
+cities → Redis key (jisme sab location data store hoga)
+
+longitude latitude → har city ka location
+
+Karachi, Lahore etc. → city names
+
+📌 Ab Redis ne cities key mein geo index bana liya hai ✅
+
+🔸 Step 2: Search by Location (Coordinates se) — GEOSEARCH
+GEOSEARCH cities FROMLONLAT 67.0011 24.8607 BYRADIUS 500 km
+Breakdown:
+cities → key
+
+FROMLONLAT 67.0011 24.8607 → Karachi ke coordinates
+BYRADIUS 500 km → 500 km radius ka area
+
+📌 Output: Lahore, Islamabad (agar within 500km hain)
+
+🔸 Step 3: Search by Name — FROMMEMBER
+GEOSEARCH cities FROMMEMBER Karachi BYRADIUS 500 km
+Yahan tumhe manually lat/lon dene ki zarurat nahi — bas Karachi ka naam do, aur Redis internally uska coordinate use karke radius search karega. Super easy!
+
+🔸 Step 4: Sorting ke Sath — ASC (nearest pehle)
+GEOSEARCH cities FROMMEMBER Karachi BYRADIUS 10 00 km ASC
+ASC → Nearest location sabse pehle show karega
+
+DESC → Farthest pehle show karega
+
+🔸 Step 5: Limit results — COUNT
+GEOSEARCH cities FROMMEMBER Karachi BYRADIUS 1000 km ASC COUNT 2
+Yeh query Karachi ke aas paas ke 2 nearest cities return karegi.
+
+🔸 Step 6: Box Shape Instead of Circle — BYBOX
+GEOSEARCH cities FROMMEMBER Karachi BYBOX 200 300 km ASC
+BYBOX width height → Rectangle banata hai instead of circle
+
+Useful jab tum horizontal ya vertical range dhoondhna chahte ho (jaise map screen ke frame ke andar jitna aata ho)
+
+
+
+
+
+TimeSeries
+jesmy ham time line pr work krty
+kusch stock makret ka stoc kitna 11 bhjy 10 bhjy kitna
+
+
+
+Iteract with data
+
+Pub/Sub
+
+ak termianl open kiya
+dosra open kiya termianl
+
+subscribe notifications
+
+terminal 2
+publish same key hey
+kry gy terminal 1 ma aye ga masg 
+
+
+
+Real use nodejs speedup 
+
+const client=require(/client);
+app.get('/',async(req,res)=>{
+const cache=await cleint.get('tofos);
+if(cahce( return res.json(json.parse(cache))
+const data=await api;
+await client.set('todods':jsonstringify(data));
+await client.expire("totdos":30)
+}
+
+
+essy speed bhut taz hogi same data ko fecth krny pr
+
+
+
+
+🔸 Publisher → Message bhejta hai kisi channel par
+🔸 Subscriber → Wo message sunta hai (listen karta hai) usi channel se
+
+
+
+SUBSCRIBE news
+
+# Publisher Terminal
+PUBLISH news "Breaking News: Redis is awesome!"
+Jaise hi publisher message bhejta hai, subscriber side pe turant ye print ho jata hai:
+
+1) "message"
+2) "news"
+3) "Breaking News: Redis is awesome!"
+
+import redis from "./your-redis-client";
+
+// Start pipe
+const pipe = redis.multi();
+
+// Add commands
+pipe.set("user:1:name", "Saqib");
+pipe.set("user:1:email", "saqib@example.com");
+
+// Execute all
+const result = await pipe.exec();
+
+console.log("Redis responses:", result);
+
+
+
+$ → root of the Redis JSON document
+
+$[1] → second item in the array (zero-based index)
+
+.read → us object ka read property
+
+true → iski nayi value
+
+

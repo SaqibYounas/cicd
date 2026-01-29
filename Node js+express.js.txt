@@ -1,0 +1,4843 @@
+Node Js
+AWS, Firebase, or DigitalOcean.
+
+Knowledge of CDN (Content Delivery Networks) to improve content load times globally.ya kya
+CI/CD.
+
+Agar default export ho toh koi bhi naam chal sakta hai, lekin agar named export ho toh wahi naam likhna zaroori hai jo export kiya gaya hai.
+
+cmd 
+code .
+
+libuv event loop ko manage karta hai aur I/O operations ko non-blocking tarike se handle karta hai, jisse Node.js high-performance aur scalable ban paata hai.
+
+node js ya event driven archtiecture pr chlta hai
+moter jab bhry event hai usky pr ham action lye gy
+
+ "Node.js ek runtime environment hai, na ke ek programming language. Ye JavaScript ko server-side par execute 
+karne ke liye use hota hai. Jab hum ek website ya web application develop karte hain, to do main parts hote hain: 
+frontend (jo client-side hota hai, aur browser me run hota hai) aur backend (jo server-side hota hai, aur server pr 
+execute hota hai). Node.js backend development ke liye use hota hai, jisme ye client aur database ke beech ek bridge
+ka kaam karta hai. Node.js asynchronous, event-driven, aur non-blocking architecture par based
+ hai, jo ise high-performance
+ web applications ke liye best choice banata hai. Jab hume database se data retrieve ya update karna hota hai, to Node.js ko ek 
+storage engine ke through database se connect kiya jata hai. Ye process fast aur scalable hoti hai, is wajah se Node.js modern web 
+applications aur APIs develop karne ke liye bohot popular hai."
+node js ak language nhi hai run time envronemnt hai jo javascript ka code run krta hai v8 engine ki help sy
+
+ Node.js ek runtime environment hai, na ke ek language.
+✔ JavaScript ko server-side execute karne ke liye use hota hai.
+✔ Frontend (client-side) aur backend (server-side) ko connect karta hai.
+✔ Non-blocking, event-driven architecture use karta hai, jo fast performance deta hai.
+✔ Database (MongoDB, MySQL, etc.) ke saath efficiently work karta hai.
+✔ API development aur real-time applications ke liye best choice hai.
+
+
+
+Nodejs is not Language 
+It is serval Environment
+Ya javscript ko servel side pr run krta hai
+jes sy javascript serval side language bn jati
+Node js database k sath connect hoksti javascript ni hoskti
+javascrpit hamry browser k sath connect hoti esliya ya databse k sath conectni hoskti
+Node js Servel side run hoi or hamara database b serval side hota
+Node js is open source hai
+
+Node js is mostly used API zayatar es sy website b bn skti
+Api kyo bnaty
+React angular hamry databse sy connect ni kr kskti broser run hoti
+Serval k opr hota hamar database or node js b serval pr hoi
+phr ham donu ko connect krty
+
+Histroy
+First realase 27 May 2009
+written c/c++/js
+
+syntax code same hota almost same ni hoit
+Javascript broser pr run krti servar sy connect ni hoskti
+Node js server sy connect hoksti
+
+
+
+Client Server
+Jab b ham kuch b internet sy acess krty tu usmy do machines involve rhti 
+onew clinet machine or dosri server machi hoti
+client sy ham server pr request bhjty
+server data deta yani response deta
+
+Two types of Programming Language
+
+One Client side (javascipt,html,css)
+One Server side(Node js,database sy connect krti )
+python php (server side) jo b language ap databse sy connect krskty wo server side language hoti
+javascript client side pr hoti
+
+Node js developer Api banty server or client sy connect krny k liya
+node js ak language nhi hai run time envronemnt hai jo javascript ka code run krta hai v8 engine ki help sy
+
+
+ V8 Engine kya hai?
+V8 Google ka ek JavaScript engine hai jo C++ me likha gaya hai aur JavaScript code ko machine code (binary) me convert karta hai.
+ Ye Chrome browser aur Node.js me use hota hai.
+
+
+
+type folder cmd
+terminal code .
+
+js or node  ka console same ni hota
+
+
+
+1. process (System Information & Control)
+🔹 process ek global object hai, jo Node.js ke current process ki information aur control dene ke liye use hota hai.
+
+Example: Process ID aur Node.js Version Check Karna
+js
+
+console.log("Process ID:", process.pid);  // Current process ka ID
+console.log("Node.js Version:", process.version);  // Node.js version
+console.log("Current Working Directory:", process.cwd()); // Current directory
+📌 Faida: System ki details access karne aur debugging ke liye useful hai.
+
+
+2. Buffer (Binary Data Handle Karna)
+🔹 Buffer ek global object hai jo binary data handle karne ke liye use hota hai. Yeh streams (files, network requests) ke saath kaam karta hai.
+🔹 Buffer in Node.js 
+Buffer ek special data structure hai jo binary data handle karne ke liye use hota hai. Yeh mainly streams ke sath kaam karta hai, jahan hume data chhoti chhoti chunks me milta hai (jaise file read/write, network requests, etc.).
+
+📌 Node.js me Buffer isliye chahiye kyunki yeh binary (0s & 1s) data ko memory me temporarily store kar sakta hai.
+Example: Buffer Create Karna
+const buf = Buffer.from("Hello");
+console.log(buf.toString());  // Output: Hello
+console.log(buf);  // Output: <Buffer 48 65 6c 6c 6f>
+📌 Faida: Binary data (images, files) ko efficiently handle karta hai
+
+
+console.log("Enter multiple lines (type 'exit' to stop):");
+
+ process.stdin.on() → User Input Read Karne ke liye
+
+Ye event listener hota hai jo keyboard ya terminal se user input receive karta hai.
+
+Jab user kuch type karega, tab data event trigger hoga.
+
+Example:
+
+process.stdin.on('data', (input) => {
+    console.log(`📥 You entered: ${input.toString().trim()}`);
+});
+📌 Behavior
+Jab user kuch likh kar Enter press karega, tab data event trigger hoga.
+
+process.stdout.write("Hello")
+
+
+
+ process.stdout.write() → Data Terminal pe Print Karne ke liye
+Ye console.log() jaisa hai, lekin bina newline (\n) ke direct output print karta hai.
+Ye asynchronous bhi ho sakta hai, aur continuous stream likhne ke liye useful hai.
+
+process.stdout.write("🔵 Hello, this is a test output!");
+process.stdout.write("✅ This will print on the same line.");
+📌 Behavior
+Dono write() calls ek hi line pe print honge, kyunki isme newline (\n) nahi hoti.
+
+Agar aap naya line chahte hain, to manually \n add karein:
+
+process.stdout.write("Hello World!\n");
+
+ process.exit(); // Process exit karega warna loop chalta rahega
+
+
+process.stdout.write("Enter your name: ");
+process.stdin.on("data", (input) => {
+    process.stdout.write(`Hello, ${input.toString().trim()}! 👋\n`);
+    process.exit(); // Process exit karega warna loop chalta rahega
+});
+process.exit(); // Process exit karega warna input wait karta rahega
+
+
+
+📌 EventEmitter Kya Hai?
+EventEmitter Node.js ka core module hai jo event-driven programming ko implement karne ke liye use hota hai.
+ Iska kaam events ko listen karna aur execute karna hota hai.
+
+Explanation:
+✔ on('eventName', callback) → Event listener add karta hai
+✔ emit('eventName') → Event trigger karta hai
+✅ data event automatically emit hota hai jab bhi naya data aata hai.
+
+emit() ke bina events tab trigger hote hain jab:
+✔ Node.js ka koi built-in module (like fs, http, process) automatically event emit kare
+✔ Timers (setTimeout, setInterval) complete ho jayein
+✔ Streams (fs.createReadStream()) ya system-level events occur karein
+
+ Automatically Trigger Hone Wale Events
+✅ Process Events: exit, beforeExit, uncaughtException, SIGINT
+✅ HTTP Server Events: request, close, error, listening
+✅ File System Events: change, rename
+✅ Stream Events: data, end, error
+
+⚡ Manually Emit Karne Wale Events
+✅ Custom Events: userLoggedIn, orderPlaced, paymentSuccess, messageReceived, taskCompleted
+✅ EventEmitter Events: Custom event names jo emit() se trigger hote hain, jaise greet, error, notificationReceive
+
+Event Emitter Architecture ek design pattern hai jo asynchronous events ko handle karne aur components ke beech communication establish karne ke liye use hota hai. Is architecture mein ek Event
+ Emitter object hota hai jo events ko emit (trigger) karta hai aur dusre components ya listeners us event ko listen karte hain aur jab wo event trigger hota hai, tab kuch action perform karte hain.
+
+myEmitter.removeListener('test', callback);
+on('event', callback)	Event listener add karta hai
+emit('event')	Event trigger karta hai
+once('event', callback)	Sirf ek baar event execute karega
+removeListener('event', callback)	Specific event listener ko remove karega
+removeAllListeners('event')	Sare listeners remove karega
+
+const EventEmitter = require('events');
+const eventEmitter = new EventEmitter();
+objct bna kr use kr ksty h
+
+once() → Sirf Ek Baar Chalega
+Agar kisi event ko sirf ek baar execute karna hai, to once() use kar sakte hain.
+
+
+taxi.once('rideBooked', (customer) => {
+    console.log(`🚀 Ride booked for ${customer} (Will not trigger again)`);
+});
+
+taxi.emit('rideBooked', 'Ali');
+taxi.emit('rideBooked', 'Ahmed');  // Ye ignore ho jayega
+
+
+ Priority Set Karna (prependListener)
+Agar kisi listener ko pehle execute karwana hai, to prependListener() use karein.
+
+taxi.on('rideBooked', () => {
+    console.log('📍 Sending ride details...');
+});
+
+taxi.prependListener('rideBooked', () => {
+    console.log('🚖 Priority: Assigning a driver first!');
+});
+
+// Emit event
+taxi.emit('rideBooked');
+
+
+example 4: Event Listener Remove Karna (off() / removeListener())
+Agar kisi specific listener ko remove karna hai, to removeListener() ya off() use karein.
+
+
+const notifyDriver = (customer) => {
+    console.log(`📲 Notifying driver about ${customer}`);
+};
+
+// Listener add kiya
+taxi.on('rideBooked', notifyDriver);
+
+// Event emit kiya
+taxi.emit('rideBooked', 'Ali');
+
+// Listener remove kar diya
+taxi.off('rideBooked', notifyDriver);
+
+// Ye trigger nahi hoga
+taxi.emit('rideBooked', 'Ahmed');
+
+📲 Notifying driver about Ali
+✅ Ali ke liye event chala, lekin Ahmed ke liye nahi kyunki listener remove ho gaya.
+
+const handler = () => console.log('Event Triggered');
+eventEmitter.on('greet', handler);
+
+eventEmitter.emit('greet'); // Execute hoga
+
+eventEmitter.removeListener('greet', handler); // Remove kar diya
+eventEmitter.emit('greet'); // Ab execute nahi hoga
+
+
+Multiple events (Alag-Alag execute honge)
+Agar ek file me multiple alag-alag events (orderPlaced aur paymentReceived) hain, to sirf wahi chalega jo emit() me call hoga.
+
+
+ Stream Kya Hai?
+Stream ek data handling technique hai jo large data ko chhoti-chhoti chunks me process karti hai.
+Matlab, poora data ek sath load n1ahi hota, balki thoda-thoda karke aata hai.
+
+📌 Streams tab useful hote hain jab hum large files read/write kar rahe hote hain ya network se data transfer ho raha hota hai.
+
+ setImmediate(callback[, arg][, ...]) (Agle Event Cycle Me Chalana)
+🔹 setImmediate() function event loop ke next cycle me execute hota hai.
+
+Example:
+js
+
+console.log("Start");
+
+setImmediate(() => {
+  console.log("setImmediate Executed");
+});
+
+console.log("End");
+🔹 Output:
+
+sql
+
+setImmediate Executed
+📌 Faida: Jab aap kisi function ko jitni jaldi ho sake execute karwana chahein, par current cycle ke baad.
+
+ Next Event Loop Cycle Ka Asan Matlab``````````
+Jab Node.js koi kaam karta hai, to wo event loop ke andar hota hai.
+Event loop ka har round ek cycle hoti hai.
+
+📌 "Next event loop cycle" ka matlab hai:
+➡ Pehle jitna kaam chal raha hai wo khatam ho jaye,
+➡ Phir agli baar jab Node.js ka engine free ho, tab execute hoga.
+
+ Next Cycle Ka Matlab Real-Life Example
+💡 Socho tum ek restaurant me ho:
+1️⃣ Tum waiter se pani mangte ho
+2️⃣ Waiter pehle doosre customers ka kaam pura karta hai
+3️⃣ Jab wo free hota hai, tab tumhara pani laata hai
+
+
+agr hamny node js ma button bnaana api k thoruh call hokst node js ma ni bn skta
+const event=new EventEmitter9();
+event.on("API',callback function);
+event.emit(API);
+
+console.log	synchronous	immediately
+setTimeout	timers phase	after min delay (0ms)
+setImmediate	check phase	after I/O callbacks
+
+
+stream ki exmaple four types alida alida sab ki
+ChatGPT said:
+Node.js mein streams ka use kafi common hota hai jab large amounts of data ko efficiently process karna ho. Streams ko mainly 4 types mein classify kiya jata hai:
+
+1. Readable Streams
+Readable streams wo hote hain jahan data ko read kiya jata hai. Example ke liye, file ko read karte waqt ya kisi HTTP request se data receive karte waqt readable stream ka use hota hai.
+
+Example:
+
+const fs = require('fs');
+
+// Readable Stream - File ko read karna
+const readableStream = fs.createReadStream('example.txt', 'utf8');
+
+readableStream.on('data', (chunk) => {
+    console.log('Received chunk: ', chunk);
+});
+
+readableStream.on('end', () => {
+    console.log('Reading finished.'); 
+});
+
+
+📌 Isme Kya Ho Raha Hai?
+fs.createReadStream("file.txt") → File ka ek readable stream bana raha hai.
+.on("data", callback) → Jab bhi ek chunk receive hota hai, woh print hota hai.
+.on("end", callback) → Jab poori file read ho jaye, toh message show karega.
+.on("error", callback) → Agar koi error aaye, toh woh handle karega
+
+
+pipe() ka kaam streaming data ko ek readable stream se ek writable stream tak transfer karna hai bina manually data event handle kiye.
+
+
+
+2.Write Stream (Data Write Karna)
+Jab hume large files write karni ho ya continuously data likhna ho, toh Writable Stream use karte hain.
+
+✅ Example: File Mein Data Write Karna
+
+const fs = require("fs");
+
+// Write Stream Banaya
+const writeStream = fs.createWriteStream("output.txt");
+
+// Data likhna
+writeStream.write("Hello, this is the first line.\n");
+writeStream.write("This is the second line.\n");
+
+// Stream close karna zaroori hai
+writeStream.end("This is the final line.\n");
+
+writeStream.on("finish", () => {
+  console.log("File writing completed.");
+});
+📌 Explanation:
+fs.createWriteStream("output.txt") → Ek writable stream create kiya.
+.write("data") → Stream me data likha.
+.end("data") → Stream close karne ke liye use hota hai.
+.on("finish") → Jab poori file write ho jaye, toh message show karega
+
+highwatermark ma byte dy skty 
+repalce data k liya replaceall method use krty (gi) use krty small words k liya
+
+ Using the transform stream:
+process.stdin.pipe(transformStream).pipe(process.stdout):
+process.stdin: Yeh Node.js ka standard input stream hai. Iska matlab hai ki user input ko stream ke form mein receive karenge (jaise terminal se type kiya gaya input).
+pipe(): pipe() ek method hai jo ek stream ko doosri stream ke saath connect karta hai. Is case mein, data stdin se aata hai aur transformStream ke through pass hota hai.
+process.stdout: Yeh standard output stream hai, jismein aapka transformed (uppercase) data print hog
+Explanation:
+
+UTF-8 ka Matlab Kya Hai?
+UTF-8 (Unicode Transformation Format - 8 bit) ek character encoding system hai jo text ko binary format me convert karta hai. Yeh duniya ki tamam languages aur emoji ko support karta hai.
+
+Yeh Kyun Use Hota Hai?
+✅ Unicode support karta hai (English, Urdu, Arabic, Chinese, Hindi, Emoji, etc.)
+✅ Efficient hai → English letters ko 1 byte me store karta hai
+✅ ASCII ke sath compatible hai → Old systems bhi isko samajh sakte hain
+✅ Web, APIs aur Databases me standard ha
+
+✅ Readable Stream (sirf data read kar sakte hain)
+✅ Writable Stream (sirf data write kar sakte hain)
+✅ Duplex Stream (read aur write dono kar sakte hain)
+✅ Transform Stream (data ko modify bhi kar sakte hain)
+
+
+2️⃣ Duplex Stream (Read + Write Dono)
+Duplex stream simultaneously data read aur write kar sakti hai. Example: TCP sockets duplex streams use karte hain.
+
+Duplex Stream bina class ke bhi implement ki ja sakti hai, bas humein Duplex ka object manually create karna hoga aur write aur read methods define karni hongi.
+const fs = require("fs");
+const { Duplex } = require("stream");
+
+const filePath = "example.txt"; // 📂 Yeh hai file ka naam!
+
+const duplexStream = new Duplex({
+  read(size) {
+    let fileStream = fs.createReadStream(filePath); // File se data read karna
+    fileStream.on("data", (chunk) => {
+      this.push(chunk);
+    });
+    fileStream.on("end", () => {
+      this.push(null);
+    });
+  },
+  write(chunk, encoding, callback) {
+    fs.appendFile(filePath, chunk, (err) => { // File me data likhna
+      if (err) {
+        console.error("Write Error:", err);
+      } else {
+        console.log("Data Written to File!");
+      }
+      callback();
+    });
+  }
+});
+
+this.push(chunk);
+
+Yeh chunked data ko Duplex Stream ke andar bhej raha hai.
+
+// Writing to file
+duplexStream.write("Hello, File Stream!\n");
+
+// Reading from file
+duplexStream.on("data", (chunk) => {
+  console.log("Read from File:", chunk.toString());
+});
+
+📌 Explanation
+✅ read(size) → Yeh method stream me data provide karta hai.
+✅ this.push("Hello from Duplex Stream!") → Yeh data ko readable stream me push karta hai.
+✅ this.push(null) → Yeh batata hai ke reading complete ho gayi hai.
+✅ write(chunk, encoding, callback) → Yeh write operation perform karta hai aur data ko print karta hai.
+✅ .on("data", callback) → Jab data milega toh woh console me print hoga.
+🔹 Agar push(null) nahi karenge toh stream kabhi close nahi hogi aur infinite loop me chal sakti hai.
+
+
+
+fs.createReadStream(): Ye readable stream create karta hai jo file example.txt ko read karega.
+on('data'): Jab bhi data ka chunk stream se aata hai, ye event trigger hota hai.
+on('end'): Jab pura data read ho jata hai, ye event trigger hota hai.
+
+
+
+
+3 parmeter milt duplex or trnasform sy encoding chunk callback
+callback ma phla paramter erro hota seocnd data hota jo dekh skty ya agy pas krta hai data
+ callback(); Node.js Streams Mein Kya Karta Hai?
+Jab hum Writable, Duplex, ya Transform Streams create karte hain, toh unke write(), transform(), 
+ya read() functions asynchronous hote hain. callback(); ka kaam hai batana ke operation complete ho chuka hai, taki next chunk process ho sake.
+
+
+const fs = require("fs");
+const { Duplex } = require("stream");
+
+// Custom duplex stream for file read/write
+class FileDuplex extends Duplex {
+  constructor(inputFile, outputFile) {
+    super();
+    this.inputStream = fs.createReadStream(inputFile);
+    this.outputStream = fs.createWriteStream(outputFile);
+
+    this.inputStream.on("data", (chunk) => {
+      this.push(chunk);
+    });
+
+    this.inputStream.on("end", () => {
+      this.push(null);
+    });
+  }
+
+  _write(chunk, encoding, callback) {
+    this.outputStream.write(chunk, encoding, callback);
+  }
+
+  _read(size) {}
+}
+
+// Use duplex stream
+const duplexStream = new FileDuplex("input.txt", "output.txt");
+
+// Read data from duplex stream
+duplexStream.on("data", (chunk) => {
+  console.log("Read Data:", chunk.toString());
+});
+
+// Write data to duplex stream
+duplexStream.write("This is new data!\n");
+
+duplexStream.end(() => {
+  console.log("Write operation completed.");
+});
+
+
+✅ this.push(null); ka matlab hai stream ka data khatam ho gaya hai (EOF signal).
+push ma jo data dygy wohi resad hoga on krkry
+
+
+ Transform Stream (Modify Data on the Fly)
+Transform stream data ko modify karne ke liye use hoti hai (e.g., compression, encryption).
+
+
+
+
+const { Transform } = require("stream");
+
+// 🔹 Transform stream jo data ko uppercase karega
+const upperCaseTransform = new Transform({
+  transform(chunk, encoding, callback) {
+    this.push(chunk.toString().toUpperCase()); // Chunk ko uppercase me convert karke push karna
+    callback(); // Process complete signal
+  }
+});
+
+/ 🔹 Readable stream (file se data read karna)
+const readStream = fs.createReadStream("input.txt", "utf8");
+
+// 🔹 Writable stream (modified data ko nayi file me likhna)
+const writeStream = fs.createWriteStream("output.txt");
+
+// 🔹 Pipeline: Read -> Transform -> Write
+readStream.pipe(upperCaseTransform).pipe(writeStream);
+
+
+
+✅ Example: Convert Lowercase to Uppercase (Custom Transform Stream)
+Transform stream me jo input aayega usko modify karke aage bheja jata hai.
+
+
+
+const { Transform } = require("stream");
+
+// Custom Transform Stream
+const transformStream = new Transform({
+  transform(chunk, encoding, callback) {
+    this.push(chunk.toString().toUpperCase()); // Convert to uppercase
+    callback();
+  },
+});
+
+// Input data
+transformStream.write("hello world!\n");
+transformStream.write("node.js streams are powerful.\n");
+transformStream.end();
+
+// Read transformed data
+transformStream.on("data", (chunk) => {
+  console.log(`Transformed: ${chunk.toString()}`);
+});
+📌 Explanation:
+new Transform({...}) → Transform stream create ki.
+.transform(chunk, encoding, callback) → Data modify kiya (uppercase convert kiya).
+.write("data") → Data likha transform stream mein.
+.on("data", callback) → Jab data modify hota hai, toh print hota hai.
+
+
+
+
+
+chunk: Y 
+eh wo data hota hai jo stream ke through pass ho raha hota hai (initially yeh binary form mein hota hai).
+encoding: Yeh parameter yeh batata hai ke jo data (chunk) aapko mila hai, woh kis format mein hai (jaise UTF-8, ASCII, etc.).
+callback: Jab data ka transformation (jaise uppercase mein convert karna) complete ho jata hai, to callback call hota hai jo stream ko aglay stage par bhejta hai.
+
+
+
+
+
+Cluster
+
+
+hamara pas ak server hai jab multiple users aye gy jo use kr rhy application
+ak nodejs server usko handle nhi kr ksta 
+sevrer crash kr ksta memry full hoskti
+multiple user ko multiple server dygy
+load to dirstubte multiple workers
+jitny cpu otny worker threads bna ksty
+
+let os=require('os');
+let cpu=os.availableParallelism();
+console.log(cpu)
+
+
+
+if (cluster.isPrimary) {
+  console.log(`Primary ${process.pid} is running`);
+
+  // Fork workers.
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
+  // Workers can share any TCP connection
+  // In this case it is an HTTP server
+  http.createServer((req, res) => {
+    res.writeHead(200);
+    res.end('hello world\n');
+  }).listen(8000);
+
+  console.log(`Worker ${process.pid} started`);
+}
+ballanced workload to handle traffic is 
+
+process sponse threads sponse core
+
+Node.js single-threaded hota hai, yani ek time per ek hi task handle karta hai. 
+Lekin agar humein multiple requests ya heavy computations handle karni ho to Cluster aur Worker Threads modules ka use kar sakte hain.
+
+Cluster Kaam Kaise Karta Hai?
+Jab hum cluster module use karte hain, to ek master process create hota hai.
+Master process multiple worker processes (child processes) create karta hai.
+Har worker process ek separate process hota hai aur apna alag memory space use karta hai.
+Master process requests ko distribute karta hai taake workload balance ho.
+
+Master Process Output:
+Jab aap apne code ko rn karte hain, sabse pehle master process start hota hai aur iske andar likhe gaye console.log("Hello") statements execute hote hain.
+Master process multiple times "Hello" print karta hai kyunki yeh main thread hai, jo har baar apne liye console.log call karta hai.
+
+Cluster Ka Example
+
+const cluster = require("cluster");
+const http = require("http");
+const os = require("os");
+
+if (cluster.isMaster) {
+    const numCPUs = os.cpus().length;
+    console.log(`Master process ${process.pid} is running`);
+
+    // Har CPU core ke liye ek worker process create karo
+    for (let i = 0; i < numCPUs; i++) {
+        cluster.fork();
+    }
+
+    // Worker exit hone par naya worker start karo
+    cluster.on("exit", (worker, code, signal) => {
+        console.log(`Worker ${worker.process.pid} died. Restarting...`);
+        cluster.fork();
+    });
+} else {
+    http.createServer((req, res) => {
+        res.writeHead(200);
+        res.end(`Handled by Worker ${process.pid}`);
+    }).listen(3000);
+
+    console.log(`Worker ${process.pid} started`);
+}
+
+Output
+
+Master process 12345 is running
+Worker 12346 started
+Worker 12347 started
+Worker 12348 started
+Worker 12349 started
+Har CPU core ke liye ek worker process create hoga aur requests handle karega. Agar koi worker process crash ho jaye to cluster automatically restart karega.
+Master process ensures ke agar koi worker crash ho jaye, to wo naya worker start kar de.
+Cluster parent process (master) hota hai, jo workers banata hai.
+
+
+Cluster Events
+Event	Description
+cluster.fork()	Naya worker process create karta hai
+cluster.on("exit")	Jab worker terminate hota hai, tab yeh event trigger hota hai
+cluster.on("online")	Jab worker successfully start hota hai
+cluster.on("disconnect" Jab worker master process se disconnect hota hai
+cluster.on("message")	Jab worker master ko message bhejta hai
+
+
+Node.js mein cluster module use hota hai multi-core CPU pe load distribute karne ke liye. Lekin by default,
+ har request randomly kisi bhi worker process ko mil sakti hai.
+Agar aap chahte hain ke:
+
+"Ek hi client/user ki saari requests hamesha ek hi worker process ko jayein"
+(to preserve in-memory session, WebSocket state, etc)
+To us feature ko "Sticky Session" kehte hain.
+
+Jab user ne first message bheja to wo Worker-1 ko gaya. Wo worker us user ke WebSocket connection ko track kar raha hai.
+Ab agar agli request (ya message) Worker-3 ko chali gayi (because default load balancer round-robin karta hai), to:
+Worker-3 ke paas user ka koi context ya socket state nahi hai
+Result: ❌ Message drop ho gaya ya error aaya
+
+
+
+
+ How Sticky Session Works Internally
+Client connects to port 3000.
+Jab aap sticky-session ka use karte hain:
+Jab bhi koi client connect karta hai, uska IP hash karke decide hota hai ke kaunsa worker handle karega.
+Har baar same IP address wali request ya socket hamesha same worker ko jati hai.
+Isse:
+WebSocket connection break nahi hota
+Worker ke paas user ka state/session available rehta hai
+Real-time communication stable aur reliable rehta hai
+
+2. Worker Threads Module
+Worker Threads Kya Hai?
+Worker threads module ka use CPU-intensive tasks handle karne ke liye hota hai bina naye processes create kiye. Ye same process ke andar multiple threads banata hai jo shared memory ka use karte hain.
+CPU-intensive tasks wo tasks hote hain jo computer ke CPU (Central Processing Unit) ko zyada compute power aur processing time chahiye hota hai. In tasks ko complete karne mein CPU 
+ka high computational load hota hai, aur yeh typically time-consuming hote hain.eg(encryotion dectrtion calculation)
+Worker Threads Kaam Kaise Karta Hai?
+Main thread ek worker thread create karta hai.
+Worker thread ek background task execute karta hai.
+Worker thread complete hone ke baad result main tread ko return karta hai.
+Ye threads ek hi process ke andar execute hote hain, isliye memory efficient hote hain.
+Node.js mein worker_threads module ka use parallel processing ke liye kiya jaata hai, jo
+ CPU-intensive tasks ko efficiently handle karne mein madad karta hai, bina event loop ko block kiye.
+3 Concepts:
+Worker: Ye ek thread create karta hai jo independent processing tasks ko handle kar sakta hai. Isse CPU-intensive tasks ko main thread se alag run kiya jaata hai.
+isMainThread: Ye ek boolean value hai jo batata hai ki current code main thread pe run ho raha hai ya worker thread pe.
+parentPort: Ye ek object hai jiska use worker aur main thread ke beech communication ke liye kiya jaata hai.
+Jab ap koi heavy kaam Worker Thread ko dete ho to wo side mein run hota hai.
+Aapka main thread rukta nahi, apna kaam karta rehta hai.
+
+
+Main Thread in Context:
+In a Single-Threaded Environment (like JavaScript in a Browser):
+
+Main Thread: Is case mein, main thread woh thread hota hai jo directly user interactions,
+ UI rendering, aur application logic ko handle karta hai. Agar main thread kisi heavy task mein
+ busy ho, toh UI freeze ho sakta hai (jaise web applications mein, agar aapne koi long-running script run ki toh UI block ho sakti hai).
+In a Multi-Threaded Environment (like Node.js with worker threads):
+Main Thread: Yaha pe bhi, main thread woh thread hota hai jo application ko start karta hai. 
+Agar aap asynchronous tasks ya background tasks run kar rahe hain (jaise Node.js mein workers),
+ toh main thread unko trigger karta hai lekin un tasks ko independently process karne deta hai.
+In this case, main thread will continue executing its code, while background tasks can run concurrently (in a non-blocking way).
+
+
+Worker Threads Ka Example
+
+const { Worker, isMainThread, parentPort } = require("worker_threads");
+
+if (isMainThread) {
+    console.log(`Main thread ${process.pid} is running`);
+
+    const worker = new Worker(__filename); // Worker create karna
+
+    worker.on("message", (message) => {
+        console.log(`Received from worker: ${message}`);
+    });
+
+    worker.postMessage("Hello Worker!");
+} else {
+    parentPort.on("message", (message) => {
+        console.log(`Worker received: ${message}`);
+        parentPort.postMessage("Hello from Worker!");
+    });
+}
+Output:
+
+Main thread 12345 is running
+Worker received: Hello Worker!
+Received from worker: Hello from Worker!
+Worker ek independent task execute karega aur phir result main thread ko return karega.
+
+Worker Threads Events
+Event	Description
+worker.on("message")	Jab worker thread se message receive hota hai
+worker.postMessage(data)	Worker thread ko message bhejne ke liye
+worker.on("error")	Jab worker me koi error aata hai
+worker.on("exit")	Jab worker thread exit hota hai
+
+Function	Used In	Purpose
+worker.postMessage()	Main Thread	Worker ko message bhejna
+parentPort.postMessage()	Worker Thread	Main thread ko message bhejna
+worker.on("message")	Main Thread	Worker se message lena
+parentPort.on("message")	Worker Thread	Main thread se message lena
+
+
+
+
+📌 Real-World Website Example
+Website Type	CPU Usage	Example Hosting
+Portfolio Site	Low CPU	Shared Hosting (GoDaddy)
+E-Commerce Store	Medium CPU	VPS (DigitalOcean)
+Streaming Site (Netflix, YouTube)	High CPU	Cloud Hosting (AWS, Google Cloud)
+AI Chatbot / ML Model	Very High CPU	GPU + Cloud Computing
+
+
+
+3. Blocking vs Non-Blocking Code
+🔹 Blocking Code (Synchronous)
+
+Ek kaam complete hone tak next kaam nahi chalta.
+Slow performance kyunki ek hi time pe ek kaam hoga.
+Example: fs.readFileSync(), database queries synchronously
+🔹 Non-Blocking Code (Asynchronous)
+
+Ek kaam background me chalta hai aur baaki kaam bhi continue rehta hai.
+Fast performance kyunki multiple tasks parallel execute hote hain.
+Example: fs.readFile(), setTimeout(), Database queries asynchronously
+
+ worker.js (Worker Receiving & Processing)
+
+const { parentPort } = require('worker_threads');
+
+// Worker ko master thread se message receive karna
+parentPort.on('message', (num) => {
+    let sum = 0;
+    for (let i = 0; i < num; i++) {
+        sum += i;  // Heavy computation
+    }
+    
+    // Worker thread se response bhejna
+    parentPort.postMessage(`Worker processed sum: ${sum}`);
+});
+👀 Yeh Code Kaise Kaam Kar Raha Hai?
+Step	Kya Ho Raha Hai?
+1. Message Receive Karna	Worker parentPort.on('message', callback) ka use karke master thread se ek integer (num) receive karta hai.
+2. Heavy Computation	Worker loop chala kar sum calculate karta hai (e.g., 0 se num tak sab numbers ka sum).
+3. Result Send Karna	Worker parentPort.postMessage() ka use karke computed result master thread ko wapis bhejta hai.
+
+
+
+
+4. REPL (Read-Eval-Print-Loop)
+REPL ek interactive environment hai jisme hum directly JavaScript execute kar sakte hain.
+
+🔹 REPL Full Form
+✅ Read: Input le kar read karega.
+✅ Eval: Evaluate karega (Execute karega).
+✅ Print: Result dikhayega.
+✅ Loop: Phir se input lega aur continue karega.
+
+🔹 REPL Start karne ka tareeqa
+Terminal me likhein:
+
+sh
+
+Phir aap JavaScript commands likh sakte hain:
+
+> 2 + 2
+4
+
+> console.log("Hello, Node.js!");
+Hello, Node.js!
+
+> let x = 10;
+> x * 2
+20
+🔹 REPL Commands
+
+.exit → REPL se bahar aane ke liye
+.help → Available commands dekhne ke liye
+.save filename.js → Current session save karne ke liye
+.load filename.js → File ko REPL me load karne ke liye
+
+
+ Single Threading vs Multi Threading
+🔹 1. Single Threading (Single-Threaded)
+Ek time pe sirf ek kaam execute hota hai.
+Node.js by default single-threaded hai
+Asynchronous operations ke liye event loop use karta hai.
+Ek request jab process ho rahi hoti hai, tab doosri request wait karti hai.
+
+🔹 2. Multi Threading (Multi-Threaded)
+Ek saath multiple tasks perform ho sakte hain.
+CPU-bound tasks ke liye better hota hai.
+C++, Java, Python me zyada common hai.
+Ek request process hone ke dauraan doosri request bhi execute ho sakti hai.
+wroker thread use kr ksty
+
+
+
+4. npm & npx Commands (Short & Useful)
+✅ npm (Node Package Manager) → Dependencies install/uninstall/update karne ke liye
+✅ npx (Node Package Executor) → Direct package execute karne ke liye
+
+npx Temporary Install aur Execution
+✔ npx ek baar ke liye package download kar ke run kar deta hai.
+✔ Permanent install nahi karta, jab tak manually install na karein.
+✔ Ye system ke node_modules folder ko bharne se bachata hai.
+
+✅ Agar package sirf ek dafa chahiye to npx use karein.
+✅ Agar baar baar use karna hai to npm install karein.
+example: Run & Auto Delete
+
+npx cowsay "Hello World!"
+Output:
+
+markdown
+ ____________
+< Hello World! >
+ ------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+✔ npx pehle cowsay ko install karega (cache me store karega).
+✔ Run karne ke baad automatically delete ho jayega.
+✔ Agar aap phir run karein, to dobara download karega
+npx temporary install karta hai (node_modules/.cache me store hota hai).
+Agar cache clear ho jaye ya system restart ho jaye, to dobara download karega.
+Agar permanent chahiye to npm install -g cowsay use karein.
+
+ 5. Using Third-party Packages (Express, Dotenv, Mongoose, etc.)
+✅ Express → Fast web framework for Node.js
+✅ Dotenv → Environment variables handle karne ke liye
+✅ Mongoose → MongoDB database handle karne ke liye
+
+
+// Using transform stream
+process.stdin.pipe(transformStream).pipe(process.stdout);
+Explanation:
+
+Transform stream: Isme hum transform() method use karte hain jo incoming data ko modify karta hai (is case mein, uppercase mein convert kar raha hai).
+pipe(): Ye stream ke data ko ek stream se doosri stream tak pass karta hai.
+
+
+module.export={
+x:10,
+y:20
+}
+
+require ek built-in function hai jo Node.js me kisi external module ya file ko import karne ke liye use hota hai.
+
+Node.js me Module ek file ya package hoti hai jo kisi specific functionality ko contain karti hai aur ise require() ya import se use kiya jata hai.
+
+
+const app =require ("./app)
+const.log(app.x,app.y)
+ya node js ka module hai
+
+Print data terminal
+node ./index.js
+
+Node.js me do tarike hote hain modules ko import/export karne ke liye:
+
+CommonJS (CJS) – require() aur module.exports
+ES Modules (ESM) – import aur export
+By default, Node.js CommonJS (require()) use karta hai. Lekin agar aap ES Module (import/export) use karna chahte hain, to "type": "module" 
+add karna lazmi hai.
+agr ham es6 k module k liya type module krdy package json ma tu phr jo jo ham require sy kr rhy wo phr ham import use kry gy
+
+
+
+
+package.json me "type": "module" add karein
+Agar aap import use karna chahte hain, to package.json file me "type": "module" likhna zaroori hai.
+
+
+
+📝 Steps:
+
+package.json open karein
+"type": "module" add karein
+
+Built-in Module (fs) → File system se related functions deta hai.
+Third-party Module (express) → Web server banane ke liye.Express.js ek third-party module hai jo 
+web servers banane ke liye use hota hai. Pehle install karna padta hai:
+Custom Module (mathModule.js) → Khud ka banaya module jo calculations karta hai.
+
+
+ Custom Module (mathModule.js) → Self-made Module
+Aap apni files ko module bana sakte ho.
+
+📌 Step 1: mathModule.js (Create a Custom Module)
+function add(a, b) {
+    return a + b;
+}
+
+module.exports = { add };
+📌 Step 2: index.js (Import and Use Custom Module)
+const math = require('./mathModule');
+console.log(math.add(5, 3));  // Output: 8
+👆 Yeh mathModule.js se add function ko import karega aur use karega. ✅
+
+📌 Conclusion:
+✅ Built-in Module (fs) → File system functions deta hai.
+✅ Third-party Module (express) → Web server banane ke liye use hota hai.
+✅ Custom Module (mathModule.js) → Khud ke functions ya logic ko ek module me store karke reuse karne ke liye.
+
+
+
+1️.require (CommonJS)
+✅ Synchronous (Blocking) hota hai
+✅ CommonJS modules me use hota hai
+✅ Default Node.js me kaam karta hai (koi extra setting nahi chahiye)
+
+2. Asynchronous (Non-blocking) hota hai
+✅ ES6 (ECMAScript Modules - ESM) ke liye use hota hai
+✅ package.json me "type": "module" likhna zaroori hai\
+
+Core Module in Node js
+console/http/file system/buffer core module hai esko hamny ni bnaya
+jo features hamry pas phly sy bany hoty hai unko ham core module khty
+
+
+1.Global Module
+asy module hoty jenko import krny ki zarorat ni hoti jasy console ko hmany import ni kiya kam kr rhy
+Yeh modules Node.js ke saath hi aate hain aur require() ke bina bhi use ho sakte hain
+Direct access hota hai, require() ka zaroorat nahi hoti.
+Example: console, setTimeout, setInterval, process
+
+2.None Global Module 
+const fs=require('fs');(import kr rhy hai)
+fs.writefilesync("Name","Text")
+const fs=require('fs').fs.writefilesync("Name","Text");
+Yeh modules directly available nahi hote, inhe import (require()) karna padta hai.
+Yeh Built-in, Third-party, ya Custom modules ho sakte hain.
+jo ham import krhy uska name lazmi ni k varible k name k sath same hn
+
+jo hamy module import krny prty wo non global module;
+by default environment ma ni import krna prta
+
+directory name print
+console.log(_dirname)
+file name
+console.log(_filename)
+
+
+http module Node.js ka built-in module hai jo server banane aur HTTP requests aur responses handle karne ke liye use hota hai.
+
+Make Basic Server Output on Browser
+
+const http=require("http);node js k andr server ki request or response ko handle krta
+http.createserver().listen(4500);
+createserver() ya pory function ko as a parmeter leta hai (callback)
+
+create server
+
+
+let http=require("http");
+http.createServer((req,res)=>{
+    res.write("<h1>Hello this is Saqib</h1>");
+    res.end();
+}).listen(5000);
+
+//Importanat
+
+response.writeHead(statusCode, headers);
+statusCode → HTTP response ka status code set karta hai (e.g., 200 for success, 404 for not found).
+headers → Ek object jisme response headers define kiye jate hain (e.g., Content-Type).
+✔ Agar headers set nahi kiye jayein, toh Node.js default headers bhejta hai.
+00 → HTTP status code (Success)
+Content-Type: application/json → Client ko batata hai ke response JSON format me hai.
+Agar aap end() call nahi karenge, toh response complete nahi hoga aur browser ya client wait karta rahega.
+✔ write() multiple times call ho sakta hai, magar writeHead() ek hi dafa chalega.
+writeHead(200, { 'Content-Type': 'text/plain' }): Yeh status code ko set karta hai aur content type ko define karta hai.
+res.write('Hello, '): Yeh body mein kuch content likhta hai.
+res.end('world!'): Yeh response ko complete karta hai aur body mein final content bhejta hai.
+
+
+listen() server ko ek specific port par start karta hai aur client ki requests accept karta hai.
+Bina listen() ke server run nahi karega aur koi request handle nahi hogi. 🚀
+
+http module kya hanlde krta
+jo ham server sy data leta usko handle krta
+
+contrl+c run port ko bnd krna termianl ma dabana
+
+application/json	JSON format data (structured & lightweight)
+application/xml	XML format data
+application/x-www-form-urlencoded	Form data (URL-encoded)
+multipart/form-data	File uploads, images, or binary data
+text/plain	Simple text data
+text/html	HTML page response
+application/javascript	JavaScript data
+application/pdf	PDF files
+image/png, image/jpeg, image/gif	Images
+path module ka use karke bhi hum image send kar sakte hain. path.join() ka use image ka absolute path generate karne ke liye hota hai, jisse server har system par sahi se kaam kare.
+
+end methoid ka kam
+Response ko finish karta hai (connection close kar deta hai)
+Agar argument diya ho to data send karta ha
+Agar bina argument ke likho to sirf close karega
+end ma kya krna respoinse send k rny ka bad wo
+
+
+Event-Driven Programming (Simple Explanation)
+Event-driven programming ka matlab hai ke program kisi event (waqia) hone ka intezar karta hai aur jab wo event
+trigger hota hai, tab koi specific function execute hota hai.
+
+Package.json file
+ya hamry projects ki detail rkhti coding k related
+apky project k version name repositry github packages commands kon c use horhi
+
+ya sary packges es file ma mange hoty
+
+npm stand for node pakcge manager 
+
+npm init
+🔹 Yeh command tumse kuch questions puchegi jaise:
+
+Project name
+Version
+Description
+Entry point (default: index.js)
+Author
+License
+Agar tum bina kisi question ke direct default settings chahte ho, to yeh command use karo:
+
+npm init -y
+
+PS C:\Users\lenovo\Desktop\node tut> npm init 
+
+Press ^C at any time to quit.
+package name: (node-tut)
+version: (1.0.0)
+description: node js
+entry point: (index.js)
+test command:
+git repository:
+keywords: sAQIB
+author: NO
+license: (ISC)
+About to write to C:\Users\lenovo\Desktop\node tut\package.json:
+
+{
+  "name": "node-tut",
+  "version": "1.0.0",
+  "description": "node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sAQIB"
+  ],
+  "author": "NO",
+  "license": "ISC"
+}
+Is this OK? (yes)
+
+
+dependices part ma jha hamry sab k sba package manage hoty
+package-lock.json(ya sari detail rkhta har ak)
+
+node js single thrender hai ya multi threndier?
+ya singel thrender hai yani ak time pr ak command ko run krti
+ multi threndier ya 2 3 thrender ko ak sath command ma run kr ksti
+
+node modeules del hojaye
+npm i krky gy sab wapis ajaye gi 
+jab ham npm i chalty wo package json ma depo
+
+
+
+
+Nodemon|time saving Module
+
+agr hamy code likha usko check krny k liya terminal ma run krta hes sy time waste hota
+nodemon contine run krta jes sy hara time save hota
+sudo npm i nodemon -g(eska mtlb -g ka globally install kr rhy dobara hamy kisis project ma dobra install ni krni prti)
+nodemon ./ndex.js (jes file ko chlana hn usky terminal ma)
+
+node js is Async Languages
+thretet ki bat kry single threting hai ham multi threating bna skty es ko
+
+
+
+Make a Simple API
+
+sab sy phly hamy http module ko import krna prta yahi requ res ko handle krta api bnay k liya use horta ya
+let http=require("http");
+http.createServer((req,res)=>{
+
+}).listen(6000); 
+
+
+estra server create hojata
+agr hamny koi req lani hai js react sy user sy phr ham req use krrt
+agr send krna server prphr ham response use krty
+jab multinple data hn object ko array k andr lena hota
+
+data.js file dosri file ma banaya data hamny
+let data=[{name:'Saqib',email:"saqibyounas111",name:'Saqib',email:"saqibyounas111"}]
+module.exports=data;
+
+
+dosri file ma imprt kiya or use
+
+let data=require('./data');
+let http=require("http");
+http.createServer((req,res)=>{
+    res.writeHead(200,{"Content-type":"application\json"})
+    res.write(JSON.stringify(data));
+    res.end();
+}).listen(8000);
+
+ham jab b data send kry object ya array ma usko stringfy kry gy object sy string
+ ma js ma kyo k  data strigfy ma hota bad ma client ma usy parse krly
+
+
+
+
+
+ 1. JSON.stringify() (Object → String)
+Ye function JavaScript object ya array ko JSON string me convert karta hai.
+
+✅ 2. JSON.parse() (String → Object)
+Ye function JSON string ko JavaScript object ya array me convert karta hai.
+
+
+
+Input form command Line
+
+agr ham temrinal ma input dy usko get kasy kry 
+process ak object hota node js ka ya bhut bra hota
+console.log(process.argv[2])
+estra ham jo dygy wo mil jay ga
+
+let fs=require("fs")
+const input=process.arg;
+fs.writesyncfile(input[2].input[3]));phela name or bad ma data
+estra ham jo b terminal ma dygy wo file ma save hojaye ga data
+
+
+writefilesunc file create krny k liya
+unlincksync file delete krny k liya
+
+
+Show file list
+foldrer k andr 5 files kasy bna i usky liya ham path use krty
+
+
+const fs=requir("fs");
+const path=require("path")
+const dirpath=path.join(__dirname)
+for(let i=0i<5;i++){
+fs.writefilesync(dirpath,/heloo+i+"hello)
+}
+console.log(dirpath,'files') estra current dircetry or files ka path mil jaye ga hamy
+
+agr file read krni
+name.read()
+agr kisi folder sy file list krni hn
+fs.reddir(dirpath,callbackfunction) first paramter erro and secnond file ka name
+
+
+andr waly sif file ko acess kr ksty computer k andr ki files ko ni
+
+
+path.join(...args)
+
+Ye method different parts ko join karke ek valid directory path banata hai.
+Platform-independent hota hai (Windows ya Linux dono pe sahi kaam karta hai).
+
+CRUD with file system
+
+
+2 kiskm ki files handling hoti ak blocking or ak non blocking
+blocking filesyncread jo sync sy shoru hoti wo event loop ma ni janti wo satck ma rhiti ya callback ni laty
+non bloxking jo sync k abgir hoti ya event loop ma jati hai jo phly pori hogi wo ply chal jaye gi ya callback lety hai
+
+
+Create File Node.js
+Synchronous CRUD Operations
+Synchronous operations blocking hoti hain, yani jab tak ek operation complete nahi hota, agla execute nahi hoga.
+
+const fs = require('fs');
+
+// 📌 **Create (Write File)**
+fs.writeFileSync('data.txt', 'Hello, this is a synchronous CRUD operation.');
+
+// 📌 **Read File**
+const data = fs.readFileSync('data.txt', 'utf8');
+console.log('Read:', data);
+
+// 📌 **Update (Append Data)**
+fs.appendFileSync('data.txt', '\nNew data added synchronously.');
+console.log('Data updated synchronously.');
+
+// 📌 **Delete File**
+fs.unlinkSync('data.txt');
+console.log('File deleted synchronously.');
+🔹 Note: Yeh operations blocking hain, yani jab tak ek complete nahi hoga, agla start nahi hoga.
+
+⏳ 2. Asynchronous CRUD Operations
+Asynchronous operations non-blocking hoti hain, yani event loop aglay tasks ko execute kar sakta hai jab tak file operations complete ho rahe hote hain.
+
+
+const fs = require('fs');
+
+// 📌 **Create (Write File)**
+fs.writeFile('data.txt', 'Hello, this is an asynchronous CRUD operation.', (err) => {
+    if (err) throw err;
+    console.log('File created asynchronously.');
+
+    // 📌 **Read File**
+    fs.readFile('data.txt', 'utf8', (err, data) => {
+        if (err) throw err;
+        console.log('Read:', data);
+
+        // 📌 **Update (Append Data)**
+        fs.appendFile('data.txt', '\nNew data added asynchronously.', (err) => {
+            if (err) throw err;
+            console.log('Data updated asynchronously.');
+
+            // 📌 **Delete File**
+            fs.unlink('data.txt', (err) => {
+                if (err) throw err;
+                console.log('File deleted asynchronously.');
+            });
+        });
+    });
+});
+🔹 Note: Async functions callback functions ka use karti hain, is wajah se nested callbacks (callback hell) ka issue ho
+ sakta hai. Isko Promises ya async/await se handle kar sakte hain.
+end ma sync lag jaye ya sycrhonus hojaye gi jo phly wo chly gi
+
+
+ "utf8" ka main kaam (2 lines me)
+1️⃣ "utf8" ek encoding format hai jo text ko read/write karne ke liye use hota hai.
+2️⃣ Yeh binary data ko readable text me convert karta hai, taake hum easily files read/write kar sakein.
+
+
+
+Update File Node.js
+
+fs.appendFil(filepath,'text',(err)=>{
+if(!err){
+console.log("Error);
+else{
+console.log("Ok")
+})
+
+ // Text replace karna (for example "old text" ko "new text" se replace karna)
+    const updatedData = data.replace('old text', 'new text');
+
+fs.appendFile() ka use existing file ke end mein naya data add karne ke liye hota hai. Agar file nahi hoti, to yeh nayi file create kar deta hai.
+
+
+
+Reaname File Node.js
+
+fs.rename(filepath,dirpath/newnamefile,error)=>{
+if(!err){
+console.log("Error);
+else{
+console.log("Ok")
+);
+
+Delete File Node.js
+
+fs.unlikeSync(dirpath/namefile);
+
+
+Buffer kya hota
+buffer ka mtlb ak tempoprory memeory location 
+jab b ham koi file create krty ya opertaion perform krty tu node js ko thori c memeory chaye hoti
+jasy hamri ram hoti computer k liya
+
+
+
+UTF-8 (Unicode Transformation Format - 8 bit) ek character encoding format hai jo text ko bytes me convert karta hai.
+
+🔹 UTF-8 ka Matlab:
+Yeh ek universal encoding standard hai jo har language ke characters ko support karta hai, jaise:
+✅ English (A-Z, a-z, 0-9)
+✅ Urdu (اردو)
+✅ Chinese (汉字)
+✅ Emoji (😊, 🚀, ❤️)
+
+🔹 UTF-8 Kyun Zaroori Hai?
+Multilingual Support: Yeh har language ke characters ko represent kar sakta hai.
+Efficient: English letters sirf 1 byte lete hain, jabke special characters 2 ya zyada bytes use karte hain.
+Backward Compatible: ASCII (jo sirf English letters aur symbols support karta tha) ke sath compatible hai.
+
+
+
+Asyncrnhnics Node js
+settimeout(()=>{
+console.log("Yes wait 2 secnode")
+),2000}
+
+
+Node.js tab block hota hai jab synchronous operations (jaise file I/O ya CPU-intensive tasks) execute hote hain
+, jo event loop ko block kar dete hain aur application ko unresponsive bana dete hain. Isse bachne ke liye,
+ asynchronous operations, worker threads, aur non-blocking patterns ka use karna chahiye.
+
+
+
+
+
+
+
+
+
+How Node js work
+
+
+written c,c++(%8),js (98%)
+node js ma 3 chaezy hoti flow kii code ki
+call stack sab sy phly hamry functions ki registry krta konsa phly call hoga konsa bad ma
+hamny50 function node js ko kays pta lgy ga konsa phly call hota ya stack api dekhta
+main function call hota jitna b hamra global code ya main function hota hai
+sabsy phly main kio regitser kry ga phr jo mily ga wo add hoga stack ma
+jab ak function ki exucution khtm hogi wo khud nikal jaye ga
+main end pr nikly ga usmy hi function likhy hai main glbal hai
+jasy complete hova main nikal jaye ga
+jab main dkhy ga koi code nhi wo nikal jaye ga
+sab sy phyl main regirtser hoga sab sy bad ma nikal jaey ga
+
+1.Stack(last in first out LIFO)function call phly main chlta node js khud hanlde krta main ko hamy nazr ni ata (jab tk call stack andr 
+main function rhy ga phr  set time aye ga stack ma jab tk main rhy ga ya ni jaye ga stack ma)
+2.Node Api (jab ham setimeout use krty tu usmy 0 second k delay rkhty tu ya node api ma jata block ma jo chezy node ki core
+ ni hai wo node api ma register ma hojati 
+jo b global coding wo node api ma jaye gi
+92 js 8 c++ node js work
+jo chezy node ki core nhi kahi sy inehrit ki wo node api ma register hoti
+ya dekhu ga kam time kiska wo callback ma jaey ga
+2 proggraming k drmyan interface hota usko ham API khty
+3.Callback queue(api node usky bad esmy aye ga wait kry ga stack khali hony ka jab main finich hoga stack sy phr wha bhj dy ga satck ma)
+jab tk main function callstack ma ya nhi aye gi node api ki chezy 
+
+
+4. Microtask Queue
+Microtasks main tasks se zara zyada priority rakhte hain.
+Microtasks me mostly promises ke .then(), .catch() callbacks aur process.nextTick() (Node.js) aate hain.
+Jab bhi call stack khali hota hai, event loop pehle microtask queue me se saare callbacks execute karta hai.
+Phir callback queue ke tasks call stack me aate hain.
+
+
+Questions Interviews
+
+📌 Node.js (Short Definition - Interview Focused)
+✅ Node.js ek non-blocking, single-threaded, event-driven JavaScript runtime hai jo V8 engine per run karta hai aur Libuv ka use karta hai asynchronous I/O operations handle karne ke liye.
+
+📌 Node.js Architecture (Short & Precise)
+✅ V8 Engine → JavaScript ko machine code me convert karta hai.
+1. V8 Engine → JavaScript ko Machine Code me Convert Karta Hai
+📌 Kya Hai?
+V8 ek JavaScript Engine hai jo Google Chrome ke andar bhi use hota hai.
+
+Yeh JavaScript code ko directly machine code (binary) me convert karta hai taake CPU usko fast execute kar sake.
+
+⚙️ Kaise Kaam Karta Hai?
+JavaScript Code leta hai.
+
+Parsing & Tokenizing karta hai (code ko chhoti instructions me todta hai).
+
+JIT (Just-in-Time) Compilation ka use karke code ko machine code me convert karta hai.
+
+Direct execution karta hai bina kisi interpreter ke.
+
+📌 Real-World Example (V8 Execution)
+
+const add = (a, b) => a + b;
+console.log(add(5, 3)); // Output: 8
+Yeh code V8 Engine pe run karega:
+Pehle add function ko optimize kaega.
+Machine code me convert karega.
+Execution fast hogi.
+
+
+
+✅ Libuv → Async I/O operations handle karta hai (File system, Network, etc.).
+. Libuv → Async I/O Operations Handle Karta Hai
+📌 Kya Hai?
+Libuv ek C library hai jo Node.js ko asynchronous banata hai.
+Yeh Non-blocking I/O operations (File system, Network, Timers, DNS, etc.) handle karta hai.
+
+⚙️ Kaise Kaam Karta Hai?
+Event Loop chalata hai jo async operations ko queue me dalta hai.
+Thread Pool use karta hai jab CPU-heavy kaam hota hai.
+
+Timers, HTTP Requests, Database Calls ko handle karta hai bina server ko block kiye.
+
+📌 Real-World Example (Libuv in Action)
+
+const fs = require('fs');
+
+console.log("Start");
+
+// File read asynchronously (Libuv handle karega)
+fs.readFile('data.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+});
+
+console.log("End");
+Output:
+
+Start
+End
+(File data show hoga baad me, jab read complete ho)
+🔹 Libuv ka role: File read hone tak Node.js ko block nahi hone dega, event loop me queue karega.
+✅ Event Loop → Asynchronous code ko execute karta hai, jo Node.js ko non-blocking banata hai.
+
+Thread Pool Ka Kaam (CPU-Heavy Tasks)
+Node.js by default single-threaded hota hai, lekin Thread Pool ka use karke hum heavy computations ya blocking tasks ko efficiently handle kar sakte hain.
+
+⚙️ Kaise Kaam Karta Hai?
+Jab CPU-intensive task (e.g. file hashing, encryption, image processing) aata hai, Node.js Thread Pool me ek worker thread assign karta hai.
+Worker Thread background me task execute karta hai.
+Jab kaam complete hota hai, result wapas main thread ko bhejta hai.
+
+📌 Real Example (Thread Pool in Action)
+const crypto = require('crypto');
+
+console.log("Start");
+
+// Heavy computation (Hashing)
+crypto.pbkdf2("password", "salt", 100000, 64, "sha512", () => {
+    console.log("Hash Computed");
+});
+
+console.log("End");
+🛠 Output (Non-blocking Execution)
+
+Start
+End
+Hash Computed (Baad me, jab computation complete ho)
+🔹 Kya Ho Raha Hai?
+crypto.pbkdf2 ek CPU-heavy function hai, jo Thread Pool me ek worker thread ko assign karta hai.
+Main thread free rehta hai aur next execution karta hai.
+Jab hashing complete hoti hai, result callback me wapas aata hai.
+
+
+ 2. Event Loop ka role kya hai threads ke sath?
+🔸 Event Loop kaam karta hai main thread par.
+Jab aap koi asynchronous task start karte ho (e.g., fs.readFile, crypto.pbkdf2, setTimeout):
+
+Wo libuv ko diya jata hai.
+libuv us task ko thread pool ke ek thread me bhejta hai (agar CPU/task heavy ho).
+Jab thread task complete kar leta hai, callback queue me callback dal deta hai.
+Event loop call stack khali dekh kar us callback ko execute karta hai.
+
+
+
+📌 package.json (Short Definition & Example)
+✅ package.json ek configuration file hai jo project ka name, version, dependencies aur scripts store karta hai.
+
+ package-lock.json (Short Definition & Example)
+✅ package-lock.json exact dependency versions lock karta hai taake same versions har system per install ho sakein.
+
+
+Node.js ka Event Loop ek mechanism hai jo asynchronous tasks ko handle karta hai, taki non-blocking execution ho sake.
+
+📌 Simple Explanation:
+1️⃣ Call Stack: Synchronous code ko execute karta hai.
+2️⃣ Event Queue: Jo asynchronous operations complete ho jayein, unko queue me dalta hai.
+3️⃣ Event Loop: Call Stack khali hone ka wait karta hai, phir Event Queue se tasks uthata hai aur execute karta hai.
+
+
+
+
+1. CommonJS vs. ES Modules (require vs. import)
+✅ CommonJS (require) → Default module system in Node.js
+✅ ES Modules (import) → Modern JavaScript module system
+
+
+
+2. Built-in Modules (Interview Focused)
+✅ fs (File System) → File read/write operations
+✅ http → Server create karne ke liye
+✅ path → File paths handle karne ke liye
+✅ events → Custom events create aur handle karne ke liye
+✅ os → System info lene ke liye (OS name, memory, CPU)
+✅ crypto → Hashing & encryption ke liye
+✅ url → URLs parse karne ke liye
+
+3. Custom Modules (How to create your own module)
+✅ Apna module create karne ke liye module.exports ya export use hota hai
+// math.js
+module.exports.add = (a, b) => a + b;
+
+
+
+
+ Summary: Key Advanced Topics in Node.js
+Topic	Why It’s Important?
+Event Loop & Async Programming	Optimize performance & prevent blocking
+Streams & Buffers	Efficiently handle large data
+Cluster Module & Worker Threads	Multi-threading for CPU-intensive tasks
+Caching (Redis, Memory Cache)	Boost performance & reduce database load
+Authentication & Security	Secure APIs & prevent attacks
+Microservices & Message Queues	Scalable architecture
+WebSockets & Real-Time Communication	Build chat apps, live notifications
+GraphQL API	Alternative to REST APIs with flexible queries
+Serverless Deployment	Deploy apps on AWS Lambda, Firebase
+Unit Testing & Optimization	Ensure reliability in production
+Crypto module
+spark() fork() method differnt
+CORS in nodejs
+
+
+✅ 1. libuv kya hai?
+libuv ek C/C++ library hai jo Node.js ke asynchronous I/O operations ko handle karti hai.
+
+📌 Kaam:
+Event loop ko implement karta hai
+File system access
+DNS lookups
+TCP/UDP sockets
+Timers (e.g. setTimeout)
+Thread pool manage karta hai
+
+✅ 2. Thread Pool kya hai?
+Thread pool libuv ka ek part hai, jisme by default 4 background threads hotay hain.
+
+📌 Kaam:
+Ye CPU-bound ya blocking I/O tasks ko asynchronously handle karta hai, jaise:
+
+fs.readFile
+fs.writeFile
+crypto.pbkdf2
+zlib.compress
+DNS lookup
+
+🔁 Relationship Between libuv and Thread Pool:
+Component	Role
+libuv	Event loop run karta hai, thread pool manage karta hai
+Thread Pool	Background threads provide karta hai for heavy tasks
+
+English:
+Express.js is a web framework for Node.js that helps developers build servers and
+ APIs easily and quickly. It provides tools for handling routes, requests, and responses efficiently.
+
+Urdu + English mix:
+Express.js ek Node.js framework hai jo server aur APIs bananay ko easy aur 
+fast bana deta hai. Ye routes, requests aur responses handle karne ke liye simple tools deta hai.
+
+
+
+
+Node.js:
+Agar aap Node.js ka use karte hain bina kisi framework ke, toh aapko sab kuch manual handle karna padta hai. 
+Jaise routing, request handling, error handling, middlewares, etc. Yeh kaafi complex aur time-consuming ho sakta hai jab aapka project bada ho.
+
+
+Express.js:
+Express ek framework hai jo Node.js ki functionality ko simplify karta hai. Ismein already built-in features 
+hote hain jo aapko manually handle karne ki zaroorat nahi padti. Jaise routing, middlewares, HTTP request
+/response handling, error handling, etc., sab kuch automatically handle ho jata hai.
+
+
+
+Express JS
+
+What is Express?
+Ak framework hai node js ka.
+Express.js ek lightweight Node.js framework hai jo web applications aur APIs banane ke liye use hota hai. Ye backend development
+ ko fast aur easy 
+banata hai, kyunki isme built-in features hain jo HTTP requests handle karne, routing aur middleware ko manage 
+karne me madad dete hain.
+
+✅ Simple jawab: Node.js sirf ek runtime environment hai jo JavaScript ko server-side pe execute karta hai,
+ lekin isme built-in routing, request handling, middleware management, aur API handling nahi hoti.
+ Yeh sab manually karna complicated hota hai.
+
+✅ 1. Fast aur Lightweight
+Express, Node.js ka ek minimalist framework hai jo performance aur speed par focus karta hai.
+
+✅ 2. Routing System
+Isme built-in routing system hota hai jo GET, POST, PUT, DELETE jaise HTTP methods ko handle karne me madad deta hai.
+
+✅ 3. Middleware Support
+Middleware functions ke through requests aur responses ko modify kar sakte hain (e.g., authentication, logging, error handling).
+
+✅ 4. API Development
+Express RESTful APIs banane ke liye perfect hai, jo frontend aur backend ko connect karne ke kaam aati hain.
+
+✅ 5. Integration with Databases
+Express.js MongoDB, MySQL, PostgreSQL jaise databases ke sath easily integrate ho jata hai.
+
+✅ 6. Large Community Support
+Iska bada developer community support hai, jisme bohot saare ready-made middleware aur plugins available hain.
+
+✅ 7. Custom Server Banana
+Express se khud ka server bana sakte hain jo Node.js ke default http module se zyada flexible hota hai.
+
+
+version base install krna hn
+insall express@3
+ad the rate k bad likho version
+
+Steps:
+Ap terminal mein jaake ye command run karenge:
+
+npm install path-to-regexp@latest
+Isse npm apke project ke node_modules folder mein is library ka sabse latest version install karega.
+Is command ko chalane ke baad, ap apne code ko dobara run kar sakte hain, aur agar koi purani version ki wajah se problem thi, to wo ab fix ho chuki hogi.
+
+Express install.
+npm install express
+website bnany k liya bna hai
+http limited hai static file serve nhi kr skty ki security kinti bar kinita code likho sever bnany k bad chezy kasy manage 
+kro gy getrequest postrequest ya sab handle k liya custom code likhna prna esliya bnanay
+
+
+nodemon install terminal
+npm i --global nodemon
+
+
+Request paramters and quires
+
+const express = require("express"); // Import Express bhut bara package hai esmy modules hai
+const app = express(); // Create an Express app
+
+
+jab b app sy router bnaty 2 chezy hoti phla path dosra hanlder function ma 2 paramter req res
+Handler function ek function hota hai jo request ko process karta hai aur response bhejta hai.
+req or res object hai
+
+app.get app.post app.put and app.delete
+// GET request handle kar raha hai
+
+get request ka mtlb jab b ham browser ma kuch b dalty hai tu ya get request hoti by defualt 
+ham html bna kr post request kr ksty 
+
+ya khta hai jab b es path pr request aye ya chla dn
+app.get("/:slug/:second", (req, res) => {
+    res.send("Welcome to the Home Page!$req.params.slug");
+});
+
+Slug:
+Slug URL ka wo hissa hota hai jo human-readable hota hai. Yeh usually kisi specific page ka identifier hota hai.
+Slg ka istemal static content ya kisi specific page ko dikhane ke liye hota hai.
+Slug ka use mostly SEO (Search Engine Optimization) ke liye bhi kiya jata hai kyunki yeh easily samajhne wala hota hai.
+Example of Slug:
+URL: https://example.com/blog/javascript-tutorial
+/blog/javascript-tutorial is a slug.
+Yeh ek specific blog post ko refer karta hai, jisme "JavaScript Tutorial" ka title diya gaya hai.
+URL ka ? ke baad ka part query string kehlata hai, jisme key-value pairs hote hain.
+?q=helo
+q = query key (Google me iska matlab hota hai "query")
+
+helo = jo user ne type kiya wo value hai
+Query Parameters:
+Query Parameters wo variables hote hain jo URL ke end mein ?key=value ki form mein hote hain.
+Yeh dynamic content ko filter karne ke liye use kiye jate hain.
+Query parameters ka use mostly search ya filters ki situation mein hota hai.
+Example of Query Parameter:
+URL: https://example.com/search?query=javascript
+?query=javascript is a query parameter.
+Yeh kisi search query ko specify karta hai jo javascript hai.
+
+/blog/technology?search=ai
+Yahan:
+/blog/technology = Slug → technology category dikhani hai
+?search=ai = Query → us category me ai keyword se related articles dhoondhnay hain
+
+jo hamri category hoti wo slug key value query
+
+
+req.params.slug
+manulay start na krna ry
+
+estra ham varvaile bna ksty slug ak object hai  jo hamko milta hai us object ma hota hai jo hamny
+variblae bnaye hai url paramter ya mil jaty
+slug ka mtlb jo b routing pr aye wo nichy res pr send krdy
+
+phly rout dety kya route banana chaty (page ka name/about)wagira
+agr hamny kuch chez search ki tu har ak liya data hai tu route bnana pry ga ham slug use kry gy jo diya usko slug lo or find kro route pr
+
+console.log(slug.parmas)//witt output{object}
+ak object aye ga terminal ma 
+
+usmy queires hoti 
+https://www.youtube.com/watch?v=R11tvGM3nDY&list=PLu0W_9lII9agq5TrH9XLIKQvv0iaF2X3w&index=89
+agr ? estra k kam krny ya hamry pas question mark bad ki chezy lata
+slgu.params ya varibale lata
+console.log(req.query)
+
+req.params ya object return slug ka
+req.query ya ? esky bad wala return kry gu
+ console.log(req.query); // Query parameters ko print karega
+    res.send(req.query);
+
+req.query → ?key=value format wali values ko get karne ke liye.
+
+
+// Server ko port 3000 pe run kar raha hai
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
+
+Request ek generic type hai jo 4 cheezein specify karta hai:
+
+Position	Name	Represents
+1st	Params	req.params → route parameters (/user/:id)
+2nd	ResBody	res.send() ka data type (optional)
+3rd	ReqBody	req.body → request body ka type (✅ yeh important hai signup ke liye)
+4th	Query	req.query → URL query parameters (optional)
+
+✅ Aapka Case:
+
+
+let express = require('express');
+let app = express();
+
+app.get('/:slug', (req, res) => {
+  const { slug } = req.params;
+  const query = req.query;
+
+  // Option 1: Convert query object to JSON string
+  res.send(`Welcome to the page: ${slug}, with query: ${JSON.stringify(query)}`);
+
+  // Console for developer
+  console.log("Query Parameters:", query);
+});
+
+app.listen(3000, () => {
+  console.log("Server running at http://localhost:3000");
+});
+
+
+YouTube ka jo search functionality hota hai, woh bhi isi tarah ka kaam karta hai
+. Jab aap YouTube par kuch search karte ho, to search query URL ke through
+ backend tak pahuchti hai, aur phir backend database (jaise YouTube ka database) 
+se relevant data fetch karke user ko display kar diya jata hai.
+
+Yeh exact flow aap apne application me implement kar sakte hain.
+
+
+Static Files
+app.use(express.static('public'))
+app.use(express.static('files'))
+
+app.use(express.static('public')) public folder ko static bana deta hai.
+app.use(express.static('files')) agar file public me na mile to files me dhundega.
+
+Static files wo hoti hain jo server se as it is client (browser) ko bhej di jati hain — bina kisi backend processing ke.
+app.use middleware ko use krny k use hota hai 
+express.static ak built in middleware hai jo khtata hai public folder ko public bna dn
+ak file bna o public wo ma sab ko dena chata hn
+agr sever pr harry.txt likho ni aye gi agr allow krdu tu ya sab file mil jaye gi
+kon chata backend ka source code dekhana
+http na use kro express use kro production webiste k liya bna hai
+
+ak public folder bna o usmy file phank dn
+phr ajaye gi
+jo public ma dalo wo acess hoajye gi url am liky
+
+app.use(express.static('public')); // 'public' folder frontend files rakhta hai
+project/
+├── backend/
+│   ├── public/
+│   │   ├── index.html
+│   │   ├── style.css
+│   │   ├── script.js
+│   │   └── logo.png
+│   ├── server.js
+
+entry or exit point ma jo kam krawan middleware
+ham html css rkhty public ma
+agr app.use phyl likho ya end ma chly ga middleware ha
+
+relative path ./about estra pta lg jata
+absoulte path route sy path lana 
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+
+npm init -y
+package file
+
+atomitic server restart bodemon sy
+
+Response, Request and Routers in Express
+
+Handling post and other request
+
+get reuqest basic browser by defult get request istmal krta
+esmy limit hoti zyada data url ma ni dy skty zayda deta hai 8 kb limit hoti eski 
+
+post request 
+
+POST Request Use Karne Ki Common Situations:
+User Data Submit Karna (e.g., login, signup, contact form)
+Database Me Data Insert Karna
+File Upload Karna
+Form Submission Handle Karna
+Sensitive Information Send Karna (kyunki URL me show nahi hota)
+
+
+app.use(express.static('Public'));  // Static folder serve kar raha hai
+app.use(express.json());  // JSON parsing enable karna zaroori hai (agar post request me JSON bhejna ho)
+
+
+app.post(
+req.body mein wo data hota hai jo POST, PUT ya PATCH request ke through bheja jata hai.
+
+put request update krny k liya use hoti
+
+
+chianing HTTP
+
+
+app.post('/',(req,res)=>{
+    res.sendFile("templlate/index.js")
+}).put()
+
+postman ma ham workplaces bnaty or colllections
+ya kisi dost ko collction dy ksty usky pass requests ajye gi ya
+ya faida hai 
+
+ak template folder ban o usmy index file rkho html phr 
+jab url k sath request aye get tu wo show krwa du
+
+
+app.get('/index',(req,res)=>{
+consoel.log("Hello")
+res.sendfile("templlate/index.js",{root:__dirname})
+}
+
+ab error aye ga computer ko ni pta hamy spaefy krna pry ga express ko b ni pta 
+root specify krna prnaa
+ham abosute path dy gy {root:__dirname} es folder ki directly return krta
+postman use krna API testing k liya
+
+
+
+Express Router
+Is code ka kaam Express Router ka istemal karke modular routing banana hai. Iska matlab hai ke aap routes
+ ko alag file me manage kar rahe hain taake code maintainable aur organized ho.
+
+riuter hamy chezo ki organze krny k liya help krta hai
+ak folder router banye gy usmy files bnaye gy
+
+const express=require('express');
+const router=express.Router();
+
+
+router.get('/',(req,res)=>{
+    res.send('I m Homepage');
+})
+
+router.get('/about',(req,res)=>{
+    res.send("I m About Page");
+})
+
+
+module.exports=router;
+
+const birds = require(./pagename)
+
+// ...
+main.js ma
+app.use('/pagename')
+
+
+eska mtylb hai ma blog file pr jao tu usko ya route handle kry ga
+/blog sy endpoint hai usko ya handle kr rha
+usky bad main apni file ma
+app.use('filename',sting k bagir name file ka)
+
+mtlb alg alg files bnai or main ma akr app.use krky usko require kr use kiya
+mtlb /blog sy jo surur hogi usko ya file hanlde kry gi routes ko alida alida code read or asan hoga
+/blog sy start hony wala end hony waly point ko ya hanlde kry gi
+
+
+HTTP methods (GET, POST, etc.) sirf routes define karne ke liye use hote hain.
+Lekin real-world applications mein hume request ko process karne aur security, 
+validation, logging jese tasks perform karne ki bhi zaroorat hoti hai. Yahan middleware ka role aata hai.
+
+
+
+
+Middleware
+Middleware Express.js ka ek function hota hai jo request (req) aur response (res) ke beech execute hota hai.
+ Yeh request ko modify kar sakta hai, response bhej sakta hai ya next middleware ko call kar sakta hai.
+
+request i match hoe esky andr aya response send kiya simple ma middleware k bagir
+middleware request ko mofdify krta usko pkr leta kha jarhi rok us k sath kam krna start kr deta
+k
+request i get sy math hoe response chala gya req i
+middleware es request ko modify krta hai us k sath kam krna start kr deta hai
+
+app.use(express.stataic('public")
+yha request i dekha public ma file hai send krdi khtm kam midd
+jab send ma koi response send krna
+
+
+wrting middleware
+ham ka function bnaty usko app.use ma dal dety
+ham apan middleware bna skty 
+ak function bna o usko app.use ma dal dn
+
+app.use((req,res,next)=>{ req aya next agla middleware
+kyo krty middleware 
+
+}
+bhut sary bna skty middlewares
+
+app.use((req,res,next)=>{ req aya next agla middleware
+
+
+}
+request k jany sy phly ya donu function chly
+agr na chlao next request yhi phas jaye gi express ka syntax hai request hanging rh jaye gi agy nhi chly ga localhost
+
+agr ham middleware pr hi reponse send krdy agy next nhi chly ga mtlb request send hogi bat khtm next krny sy koi faida nhi
+estra na kry agr middleawr ma bhjna next na kro
+
+kyo use krna
+middlware 1 login krta application ham chlty request log hn kab arhi kis data ko arhi esko ham file ma likh dy
+jitni bar refesh kro page data store hoga file ma
+
+yha ham request ko phly modify kr ksta hn
+req ma kuch add kr skty 
+req.harry=56;
+esko ham get ma jakr send kr skta
+agr ham chk kry request sy phly kya user login hai kr ksty run middleware
+
+
+const myLogger = function (req, res, next) {
+  console.log('LOGGED')
+  next()eska mtlb agla middleware ko control dena
+agr na dy tu request hanging rah jaye gi load hota rhy ga page
+}
+
+app.use(myLogger)
+
+yha ham request kophly modify kr ksty
+
+ak aisa function jo har request sy phly chly ga es case ma blog wali request sy phly chlyga esky res object hai req object b hai
+req ko modify kr ksty athentcation b kr skta jo har route k liya chly middleware use kro
+or finaly route/.abourw ma bhj skta requets ko
+koi b chez aiaa krny chty har route k liya chly tu kr ksty
+order imporntant hota
+jo bad ma chla middlearw chla 
+
+types middleware
+application middleare
+jo ham khud bnaty hai app.use krky
+
+router level middleware
+jo ham partiular router ma bnaty jo speific router ma kam kry ga
+router.use krky
+jo esky liya chlta
+
+error handling middleware
+agr koi error ajata hai ham usko handle krky kya krna chaty hai
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
+
+built in middleware
+jasy hamny static use kiya statci files ko hanlde krny k liya 
+expres.josn incoming request ko parse kry ga
+express package k andr mila hota phly
+
+third party middleware
+npm krky install krskty
+yani kisi or ny middleware ap k liya likh diya ap usko npm krky apni application ma import kr rhy app.use likh rhy 
+app.use krky
+$ npm install cookie-parser
+const express = require('express')
+const app = express()
+const cookieParser = require('cookie-parser')
+
+// load the cookie-parsing middleware
+app.use(cookieParser())
+
+
+asa function jo har request k liya chly midlewareuse kro
+
+Templates engine
+
+ak sitename databse sy aya
+let sitname='Saqib';
+let sreachtext='Helo';
+ma esko tmeplate ma kasy dalo
+en varibales ko html ma kasy dalosolution tmeplstes engine
+ejs is template engine
+
+ak get request hai usmy varible hai usko template ma aksy daly
+vaiavle ko tmeplaet k andr bhatnay k liya
+ham chalty do varibale index.html ma chlaty jaye
+ejs ak template engine hai esko istamla krny k liya
+npm i ejs
+using check express.js
+phly app.set ('view engine ,ejs') express js ma
+tmeplate sengines estra k kamo k liya varibales ko tmeplest k and behtanyk liay
+ma chta ya do varibale inde.html ma jaye
+or kiskm k engine hoty ya ejs hai 
+app.get(/(req,res)=>{
+res.render(file send,{blogtitel:blogtitel:})
+}
+jaisy data aye databse sy send krdu index.html or use kro varibales ki value ko render krta
+
+
+folder ka name views
+ak folder banye gy views
+file ka name index.ejs
+<%=varibalename %> esmy varibel name hai uski jo value hai wo yha put hogi
+
+
+hamny ak header bnanay eska component bna na chta or jha chaye use kr ksty include krky
+
+install npm cors
+let cors=require(cors);
+
+CORS (Cross-Origin Resource Sharing)
+CORS ek security mechanism hai jo browser enforce karta hai taake ek website kisi doosri website ke API ya resources ko directly access na kar sake bina proper permission ke.
+ak website sy dosri website pr requets bhjna smae origin pr 
+
+Jab frontend aur backend alag servers par hote hain, to browser CORS error de sakta hai. Example:
+
+✔ Frontend: http://localhost:3000
+✔ Backend: http://localhost:5000
+
+Agar frontend backend se API call karega, to browser CORS policy ki wajah se request block kar sakta hai.
+
+
+Agar aap Express.js ka use kar rahe hain, to cors package install karke CORS enable kar sakte hain.
+npm install cors
+
+app.use(cors()); // CORS Allow Sabhi Domains ke liye
+
+CORS Specific Domain ke liye Enable karna
+Agar aap sirf ek particular domain ko allow karna chahte hain:
+
+app.use(cors({
+    origin: 'http://localhost:3000' // Sirf is frontend se request allow hogi
+}));
+
+
+
+Body-Parser
+
+
+body-parser – Form data ya JSON read karne ke liye
+📦 Purpose:
+Client (frontend) se aane wale JSON ya URL-encoded data ko backend mein easily access karne ke liye.
+
+📋 Use Case:
+Tumne frontend se koi form bheja ya React se fetch/axios ke zariye JSON bheja, to body-parser usko readable banata hai.
+
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+
+// JSON ke liye
+app.use(bodyParser.json());
+Ye line batati hai: agar client JSON format me data bhej raha hai (e.g., from React, Postman), 
+to Express use parse kar le taake hum req.body me usay access kar saken.
+
+// Form (URL-encoded) ke liye
+app.use(bodyParser.urlencoded({ extended: true }));
+Agar koi HTML form POST method se data bhejti hai (jese contact form), to wo URL-encoded format hota hai.
+Ye line wo data parse karne ke liye use hoti hai.
+
+
+app.post('/submit', (req, res) => {
+  console.log(req.body); // { name: 'Ali', email: 'ali@example.com' }
+  res.send('Data received!');
+});
+
+mainma hn ya
+✅ Express khud hi JSON ko object me parse kar deta hai — bas ek middleware lagana padta hai:
+app.use(express.json()); // ✅ Ye line hona lazmi hai!
+
+
+Multer
+Multer ek middleware hai jo file upload ke liye Express.js ke saath use hota hai. 
+Ye client se file ko handle karta hai (e.g., images, documents) aur server par usse save karne mein madad karta hai.
+
+Multer kya hai?
+Multer ek library hai jo Node.js/Express mein file upload handle karti hai.
+Jab user website ya app se koi file (jaise image ya document) upload karta hai, to multer us file ko server pe process karne mein madad karta hai.
+Browser files ko multipart/form-data format mein bhejta hai, jo normal Express middleware samajh nahi pata — is liye multer use hota hai.
+Is code ka matlab kya hai?
+import multer from "multer";
+
+Multer ko apne project mein use karne ke liye import kar rahe hain.
+const upload = multer();
+Ye multer ka instance banaya gaya hai.
+Kyun ke humne koi storage specify nahi ki, to by default ye file ko server ke memory (RAM) mein temporarily rakhega.
+app.post('/assests/user/assests-data', upload.single('image'), AssetsSave);
+Ye ek POST request ka route hai jo /assests/user/assests-data pe chalta hai.
+upload.single('image') matlab ye route sirf ek file accept karega jiska field name "image" hai.
+Jab file upload hoti hai, multer us file ko request ke andar req.file mein dal deta hai.
+
+Phir ye request AssetsSave function ko pass hoti hai jahan file ke saath kaam ho sakta hai (jaise save karna, process karna waghera).
+npm install multer
+const express = require('express');
+const multer = require('multer');
+const path = require('path');
+const app = express();
+
+
+File Object ka Matlab:
+fieldname: 'image'
+
+Ye wo naam hai jo client ne form mein file ke liye diya tha. Matlab aapne multer ko bataya tha upload.single('image'), to ye file usi field se mili hai.
+originalname: 'Logo.PNG'
+Ye file ka asli naam hai jo user ne apne device se upload kiya tha.
+encoding: '7bit'
+Ye file ka encoding format hai (usually ye server ke liye hota hai, aap ko zyada tension lene ki zarurat nahi).
+mimetype: 'image/png
+Ye file ka type hai. Matlab ye ek PNG image file hai. Ye important hota hai taake aap check kar sako ke user allowed file type hi bhej raha hai.
+buffer: <Buffer 89 50 4e 47 ...>
+Ye file ka asli data (content) hot hai, jo memory mein ek Buffer (binary data ka container) ki form mein rakha hota hai.
+Matlab ye aapke image ke raw bytes hain, jinhein aap read, save, ya kisi aur jagah upload kar sakte ho.
+size: 14668\
+
+
+File ka size bytes mein, yani ye image file ka size 14,668 bytes (around 14.3 KB) hai.
+
+
+// File storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // Folder where files will be saved
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    // Filename format (e.g., file-originalname.extension)
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+
+// Initialize multer with storage configuration
+const upload = multer({ storage: storage });
+
+// POST route for file upload
+app.post('/upload', upload.single('file'), (req, res) => {
+  // 'file' is the field name used in form
+  console.log(req.file); // The uploaded file info
+  res.send(`File uploaded successfully: ${req.file.filename}`);
+});
+
+// Start server
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
+});
+
+destination function:
+Ye function batata hai ki uploaded files ko kis folder mein save karna hai.
+Is function mein hum file ka destination path set karte hain.
+
+destination: (req, file, cb) => {
+  // 'uploads/' folder mein file save karenge
+  cb(null, 'uploads/');
+}
+req: Request object.
+file: File object, jo incoming file ka details hota hai.
+cb: Callback function jo null aur file destination path ko pass karta hai.
+
+Explanation:
+destination function uploads/ folder mein file ko save karega. Agar aap chahein t
+o yeh path dynamically bhi set kar sakte hain, jaise user ID ke hisaab se alag folder bana sakte hain.
+
+
+. filename function:
+Ye function define karta hai ki uploaded file ka naam kya hoga jab wo server pe save ho.
+Hum file ka naam customize kar sakte hain, jaise timestamp, random number, ya original file name ke saath.
+
+Example:
+filename: (req, file, cb) => {
+  // File ka naam current timestamp ke saath aur file extension
+  cb(null, Date.now() + path.extname(file.originalname));
+}
+Date.now(): Ye current timestamp ko return karta hai (milliseconds mein). Isse file ka naam unique ho jata hai.
+path.extname(file.originalname): Ye file ke original extension ko retrieve karta hai (e.g., .jpg, .png).
+Explanation:
+Ye function ensure karta hai ki har file ka naam unique ho, jisse file name collision na ho. 
+For example, agar aap ek hi naam se multiple files upload kar rahe hain to timestamp se unka naam alag ho jata hai.
+
+
+
+
+2. multer-gridfs-storage
+^
+→ iska matlab hai string ki shuruat (yani match start se hi hoga).
+
+[A-Z]{4}
+→ pehle 4 letters sirf capital alphabets hone chahiye (A–Z).
+👉 Example: SCBL
+
+[A-Z]{2}
+→ agle 2 letters bhi alphabets hone chahiye (country code).
+👉 Example: PK
+
+[A-Z0-9]{2}
+→ uske baad 2 characters ho sakte hain letters (A-Z) ya digits (0–9).
+👉 Example: KX
+
+([A-Z0-9]{3})?
+→ ye optional part hai (? ka matlab 0 ya 1 dafa aana).
+→ agar ho, to 3 characters hone chahiye (A–Z ya 0–9).
+👉 Example: XXX
+
+$
+→ iska matlab hai string ka end (yani match end tak hi valid hoga).
+
+📌 Purpose:
+Ye multer ka ek special storage engine hai jo uploaded files ko directly MongoDB GridFS bucket me store kar deta hai instead of local disk.
+
+🔹 Use case:
+
+Jab aap local disk par file save nahi karna chahte, seedha Mongo Atlas ke GridFS bucket me store karna chahte ho.
+
+💡 Example:
+
+import { GridFsStorage } from "multer-gridfs-storage";
+
+const storage = new GridFsStorage({
+  url: process.env.MONGO_URI,
+  file: (req, file) => {
+    return { filename: file.originalname };
+  }
+});
+const upload = multer({ storage });
+
+3. gridfs-stream
+
+📌 Purpose:
+gridfs-stream ka use MongoDB ke GridFS ke andar files ko read/write/download karne ke liye hota hai.
+
+🔹 Use case:
+
+GridFS me save ki hui PDF ya image ko download karna.
+
+GridFS me programmatically write karna (multer ke bina bhi).
+
+💡 Example:
+
+import Grid from "gridfs-stream";
+const gfs = Grid(conn.connection.db, mongoose.mongo);
+gfs.collection("invoices");
+
+// File read
+gfs.createReadStream({ filename: "invoice.pdf" }).pipe(res);
+
+4. pdfkit
+
+📌 Purpose:
+pdfkit ek Node.js library hai jo aapko backend par PDF documents dynamically generate karne ki power deti hai.
+
+🔹 Use case:
+
+Invoices banani
+
+Tables, logos, aur custom text ke saath PDF create karni
+
+Report generation
+
+💡 Example:
+
+import PDFDocument from "pdfkit";
+
+const doc = new PDFDocument();
+doc.text("Hello, Invoice!");
+doc.pipe(fs.createWriteStream("invoice.pdf"));
+doc.end();
+
+Summary Table:
+Library	Purpose	Example Use
+multer	File upload handle karega	User ne image upload ki
+multer-gridfs-storage	multer ke saath direct GridFS me save karega	Upload → Mongo Atlas
+gridfs-stream	GridFS me file read/write	PDF download karna
+pdfkit	PDF generate karna	Invoice banani
+
+
+Ah! “Blob” ka matlab hai Binary Large Object.
+
+Simpler terms me:
+
+Jab aap file, image, PDF, video, ya kisi bhi binary data ko JavaScript me handle karte ho, usko Blob object me store karte ho.
+
+Blob basically raw data ka container hai jise aap download, preview, ya upload kar sakte ho.
+
+Example: PDF download ke liye
+const res = await fetch("/some-invoice.pdf");  // server se PDF fetch
+const data = await res.blob();                // PDF ko Blob me convert
+
+// Temporary link create karke download karwa rahe hain
+const url = window.URL.createObjectURL(data);
+const link = document.createElement("a");
+link.href = url;
+link.setAttribute("download", "invoice.pdf");
+document.body.appendChild(link);
+link.click();
+link.remove();
+
+4️⃣ Convert response to Blob
+const blob = await response.blob();
+
+
+response.blob() ka matlab hai ke raw binary data (PDF file) ko Blob object me convert kar do.
+
+Browser me Blob ko download ya file reader me use kiya ja sakta hai.
+
+res.blob() → server se aane wale raw data ko Blob object me convert karta hai.
+
+URL.createObjectURL(blob) → browser me temporary URL create karta hai jise aap file download ya preview ke liye use kar sakte ho.
+
+💡 Simple analogy:
+Blob ek file ka “in-memory copy” hai jo browser me temporarily rakha ja sakta hai aur fir aap usko download, view ya upload kar sakte ho.
+
+
+
+Jest Framework 
+
+check code testing to free bugs free code
+asyncous code testing
+expect(fetchData()).resolves.toBe('Success');  // Jab resolve ho
+expect(fetchData()).rejects.toMatch('error');  // Jab reject ho
+
+sychronous testing
+//Jest Testing
+// function sum(a, b) {
+//     return a + b;
+//   }
+  
+// test('adds 2 + 3 to equal 5', () => {
+//     expect(sum(2, 3)).toBe(4);
+//   });
+
+
+const numbers = [1, 2, 3];
+
+const squaredNumbers = numbers.map(async (n) => {
+    return n * n;
+});
+
+console.log(squaredNumbers); 
+// Output: [Promise, Promise, Promise] -> abhi resolve nahi hua
+
+const results = await Promise.all(squaredNumbers);
+console.log(results); 
+// Output: [1, 4, 9] -> ab sab promises resolve ho gaye
+
+git merge Backend --allow-unrelated-histories
+
+
+Crypto
+
+Node.js ka crypto module ek built-in module hai jo cryptographic operations perform karne 
+ke liye use hota hai, jaise encryption, decryption, hashing, and other security-related tasks. 
+Iska use aap data integrity, password security, secure communication, etc. ke liye kar sakte hain.
+
+Crypto Module Ka Use Cases:
+Hashing (Password hashing, data integrity checks)
+Encryption & Decryption (Protect sensitive data)
+Random Data Generation (For secure tokens, salt, etc.)
+Digital Signatures (For authentication)
+
+
+1. Hashing
+Hashing ek mathematical operation hai jo input data ko ek fixed-length string mein convert kar leta hai. Yeh irreversible hota hai, matlab jab data hash ho jata hai, to usse wapas original data ko retrieve nahi kiya ja sakta.
+
+createHash() Method:
+Iska use aap data ko hash karne ke liye karte hain (jaise password ko store karte waqt).
+
+Example: SHA-256 Hashing
+const crypto = require('crypto');
+// Creating a hash object (SHA-256 algorithm)
+const hash = crypto.createHash('sha256');
+
+// Updating the hash object with the data (message to be hashed)
+hash.update('Hello World!');
+
+// Finalize the hash and get the result in hex format
+const hashedValue = hash.digest('hex');
+console.log(hashedValue);  // Output: a591a6d40bf420404a011733cfb7b190d62c65bf0bcda080d750c17b497f4095
+
+hash: Yeh ek hash object hota hai jo createHash() method se create kiya gaya hota hai.
+digest(): Yeh method aapko final hashed output deta hai, jo aapke input data ka hash hota hai.
+'hex': Yeh ek encoding format hai jo digest() method ko batata hai ke aap output ko kis form mein chahte hain. 
+'hex' ka matlab hai ki result hexadecimal string format mein return hoga.
+binary b hoita 
+
+Why Hashing?
+
+Password Storage: Aap apne users ke passwords ko hashed form mein store karte hain, taki agar koi data breach ho, to actual password leak na ho.
+Data Integrity: Jab aap data transfer karte ho, to uska hash create kar ke check karte ho ke data tamper (change) na ho.
+Example Algorithms: SHA-256, SHA-512, MD5 (although MD5 ab insecure hai).
+
+No data Deencrypte
+
+
+
+2.Encryption/Decryption
+Encryption ek process hai jisme sensitive data ko ek secure form (ciphertext) mein convert kar diya jata hai.
+ Jab aapko data ki zarurat ho, to decryption se usse original form (plaintext) mein convert karte hain.
+Symmetric Encryption: Yeh mein ek hi secret key se encryption aur decryption dono hote hain.
+
+createCipheriv() and createDecipheriv() Methods:
+Iska use symmetric encryption (AES, DES) mein hota hai, jahan ek secret key aur initialization vector (IV) ka use kiya jata hai.
+Binary form (0 aur 1) — Har data ya character computer ke liye binary numbers hota hai.
+Example: 01001101 10010110 00101011 (yeh random bits hain)
+
+
+const crypto = require('crypto');
+
+// AES encryption parameters
+const algorithm = 'aes-256-cbc';  // AES algorithm with CBC mode
+const secretKey = '12345678901234567890123456789012';  // 32-byte key for AES-256
+const iv = crypto.randomBytes(16);  // 16-byte random IV
+
+// Encrypt a message
+function encrypt(text) {
+  const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
+  let encrypted = cipher.update(text, 'utf8', 'hex');
+  encrypted += cipher.final('hex');
+  return encrypted;
+}
+
+// Decrypt a message
+function decrypt(encryptedText) {
+  const decipher = crypto.createDecipheriv(algorithm, secretKey, iv);
+  let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
+  decrypted += decipher.final('utf8');
+  return decrypted;
+}
+
+const message = 'Hello World!';
+const encryptedMessage = encrypt(message);
+console.log('Encrypted:', encryptedMessage);
+
+const decryptedMessage = decrypt(encryptedMessage);
+console.log('Decrypted:', decryptedMessage);
+
+
+
+
+Algorithm:
+const algorithm = 'aes-256-cbc';
+AES-256-CBC ek AES encryption algorithm hai jo CBC mode me kaam karta hai.
+AES ka matlab hai Advanced Encryption Standard, jo symmetric encryption algorithm hai (same key for encryption and decryption).
+256 ka matlab hai ki encryption ke liye 256-bit key use ki jati hai, jo kaafi secure hoti hai.
+CBC ka matlab hai Cipher Block Chaining mode, jo data ko blocks me encrypt karta hai aur har block ko previous block ke saath chain karta hai.
+First Block: Pehle block ko directly encryption key ke saath encrypt kiya jata hai, lekin isse pehle uss block ko previous 
+ciphertext (jo initial block ke liye random hota hai) ke saath XOR kiya jata hai.
+Yeh process ek chain banata hai, jisme har block ka encryption previous block par depend karta hai. 
+CBC mode ka main faida yeh hai ke agar koi ek block modify ho jata hai, to agle block bhi uss change se affect honge, jo security ko enhance karta hai.
+
+Secret Key (32-byte key):
+const secretKey = '12345678901234567890123456789012';
+AES-256 algorithm ko 32-byte (256-bit) secret key ki zarurat hoti hai. Yeh key sirf encryption aur decryption dono ke liye use hoti hai.
+Is example mein, secretKey ko hard-coded rakha gaya hai (jo real-world mein secure nahi hota, aur aapko ideally yeh key securely store karni chahiye).
+
+Initialization Vector (IV):
+const iv = crypto.randomBytes(16);
+Initialization Vector (IV) ek random value hota hai jo encryption process ko randomize karta hai, taake same data ko encrypt karte waqt har baar different output mile.
+
+AES-256-CBC mode ko 16-byte ka IV chahiye, jo yeh line generate kar rahi hai. Yeh IV randomly generate hota hai har encryption ke liye.
+
+Important Points:
+Secret Key ko aapko securely manage karna hota hai. Agar key kisi ko mil gayi to woh encrypted data ko decrypt kar sakta hai.
+IV (Initialization Vector) ko bhi securely handle karna zaroori hai. IV ko har encryption ke saath random generate karna chahiye taake data ka encryption strong ho.
+AES-256-CBC mode ko encryption ke liye strong aur commonly used option mana jata hai, lekin yeh bhi ensure karna padta hai ki key aur IV sahi tarah se generate aur manage ho.
+
+
+
+
+3. Random Data Generation
+Random Data Generation ka use aap secure tokens ya salts generate karne ke liye karte hain. 
+Yeh random values security operations (jaise password hashing aur session management) mein kaafi useful hoti hain.
+randomBytes() Method:
+
+
+const crypto = require('crypto');
+// Generate 16 random bytes
+const randomData = crypto.randomBytes(16);
+
+// Convert the random bytes to hexadecimal string format
+console.log(randomData.toString('hex'));  // Example output: b8b9c3b4d5a4d5fdb80b9c98b5cf3b82
+Why Use Random Data?
+
+Salts in Password Hashing: Jab aap passwords ko hash karte hain, to salt ka use hota hai, jo ki random bytes hoti hain. 
+Yeh ensure karta hai ke identical passwords ka hash different ho.
+Session Tokens: Secure sessions create karte waqt random tokens generate kiye jaate hain jo unique hote hain.
+
+
+
+4. HMAC (Hash-based Message Authentication Code)
+HMAC ek cryptographic technique hai jisme aap hashing aur secret key ko combine karte hain taake ek secure message authentication code (MAC) generate kiya ja sake. Yeh ensure karta hai ke data tamper-proof hai.
+HMAC ek secret key + hash function ka combination hota hai jo verify karta hai ke data tamper nahi hua.
+
+createHmac() Method:
+const crypto = require('crypto');
+
+// Secret key for HMAC
+const secret = 'supersecretkey';
+const message = 'Hello, authenticate me!';
+
+// Create HMAC with SHA-256
+const hmac = crypto.createHmac('sha256', secret);
+hmac.update(message);
+
+// Generate the HMAC value in hexadecimal format
+const hmacDigest = hmac.digest('hex');
+console.log(hmacDigest);  // Example output: d5a6f75e12b8ba010f4edc98d98f0a3dbbeefb5e7d8a9d0ab9c2f1164f9c071f
+Why Use HMAC?
+Data Integrity: HMAC ensure karta hai ki message ke saath khel nahi kiya gaya aur yeh ek trusted sender se aaya hai.
+Authentication: HMAC ka use secure communication mein hota hai, jahan sender aur receiver dono ek shared secret key use karte hain.
+
+
+
+5. Digital Signatures
+Digital signatures ka use kisi message ko authenticate karne ke liye kiya jata hai. Yeh ek cryptographic process hai jisme message ke saath private key se signature generate hota hai. Receiver public key se verify kar sakta hai ke message authentic hai ya nahi.
+
+createSign() and createVerify() Methods:
+Example: Digital Signature Creation and Verification
+
+const crypto = require('crypto');
+
+// Generate RSA keys
+const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
+  modulusLength: 2048,
+});
+
+// Create a signature for a message
+const sign = crypto.createSign('SHA256');
+sign.update('This is a secret message');
+const signature = sign.sign(privateKey, 'hex');
+console.log('Signature:', signature);
+
+// Verify the signature using the public key
+const verify = crypto.createVerify('SHA256');
+verify.update('This is a secret message');
+const isVerified = verify.verify(publicKey, signature, 'hex');
+console.log('Signature Verified:', isVerified);  // Output: true
+Why Use Digital Signatures?
+
+Authentication: Yeh confirm karta hai ki message kisi trusted entity ne sign kiya hai.
+
+Non-repudiation: Signer (jo message ne sign kiya) ko uss message ke liye responsible banata hai, aur woh usse deny nahi kar sakta.
+
+Summary:
+Hashing (createHash()): Data ko fixed-size string mein convert karta hai, useful for passwords and data integrity checks.
+Encryption/Decryption (createCipheriv(), createDecipheriv()): Sensitive data ko secure form mein convert karta hai aur decryption se original form mein wapas laata hai.
+Random Data (randomBytes()): Secure random values (tokens, salts) generate karta hai for secure operations.
+HMAC (createHmac()): Message ke integrity aur authenticity ko verify karta hai by combining hashing with a secret key.
+Digital Signatures (createSign(), createVerify()): Messages ki authenticity verify karta hai using private and public keys.
+
+
+. Hashing (Irreversible):
+One-way hota hai, matlab:
+Aap password123 ka hash bana sakte ho.
+Lekin us hash se wapas password123 nahi nikal sakte.
+Iska faida:
+Jab user password enter karta hai, system uska hash banata hai aur database me stored hash se compare karta hai.
+Is tarah, original password kabhi save hi nahi hota, secure hota hai.
+User input ➝ hash ➝ compare with saved hash ✔
+ 3. HMAC (Hash-based Message Authentication Code):
+Yeh bhi irreversible hota hai.
+Lekin isme ek secret key bhi hoti hai hash ke saath.
+Use hota hai jab aapko check karna ho ke message tampered hua hai ya nahi.
+Use case: API authentication, JWT token signing, etc.
+
+Message + Secret Key ➝ HMAC
+
+
+
+ const hashedPassword = await bcrypt.hash(user.password, 10); // Simulating saved hash in DB
+ const isMatch = await bcrypt.compare(password, hashedPassword);
+
+
+
+✅ Authentication (پہچان ثابت کرنا)
+
+Authentication ka matlab hai "User ka identity verify karna".
+Yeh check karta hai "User kon hai?"
+Example: Jab tum email & password enter karte ho login ke liye.
+Technologies: JWT, Sessions, OAuth, Passport.js   
+
+ 
+✅ Authorization (اجازت دینا)
+
+Authorization ka matlab hai "User ko permissions dena".
+Yeh check karta hai "User ko kya access allowed hai?"
+Example: Ek admin ko sab pages ka access hai, magar ek normal user sirf apni profile dekh sakta hai.
+Techniques: Role-based access control (RBAC), ACL (Access Control Lists)
+
+
+
+ What is process.env?
+process.env ek object hota hai jo tumhare Node.js application ke environment variables ko store karta hai.
+Ye variables mostly configuration values, API keys, URLs, port numbers, etc. hotay hain — jinhein hard-code karna risky hota hai.
+
+MongoDB connection strings
+JWT secret keys
+API keys (Stripe, Firebase, etc.)
+...ko .env file mein rakhtay ho instead of directly code mein likhne ke.
+// ❌ Not Secure
+const mongoURI = "mongodb+srv://username:password@cluster.mongodb.net/mydb";
+
+// ✅ Secure
+const mongoURI = process.env.MONGO_URI;
+Fayda: Agar code GitHub pe daal do, secrets leak nahi hotay.
+ Easier Deployment
+Jab tum app deploy karte ho (Heroku, Vercel, Render, Railway), to wahan bhi environment variables set kiye jaate hain.
+Tumhe sirf .env file ki values wahan set karni hoti hain. Code waise ka waisa rehta hai.
+
+.enc laida file bnaty wha secrets rkhty phr jha use krna process.env.name krky krty
+.env file banao
+
+dotenv package install karo:
+npm install dotenv
+Top of your main file:
+require('dotenv').config();
+
+
+
+
+JWT (JSON Web Token) for authentication
+
+stateless authetication
+ak token hai usmy statre rkh dety 
+espr server pr dependices nhi rhti server ko zarorat nhi token ko store krny ki
+session ma server ma db ma store krny ki zaroat hoti
+ya token ko verisfy krta 
+
+jwt k three parts
+
+Header : esmy ham define krty ham konsa cryptography alogrithm use kr rhy create krny k liya jwt type token :type likhty alogrithm konsa use krna 
+payload:jo user enter krta email id wo store krta 
+Signature: ham bnaty secret key sy check krta token expire tu nhi hogya
+token jab b create krty secret key dalty wo sceret key ko mila kr bnta ham algorihm ma dlaty wo bna kr deta signture bna kr deta
+jab b koi user request bhjy ga server ko apny token k sath wo verify kry ga token ko help of signature
+wohi same scrert key istaml kry ga jo creation ma dyti verify k liya
+
+agr na dn by default define hota ya header
+
+jwt.sign(
+  { id: "123", role: "admin" }, // payload
+  process.env.SECRET_KEY,       // secret
+  {
+    expiresIn: "6h",
+    header: {
+      alg: "HS512",
+      typ: "JWT"
+    }
+  }
+);
+
+🔑 Isiliye aapko payload alagh se dene ki zarurat nahi hoti. payload
+Wo JWT ke andar hota hai already. Bas aapko SECRET_KEY dena hota hai verify karne ke liye.
+
+blue.green.red
+jo kisi user ki information store krta jes sy ham website k pages ma jaksty
+
+Athentication flow
+User hai sab sy phly signup kry ga login
+signup jab user ko create kr rhy 
+login email password ly rhy 
+jab b web ma enter kiya signup kiya jab b login kry gy wo request bhjy ga server ko wo phly anthicate kry ga wo dekhy ga phli dfa aya 
+wo token dy ga payload lyga konsa payload dlana ak key lyga secret or donu ko mila ye ga or ak jwt token banye ga user ko bhj dy ga 
+jab b ham next time protcetd route acess krna chaye gy jes routes ko acess krny k liya username password yani login ki requirment hogi
+ham kya kry gy us waqt username passwrod nhi bhjy gy blky atheroize header k andr ak bear token bhjy gy mtlb jwt token
+jab token aya server k pas wo verify kry ga jo token aya hai usky andr jo signature usko verify kry ga sai hai ya ni
+verify kasy kry ga jo hamny secret key rkha hai us sy verify kry ga jwt token ko jo b resources chaye hogy mil jaye ga
+
+
+User Clinet server
+ 
+user ny name password diya client ny post request bhji jha login krna name password bhj diya server ny ak jwt token banay or return kr diya
+user athenticate hogya user k pas token hai client ny wo apny pas rkh louya
+next time user jo kisi protecd route ya resource ko acess krna chaye ga hoskta profile ki info dekhna 
+wo profile button pr click kry ga client kya kry ga wohi request send krdy ga server ko sath jwt token bhjy ga autherizatoon k liya
+server check kry ga agr sai tu profile open hojaye ga
+
+
+Jwt functions
+jwt.verify() ya token ko verify kry ga dobara token aya usko verify kry ga
+jwt.sign() ya sign kry ga banye ga token ko
+
+token bana ny k liya do chezy chaye hoti ak payload mtlb kon c unique info user ki usmy jes sy pta lg jaye ya wohi user hai
+dosra secreofprivatekey jes sy token genrate hoga
+options paramter algortihm konsa use krna
+verify k liya function jwt.verify(token ,secretkey)
+kon s ckey sy bana ya function scret key
+
+4 din bad ya expire hojayew ga tu khy ga new token la o dobara ham time rkhty hai expire time
+
+
+
+jab ham sighup kry ak token mily 
+login b bnaye gy route person user name dlay ga agr wo sai hai es ka record hai usko ham token dygy wo agy jaky kisi b route pr jakst
+
+
+install jsonwebtoken
+npm install jsonwebtoken
+
+
+let seckey = 'secretkey';
+let jwt = require('jsonwebtoken');
+
+const jwtAuthMiddleware=(req,res,next)=>{
+postman bearer token krna select 
+bearere agy token rhta dena header ma
+const auth=req.headers.authorzation
+if(!.
+authorzation)return res.status(404) invlaid tken not found
+
+const token=req.heders.authorization.spilt(' )[1];
+if(!token)return res.status(401).json({error:unothized');
+try{
+const decode=jwt.verify(token,process.env.JWT_secret);
+jab b token ko verify kry ga tu wo payload return kry ga jo apny payload use kiya tha us payload o bnaty waqt
+jo b decode value aye wo ham server ko pas kr rhy jes route ma use horha 
+req.user=decode;
+next();
+}catch(err){eror
+res.status(401)
+}}
+
+const generatetoken=(userdsata)=>{
+expire date b rkh skty
+return jwt.sign(userdata,secretkey,{expiresIn:30});
+token bna ky return krdy ag
+}
+
+module.exports=funcionname;
+token bna kr dy rha
+jes function ma middleawre dy gy ya wo athroized hojaye ga protect route jesko acess krny kk liya 
+
+import {donu function}=require(filename);
+
+resposne sy phly
+const payload={id:reponse.id,usernmae:response.username}
+const token=generatetoken(payload);
+consoel.lgo(token)
+res.send(response:resposne,token:token);
+token unique hota
+
+website ma jkr dkeht skty jwt ma token
+kya payload pass kiya wo nazr ajye ga
+
+
+
+login k liya name pass3word check krta databse ma phr token bhjta jab b proted ko acess krna wo token bhjta ham chec krty
+time k bad ya token expire hojaye ga ham phr bar bar user ko kh nhi skty wo pora form bhrty signup kry login krty ham tojen dy
+
+//login route
+
+router.get('/login',async (req,res)=>{
+try{
+const {name,passwrod}=req.body;
+const user=await persoin.findone(username:username);
+agr na milya name ya password
+if (!user|!user password)
+user.comparedpassword(passwrod){res.sedn(no)}
+agr sai hai tojke naye gy
+const payload={id:reponse.id,usernmae:response.username}
+ const token=generatetoken(payload);
+consoel.lgo(token)
+res.json(token);
+}catch(error)
+}
+}
+
+cline tko bhjty token kam kro
+protecd routes ko acess krna chty wo kr ksta
+
+ 15 mint bad atomatically token bnao refersh or fronted ko dn 7 din time rkhu user ko bar bar login na krna pry
+
+protect route kasy bnaty
+jes route ma lgana wha pr jwtauthmiddle pas krdena
+mtlb route ko token chaye hoga
+
+
+Session and Cookies
+
+ham jab koi athentcated routes pr jarhy ham username password nhi dyrhy
+esko khty session hamy bar bar dena nhi dena prta name password
+
+jesy hi user phli bar kisi web pr jata user name password deta ham khty ya bnda askta hamri website ma
+uksy bad ham usko token dydaty token dany k bad ham khty es token ko ly kr ja o koi nhi name pawsord pochy ga ya token dy dna
+
+✅ Haan, HttpOnly cookie client side (browser) mein hoti hai
+
+❌ Lekin JavaScript usay access nahi kar sakti
+
+✅ Sirf browser automatically usay har HTTP request mein server ko send karta hai
+
+✅ Yeh method JWT token ke liye sabse secure mana jata hai
+
+JWT token kabhi bhi password nahi contain karta — sirf public info jaise userId/email.
+Token verify hone par JWT sirf signature ko match karta hai using secret key — wo user ka password verify nahi karta.
+Server JWT verify karta hai using secret key. Agar token tampered (badal diya gaya) ho, to signature fail ho jata hai.
+
+
+
+
+🧠 Behind the scenes (Andar kya hota hai):
+jwt.verify() function:
+
+Token ko 3 parts me todta hai (header, payload, signature).
+Signature ko dubara create karta hai using:
+payload + secret key
+Agar signature match ho gaya → token valid ✅
+Fir wo payload ko decode karta hai aur decoded variable me deta hai.
+
+
+  res.cookie('token', token, {
+      httpOnly: true,     // JS se access not allowed
+      secure: true,       // Sirf HTTPS pe send
+      sameSite: 'Strict', // CSRF ke khilaaf
+      maxAge: 3600000     // 1 hour
+    });
+
+Property	Meaning
+withCredentials: true	Cookies ko request ke sath bhejne ki permission deta hai (e.g. JWT in cookie)
+
+app.use(cors({
+  origin: "http://localhost:3000", // 👈 React app ka origin
+  credentials: true               // ✅ Allow cookies from frontend
+}));
+
+
+const express = require('express');
+const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+
+const app = express();
+app.use(express.json());
+app.use(cookieParser());
+
+app.use(cors({
+  origin: 'http://localhost:3000', // React frontend origin
+  credentials: true                // Allow cookies
+}));
+
+const SECRET_KEY = "mysecretkey";
+
+// Fake login route
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  // Demo user check
+  if (email === "test@example.com" && password === "123456") {
+    const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: '1h' });
+
+    // Set token in HttpOnly cookie
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: false, // true in production with HTTPS
+      sameSite: 'lax',
+    });
+
+    res.json({ message: "Logged in!" });
+  } else {
+    res.status(401).json({ error: "Invalid credentials" });
+  }
+});
+
+// Protected route
+app.get('/profile', (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) return res.status(401).json({ error: "No token" });
+
+  try {
+    const user = jwt.verify(token, SECRET_KEY);
+    res.json({ message: "Profile data", user });
+  } catch (err) {
+    res.status(401).json({ error: "Invalid token" });
+  }
+});
+
+app.listen(5000, () => {
+  console.log("Server running on http://localhost:5000");
+});
+
+
+🔐 JWT Structure
+php-template
+Copy
+Edit
+<base64-encoded header>.<base64-encoded payload>.<signature>
+Jaise:
+
+nginx
+Copy
+Edit
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+.
+eyJ1c2VySWQiOiIxMjMiLCJyb2xlIjoiYWRtaW4ifQ
+.
+Gk3aBcYZ-Rcv7JGiGb8uOw0GLH_6iK_qcgHUdTkVC9Q
+✅ JWT Signing (Banate Waqt)
+Jab aap JWT banate ho using jwt.sign(payload, secret):
+
+Header (e.g. { alg: "HS256", typ: "JWT" }) → Base64 encode
+
+Payload (e.g. { userId: 123, role: "admin" }) → Base64 encode
+
+In dono ko jodte hain:
+
+scss
+Copy
+Edit
+base64(header) + "." + base64(payload)
+Phir is string ka HMAC-SHA256 signature banta hai using your secret key
+
+signature = HMAC_SHA256(base64(header) + "." + base64(payload), secret);
+Signature ko bhi Base64 me encode karke 3rd part ban jata hai:
+
+token = <header>.<payload>.<signature>
+✅ JWT Verification (Padhtay Waqt)
+Jab aap jwt.verify(token, secret) karte ho:
+
+Token ke header aur payload ko Base64 decode karta hai
+
+Signature ko alag karta hai
+
+Server phir dobara ye banata hai:
+expectedSignature = HMAC_SHA256(base64(header) + "." + base64(payload), secret)
+Phir expectedSignature == token ka signature check karta hai
+
+👉 Agar dono match kar gaye, to token valid hai
+👉 Agar mismatch hua, to Invalid Token error throw hoti hai
+
+✅ Conclusion
+❗ JWT verify karta hai:
+
+Header + Payload se dobara signature banake
+
+Original token ke signature se match karta hai
+
+Poore token string ko nahi match karta — sirf signature match karta hai
+
+
+
+session or token alida alida hai
+
+
+1.User athetication 
+har page ko acess krkny k liya token dyna prta bhjna user ko athenticate krny k liya helpul hai
+
+2.maintaing user state
+hamny card ma kuch add krdiya tu doabar website kholy k band krky tu wo add rhy gi us token ki madad sy apny card ma add kr ky rkh skta u
+cart ma jo add kry 
+ham user ko track krty usny last time konsa theme use kiya kya kya serch kiya wo kahi kahi token ya session ma store hoti hiu
+
+bar bar ak page ko acess krny k liya nmae passwrod na dy
+
+
+Session
+kisi club ma jaty hath ma token lgta nashan ham kuch b kry koi nhi roky ga kyo k hamry hath ma token lg gya
+2.
+agr ham kisi office ma jaye wha counter ma jaye tab ap sy name id pocha jaye ga jab b bata dy name password
+unho ny ak batch dydiya uska data databse ma store hai ham usky batch k zariya kisi b floor ma jaskty hai har ak room ma jaskty 
+ham apana room ka batch usko scan kry gy wo database ma id dekhy ga ya id hai wha agr hai wo room khol dy ga
+
+tu ya diifernt tareky hoy user ko athenticate krny ky ajatz deny k
+
+
+Session kya hai
+ya ka tara ka small file hai json format file hoti wo apky bary ma apki inofmration store krta
+ham user hai hamny login request send ki athetaicate page pr jana tu wo server pr gya ya valid hai usny kh diya ya vlaid hai bnda
+usko web page dekha o jo b request di uska response dn
+phli bar ham jab login krty tu server ak session file create kry ga json file uski ak unique id hoga us file ki id sessionkhty
+usko wo db ma store krdy ga respisnse ma wo cookies send krdy ga cookies ka tra ka file hota hai jesmy ma session id rhta hai
+hamy asa response mily ga database sy nesxt time agr user ny koi page dekkhna athnticate tu wo sath sath cookies b bhjy ga esmyseesion id hai
+cookies file ma server dekhy ga es session name ka file id hai hamry pas hanji hai ya bnda valid hai wo page dekha dn
+
+Cookies
+ak smaal piece of data hai jo apky computer ma store rhta information about th browser activity mtlb hamny kya chezy serch ki
+perfernceds stites ma kha kha ga e en sab ka recors cookies mastore hota website store krta hai jo 
+
+Creation
+jab b ham kisi website pr jaye ak chotasa pops ata ata allow your mobile tu wo ak cookies file bhjta apka session jo hoga uski id hogi
+apny kya serach kiya zayda kiya cookies ma strore hota geekforgeeks ma jata ma ma khta mujhe dark theme pasnd hai next time ma dovara wha ja o tu 
+tuu wo dark theme open kry ga whote nhi kyo k cookies ma dtaa save hogya esko kya pasnd 
+sednign the request
+phli bar page pr gya name passwornd nhi mnaga kyo k cookies ma hamar id store hai wo server ma jaye ga ya valid hai phr hamy namew password dalny ki zarorat 
+ni jab b athtiacte page koacess krty tu sath sath cookies gya usmy session id chupa hai session id ko server databse ma check kry ga
+ya vlaid hai ya ni broweser atomatically cookies ko http k sath lga kr bhjta 
+jab b ak website ko kholy ga jha ap register hai tu wo sath cookies b bhjy ga wo cookies bhjy ga wo proces hoga
+zctivity kya ki cookies ma store hoga
+cookies ma session id store hoti
+
+types of cokkies
+Session cookies 
+ya temporaray type of cokkies hoty hai jasy hi browser ko bnd krty jitni b tmeporat cookies esmy store hoti wo delete hojati
+broweser cut pr gaye wo kahi store nhi hogi
+Persistent cookies
+ya device ma thoryi dair tk store rhta eska pusporse apky 
+agr ham geetforgeeks pr jaye theme change koi bnd krky doabra aye agr ow phrr defualt theme krdy gussa aye ga
+esko ham khty persiestne tcookies ya lmby tk store rhti checzy
+activity ki info store krty ueksy mutabik add ekha skty suer ko kya pasnd zayda
+jab b vcisit kro gy cookies store hogy 
+
+
+
+Client
+hamri client side pr loca;l session storage ki tra ak cookies b hita storage ma inpesct kr ky dekh skty cookies name ka storage hai
+
+
+
+local storage 
+jo b web hoti hai jo zarori data hoita usko system ma store krta
+lmby smay tk rkhta 
+
+session storage
+jeska scope jo hota wo particular browser k andr tk hi hota mtlb k hamny koi borswer chla rhy jasy broswer kt kiya dleet hojaye ga
+
+
+
+Cookies storage 
+jo b ham cookies recive krty sever sy wo cokies ma store krty mandotry nhi hoita jasiy browswr khtm kiya wo chezy bnd hoijaye ga 
+jab b page load hota server k pas requets jati tu ham cookie store jrna chtqy usky sytem ya lpotop ma temporary
+jo hmair webiste k vistor wha krta 
+auto login k liya b kr ksty use theme k liya b cookie
+
+
+cookies ma koi data store hai har wesbiste kja cookies store hai hamry web ma ham kisi wbesote ko viste krty wo atomatocaly
+usy cookies ma jo store hai website k recording jo data hoga wo bhj diya jaye ga ya broswer khud krt hai
+agr page pr jaye jo b cookies ma dtaa hoga wo clta jaye ga request tinme ma jo b cookies store hogi wo chli jaye gi
+jab b page load hota server k pas requets jati tu ham cookie store jrna chtqy usky sytem ya lpotop ma temporary
+jo hmair webiste k vistor wha krta 
+auto login k liya b kr ksty use theme k liya b cookie jab ham form use krty uska data cokie ma savr krdy gr erro aye dobara usko fill krdy 
+
+
+npm install cookie-parser
+
+
+ham aye ak page pr name passwrod diya server ko usny hamy cookie dy diya esmyseesion id chupa hai jab b page 2 chaye ham cookie bhj dn ga wo 
+databs ema session id bahji wo hai ya ni 
+
+npm install express express-session cookie-parser
+
+const express = require("express");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+
+const app = express();
+const PORT = 3000;
+
+res.cookie(key,value{
+maxage:6555 time define krty mili second ma (1000*60*60*24)1second*60secodn 1000milisocnd=1secon
+httpOnly:true (security k liya ham nhi chty koi dosri website na dekh skty cooki or userb  js ka code likh kr na dkehy cookie hamri
+secure:true (jab b cooke read kiya jaye https hn jab b secure na hn website )local ma http ma hota online serve rp https hota
+smaesite:'strict' dosri websoite na read kry strict ka mtlb na user na dosri webiste ya check kry ga jo requets aye wo same webs sy i (none or lax b hota none acess kr ksty user or web kr ksta acess kr ksta);s
+signed: (jab ap apny password set kiya secret phr use hota true dena hota )
+}
+
+
+
+Read cookie
+res.send(req.cookies.key) key ka name job hoga ya hamry system sy data read kry ga browser ma show kry ga
+res.clearCooki(key) dleet kr ksty hai multiple b cookie bna ksty agr remove krna kr ksty hai
+
+
+
+const usernqme=req.cookie.username.
+estra ham acess kr skty cooki kisi or route pr
+
+📌 1. Session kya hota hai?
+Jab user login karta hai, server uske liye ek unique session create karta hai (e.g. sessionID), aur uss ID ko browser ke cookie mein bhej deta hai.
+
+📌 2. Cookie kya karti hai?
+Har baar jab user next request bhejta hai (GET, POST etc.), browser automatically session cookie ko request ke sath send karta hai.
+
+
+
+Option	Meaning
+'token'	Cookie ka naam hai — is case mein "token".
+jwtToken	JWT (JSON Web Token) jo server ne generate kiya hai, isme user ki identity hoti hai.
+httpOnly: true	Iska matlab JavaScript (browser) se ye cookie access nahi ki ja sakti. Security ke liye useful hai (XSS attacks se bachaata hai).
+secure: true	Ye cookie sirf HTTPS par send hogi (localhost mein kaam nahi karegi unless you’re using HTTPS).
+sameSite: 'Strict'	Ye cookie sirf same-origin requests mein send hoti hai — cross-site requests mein nahi (CSRF se protection).
+maxAge: 1000 * 60 * 60 * 24	Cookie ki expiry time set karta hai — yahan 1 din ke liye (milliseconds mein).
+
+
+importanat
+
+
+Sessions
+
+Jab session start hota hai, to session ID automatically cookie mein set ho jati hai. Aapko manually 
+session ID ko cookie mein set karne ki zarurat nahi hoti, kyun ke express-session library yeh kaam khud kar leti hai.
+
+Jab user request bhejta hai aur server pe session create hota hai, to express-session apne aap ek session ID generate karta hai.
+Yeh session ID server se response ke sath Set-Cookie header mein client ke browser ko bhej diya jata hai.
+Browser us Set-Cookie header ko apne cookies mein store kar leta hai.
+Agle request mein, jab user request bhejta hai, to browser cookie ke andar stored session ID ko
+ server ke sath send karta hai, taake server session ko identify kar sake.
+Example:
+
+Sessions Important
+
+agr hamny temporaty info store krny timer lga skty es time ma store hojaye
+server pr jo tmeporay info store krni usko session khty jab tk ya data delet nhi hota ham esko read krty
+delet k bad nhi read kr krskty
+
+user cases
+user anthetiction
+jab b login krty jab hojata login hma session bna skty uska name logout button deha skty agrsession
+create hai phr hi dekha ksty
+shopping cart
+jab ham cart krty dposry page pr menu nazr ata jo phly add kiya wo nazar ata hai temporary session ma store hoty rhty
+flash message
+ak page sy dosry page ma info dkehani use kr skty
+multi-step from
+ham form ko chota kr skty phly form page pr krta second ma jata phla ki tmepory save krdety
+3 page a from hai session ma temporary store kr ksty bad ad ma sara otha k db ma save kr krksty
+form data prservation
+captcha verfiacation
+ak pirtcher hai usko box ma dlana hota hai jab tk capcature code save hai login smjaa jata 
+
+
+npm install express-session
+-hiyphen khty esko -
+
+const session =require(espress-sesion)
+app.use(session({
+secret :password set kr skty koch b (jab b hamri we sy session create ya destroy hoga esi session sy check hoga ya cooki ma save hogi user ki  ya keyy apny ap save krta 
+jab b user naya session bnata dekhat yhi key hai 
+resave:  false(ham modification ni krna chty esliya false krna chty ham craete dleete read krty hai )\
+saveUniintialized:(jab tk user ny koi value create nhi ki session nhi bnana ) false dety jab tk user sesson ma save nhi ki user ny session save nhi banna
+ya info ram ma store hoti session 
+cookie:yaha pr ham ya session bnaty kab tk delete krna chaty ai
+{maxAge:864000}; 1000 eska mtlb 1 seson ma 1000 miliseoc hoty 1000*60*60*24 =24hoursbna gy
+}
+
+
+store session
+req.session.key=value;
+
+read session
+res.send(req.session.key) multiple key hogi jo read krna wohi likhni key
+
+dlete session
+req.session.destroy() jitny b session hogy jitnyb server pr sesion hogy wo dleet hojaye gi
+
+
+mongodb ma store kr ksty session
+npmjs.com
+connect-mongo
+const monogstore=require(connect-mongi),
+collectionNme:muysession (yha hn store data);
+
+sara session ka code andr ya add krna
+store :monnogstore.create({mongourl:})
+cookie sy phly
+
+
+Passport.js ek framework hai jo aapko authentication ke multiple methods (including OAuth) ko handle karne mein madad karta hai.
+OAuth ek authorization protocol hai, jo aapko third-party services ko integrate karne ke liye use hota hai (jaise Google ya Facebook login).
+
+
+
+Bcrypt Athenticatoin
+
+sba sy phly enctypt kry ga bad ma cpompare kry ga phr
+instakll bycrypt
+const bycryt
+const hased=bycrypt.has(password,10) store bn a10 ka mtlb
+
+const bycrpyt=bycrpyt.compare(admins123,hasedpassword) ya check krta agr macth boolne value aye gi vaibale ma aschronus ma kam krta bycrpy
+by defaultkz
+
+
+
+
+
+
+Passport JS
+
+passport ak third party middleware hai ham passport k help sy kry gy ya check krta redecinces  ko bnda username password dy ga check kry ga sai hai ya ni
+athentication middleware hai
+passport ka athentocation ko easy krdiya hai pre built starteges deta hai kis tra sy ap user ko athetinacet krna
+chta hai
+user name password sy athenticate krna charyhy usko social athenticate khty
+agr google sy krna charhy atomaticcaly email ly leta ap konsa startegies use krna chta 
+passport middleaware deta k hai k ap esko phy dekh ly ya jo acess krna charha hai usky liya athenticate b hai ya ni 
+name or password sy kry gy athnticate 
+
+
+
+install passport
+passport local install (local startegies krna chaty install ya name hai (usernma eor password khdy dosra name))
+
+
+npm install passport passport_local
+
+const passport=require('passport);
+const localstargey=require('passport-local);
+ya part hai passport hai hamy alg krna prta install taky ham local use kr sky
+
+local passport req.body sy user name or password extract krta hai 
+username or password pny system ma store krty hai 
+
+const personalschema={
+username:{
+type:string,
+required:true
+}
+password{
+type:string,
+required:true
+}
+
+local stargety ma ham varifcation  function bna rhy wo parmeter expact krta name password done callback likhy 
+fundtion(name,password,done) ak genral hai estra hi chlna chaye
+jo username email rha usko ham dtabase sy dekhy gy agr presewnt hai phr pssword check kry gy agr hai tu athteication pass krdy gy ok good
+passport.use(new localstragety(async(username,password,done)}
+done yha passport provide kr rha
+try{
+consoe.log("welcom");
+const user=person(findone({username:usnermane,password:password]};
+if(!user)
+return done(null,fale{message :jo send krna};
+
+coinst match=user.password==assword;?true:false
+if(ispassword){
+done(null,user)
+}
+else{
+return done(null,flade,{message:jo dnea")};
+}
+}
+done callback function signal deta varification krky hogya 
+ three papremter leta signal leta hai athetication complete hova hai ya ni
+error user info 
+aggr done hai (null,er);
+agr fail hai (null,false,{message:some message});
+
+
+app.use(passport.instialize());
+insitzile krdiya
+
+
+
+jab ham passprt.athentciate pr click krty hjam kuch b data bhj rhy hoty hai
+estra
+passport.use(new localstratjey{{usename:'eamil",password:'password'}verfiycallback)):
+
+serilize kya krta comperessed data krta wo user id dyga jesko ham req.session.ise sy aces kr skty
+esny compressed krky id dal di
+deselrize req.session.id ya seserlize k oposite krta kam ya id sy nikal kr data dy da ga
+ya elemt hai passport k use krny prty ya
+install pasport
+import passwort
+import express-session
+
+app.use(json()).use(session({secret,resave,saveunitialized{cookie:{httponly:true,secret:false}
+jab b new session bnta secret k zariya verify hota
+httponly js sy acess na kr sky koi
+secure true taky acess hn
+
+use(passport.initialize());
+use(passport.sesion());
+
+passport.use(new localstratgey{{usename:'eamil",password:'password'}verfiycallback)):
+local stargey ma jo jo filed login krwany wo dalo phr call kro ya dirct b likh ksty hai
+const varifycallback=async(email,password,done)=>{
+const user=db.user..findone(email):
+if(!user){}
+}
+
+const verfycallback= function(username, password, done) {
+    // Find user in DB
+    User.findOne({ username: username }, function (err, user) {
+      if (err) return done(err);
+cost match=bycryp.compred(password,password);
+if(!match){}
+      if (!user || user.password !== password) return done(null, false);
+      return done(null, user);
+    });
+  }
+));
+
+passport.seriwlaize(user,done)=>{
+if(user){
+return done(null,user.id);
+}
+}
+
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
+
+
+
+Session ek temporary memory hoti hai server par, jo user ka login state ya temporary
+ data store karti hai jab tak user logged in rahta hai.
+
+
+mainserver.js file ma
+
+✅ Answer (Seedha aur Simple):
+passport.js file mein aap passport strategies define karte ho (jaise Google OAuth, JWT, local login, etc.)
+Us file ko require() karna zaroori hai takay passport properly initialize ho.
+
+
+
+
+
+Local startegy
+
+const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
+
+const app = express();
+
+// Session middleware
+app.use(session({
+  secret: 'meraSecretCode',  // isko strong aur hidden rakho in real app
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Passport initialization
+app.use(passport.initialize());
+app.use(passport.session());  // <- Yahan passport ko session ke sath link karte hain
+
+
+ Installations (if not done):
+npm install passport passport-local express-session
+💡 Sample Code: passport-local Strategy Setup
+Chalo ab code samajhtay hain line by line:
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const users = require('./users'); // fake DB ya user list
+🔍 Line by line:
+passport: Passport.js ka main module, jo authentication kaam karta hai.
+passport-local: Iska Strategy class le rahe hain — jo local username/password check karegi.
+users: Ye ek example file ya object hai jahan users stored hain. Aap DB bhi use kar saktay ho.
+
+✅ Define Strategy:
+
+passport.use(new LocalStrategy(
+  function (username, password, done) {
+    const user = users.find(u => u.username === username);
+    if (!user) {
+      return done(null, false, { message: 'User not found' });
+    }
+    if (user.password !== password) {
+      return done(null, false, { message: 'Incorrect password' });
+    }
+    return done(null, user);
+  }
+));
+Part	Matlab
+null	❌ Koi error nahi hui
+existingUser	✅ User mil gaya DB se — isay request ke sath attach kar do (req.user)
+
+🔍 Word-by-word Explanation:
+🔹 passport.use(...)
+Ye Passport ko batata hai ke hum kaun si strategy use kar rahay hain (local, Google, JWT, etc.)
+
+🔹 new LocalStrategy(...)
+Nayi Local Strategy define kar rahe hain.
+Isme ek verify callback function hota hai jo username/password ko verify karta hai.
+🔹 (username, password, done)
+Ye function ko 3 cheeze milti hain:
+
+username: login form se aaya username
+password: login form se aaya password
+done: ek callback function jo result baata hai (success ya failure)
+🔹 users.find(...)
+Hum users list mein dhoondh rahe hain ke kya username match karta hai.
+🔹 if (!user)
+Agar user nahi mila, to authentication fail kar dete hain.
+🔹 if (user.password !== password)
+Agar password galat hai to bhi fail kar dete hain.
+🔹 return done(null, user)
+Agar sab sahi hai, to authentication successful.
+🧠 serializeUser and deserializeUser
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  const user = users.find(u => u.id === id);
+  done(null, user);
+});
+id: ye wahi id hai jo session me store hui thi
+users.find(...): ID se user ko dubara dhoond rahe hain (usually DB se)
+done(null, user): mil gaya to poora user object Passport ko de diya
+
+🔹 serializeUser
+Jab user login hota hai, to uski id session mein store hoti hai.
+🔹 deserializeUser
+Jab request aati hai, to session ki id se poora user wapas milta hai.
+user: wo user object hai jo login ke baad mila (username/password ke through)
+
+done(null, user.id): hum sirf user.id ko session me store kar rahe hain
+null: iska matlab koi error nahi hai
+
+ssport username/password se user ko authenticate karta hai.
+Agar successful ho jaye to: 🔸 User ka id session ke andar store hota hai (serializeUser se).
+Har agle request me: 🔸 Session ke andar se ID uthayi jati hai 🔸 Us ID se user ko wapas find kiya jata hai (deserializeUser se)
+
+function checkAuth(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+} ya check krta user login hai ya ni
+
+
+app.get('/dashboard', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.send(`Welcome ${req.user.username}`);
+  } else {
+    res.redirect('/login');
+  }
+});
+
+wasy check krna manullay sara khud code likhna prta
+
+✅ Password checking LocalStrategy ke andar hoti hai
+✅ Passport automatically session create karta hai (with serializeUser, deserializeUser)
+✅ Passport req.isAuthenticated() jese features deta hai
+✅ Passport req.user set kar deta hai
+✅ Reusability aur secure middleware provide karta hai
+
+
+⚠️ By default:
+Agar aap 3rd argument nahi dete, to Mongoose collection ka naam auto-generate karta hai:
+
+mongoose.model("User", userSchema);
+To Mongoose isko bana dega:
+📁 users (model name ka lowercase + "s")
+
+Code	What it does
+new User({...})	➕ Object/document banata hai
+newUser.save()	✅ MongoDB mein insert karta hai
+User.create({...})	✅ Short-cut for create + save
+
+
+
+
+🔄 Overall Flow:
+User form bharta hai.
+Strategy run hoti hai.
+Agar credentials match karein to user session mein store ho jata hai.
+Har request ke sath session verify hota hai.
+
+
+
+Jab b doceumnt save kr rhy databsae ma usko just store krny sy phly 
+const bycrypt=require(bycrypt);
+pre just phly call hota dtabase ma save hon ysy phly
+personschema.pre('save',async function (next{
+try{
+//password hasehd krna hn tab
+const person=this; ham har record k loya save kr rhy tu ya chly
+if(!person.ismodifyed('password) return next'();
+ya check kry ga es password ka function hai na cry agr hai person already wo incrpeeated hai
+
+const salt=await bcrypt.genSalt(10)(ya round sy repsent krta salt bna rha);zayda number dyga zayda time lyga
+const hased password=await bycrupt.hash(person.password,salt);
+
+person.password=hasspassword;
+next()
+}
+}
+
+ab compared password lagy gy jo user dy rha or jo db ha same hai donu
+
+comaredpassword=async function(password){
+const i smatch=await bdrcpt.comapre(password,thispassword);
+hash password ma ya slat excrat kry ga passowr ma or salt+password jo dala ->hash bnaye jo b hash aya agr sam ehai wo tu
+ga or has donu same hai
+}
+
+
+
+
+🔑 Google OAuth 2.0 Login Flow (Roman English)
+✅ Step 1: Google Developer Console Setup
+https://console.developers.google.com pe jao
+
+New Project banao
+"OAuth Consent Screen" setup karo
+"Credentials" tab se:
+"Create Credentials" → OAuth Client ID
+Application type: Web Application
+Authorized redirect URI daalo (e.g. http://localhost:3000/auth/google/callback)
+Client ID aur Client Secret copy kar lo
+
+
+Workflow
+
+sign with googel hoty esky pichy oauth hota 
+
+oauth kya hota
+ak tarriqa jes sy do website ak dosry sy resource share kr ksty mtlb bat kr skty ak dosry sy
+without username password esko bina use kiya kr ksty bath oauth
+
+sign with google github 
+esky poichy auth chal rha hota ya ak athentication hai 
+
+ap google photu use krty ap k resucre ma sary image store hai ya server google ka hai ha ak user hai
+ham dosry webste pr jaty jo hamri image sy background remove kr deta thrid party
+estra ham har image ko nikalo phr dn har ak ko alida laida
+
+third party ny ak option diya sign woth google ka ab ham directy hi google server sy tumhar data ly la gy
+username password ka use kr rhy tariqa ap ya do dyda ham apki athority pr google sy wo data lyla gy
+usmy sy background reomve krky dyda ga
+
+
+
+ham third party outh ka use krky sign with google facebook ka button dal skty hai
+jaisy hi koi user aya usny click kiya button pr
+phr ap rdirect kry gy google k authorization server pr 
+hmara jo meri wbriste hai usny google k authoriez server ko kha mujhe link dyda jes sy mujhe esky sary account google nazr ajaye
+usny wo link return kiya
+jaisy hi ma ak chooese kro ga ham sign hojao ga
+
+jo url arha tha wha ak email id ko slect kiya hamny authorted server ko requets kiya k jo slect kiya email esny usk permission grant krdu
+third part application ko dydiya .esny third party application ko ak acess token dydiya ACT ak bhut hi private hota third party ko goolge ny diya 
+acess token third party application es token sy resource server sy data acess kr skta ya token ko resousrce server k pas bhjy ga or kahy ga
+es bandy k sary resources mujhe dydn resource sever check kry ga donu google k hai wo photes dy da ga 
+third party photoes ko acess kr pay ga
+third part ny direct acess kr liya
+
+info server tha jesmy hamra info store tha name location email wagira third party k pas acess token aya usny data nikal liya 
+OAuth ek authorization protocol hai jo kisi user ko yeh ijazat deta hai ke woh ek website ya app ko apni dusri service (jaise Google ya Facebook) ka data access karne ki permission de — bina password diye.
+User kisi website par jata hai aur “Sign in with Google” button pe click karta hai.
+
+Website user ko Google ke authentication server pe redirect karti hai.(clientid,scope)k sath
+Google user se login mangta hai aur puchta hai ke kya aap is app ko apna data (jaise naam, email) share karne ki permission dete hain?
+Jab user permission deta hai, Google user ko wapas aapki website pe redirect karta hai authorization code ke sath.
+Website yeh code Google ko bhejti hai aur badle mein Google ek Access Token deti hai.
+Is Access Token ki madad se aapki website Google se user ka data access karti hai — jaise naam, email waghera.
+Poore process mein user ka password kabhi bhi aapki website ko nahi milta — is wajah se yeh process secure hota hai.
+
+login with google fornted
+fronted k pas ata cod phr wo bakcned ko deta
+fronted ma secure nhi ap token bhjy backend ko dy wo khud kry ga secure 
+
+developers.googl.com/oauthplayground
+fronted ki tra km kry ga tsting hai
+
+
+continoue k bad kha jana us k liya link dena redirect pr 
+
+.env file ma
+clinet id=;
+client secret key=;
+
+
+const cookieconfig={
+httponly:true.
+secure;true
+macage:OAUTH_EXCHANEG-EXPIRY,
+samesite:'lax"
+}
+
+res. cookie('google_aoth_state{,state,cookiconfig)
+
+res. cookie('google_aoth_varifie,codeverifier,cookieconfig)
+contine pr click krny pr jo vlaue arhi wo match krna hai
+
+res.redirect(ur.tostring);
+
+
+
+OAUTH 2.0
+
+npm i --save express exp ress-session passport passport-google-auth20
+
+npm install passport passport-google-oauth20 express-session
+
+session ak id bnata wo broswer ma store krdy ga wo track kry ga us id ko logout nhi hony nhi dyga
+passport ya third party k liya use hota hai
+
+
+
+const express=requir(express);
+const session=require(express-session);
+const passport=require('pasport);
+const GoogleStrategy=require(paaport-google-oauth20).startegy; google class hai capital hota name wo
+
+jab b user ak user succefully athenticate hota hai apllcation ma session user ki ak unique id bna dseta
+apky broswer ki cookis ma store hojati application apko track krti apko bar bar login nhi krna prta
+
+app.use(session({
+sescret-key:key, eski express ko zaroatr hai express ko unique id k liya ka key ki zaroat hoti hai encode krta stroeng hohoni chaye ya
+resave:false,
+saveunitoized;true,
+cookie:{secure:false}; flae ka mtlb ham local k sath use kr rhy http krty https secure hota hai zayda agr true krdu ga jasiy hi 
+user login kry ga session ak cookie genrate kry ga breowser ma store kry ga
+ya secure use krta https true pr chly gi secure rhy gi
+})
+
+
+app.use(passport.intitlize) intialize
+app.use(passport.,session) ys intizlae hojaye ga passport 
+ya tbahi likhna jab ap session k sath kam kr rhy hai session bnaya phr session passprt use kry
+ga ys help kry ga session ma convert krny k liya sesiion ma
+Jab user ek baar login kar leta hai, to passport.session() ensure karta hai ke uski login state har next request pe yaad rahe — bina dobara login karaye.
+Jab user login karta hai (e.g. /auth/google hit karta hai), to passport.initialize() ensure karta hai ke Passport properly kaam kare.
+passport.initialize() → Passport ko activate karta hai.
+passport.session() → Session-based login yaad rakhta hai.
+serializeUser() → Login ke baad user ID session mein store karta hai.
+deserializeUser() → Har request pe user ID se full user object nikalta hai.
+
+passport.use(new GoogleStrategy({
+clinetID: 
+clinetScecret:
+callbackurl:""
+},function(acessToken,refeshToken,profile,cb){
+jb user id login krta hamri application ma tu user k aps ak profile hoti wo return krta passport
+profile.options aye gy 
+cb(null,profile) es sy profile jo eski return hojaye gi user ki
+}))ya options ko leti hai dosra fiunctions
+
+ak user aya button click kiya jab athentciate hojata google ko ni pta kha bhjna hamy
+cllaback dena prta kha jana hai atheticate krny k bad
+
+
+ya file ko hamny session ma store krna session id bna kr user browser ma
+
+passport.serlizeUser(function(user,cb)=>{
+cb(null,user)
+}
+
+passport.decerlizeUser(function(user,cb)=>{
+cb(null,obj)
+}
+es sy wo user hamry session ma store hojaye ga
+express b acess kr skta esko
+
+jab b hamny staic sy kam krna hn login file 
+app.use(express.static(path.join(__dimane,'public);esko pta lg jaye ga ham kis sy work krna chty
+dirname pori directory kahi sy b cod otha skty
+
+app.get('/auth/.google,passport.auttenctae(google{
+jab button click hova hamny page dekhan google accounts ka yha
+scope:['profile,email]} jab wo login krly hamy info chaye kam krny k liya jo chaye wo dy yha
+
+}
+
+jab b user athentciate hoga usko calback ma bhj dyga
+
+app.gret('/aouth.googlr/callback,passport.athentcate(google
+{failureredirct:'login',}agr fial hojaye yha bhj dn
+,async(req,res)=>{
+res.redirect(dashobaord);
+}
+)
+
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenti
+cated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
+protedcr ruotes k liya
+
+ jab b user login hojaye dobara athenctae ho tu next nhi tu previos login wlay pr bhj dn
+
+
+get.,use(dashborad,(req,res)=>{
+if(re.isauthneticated()) ya passport k sath jata jo request arh ahai wo athrnetcaet hai ya ni
+res.render(path.join(__dirname,name);
+req.user  yha user ki inofmation hogi khud jaye gi
+}
+ 
+jab b login kiya usny session key bana kr cookie pr set krdi bar bar login nhi krna pry ga
+
+app.user('logout) yha aya redirect krdo login pr
+
+
+
+
+const express = require("express");
+const passport = require("passport");
+const session = require("express-session");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+
+const app = express();
+
+app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// Replace with your own
+const CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID";
+const CLIENT_SECRET = "YOUR_GOOGLE_CLIENT_SECRET";
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      callbackURL: "/auth/google/callback",
+    },
+    function (accessToken, refreshToken, profile, done) {
+      // You can save user info to DB here
+      return done(null, profile);
+    }
+  )
+);
+
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((obj, done) => done(null, obj));
+
+// Routes
+app.get("/", (req, res) => {
+  res.send(`<h1>Login with Google</h1><a href="/auth/google">Login</a>`);
+});
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/" }),
+  (req, res) => {
+    res.redirect("/profile");
+  }
+);
+
+app.get("/profile", (req, res) => {
+  if (!req.isAuthenticated()) return res.redirect("/");
+  res.send(`
+    <h2>Welcome ${req.user.displayName}</h2>
+    <p>Email: ${req.user.emails[0].value}</p>
+    <a href="/logout">Logout</a>
+  `);
+});
+
+app.get("/logout", (req, res) => {
+  req.logout(() => res.redirect("/"));
+});
+
+app.listen(3000, () => {
+  console.log("Server running on http://localhost:3000");
+});
+
+
+
+app.use(cors({
+  origin: 'http://127.0.0.1:5500',  // Allow requests from this origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allow specific methods
+  allowedHeaders: ['Content-Type', 'Authorization']  // Allow specific headers
+}));
+
+app.use(cors({
+  origin: ['http://127.0.0.1:5500', 'http://localhost:5500'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
+
+
+
+sesssion work auth 
+Jab user successful login karta hai (e.g., Google login ke through), to uska data (jaise user profile information) 
+ko session mein store kiya jata hai. Session ek aisi temporary storage hoti hai jo server par hoti hai, jisme user 
+ka state (yaani ki login status) store hota hai. Iska main purpose hai user ko authenticate karna bina har request 
+par dobara login karaye.
+Session typically ek unique session ID generate karti hai jo user ke browser mein cookies ke roop mein store 
+hoti hai. Jab tak session valid rehti hai, browser har request mein session ID ko server ke paas bhejta hai.
+
+
+Serialize: Jab user login hota hai, uska essential information (like user ID) session mein store hota hai.
+ Yeh data lightweight hota hai aur sirf wo cheezein store hoti hain jo subsequent requests ke liye sufficient hain.
+
+Deserialize: Jab user ke session ke saath request aati hai, to session ID ko use karke uske full user 
+data ko retrieve kiya jata hai (usually from the database).
+
+
+Session Management: Jab Google successfully aapko identify kar leta hai, to website backend mein aapka session create ka
+r leti hai. Aapke login hone ke baad, website ko pata chal jata hai ki aap hi wo user hain jinhone apne Google account se login kiya tha.
+
+
+
+Agar aap Google OAuth ya kisi aur authentication service ka use kar rahe hain, toh user.id jo aap serializeUser
+ mein store karte hain, wo user ka unique identifier hota hai jo aapko authentication service (like Google) se milta hai.
+
+For example, jab aap Google ke sath OAuth implement karte hain, Google aapko ek profile return karta hai, jisme
+ id field hoti hai. Yeh id field hi wo identifier hota hai jise aap serializeUser mein store karte hain
+
+
+
+mailnoder
+https://myaccount.google.com/apppasswords?pli=1&rapt=AEjHL4MxYyC8MOlZfM5wC6sW0NUU_Htd02sZHJaTu-jTI9LCIfe61Uj9MBUO_jEDHOVFkOhA__BWaZsW1vM2Z6-d9MsuUBRGRZIgripsHwBGApM8Eucb3Ik
+verfication link hai jha app password milta
+
+
+WebSockets with Express & Socket.io
+is a persist connection 
+client or server k darmyan connection agya data send kr skty kisi time index update hoty
+esko ham real time system ma build krny k liya use krty asy sytem ko build krny k liya jha hamy bhut hi frequntly jha clinet ko sevrer ko data send krna hota ya server ka client kod ata send krna hota
+traidng apps exmaple hai ya real time hai mtlb hmay bar bar feth requets bhjni data lykr aye 
+ak tariqa http sy laye data 
+es sy bhtr tarika ak presestent rquest bna ly jo web sokcet hoty hao
+ak mesgeges exmpale hai bar bar request krty k naya msge aya jasy new mesgse aye wo drop hojaye mesg box ma
+
+
+1.http
+esko ham frquently used krty website bnany k liya ham reques bhjy gy server response bhjy ga hamra http connection khtm hojaye gy
+sari inofmation aisy chty agr new infomatoion chaye bar bar bhjna pary gi request
+problem tab aye gi jab real time data chaye hamy http k thorw bar bar requts bhjni pary gi 
+uni directional& statsless http
+
+motly ham http use krty hai jha amazon
+real time system k liya use hota hai jab ham chahting k liya apllictaion banani hai traidng k liya jha hamy real time data chaye wha hamy data ko bar bar fetch krny k liya http k throw 
+bar bar request bhjni pry gi
+
+
+esko solve krny k liya poling two types poling short poling (esmy thory time ma client sy server ko request bhjty koi resposne ata hai phr dobara bhjty phr resposne ata es tara
+ ham timely manner pr request bhjty or response ka wait krty rhty time set krky)(exmaple ham chat krkry bar bar requets bhjt hamry pas resonpse aye ga wo empty hoga es emplty repsne sy bhut sary resosreces 
+waste hokate hai) or long poling hoti (dosra format long poling esmy ham thora long duration k liya response ka wit krty hai agr timout k bad dobara requets bhjni prti)
+
+. Long Polling
+Client ek request bhejta hai server ko.
+Server tab tak response nahi deta jab tak koi new data na aa jaye (ya timeout na ho jaye).
+Jaise hi data available hota hai, server response de deta hai.
+Phir client phir se request bhejta hai.
+poling bhut acha tariqa ni esko hal krny ka problem solve k liya
+
+es sy bhtr tariaka SSE (Server Sent Events) hoty moslty used hoty website ma esmy server jab chaye jitna data chahe client ko push kr skta hai pr esky andr problem ya hai k ya connection by direction ni hai
+esmy client data push ni kr skta sirf server hi clint ko data push kr skta hai) ya chaiting app k liya sutable ni hai  ya wha sutable jha server ko client ko data send krny ki zarorat hai jaisy instagram notification
+bhut zyada user ko ak sath bhjna chatgpt ma sse use hota instagram hogi news boratqasting hogi
+
+
+es sy bhtr tarika Websockets
+websockets are way to create to persist by directional to full directional
+
+esmy client or sever kabi b koi b msg kr skta hai 
+webstok connection establish krny k liya clinet server ko http handshek request bhjta hai upgrade header 
+client sever ko request bhjta abi tu ham http ot bat kr rhy upgare kr jaty hai 
+
+webstket ma clinet server ko kya first request bhjta?
+ya http request bhjta hai
+jsdy response atat hand sehk compmete tu websocket connection estallished hogya 
+ab client server koc server clinet single connction k throw data transfer kr skty hai
+
+http 
+statless hoti(protocole hpit)
+unidirctional hoti (yani ak bar pr ak hi direction pr data transfer hoskta)
+half deplux(yani ak bar server data bhj rha hoga ya clinet data bhj rha hoga)
+
+websokets
+statefull
+bi-directional
+full deplux (yani same time pr clinet or server bat kr ksty hai)
+
+
+ya protocole hai kisi b language k sath use kr skty hai
+
+server side request
+
+import {webSocketServer} from 'ws'
+const app=express();
+const port=4500;
+
+let server=app.listen(port,()=>{
+
+} server instanc ki es liya zarorat varibale server ki jab ham apna http sever or websocket same port pr run rna chaty hai
+
+const wws=new webSocketServer({server)};
+wws.on("connection',(ws)=>{ws  eska mtlb specil object wss mean specific client k liya websocket connection
+ws.on('message',(data)=>{
+consoel.log(data);
+ws.send("thanks")
+}
+
+start url ws:localhost:4500
+
+
+Socket.io
+
+client side request send server
+Socket.IO ek library hai jo WebSocket + fallback technologies use karti hai.
+Agar user ka browser WebSocket support nahi karta, toh Socket.IO automatically fallback karta hai (XHR, polling, etc.).
+Built-in features:
+Auto-reconnect
+Room & Namespace support
+Event-based communication (client.emit, server.emit)
+Simple API
+Broadcasting, authentication, middleware
+
+
+const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIo(server); // <-- Socket.IO server
+socketIo(server) = ab ye HTTP server ke upar WebSocket functionality add kar dega.
+Iska fayda: ab HTTP requests (normal website requests) aur WebSocket messages dono handle ho sakte hain ek hi server pe.
+io.on('connection', (socket) => {
+  console.log('User connected');
+
+  socket.on('message', (msg) => {
+    console.log('Message received:', msg);
+    socket.emit('message', 'Server received: ' + msg);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+});
+
+server.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
+ io.on('connection', callback)
+Jab koi naya client server se connect karta hai, ye connection event trigger hota hai.
+io sabhi clients ke connectin ka listener hai.
+Yani jab kisi bhi user ka connection aata hai, server connection event sunta hai.
+
+2. socket.on('message', callback)
+socket ek individual client ke saath ka link hai.
+Jab ek specific client koi message bhejta hai, to socket.on('message') sunta hai.
+Sirf us ek client ke messages handle karta hai, na ke sab clients ke.
+
+3. socket.emit('message', data)
+Ye bhi individual client ko reply bhejne ka tareeqa hai.
+Server sirf usi user ko jawab bhejta hai jisne message bheja tha.
+Agar aap io.emit() karte to sab clients ko message chala jata.
+
+Event	Kya hota hai?	Console par kya dikhega?
+1️⃣	Jaise hi koi user (browser frontend) connect karega Socket.io se, connection event chalega.	User connected print hoga.
+2️⃣	Jab user koi message bhejega server ko, socket.on('message', ...) chalega. Server console mein Message received: (message ka text) dikhega.	E.g., Message received: Hello Server
+3️⃣	Jab server message receive karega, turant server client ko reply karega socket.emit('message', 'Server received: ' + msg); Client side par ek naya message aaye ga: Server received: (original message)
+4️⃣	Jab user browser band karega ya disconnect hoga, disconnect event chalega.	User disconnected print hoga.
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Socket.IO Demo</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h1>Socket.IO Test</h1>
+  <input id="messageInput" placeholder="Type message...">
+  <button onclick="sendMessage()">Send</button>
+
+  <div id="messages"></div>
+
+  <script>
+    const socket = io('http://localhost:3000');
+
+    function sendMessage() {
+      const msg = document.getElementById('messageInput').value;
+      socket.emit('message', msg);
+    }
+
+    socket.on('message', (data) => {
+      const div = document.getElementById('messages');
+      const p = document.createElement('p');
+      p.innerText = data;
+      div.appendChild(p);
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+server create
+const express = require('express'); // Express.js ko import kar raha hai
+const { createServer } = require('node:http'); // HTTP server banane ke liye
+const { join } = require('node:path'); // File paths manage karne ke liye
+const { Server } = require('socket.io'); // Socket.io server create karne ke liye
+
+const app = express(); // Express app initialize kiya
+const server = createServer(app); // Express app ko HTTP server ke saath wrap kiya
+const io = new Server(server); // Socket.io ko server ke saath connect kiya
+
+
+app.get('/', (req, res) => {
+  res.sendFile(join(__dirname, 'index.html'));
+});
+(io mean jitny b connection hai hamry)
+io.on('connection', (socket) => {(jab b connectionb ny ga socket ma client ki infomration hogi mtlb ma user ak ap socket ap ma socekt
+  console.log('a user connected');
+socket.on(mesgae)=>{consoel.log} jab b fornted sy masg aye usko dn
+});
+
+server.listen(3000, () => {
+  console.log('server running at http://localhost:3000');
+});
+
+emit meand send krna  or on mean jo msg aya display krna
+
+fronted
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+socket.emit("text server ma bhj") emit krna bhjna server pr
+</script>
+
+
+
+
+
+
+
+SSE
+
+.
+
+🔄 1. Backend — Headers Set Karna (SSE Protocol Requirement)
+js
+Copy
+Edit
+res.setHeader("Content-Type", "text/event-stream");
+res.setHeader("Cache-Control", "no-cache");
+res.setHeader("Connection", "keep-alive");
+Ye headers required hain Server-Sent Events (SSE) ke liye, taake browser samajh jaye ke:
+
+Ye ek long-lived connection hai
+
+Isme server repeatedly real-time messages push karega
+
+Browser isko auto-reconnect karega agar connection drop ho gaya
+
+
+
+🔍 Code Breakdown:
+js
+Copy
+Edit
+// Optional: Send welcome message
+res.write(`data: Connected to SSE\n\n`);
+Kya ho raha hai?
+
+Jab client (browser/frontend) connect karta hai /sse route par,
+
+To server ek default welcome message send karta hai:
+
+vbnet
+Copy
+Edit
+data: Connected to SSE
+📤 Purpose: confirm karta hai ke connection successful hai.
+
+js
+Copy
+Edit
+clients.push(res);
+Kya ho raha hai?
+
+res is the current client’s connection object.
+
+Ye line res ko clients array mein store kar rahi hai.
+
+📤 Purpose:
+
+Taa ke baad mein hum notify kr saken sab connected clients ko, e.g. via notifyAll() function:
+
+js
+Copy
+Edit
+clients.forEach(res => res.write(`data: ...`))
+js
+Copy
+Edit
+req.on("close", () => {
+  clients = clients.filter(c => c !== res);
+});
+Kya ho raha hai?
+
+Jab client tab band kare ya browser close kare (disconnect ho jaye),
+
+Tab us client ko clients list se remove kar dete hain.
+
+📤 Purpose:
+
+Memory leak se bacha jaye.
+
+Sirf active clients hi clients[] me rahen.
+
+📌 Summary in Roman Urdu:
+Line	Explanation
+res.write(...)	Client ko welcome msg bhejna jab wo SSE connect kare
+clients.push(res)	Us client ki connection ko track karna
+req.on('close'...)	Agar wo client disconnect ho jaye to usko list se hata do
+
+
+
+
+gaya
+
+📨 2. Backend — Message Kaise Send Ho Raha Hai
+notifyAll() function:
+js
+Copy
+Edit
+export const notifyAll = (message) => {
+  clients.forEach(res => {
+    res.write(`data: ${JSON.stringify(message)}\n\n`);
+  });
+};
+Yahaan:
+
+data: ek SSE syntax hai — iska matlab: ye message ka payload hai.
+
+\n\n — har SSE message ka end yeh hota hai.
+
+Message JSON.stringify karke bheja jata hai taake frontend parse kar sake.
+
+
+
+✅ Backend (Node.js):
+js
+Copy
+Edit
+res.write(`event: new-request\n`);
+res.write(`data: ${JSON.stringify({ user: "Ali", service: "Web Dev" })}\n\n`);
+
+res.write(`event: message-received\n`);
+res.write(`data: ${JSON.stringify({ from: "Admin", message: "Hello" })}\n\n`);
+🖥️ Frontend (React Example):
+js
+Copy
+Edit
+const eventSource = new EventSource("http://localhost:8000/user/sse");
+
+// 🛠 Listen to multiple events:
+eventSource.addEventListener("new-request", (event) => {
+  const data = JSON.parse(event.data);
+  console.log("🆕 New Service Request:", data);
+  // Forward to Dashboard.jsx or show toast
+});
+
+eventSource.addEventListener("message-received", (event) => {
+  const data = JSON.parse(event.data);
+  console.log("📩 New Message:", data);
+  // Forward to Chat.jsx or message inbox
+});
+
+eventSource.addEventListener("invoice-generated", (event) => {
+  const data = JSON.parse(event.data);
+  console.log("💰 Invoice Info:", data);
+  // Show in invoice panel
+});
+
+
+
+
+ User (Frontend) SSE se connect kab hota hai?
+🟢 Jab user ka browser ya frontend React/JS app mein SSE (EventSource) ka use hota hai, aur wo page load hota hai, tabhi connection start ho jata hai.
+
+
+ServerResponse {
+  _events: {...},
+  socket: {...}, // connected socket
+  writable: true,
+  ...
+}
+Yeh basically open TCP connection ko represent karta hai, jisme hum live messages bhej sakte hain using res.write().
+
+
+// sseHandler.js
+import jwt from "jsonwebtoken";
+let clients = []; // [{ userId, res }]
+
+export const handleSSEConnection = (req, res) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).end();
+
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.SECRET_KEY);
+  } catch (e) {
+    return res.status(403).end();
+  }
+
+  const userId = decoded.id;
+
+  // Set SSE headers
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache");
+  res.setHeader("Connection", "keep-alive");
+
+  res.write(`data: Connected to SSE for ${userId}\n\n`);
+
+  clients.push({ userId, res });
+
+  req.on("close", () => {
+    clients = clients.filter(c => c.res !== res);
+  });
+};
+
+export { clients };
+
+
+Jab SSE (Server-Sent Events) use karte hain real-time notifications ke liye, to kuch browsers ya proxies (like Chrome, Cloudflare, etc.) agar kuch der tak data na aaye, to connection ko idle samajh ke band kar dete hain ❌.
+
+🔥 Iska matlab: agar aap ka server 1 minute tak koi notification nahi bhejta, to browser connection ko "Dead" samajhta hai
+
+
+Har kuch second baad ek dummy message (ping) bhejna, taake browser ko lage connection zinda hai.
+
+🔍 Code Breakdown:
+js
+Copy
+Edit
+// 🔁 1. Har 15 second baad ek "ping" event dispatch karo (client side)
+const pingInterval = setInterval(() => {
+  if (eventSourceRef.current?.readyState === 1) {
+    // 🔁 Artificially "ping" event dispatch kar raha hai client par hi
+    eventSourceRef.current.dispatchEvent(new Event("ping"));
+  }
+}, 15000);
+🧠 Explanation:
+setInterval(..., 15000) means har 15 second baad ye kaam chalega.
+
+eventSourceRef.current?.readyState === 1 means: SSE connection open hai.
+
+dispatchEvent(...): Ye ek fake "ping" event ko manually trigger karta hai client side par.
+
+🟡 Important Note:
+Ye actually server se ping nahi aa raha — ye client khud se "ping" event raise kar raha hai.
+
+js
+Copy
+Edit
+eventSourceRef.current.addEventListener("ping", () => {
+  console.log("🔄 Keep-alive ping received");
+});
+🧠 Explanation:
+Jab bhi "ping" event aaye, us waqt console me 🔄 Keep-alive ping received log karo.
+
+Since upar wale interval me ping client hi bhej raha hai, ye event har 15s baad print hoga.
+
+🟢 Yeh mainly testing/debugging ke liye useful hai.
+Agar aap chahein ke server se ping aaye to wo res.write se server bhejta hai.
+
+js
+Copy
+Edit
+console.log("📡 SSE Connection Started");
+💬 Bas SSE open hone ke baad ek log.
+js
+Copy
+Edit
+// 🧹 Cleanup on unmount
+return () => {
+  clearInterval(pingInterval);  // Stop the 15s interval
+  stopSSE();                    // SSE connection close kar do
+};
+🧠 Explanation:
+Jab component unmount ho (e.g., user dusre page par chala jaye),
+
+setInterval ko stop karo (taake background me extra task na chale),
+
+Aur SSE connection ko properly close karo (memory leak na ho).
+
+🔁 Summary (Simple Words):
+Code Part	Purpose
+setInterval(...)	Har 15 sec baad client se khud ping bhejna
+dispatchEvent("ping")	Fake ping event fire karna client pe
+addEventListener("ping")	Console log karna jab ping aaye
+clearInterval()	Stop interval jab component band ho
+stopSSE()	SSE connection band karna safely
+
+
+SE Connection Kab Close Hota Hai?
+User ne page change ya refresh kiya
+→ React component unmount ho gaya
+→ eventSource.close() chal gaya
+
+Network issue / internet disconnect hua
+
+Backend ne connection band kar diya
+
+e.g., server restart, memory clear, crash
+
+Browser idle connection timeout
+
+kuch proxies ya firewalls idle connection close karte hain
+
+SSE route response ended manually
+
+res.flushHeaders() ka use isliye hota hai taake SSE connection turant open ho jaye,
+warna browser tab tak wait karega jab tak first body/data (res.write) send nahi hota.
+
+🔁 Normally:
+Headers + Body ek saath jaate hain (ya body ke saath hi headers jaate hain).
+
+🌐 SSE mein:
+Headers ko turant bhejna hota hai, taake connection open rahe — isliye flushHeaders() lagate hain
+
+📦 1. Normal HTTP Flow (Without SSE):
+Jab browser request bhejta hai:
+
+Server headers prepare karta hai.
+
+Lekin headers browser tak nahi jaate jab tak koi body content (res.write, res.end) send na ho.
+
+📌 Yani: Browser wait karta hai data ke liye, headers tab jaate hain jab body jaaye.
+
+🌐 2. SSE (Server-Sent Events) Mein:
+SSE ek long-living connection hai jo continuously data receive karta hai.
+
+Ismein humein turant connection open karna hota hai, bina wait kiye data ke.
+
+✅ Solution: res.flushHeaders()
+Ye force karta hai headers browser ko turant bhejne ke liye, bina kisi data ke.
+
+Phir browser connection ko open maante hai.
+
+Baad mein jab res.write() se data bhejo, wo SSE mein stream hota hai.
+
+🧪 Agar flushHeaders() na lagayein:
+Aur agar res.write() bhi na karein,
+
+To browser sochega: “abhi tak server response hi nahi de raha”
+
+Aur SSE connection kabhi open hi nahi hota.
+
+✅ Dummy data ya ping bhejna (optional):
+Kabhi kabhi servers/browsers connection idle hone par usay close kar dete hain.
+
+Isliye dummy data ya "ping" har kuch seconds mein bhejna help karta hai connection alive rakhne ke liye.
+
+🔚 Summary (1 line mein):
+res.flushHeaders() SSE mein isliye lagate hain taake connection bina delay ke turant open ho jaye, warna browser headers ke liye body ka wait karega aur SSE kabhi shuru nahi hoga.
+
+
+Condition	Kya Hoga
+Connection open hai	res.write() work karega, real-time data send hoga
+Connection close hai	res.write() ka koi res nahi hoga, message drop ho jayega
+Client dobara aaye	startSSE() call hoga, connection wapas establish hoga
+
+
+1️⃣ User Login Karne Se Pehle
+Jab user login page open karta hai, tab koi session ID nahi hoti.
+Sirf user ka form hota hai jisme email aur password enter karne ka option hota hai.
+
+2️⃣ User Login Karta Hai
+User apna email aur password enter karta hai.
+Server check karta hai kya yeh email/password sahi hai?
+Agar sahi hai, to server ek unique session ID generate karta hai.
+3️⃣ Session ID Generate Hoti Hai
+Server session create karta hai aur ek unique ID assign karta hai (e.g., abc123xyz).
+Yeh session ID server ki memory ya database me store hoti hai.
+Yeh ID sirf temporary hoti hai, jab tak user logged in hai.
+4️⃣ Session ID Browser Ko Milti Hai
+Server yeh session ID ek cookie me client (browser) ko bhej deta hai.
+Ab har request ke sath yeh session ID server ko wapis bheji jati hai.
+5️⃣ Har Request Pe Server Session Check Karta Hai
+Jab bhi user kisi protected page ko access karega, browser session ID bhejega.
+Server dekhega kya yeh session ID valid hai?
+Agar hai, to user ko access mil jayega.
+Agar nahi hai ya expire ho chuki hai, to user ko logout kar diya jayega.
+6️⃣ Logout Karne Par Session Delete Ho Jata Hai
+Jab user logout karta hai, to server session ID ko delete kar deta hai.
+Ab agar user dubara koi protected page kholne ki koshish karega, to server bolega "Login Required".
+
+
+
+$ → root of the Redis JSON document
+
+$[1] → second item in the array (zero-based index)
+
+.read → us object ka read property
+
+true → iski nayi value
+
+
+
+
+
+ature	Kaam
+Server Creation	Express.js se server setup hota hai.
+Routing	Different pages ya API endpoints handle karta hai.
+Database Connection	MongoDB ya MySQL se data fetch/store karta hai.
+Middleware	Logging, authentication, aur security implement karta hai.
+API Development	JSON format me data provide karta hai jo frontend use karta hai.
+
+
+
+security Issue	Attack Type	Solution
+CORS	Cross-Origin Requests	cors middleware use karein
+XSS	Malicious JavaScript Injection	sanitize-html, helmet, CSP use karein
+CSRF	Unauthorized Requests	csurf, SameSite cookies enable karein
+
+
+
+
+Jab sab kuch ready ho jaye to website ko deploy karo:
+✔ Frontend: Vercel, Netlify ya GitHub Pages
+✔ Backend: Heroku, AWS, Railway, Render
+✔ Database: MongoDB Atlas, Supabase ya Firebase
+
+Agar full-stack project hai to Docker ya CI/CD pipelines bhi implement kar sakte ho.
+
+
+
+
+
+.
+
+🚀 Example: CI/CD in Frontend & Backend
+Platform	CI/CD Tool	Usage
+GitHub Pages	GitHub Actions	Static websites auto-deploy hoti hain
+Netlify	Built-in CI/CD	React, Vue apps auto-update hoti hain
+Vercel	Auto Deployments	Next.js & Frontend projects auto-update
+AWS, Heroku	GitHub Actions, Jenkins	Backend APIs auto-deploy hoti hain
+Docker & Kubernetes	CI/CD Pipelines	Full-stack apps bina downtime ke update hoti hain
+
+ Most Important Security Concepts:
+
+Topic	Likely to be Asked?	Short Tip
+1. SQL / NoSQL Injection	✅ 100%	Validate inputs, use Mongoose schema
+2. XSS (Cross Site Scripting)	✅ 100%	Escape HTML, use Helmet
+3. CSRF (Cross Site Request Forgery)	✅	Use CSRF tokens, CORS settings
+4. JWT Security (Token Handling)	✅	Store in httpOnly cookies
+5. Authentication vs Authorization	✅	Often confused, must know difference
+6. Rate Limiting / Brute Force Prevention	✅	Use express-rate-limit
+7. Data Validation & Sanitization	✅	Use libraries like express-validator, Joi
+8. CORS Policy	✅	Configure properly in Express
+9. HTTPS & Encryption	✅	Required for production
+10. Environment Variables (.env)	✅	Keep secrets secure, not in code
+11. Session Hijacking / Token Expiry	✅	Set token expiry, secure cookies
+12. Security Headers	✅	Use helmet middleware
+13. Bcrypt (Password Hashing)	✅	Always hash passwords before DB
+14. MongoDB Injection	✅	NoSQL injection ka variant, validate types
+
+
+
+
+
+
+
+
+Summary: Key Advanced Topics in Express.js
+Topic	Why It’s Important?
+Middleware & Error Handling	Custom logic, logging, security
+JWT & OAuth Authentication	Secure user authentication
+REST & GraphQL APIs	Modern API development
+File Uploads & Image Processing	Handle large files efficiently
+Caching & Performance Optimization	Speed up API response times
+WebSockets (Socket.io)	Real-time applications
+Background Jobs & Task Queues	Process heavy tasks asynchronously
+Microservices & API Gateway	Scalable architecture
+Docker & Deployment	Deploy on cloud servers
+Unit Testing & API Testing	Ensure application reliab
+
+
+
+
+
+
+
+
+
+
+
+Dobara
+
+statefull athentication
+state ak datta  hota jo memeroy ma lie krta
+sesion cookies
+ak user aya usny login krna hai wo hmy name or password dyga
+ya server database k pas jaye or verify kryga 
+agr sia hai tu ham ak id genetrae kry gy session
+
+seison id 1 dydi
+jab b user newuesr kry ga ham id dekh lygy
+jab dosra user login k liya name pasword dyga db check kry gy 
+ham sseion id banye gy or esmy 2 user ki detail rkh dygy
+fist loggout krna tu ha del krdy gy id
+es data ko ham id ko redis ma rkh ksty hammesko poch lygy ya session id kiski thi
+
+advantages
+ya banking website ma use hota shorttame k liya use hota wo 10 15 mint ka session bnaaty automatic logout hoijaty jha hamy choty seeion bnany use kr skty
+shorttame ban skty session
+
+disadvantages
+scalibilty
+ham apna data apni emmeory ma rkhrhy hai billion user jajaty tu bhut memory chaye data rkhny k liya 
+agr hamar server ma eroir aya server reatsrt kr gya memory clear hojaye ga all logut user 
+user k session destroy hojaye gy wo logout hojaye gy
+esk loiya hamy datbase buy krna prta
+
+
+statefless athentication
+jwt token (json web token)
+
+server hai ak eski koi memery ni hai 
+ak user hai usny name password diya login krdu y db k pas jaye ga or check kry ga
+ya ak token banye ga es ma detail hgi jo db ma hai id hogi
+wo es token ko sign krdy ga secretkey wo sirf es server ko pta hai ak token bn jaye ga wo user ko wapas krdy ga
+wo user es token ko jha chaye rkh skta hai 
+next time jo b info chaye tu usko ya token bhjna pry ga
+agr user ny eski copy bna ehamy ota lg jaye ga jab tk scetkey ni pta wo kuch ni pkr paye ga
+secret ky hamara server store krta hai
+user ny kuch ftch krna wo es token ko sath bhjy ga server hamara esko verify kry ga tu user detail mil jaye gi jo b info wo pari hai id ma
+
+advantages
+memory not used user ko dety token data usmy
+serverless arhitecture ma easy fit hiajye ga toekn ko khol k dykhy ga sia hai tu ok
+lon term b bna skty 30 day ka seeion bna ksty long term
+
+
+disadvantage
+mange difficult
+
+
+Axios
+
+import axios from 'axios';
+
+axios.post('https://example.com/api/users', {
+  name: 'Ali',
+  email: 'ali@example.com',
+})
+  .then(response => {
+    console.log('User created:', response.data);
+  })
+  .catch(error => {
+    console.error('Error:', error.message);
+  });
+🔍 Important:
+Axios automatically Content-Type: application/json set karta hai
+
+Body ko stringify karne ki zarurat nahi
+
+Error handling built-in hoti hai
+
+
+
+
+
+✔ Session-based authentication (express-session)
+✔ OAuth & Passport.js
+
+Kya Ho Raha Hai?
+1️ Client / route pe GET request bhejta hai.
+2️ app.get("/", (req, res) => {...}) request ko handle karta hai.
+3️ res.send("Welcome to the Home Page!") ka response bhejta hai.
+4️ Browser me ye message show hota hai.
+
+
+req.query (check brwser data send)
+
+Render Data HTML and JSON
+
+HTML send data web page
+
+app.get('/about',(req,res)=>{
+    res.send("<h1>this is about page<\h1>");
+})
+
+json send data web page
+
+resp.send({
+name:"Saqib",
+age:20)}
+
+
+html page create static
+
+express()
+
+Ye Express application banane ke liye use hota hai.
+Iska return value ek app object hota hai jo routes define karne aur request handle karne ke liye use hota hai.
+express.static()
+
+Ye static files (CSS, JS, images, HTML) serve karne ke liye use hota hai.
+Isko middleware ke tor pe use kiya jata hai.
+
+
+const express = require("express");
+const app = express();
+
+app.use(express.static("public")); // "public" folder se static files serve hon gi
+
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
+
+
+express.static(dirname) middleware set karta hai jo "public" folder ke andar se static files serve karega.
+
+
+Remove html extension URL
+
+.html wla /name k bad . k bad lihty 
+pata na lgy ya kis pr bani hai website pta na lgy
+const express = require("express");
+const path = require("path");
+
+const app = express();
+
+const publicPath = path.join(__dirname, "public");
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(publicPath, "index.html"));
+});
+
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
+
+404 Page
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(publicPath, "index.html"));
+});
+eksa mtlb koi b match na kry inde.x.html open hojaye page
+
+
+
+
+
+Template Engine
+
+ya dynamic page banay k  liya istamal hota hai
+or enko  install krna prta jasy normal  npm ko install krty
+ya b npm k packgae hoty hai
+
+
+What is dynamic page
+jab data hamra databse sy uth kr ata 
+jab hamny ak profile ka page banaya wha name age sari detail databse sy uth kr arhi
+jab ak page ka database sy kuch lena dena ni hota  jo usky andr likha wo hi dekhy jo static k liya likha hota wohi nazr aye
+
+
+ejs ya sab sy zayda use hoty
+
+
+sab sy phly hamy node js ko btaan prta ham ejs use kr rhy
+app.ste('view engine',ejs) firt template engine use kr rhy second ham konsa package use kr rhy hai
+
+
+phr ak fiolder views name sy bana prta
+jab b ham tewplate engine use krty tu hamy esky views folder chaye hota hai ya by default configration hoti hai
+
+folder k andr file profile.ejs
+es file ma html ban o or likho
+send data
+app.use('/profile',(-,resp)=>{
+use{
+name:saqib}
+resp.render('profile{user.name});
+
+<%=data..name%>
+
+
+
+Middlware
+middleware ko ham kahi or use ni kr skyy sirf route k opr use kr ksty hai
+
+ya kuch function hoty hai jo route k sath use kr skty esky sath req or respo ko acsess krksty or modifie kr skty hai
+bhut bar aisa hota hai k atenntication check krni prti user login hai ya ni wo ham middlware k andr check kr ksty
+jha b hamy req or response k andr chnages lrny hoty tu hamy middlware use krty
+
+route a 50 page hai routes k andr check kro tiu 50 dfa check kro ga
+middlware ak dfa bna kty or use kr ksty mutliple 
+
+
+const express=require(express);
+let app=express();
+app.get('/",req,resp=>{
+resp.send("I m Saqib:)
+})
+app.get('/User",req,resp=>{
+resp.send("I mUser :)
+})
+middlware ak normal function hota
+
+const reqfilter=(req,resp,next)=>{
+next();
+} 
+next ak aisa function hota jab ya jes route ko apny call kry gy agy procede krdy ga agr ya call ni hova esko agr procedce ni kry ga
+
+app.use(reqfilter);
+
+estra jab hamny bna liya tu page load hota rhta hai ab hamy esko agy jany k liya next call krna prta
+
+
+const authMiddleware = (req, res, next) => {
+    let token = req.headers["authorization"];
+    if (token === "secret123") {
+        next();  // Authorized hai, aage jao
+    } else {
+        res.status(403).send("Unauthorized!");
+    }
+};
+
+app.get("/dashboard", authMiddleware, (req, res) => {
+    res.send("Welcome to Dashboard!");
+});
+
+
+application layer route hai ya
+ya pori application k opr lagy ga sari apllication pr
+
+
+Route Level middleware
+
+asy middlware jo single route k opr kam kry gy routing k grup k opr kam kry gy 50 masy (10,20) route apply krna ha
+ya ak middlware sy sary sary k sary route pr apply krny wo b hojaye gy
+
+ak pr route espr chly ga bas
+app.get('/User",reqfilter,req,resp=>{
+resp.send("I mUser :)
+})
+
+
+middlware ki ak sepqrate file banna achi practice hai export krky import krlo
+
+hjam chaty hai 20 25 pr add kry eskliya ham router ko export kry gy estra hamy alida alida file ma dena prta har ma
+
+cont route=express.routrer();
+route.use(middlwarename)
+jen jen route k opr middlware apply krna hai
+usko hamy route.get bna dena
+
+route.get('/User",req,resp=>{
+resp.send("I mUser :)
+})
+
+wndpr ak line likhni prni
+app.use(/,route);
+jha route wha apply hoga app wlay pr ni
+
+diffenrce route level or app middlware 
+
+app level middlware globaly apply hogy
+jo route level hai wo globaly k single k sath apply kr ksty
