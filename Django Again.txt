@@ -2,7 +2,7 @@ Django
 
 high level frmaework pyhton ka 
 ya automatic apis authentcaiton manage krta esko high level esliya kthy
-open source hai free hai 
+open source hai free hai  
 community driven update krti rhti
 Follows MVT (Model vew template) arhticture krta follow
 
@@ -678,5 +678,6 @@ npm  install taiwndcss taiwndss/.cli
 
 staticfolder/srcfolder/input.css
 @import tailwidncss
+
 
 
