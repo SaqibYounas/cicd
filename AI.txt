@@ -201,3 +201,40 @@ Examples: Self-driving cars, facial recognition, voice assistant
 4️⃣ Generative AI (GAI)
 
 Definition: Generative AI creates new content, such as text, images, or code.
+export const DEPARTMENTS = {
+    1: { id: 1, label: "IT" },
+    2: { id: 2, label: "HR" },
+    3: { id: 3, label: "Finance" },
+};
+
+export const PERMISSIONS = {
+    1: { id: 1, label: "Admin" },
+    2: { id: 2, label: "Manager" },
+    3: { id: 3, label: "Editor" },
+    4: { id: 4, label: "Viewer" },
+};
+
+export const USERS = [
+    {
+        id: 1,
+        name: "Ali Khan",
+        email: "ali@gmail.com",
+        departmentId: 1,
+        permissionId: 1,
+    },
+    {
+        id: 2,
+        name: "Sara Ahmed",
+        email: "sara@gmail.com",
+        departmentId: 2,
+        permissionId: 3,
+    },
+    {
+        id: 3,
+        name: "Usman Raza",
+        email: "usman@gmail.com",
+        departmentId: 3,
+        permissionId: 4,
+    },
+];
+
