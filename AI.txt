@@ -1,7 +1,7 @@
 🔹 Roman Urdu
 
 Artificial Intelligence wo technology hai jisme computer ya machine ko aisi ability di jati hai ke wo soch sake, seekh sake aur decision le sake, bilkul insaan ki tarah.
-AI systems data se learn karte hain aur phir us data ki madad se problems solve, predictions aur automation karte hain.
+AI systems data se learn karte hain aur phir us data ki madad se problems solve, predictions aur automation karte hain. 
 
 Examples:
 
@@ -237,4 +237,5 @@ export const USERS = [
         permissionId: 4,
     },
 ];
+
 
