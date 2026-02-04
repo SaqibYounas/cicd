@@ -687,6 +687,87 @@ password:12345
 
 
 
+
+
+django admin panel
+ak model bnaye ga student ka ham
+
+admin dashaord k liya dkehan k liya register kry ga admin.py ma model
+
+from portfolio.models import Student
+
+admin.site.register(Student)
+
+def __str ma return wo kry ga jo sitrng hai nmbr nhi
+ya str(slef.name) estara string ma convert kry ga ham
+
+
+
+Custoimze Admin List
+
+admin.py ma
+@admin.reisgter(Student)
+class StudentAdmin(admin.ModelAdmin) jo b customize kry ga wo ham modeladmin sy dkeh ksy ga ham
+list_display=('name,age,city) jo jo display krwna tuple ma dydn
+search_fields=('name','city')
+list_filter('age','city')
+ordering=('name',) single tupel nhi bnta
+admin panel ma serach fiedl ajey ga 
+ordeting sy symbol aye ga
+
+
+
+
+ HTML Forms in Django
+
+urls.py
+path('',views.contnct_form)
+path('/submit',views.submit_conatct)
+
+
+models.py
+class Contact(models.Model):
+name-=mocdels.charField(max_lenght=100)
+creared_at-modesl.DATETIMEFIELD(auto_now_add=TRUE)
+
+
+views.py
+from djangp.http import httpresposne
+from djangohortuc import render,redirect
+
+def contact_form)request):
+return render(request,conatce.html')
+
+
+def submit_conatc)requesr):
+if request.methof=='POST':
+name=request.POST.get('name')
+messae=reqiursy.post.get(mesage;)
+if name and messafe
+
+Contact.objects.create(name=name,message=message)
+return HTTPRESPOSNE(yhankyou)
+else
+return httpResposne(provide me)
+
+redirct (hoime.html)
+
+
+.html
+<form action="%{utl 'submit_conatc%} method="POST">
+{%csrf_token%}
+input foirm
+
+get kry ga moethod tu requets cleint to cleint manage hoti hai
+agr scurity bat hai phr post kry secure data hai
+post k stah data abckend k pas jaye ga wha process hoga
+
+
+
+
+
+
 Register Models in Admin Panel
+
 
 
