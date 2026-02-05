@@ -1466,9 +1466,639 @@ a href=[afe_obje.nextpage
 
 
 
+
+Filter and Search
+
+from django.core.paginator import Paginator
+from django.db.models import Q
+
+def post_list(request):
+    search = request.GET.get('search', '')
+
+    if search:
+        posts = Post.objects.filter(
+            Q(title__icontains=search) | Q(content__icontains=search)
+        )
+    else:
+        posts = Post.objects.all()
+
+    paginator = Paginator(posts, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'post_list.html', {'page_obj': page_obj, 'search': search})
+
+
+Class Based View
+
+function based view
+ya normal function hoty jo request handle krtu hai 
+bignner easy hoty request.post krty ham jestara normal fucnion use hoty wsy hoty
+
+def post_ist
+
+class based view
+ya buil in class ko inherit kerti hai 
+code esubilit k liya http bulitn
+
+class Postview
+
+
+model.py
+reverse particular path deta Jha mve hota function apka
+from Django.urls import reverse
+
+class Post(models.Model):
+title=modes.charField(max_lenght=200)
+CONTENT=MODEL.chrfiel()
+
+def __str__(self):
+return self.title;
+
+def get_abuslute_url():
+return reverse('post-detail,arg=[stp(slf.id)])
+
+jab b view call hoga ua chly ga crud masy jo hn
+
+
+urls.py
+from .view import PotListView,PostCreateVIew,PostUpdateView,
+PostDetailView,PostdeleteView
+
+urlpatterns=[
+path('',PostListView.as_view(),name=post)
+path('post/<int:pk>/',PostDetailView.as_view(),name=detail)
+path('post/new/',PostCreateVIew.as_view(),name=create)
+path('post/<int:pk/edit>/',PostUpdateView.as_view(),name=update)
+path('post/<int:pk/delete>/',PostdeleteView.as_view(),name=delete)
+
+
+views.py
+
+from Django.views.generic import ListView,DetialView,CreateViw,UpdateView
+ya predienfed hai 
+from Django.urls from reverse_lazy
+from model import post
+
+class PostListView(ListView):
+model=Post kha sy lena model
+template_name='post_list.html' 
+context_object_name=post jestara render ma dety data bhjty wo 
+
+
+class PostDETAILView(DetailView) ak list ki detail dekhni hai
+model=Post template_name='post_list.html' 
+context_object_name=post 
+
+class PostCreateView(CreatView)
+model=Post template_name='post_list.html' 
+fields=[titile,content] jab create krty kon c fileds dekhni hai 
+ya ui pori pass ki hai
+
+
+class PostUpdateView(UpdateView)
+model=Post template_name='post_list.html' 
+fields=[titile,content] jab create krty kon c fileds dekhni hai 
+ya ui pori pass ki hai
+
+
+
+class PostDeleteView(DelteView)
+model=Post template_name='post_list.html' 
+succes_url=rverse_lazy(post_titile)
+
+opr waly sary success page jo model ma url diya wohi pr move hogy wo
+agr reverse_list diya hr usmy hoga move wo success k bad
+
+
+
+
+html
+template
+
+
+
+Django Middleware
+
+ak hook hai jo har request or response k darmyan ma kam krta hai
+ak bridge hai jo request or response k drmyan ma processing krta hai
+
+use cases
+authentication check
+request response logging
+ip blocking
+performance timming
+
+2 types middleware
+built in or custom
+
+bulit in middleware setting ma hoi dekh skty hai
+phla security wala security likhi hai
+ya header ko security deta xss headers ko
+sessionMidlware session k liya hota 
+commonmiddlware ya ya redirect krwana usy liya
+crfmiddlware token jo krty use ham 
+authentication ya dkehta k user ko acess hai Esko krny k ya nhi
+messagemiddlware ya message handle krta
+Xframeoption eska kam protect click janking attack sy protect krta
+
+ya djnago k apny hai
+
+
+custom middlware kasy create kry ham
+
+middleware.py
+from Django.http import httpresponse
+from Django Django.utils.depretion from middlewareMicxin
+middlewareMicxin ya use krty helper class hai ya backward compalpibiltiy k liya djangi k porny version ma alg alg tariqy sy likhty thy agr Esko sue kr rhy hai Django smjh jata ya auto handle krta new or old middlware ko
+
+from Django.http import httpresponse
+from Django Django.utils.depretion from MiddlwareMixin
+
+class SimpleLogMiddleware(MiddlwareMixin)
+
+def proccess_request(self,request):
+print(f"[{datetime.atetime,now] {request.path})
+
+def proccess_respnse(self,request):
+print(f"[{datetime.atetime,now] {resposne.status.code.p})
+return response
+
+settings.py
+jo middlware bnaaya name ka 
+blog.Middleware.SimpleLogMiddlware
+
+eatra dy ga
+
+ya custom setting ma dety hai ya sab k liya run hoga routes k liya
+
+
+Agar aapko sirf kuch views par middleware ka effect chahiye, to better approach hai decorator banana:
+
+# myapp/decorators.py
+from django.http import HttpResponse
+
+def custom_middleware(view_func):
+    def wrapper(request, *args, **kwargs):
+        # Middleware logic
+        if not request.user.is_authenticated:
+            return HttpResponse("Login required", status=403)
+        return view_func(request, *args, **kwargs)
+    return wrapper
+
+
+Use in views:
+
+from .decorators import custom_middleware
+@custom_middleware
+def route1_view(request):
+    return HttpResponse("Route 1")
+
+@custom_middleware
+def route2_view(request):
+    return HttpResponse("Route 2")
+
+def route3_view(request):
+    return HttpResponse("Route 3")  # no middleware
+
+Advantage:
+Sirf selected views me middleware apply hota hai
+Global middleware list me change karne ki zarurat nahi
+
+
+block ip
+
+
+classBlockIp(middlwareMixin):
+BlockedIps=[127.2.5.66]
+
+def process_request(self,request):
+ip=request.Meta,get(REMOTE_ADDR)
+if ip in self.blickedip:
+return httpresposne();
+
+
+
+
+Django Signal
+ya alow krta crud event horha aisa oi b event horha jab apka reciver automiaticaly call hojaye single use hota
+jab b event chly ya auto run hojata hai
+
+jab user create hn save hn ak event jaye send mail ka 
+auto create hojati profile jab register hn user
+jab order online krty invoice generate hta signal kam krta hai
+
+
+model.py
+class Blog(models.Model):
+title=models.charField
+content
+author
+create_at
+
+def __str__(self)
+return self.title
+
+
+signals.py
+user save k phly or bad ma kya trigger hoga wo dyga yha
+
+from Django.db.models.sifnals import post_save,pre_save
+from Django.dispatch import reciver
+from .models import Blog
+
+
+Trigger before saving a blog
+
+@receiver(pre_save,sender=blog):
+def before_blog_save(sender,instance,**kwargs):
+print(about to save blog presave,instance.titile
+
+
+Trigger after save
+
+@reseiver(post)save,sender=blog);
+def afterblog)save(sender,instance,created,**kwargs):
+if created
+print(new blog save)
+else:
+print(blog updated post save)
+
+
+apps.py
+ya singnal automatic register hojaye jab application load hn yha dety]
+
+def read(self):
+import blog.signals
+register krdiya hai
+
+
+admin,py
+@admin.register(Blog)
+class BlogAdmin(admin.ModelAdmin):
+
+
+
+p by step execution:
+View me:
+user = User.objects.create(username='Ali')
+Django automatically post_save signal fire karta hai
+create_profile function detect karta hai ke created=True hai
+Profile object automatically create ho jata hai
+
+
+Django me bohot saare built-in signals hote hain, jaise:
+
+Signal	Kab fire hota hai
+pre_save	Object save hone se pehle
+post_save	Object save hone ke baad
+pre_delete	Object delete hone se pehle
+post_delete	Object delete hone ke baad
+m2m_changed	Many-to-many field me change hone par
+request_started	Request start hone par
+request_finished	Request complete hone par
+user_logged_in	User logs in	Track user activity
+user_logged_out	User logs out	Track user activity
+
+
+
+
+
+
+Django Sessions
+
+ak shooping website ma ak cart ma item daly website ko yad rhy ga usko yas rhy ga kya dala
+site apko name sy welcome kry ga usko yad rhy ga ya data
+session ma store hota
+
+
+ya temporty data hai jo server side ma store krta hai ja user request krta tu ya autmaotxayl ak id generate krta hai ya id browser ma store hoti jo store hota data wo sue krta ya server ma store hota session lkin cookie k throw browser ko b mil jati hai
+
+setting.py
+installed app ma hoga session 
+manage hoajye ga wohi sy
+
+
+
+urls.py
+path(set-session)
+path(get-session)
+path(delete-session)
+
+
+views.py
+
+from Django.http import httpresposne
+
+def set_session(request):
+request.session['username]=saqib
+request.session[age]=23
+
+retrun htpResposne session data saved
+
+
+def getSession(request):
+username=request.session.get('username')
+age=request.session.get(age)
+return httpResposne(f"welcome:{username}.age{age}
+
+
+def deleteSession(request):
+del reques.session[username] one by one
+
+reqest.session.flush() all clear session
+retrun session delete successfully
+
+ak session table bnta by default session ko cooki id moly gi login k liya shopping card item k oiya scure 
+way ma data store krwana esliys use krta
+
+
+sesure data save server side data store krty
+cookie har tara k data client side data store krta
+
+
+
+Django Cookie
+
+theme color languages ya zayda scure nhi hota
+key value paidr hoti data ki ya borwaer ma store krty
+ya client side k oiya
+session server side k liya
+cookie ak limited data 4kb
+session ma nhi limited data
+
+
+
+set cookie get delete cookie
+
+
+urls.py
+path(set-Cookie)
+path(get-Cookie)
+path(delete-Cookie)
+
+
+views.py
+
+def set_cookie(request)
+response hhtpresposne
+response.set_cookie('username\,'saqib',max_age=3600)
+response.set_cookie('course",'Django",max_age=3600)
+
+
+def get_cooikie(request);
+username=request.COOKIE.get(username,Guest) ager na mila username phr guest
+course=request.COOKIE.get(course,django by default)
+
+if username in request.COOKIES:
+retrun httpresposne(name,course)
+esle:
+retrun httpresposne(no cookie found)
+
+def dleet_cooki(
+resposen=httpreposen(cookie delete)
+response.delete_cookie(username)
+response.delete_cookie(course)
+return response
+
+expires,path=domaim,secure=true a partmtes hoty or
+koi sensity data store krna cookie ma store krna
+signal cooki zayda secure hai
+
+
+
+
+Django Email Sending
+
+ Django.core.mail
+ email send kr ksty builtin model hai ya
+
+Django.core.mail
+ya smtp k through kam krta hai
+
+
+email ki 3 types hoti
+single bulk auto
+
+
+setting.py
+EMAIL_BACKEND=Django.core.mail.backends.smtp.EmailBackend
+Email_HOST=smtp.gail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+Email_HOST_USER='saqib@gmail.m
+EMAIL_HOST_PASSWORD=app password 
+DEFAULT_FROM_EIMAIL=DEFUALT_EMAIL
+
+gmail 2 setp verification honi chaye
+
+
+https:myaccount.google.com/apppasswords
+es url ma jana app ka name dena or enter krna
+ak password mily ga yha den hai
+
+ya kry ga setting tbhi chly gi mail
+
+
+urls.py
+from . import views
+
+urlpattersn=[
+path('send-emil')
+
+
+
+
+views..py
+
+from Django.core.maim import send_mail(simple text send krny k liya
+from Django.http import httpResposne
+
+def send_test_email(request)
+subject=Welcome to my Blog
+message=Thnak you for reaching out
+from_email="saqib@gamil.com
+recipeint_list=kis is o bhjna mail 20 bhj skty sned mail sy maximum ya slow hota 20 sy agy hang hojata 
+[saqib2@gmail.com]
+
+send_mail(subject,message,fromemail,reciepnt_email)
+return httpresponse
+
+
+
+html mail send
+
+from Django.core.mai import EmailMessage
+from Django.template.loader import render_to_string
+
+def send(request)
+subject=Welcome to my Blog
+message=render_to_string(email/welcome.htm
+,{
+username:saqib,
+blogname:Myblog
+})
+
+from_email=EmailMessage(
+subject,message,"saqib@email.com,[saqib2@email.com]
+
+email.conten_sutype='html' html ontent hai ya bataye ga nhi tu text batye ga
+email.send()
+return httpresposne
+
+phla apni dosri Jha bhjni email wo
+
+
+
+
+templates/welcome.html
+
+h2 Welome {{username}}
+p Thank ypou for reacting out
+p feel free to reach out
+{BLOGNAME}}
+hr
+this is automated mail no reply
+
+
+smtp configration
+jo gmail ko djnago k ath connect 
+html email 
+email tmepltes 
+template engine hai
+
+
+
+Django Signal Use case
+welcome email dena
+signal k throw ata jo reisgetr k aqt dali apni
+
+
+
+
+signals.py
+from Django,models.signals import post_save
+from Django.dispatch from recicver
+from Django.contrib.auth import user
+from Django.core.mail import sendmail
+
+@receiver(post_save,send=User)
+def sednWelcomEmail(sender,instace,created,***kwargs):
+if created:
+print(new user created)
+
+subject=Welocme to sawib
+message=Thnak you are reaching me
+
+from_email=saqib@gamil.om
+recipeint_list=[instance.email] jo user dyga 
+
+send_mail(subject,message,from_mail,respisne_ist,fail_silently=False)
+end wala console ma bayate ga issue 
+true ma 10 15 fil hogi nhi bataye ga
+
+print(welcome email send instance.email)
+
+
+app.py project wali
+def read(self)
+import accounts.signalconnect kry a app k sath
+
+
+
+setting.py ma dyga opr wali jo di thi
+
+
+
+createsuperuser
+saqib
+apni email id dani mail jaye gi welcome
+saqib@gamil.com
+password
+
+jasy user create kiya mail chlai gi 
+
+
+
+Bulk Email Sending
+send mail ak text k rop ma jata ak subject body hoti
+ya mail sabko ak jaisa jata agr 1000 bhjna loop ma bhjna smtp conection bnaya ak mail gya 
+
+send_mass_mail ya ahr request mamultiple different message send kr ksta har bar dobara connection nhi bnaye ga
+ya b simple text k form ma jaye ga data inbox ma b html sy connect nhi hoga ya
+
+
+urls.py
+path dyga ak
+
+
+views.py
+
+from Django.core.mail import send_mass_mail
+
+
+def send_bulk_email(request):
+message=(welcome User 1,Hello User 1,saqib@wemail.com,[from email dena] )
+phla subject dosra message this apna mail chota jesko bhjna mails
+copy kkry multiple dyskty hai
+
+send_mass_mail((message1,message2,message3))
+
+return httpresposen ok
+
+fast secure hai tenu ko ak dfa bhj dyga
+
+
+1000 plus bhjy ga mail ya free nhi gmail
+redis calry+redis use kr ksta hai
+
+
+
+ab html ma bhjna
+
+from Django.core.mail import EmialMultiAlternatives 
+ya more effective html k sath bhjna
+from Django.template.loader import render_to_string
+
+def sendhtmlmail(request)
+subject=welcome to our
+from_mail=saqib@gamil.com
+recipient-list=[MAIL IDS DYGA YHA HAM]
+
+html_content=render_to_string(bataye g kha html ,welcome.html,username:Saqib}}
+
+msg=EmialMutlAlternatives(subject,welcome,from+email)
+msg.attach_alternaticw(html_content,text/html)
+msg.attach_file()file attach krni path dyga yha
+
+return httpresposne()
+
+text mail send_mail
+multiple laglag email k sath bhjna
+sendmass use kro
+agr fancy use krna emailalternatoves use kro
+
+
+
+
+Cache(LocMemCache)
+
+in-memory-cache
+
+
+
+
+
+
+
+
+
+
+
 Lifecycle hooks# NESTJS
 There are 3 useful lifecycle hooks available. All of them have corresponding interfaces and are described in the following table:
 
 OnGatewayInit	Forces to implement the afterInit() method. Takes library-specific server instance as an argument (and spreads the rest if required).
 OnGatewayConnection	Forces to implement the handleConnection() method. Takes library-specific client socket instance as an argument.
 OnGatewayDisconnect	Forces to implement the handleDisconnect() method. Takes library-specific client socket instance as an argument.
+
