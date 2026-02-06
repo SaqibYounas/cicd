@@ -1489,6 +1489,7 @@ def post_list(request):
     return render(request, 'post_list.html', {'page_obj': page_obj, 'search': search})
 
 
+
 Class Based View
 
 function based view
@@ -1564,7 +1565,7 @@ ya ui pori pass ki hai
 
 
 class PostDeleteView(DelteView)
-model=Post template_name='post_list.html' 
+model=Post template name='post_list.html' 
 succes_url=rverse_lazy(post_titile)
 
 opr waly sary success page jo model ma url diya wohi pr move hogy wo
@@ -1602,7 +1603,114 @@ authentication ya dkehta k user ko acess hai Esko krny k ya nhi
 messagemiddlware ya message handle krta
 Xframeoption eska kam protect click janking attack sy protect krta
 
+
+🔁 Middleware hota kya hai?
+
+Middleware ek beech ka layer hota hai:
+Request → Middleware → View → Middleware → Response
+Har request & response is list se zaroor guzarti hai.
+
+1️⃣ SecurityMiddleware
+"django.middleware.security.SecurityMiddleware"
+
+Kaam:
+HTTPS enforce karna
+secure headers add karna
+Examples:
+SECURE_SSL_REDIREC
+X-Content-Type-Options
+Strict-Transport-Security
+
+👉 Website ko secure banata hai
+
+2️⃣ SessionMiddleware
+"django.contrib.sessions.middleware.SessionMiddleware"
+
+Kaam:
+user ka session data handle karta hai
+Example:
+request.session['name'] = 'Ali'
+Agar ye middleware na ho:
+❌ sessions kaam nahi karenge
+
+3️⃣ CommonMiddleware
+"django.middleware.common.CommonMiddleware"
+
+Kaam:
+URL ko clean karta ha
+trailing slash handle karta hai
+Example:
+
+/posts  →  /posts/
+Settings se related:
+APPEND_SLASH = True
+
+4️⃣ CsrfViewMiddleware 🔐
+"django.middleware.csrf.CsrfViewMiddleware"
+
+Kaam:
+
+CSRF attack se bachata hai
+Form ke liye:
+
+<form method="post">
+  {% csrf_token %}
+</form>
+
+
+Agar ye na ho:
+❌ koi bhi fake request bhej sakta hai
+
+5️⃣ AuthenticationMiddleware
+"django.contrib.auth.middleware.AuthenticationMiddleware"
+
+Kaam:
+request.user ko available karta hai
+
+Example:
+if request.user.is_authenticated:
+    print("User logged in")
+Is ke baghair:
+❌ request.user kaam nahi karega
+
+6️⃣ MessageMiddleware
+"django.contrib.messages.middleware.MessageMiddleware"
+
+Kaam:
+one-time messages show karna
+
+Example:
+from django.contrib import messages
+messages.success(request, "Post created!")
+
+
+Template:
+
+{% for message in messages %}
+  {{ message }}
+{% endfor %}
+
+7️⃣ XFrameOptionsMiddleware
+"django.middleware.clickjacking.XFrameOptionsMiddleware"
+
+Kaam:
+
+clickjacking attack se protect karta hai
+
+Means:
+❌ tumhari site kisi aur site ke iframe mein load nahi ho sakti
+
 ya djnago k apny hai
+
+🔴 CSRF Attack
+
+User login hota hai ek site pe,
+koi aur site uski marzi ke baghair fake request bhej deti hai.
+
+🟠 Clickjacking Attack
+
+User kuch aur button samajh ke click karta hai,
+asal mein hidden button pe click ho jata hai.
 
 
 custom middlware kasy create kry ham
@@ -1615,14 +1723,34 @@ middlewareMicxin ya use krty helper class hai ya backward compalpibiltiy k liya 
 from Django.http import httpresponse
 from Django Django.utils.depretion from MiddlwareMixin
 
-class SimpleLogMiddleware(MiddlwareMixin)
+from django.utils.deprecation import MiddlewareMixin
 
-def proccess_request(self,request):
-print(f"[{datetime.atetime,now] {request.path})
+class SimpleLogMiddleware(MiddlewareMixin):
 
-def proccess_respnse(self,request):
-print(f"[{datetime.atetime,now] {resposne.status.code.p})
-return response
+    def process_request(self, request):
+        print("User requested path:", request.path)
+
+    def process_response(self, request, response):
+        print("Response status code:", response.status_code)
+        return response
+
+✅ process_request
+
+👉 har request se pehle run hota hai
+👉 view chalne se pehle
+
+❌ process_response
+
+👉 request se pehle nahi
+👉 view ke baad, jab response ban chuka hota hai
+
+✅ 3️⃣ Server restart kiya?
+
+Middleware add karne ke baad:
+Ctrl + C
+python manage.py runserver
+Restart ke baghair changes apply nahi hotay ❌
+
 
 settings.py
 jo middlware bnaaya name ka 
@@ -1738,6 +1866,8 @@ admin,py
 class BlogAdmin(admin.ModelAdmin):
 
 
+ready() method me signals import karna best practice hai
+@receiver decorator automatically signal ko register karta hai
 
 p by step execution:
 View me:
@@ -1846,7 +1976,7 @@ response.set_cookie('username\,'saqib',max_age=3600)
 response.set_cookie('course",'Django",max_age=3600)
 
 
-def get_cooikie(request);
+def get_cooikibe(request);
 username=request.COOKIE.get(username,Guest) ager na mila username phr guest
 course=request.COOKIE.get(course,django by default)
 
@@ -1870,8 +2000,8 @@ signal cooki zayda secure hai
 
 Django Email Sending
 
- Django.core.mail
- email send kr ksty builtin model hai ya
+Django.core.mail
+email send kr ksty builtin model hai ya
 
 Django.core.mail
 ya smtp k through kam krta hai
@@ -2077,6 +2207,30 @@ text mail send_mail
 multiple laglag email k sath bhjna
 sendmass use kro
 agr fancy use krna emailalternatoves use kro
+
+Simple Text Email (Plain Text Email)
+Sirf plain text content hota hai.
+
+HTML formatting nahi hoti.
+Basic notfications, alerts ke liye use hota hai.
+Function: send_mail()
+
+HTML Email
+Email me HTML content allow hota hai.
+Text ke saath HTML dono attach kiye ja sakte hain.
+
+Rich content, formatting, colors, links ke liye use hota hai.
+
+Class: EmailMultiAlternatives
+Email with Attachments
+Emails ke saath files attach kar sakte hain (PDF, images, docs).
+Notifications ke saath reports bhejne ke liye useful.
+Class: EmailMessage / EmailMultiAlternatives
+
+Mass Email
+Multiple recipients ko different messages efficiently bhejna.
+Large scale notifications ya newsletters ke liye use hota hai.
+Function: send_mass_mail()
 
 
 
@@ -2299,10 +2453,27 @@ yha lagaye ga cahce
 <ul>
 
 
+4.template fargemnt cahce
+html ma ak particular section k liya
+
 
 {%endcahce%} jha tk krna chche
 
+1️⃣ View-Based Cache
+Scope: Pure view response ko cache karta hai.
+Storage (RAM ya disk?): Depends on backend:
 
+LocMemCache → RAM me store hota hai (fast, server restart pe clear).
+FileBasedCache → disk me store hota hai (persistent, slower).
+Memcached ya Redis → RAM me, network ke through shared hota hai.
+
+2️⃣ Template Fragment Cache
+Scope: Template ka sirf ek fragment cache karta hai.
+Storage (RAM ya disk): Yeh bhi backend pe depend karta hai:
+
+LocMemCache → RAM
+FileBasedCache → Disk
+Memcached / Redis → RAM
 
 Databse cahce
 django ak specal table banata jha cahce data store htoa 
@@ -2334,26 +2505,891 @@ users=Userprofile.objects.gel()
 cache.ste(userlisyt,users,300)
 
 
+1️⃣ Environment Variables (Recommended)
+
+Secret keys aur sensitive info ko OS environment variables me store karte hain.
+settings.py me unhe os.environ se read karte hain.
+
+Example:
+
+# Linux / macOS terminal
+export DJANGO_SECRET_KEY='my-very-secret-key'
+export DATABASE_PASSWORD='my-db-password'
+
+# settings.py
+import os
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydb',
+        'USER': 'myuser',
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+
+✅ Pros:
+
+Code me secrets hardcode nahi hote.
+Multiple environments (dev, staging, production) easy manage hote hain.
+
+2️⃣ .env Files with python-decouple or django-environ
+.env file me secrets store karte hain, project ke root me.
+.env file ko gitignore me daalte hain, taake version control me na aaye.
+
+Example .env file:
+
+SECRET_KEY=my-very-secret-key
+DATABASE_PASSWORD=my-db-password
+DEBUG=True
+
+
+Using python-decouple:
+
+pip install python-decouple
+
+# settings.py
+from decouple import config
+
+SECRET_KEY = config('SECRET_KEY')
+DATABASE_PASSWORD = config('DATABASE_PASSWORD')
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+✅ Pros:
+
+Easy to read/write.
+
+Git me accidentally commit hone ka risk nahi.
+
+3️⃣ Vaults / Secret Management Services (Production-Ready)
+
+Enterprise-grade apps me AWS Secrets Manager, HashiCorp Vault, Google Secret Manager use karte hain.
+Secrets encrypted storage me hote hain aur runtime me application fetch karta hai.
+Highly recommended for sensitive production keys.
+
+4️⃣ Important Security Practices
+
+settings.py me hardcoded secrets avoid karo.
+.env file ko .gitignore me rakho.
+Secret keys ko version control me kabhi commit na karo.
+Production me environment variables ya secret manager ka use karo.
+
+
+Django REST Framework (DRF)
+
+Django par based hota hai – full Django project ke sath kaam karta hai
+Thoda slow hota hai FastAPI ke comparison me
+Built-in features zyada milte hain (auth, admin panel, ORM)
+Large projects aur traditional web apps ke liye best
+
+FastAPI
+
+Python type hints par based modern framework
+Bahut fast (Starlette + Pydantic ki wajah se) ⚡
+Automatic API docs milte hain (Swagger / ReDoc)
+Microservices & APIs ke liye perfect choice
+
+Django REST Framework(DRF)
+
+
+restapi
+represention state transfer hai ya ak standard way hai client or server  drmyana data exchange krtty hai
+ak client hota googl.com jo ui wo client hota 
+ak databse Jha ata store hota 
+jo Django client or server  drmyna m hai django
+
+Get by defult 
+agr youtube Django ma hai backend get api call kry ga am
+
+
+Django rest frmawerok kya ai
+ak powefull tool kit ai restful pi bana skty Django ma
+ya json serve krta hai serlize ota ak file
+view url serlize ka use krky bhjta fronted ko data
+permission k liya api detsa rowser k Django orm k sath easy hai
+versionong support krna hn easy hai
+
+drf json deta hai esliya use krta 
+agr frotned or ma hai phr rest use kry ga drf clean code or secure
+hota hai
+
+pip install Django djangorestframework
+
+setting ma
+installed app
+\rest_framework' 
+register kry ga Esko
+
+
+model bnaye ga ham
+
+class student(model.Models)
+name
+age 
+city
+
+def __str__(self)
+return self.name
+
+admin.py
+ma register kry ga ham model
+@admin.egister(student)
+class studentadmiN(admin.delAdmin)
+list_dispaly=(id,name,age,city)
+
+
+data enter kry ga ham
+
+selrize.py
+from rest_framework import srializers
+from .models imprt student
+
+class StudentSerializr(sterilizers.ModelSeraizer)
+class Meta:
+meta=Student
+feilds=[name,age]
+feidls=__all__ all deny k liya fields ko
+
+
+views.py
+from rest_framerwork.decorators mport api_view
+from .serializer imort StudentSerialzer
+from .rest_framwrok.resposne import Resposne
+
+@api_view([GET]) yha batye ga kon c api hai ya
+def student_list(request)
+Stentent=Student.objects.all()
+serializer=StudentSerizalizer(students,many=true)
+many=true kamtlb bhut sari fields ai many true nhi krty agr ak field hai
+rturn Response(sterilizer.respnse)
+
+
+urls.py
+path(student/,view.student)
+
+2️⃣ Serializer kya hota hai?
+aur class kyo banate hain?
+
+👉 Serializer ek translator hai 🧑‍🏫
+
+Python/Django	Client
+Model Object	JSON
+
+Browser / Mobile app Django ke model ko nahi samajhta
+wo sirf JSON samajhta hai.
+
+3️⃣ Serializer class ka role
+serializers.py
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = '__all__'
+
+Iska matlab:
+StudentSerializer batata hai:
+kaunsa model
+kaunse fields
+JSON me kaise convert karna hai
+
+
+
+POST API
+url ma path add kry ga es function ka
+
+views.py
+
+@api_view([POST])
+
+def add_student(request)
+serializer=StudentSerlizer(data=request.data)
+if serilozer.isvalid()
+sterilizer.save()
+return Response(seriliz.data,status=statis.HTP_201_CREATED)
+
+RETURN rESPONSE(SERILIZER.ERRORS,status=status.HTTP_500
+
+
+1️⃣ @api_view(['POST'])
+
+👉 Decorator hai
+
+Matlab:
+
+Ye function sirf POST request accept karega
+
+Agar GET request aayi ❌ → error de dega
+
+2️⃣ def create_student(request):
+
+👉 API function
+
+Matlab:
+
+Jab client POST request bhejega
+
+Django us request ko request object me dega
+
+3️⃣ request.data
+
+👉 Client se aaya hua JSON data
+
+Example:
+
+{
+  "name": "Rahul",
+  "age": 21
+}
+
+4️⃣ serializer = StudentSerializer(data=request.data)
+
+👉 Yahan kya ho raha hai?
+
+JSON data ko serializer ke andar daal diya
+Serializer check karega:
+fields sahi hain?
+datatype sahi hai?
+
+📌 POST me hamesha:
+Serializer(data=...)
+
+5️⃣ if serializer.is_valid():
+
+👉 Validation step
+
+Check karta hai:
+name empty to nahi?
+age number hai ya nahi?
+
+✔️ Agar sab sahi → True
+❌ Galat → False
+
+6️⃣ serializer.save()
+👉 Sabse important line
+
+Matlab:
+
+New Student object banao
+Database me save kar do
+Behind the scenes:
+Student.objects.create(...)
+
+7️⃣ return Response(serializer.data, status=HTTP_201_CREATED)
+
+👉 Success response
+serializer.data → saved data JSON me
+201 → new data create hua
 
 
 
 
 
-4.template fargemnt cahce
-html ma ak particular section k liya
+Update api 
+Put 
+Patch specific data k liya pora b hsokta
+
+@api_view([PUT,PATCH])
+def update_student(request,pk)
+try:
+student=student.object.get(id=pk)
+expext studwnt.DoesNotExist:
+return Rsponse({"error},status=status.HTTP_44_ERROR_NIT_FOUND)
+
+if request.method==PATCH:
+seroloze=StudentSerlizer(student,data=reuest.data,rtial0True)
+partial true krna agr partial use krna
+else:
+serializer=studentSerlizer(student,data=request.data)
+if serilzer.valid()
+sterilizer.save()
+retrun response(serlizer.data)
+
+return response(sterilizer.errors,status=status.http_404_bad_request)
+
+
+ya opr walafucntion donu ka liya kam kry ga
+
+urls.py
+path(student/update/int<pk>
 
 
 
 
 
+Delete API 
+@api_view([DELETE])
+def delete_student(student,pk)
+try:
+student=Student.objects.get(id=pk)
+expect Student.DoesNotExit:
+return Response({error:stuident ot ound},status=sttus.
+
+student.delete
+return response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+DRF CRUD using ApiView
+ya production level pr best hota hai
+phr genric api or us sy simple model view set
+
+
+class based view with the help of api_view
+
+model bnaye ga ham
+serlizer ma opr ki tara register kry ga 
+
+views.py
+
+from rest_framewrok.view import APIVIEW
+from rest_framewrok.response import Respons
+from ret_framewrok import status
+from .models import Student
+from sterilizer impor StudentSerilizer
+
+
+CRUD Opeation ApiVie
+
+class StudentApi(APIView):
+#read all or single data tlb read all kro ga get k iya singw data based on id 
+
+def get(self,request,pk=None):
+if pk:
+try:
+student=Student.objects.get(id=pk)
+serilizer=StudentSerilizer(student.data,status=status=HTTP_200_OK)
+expect Student.doesnotexit
+return Response({error:student not found},status=status.http_404_not_found)
+
+else
+student-students.object.ll
+serlizer=StudentSerilizer(student,many=true)
+return respons(sterilizer.data,status=status.http_200_pk)
+
+
+def post (self,request):
+serilizer=StudentSerlizer(data=request.ata)
+if serlizeer.is_valid()"
+serlizer.save(
+return resonse(serlizer.ata,status)
+return resonse(serlizee.error,status)
+
+
+def put(self,request,pk)
+try:
+student=tudent.objects.get(id=pk)
+exet Student.doestNotEcit
+eturn resposne(error,status)
+
+selzer=stduentserilixer(student,datat=requesr.data)
+exet Student.doestNotEcit
+eturn resposne(error,status)
+
+def delete()
+try:
+stdeunt=getobject
+student.elete
+return
+expet
+reurn
+
+class StudentDetailAPIView(APIView):
+
+    def get(self, request, id):
+        student = Student.objects.get(id=id)
+        serializer = StudentSerializer(student)
+        return Response(serializer.data)
+
+    def put(self, request, id):
+        student = Student.objects.get(id=id)
+        serializer = StudentSerializer(student, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=400)
+
+    def patch(self, request, id):
+        student = Student.objects.get(id=id)
+        serializer = StudentSerializer(
+            student,
+            data=request.data,
+            partial=True
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=400)
+
+    def delete(self, request, id):
+        student = Student.objects.get(id=id)
+        student.delete()
+        return Response(
+            {"message": "Student deleted"},
+            status=status.HTTP_204_NO_CONTENT
+        )
+
+
+
+
+GenericAPIView + Mixins
+API VIEW MA K STAH
+
+
+apiview ma crud ma ethid used krty thy manual krty thy ham 
+class k andr likhty hy ham function
+
+esmy pre build main ata hai esmy
+apiview ma long code likhna prta tha
+esmy pre build logic hoty hai 
+apiview ma control apky hath ma hai
+generic ma partil control hota
+
+
+views.py
+from rest_framewrok import generis,mixins
+from .mdels import student
+from .serlizer import studentSerilizer
+
+class StuentCreateApi(
+generics.GenericsAPIVIEW,django ak bae class hai Jha query se or sterilizer define krty hai
+mixin.ListModelMixin,drf k pre build clas hai jo likha hota crud already get  liya 
+mixin.createModeMixin)ya create krny k liya post api
+:
+quertySet=srtudent.oject.all()
+seilize_class=studentSeriazlizer
+
+def get(self,request,*arg,kwrgs)
+return self.list(request,arg,kwrgs)
+
+
+def post(self,request,*arg,kwrgs)
+return self.create(request,arg,kwrgs)
+
+
+class StudentRetriveUPDATEDELETEAPI(
+generics.GenericsAPIVIEW,
+mixins.RETRIVEMODEL.MIXIN.AK K LIYA UPDATE
+mixin.UpdateMdelMixin,
+mixcin,DestroyMiin
+
+queryset=student.objects.all()
+sriizer_class=StudentSeriizer
+lookup_field=pk
+
+
+
+def get(self,request,*arg,kwrgs)
+return self.retrive(request,arg,kwrgs)
+
+def get(self,request,*arg,kwrgs)
+return self.update(request,arg,kwrgs)
+
+urls.py
+path('students/', StudentListCreateAPI.as_view()),
+path('students/<int:pk>/', StudentDetailAPI.as_view()),
+
+
+
+
+views.py
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import (
+    ListModelMixin,
+    CreateModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    DestroyModelMixin
+)
+from .models import Student
+from .serializers import StudentSerializer
+
+🔵 List + Create
+class StudentListCreateAPI(
+    GenericAPIView,
+    ListModelMixin,
+    CreateModelMixin
+):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def get(self, request):
+        return self.list(request)
+
+    def post(self, request):
+        return self.create(request)
+
+🟢 Retrieve + Update + Delete
+class StudentDetailAPI(
+    GenericAPIView,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    DestroyModelMixin
+):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def get(self, request, pk):
+        return self.retrieve(request, pk=pk)
+
+    def put(self, request, pk):
+        return self.update(request, pk=pk)
+
+    def patch(self, request, pk):
+        return self.partial_update(request, pk=pk)
+
+    def delete(self, request, pk):
+        return self.destroy(request, pk=pk)
+
+
+
+
+ViewSet + Router
+
+ya easy hai 10 15 ma crud banq sty hai
+mixin ma do class banani prti thi hamko
+
+drf ny eska solution ya diya 
+builin method diya hai usny
+
+url yha router k zariya banaya pry ga
+generic m cutom controlkr skty thora yha nhi custom ready
+made mily ga yha
+
+
+
+views.py
+import rest_framewrok impor viewset
+student
+from serlizer import srizer
+
+
+Ful crud useinf sets
+
+Class Studentviewset(viewSets.ModelSet)
+querysr=stuident.objecy.all()
+serlizr_class=StudentSerlizer
+
+queryset batat kis model ma kam krna apny
+
+
+get
+retrive 
+post
+update
+detriy dleete k liya
+
+🔹 views.py
+from rest_framework.viewsets import ModelViewSet
+from .models import Student
+from .serializers import StudentSerializer
+
+class StudentViewSet(ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+
+💡 Bas itna code 😲
+🔹 urls.py
+from rest_framework.routers import DefaultRouter
+from .views import StudentViewSet
+
+router = DefaultRouter()
+router.register('students', StudentViewSet)
+
+urlpatterns = router.urls
+
+
+
+
+DR Authentication Permissions
+apki api secure b hon chaye
+permission kya krna
+authentication kon hai tum
+
+
+REST MA
+baic authentication
+session Authentication
+token Authentication
+JWT Authentication
+
+Permissions buil in classes Django ma hai
+AllowAny all k liya
+IsAutenticatedlogin wala sirf
+IsAdminUser amin k liya api aces kry ga
+IsadthentciattedorReadOnly get api sab k lia allow hai post put delete authenticate user acess kry ga 
+
+
+
+
+1. Basic Authenticated + AllOWAny and IsAuthnticated
+
+
+settings.py
+Res framwerok configrtion
+
+Rest_FRAMWEORK={
+DEFAULT_PERMISSION_CLASSES:[
+rest.framerok.athenticted.BasicAutehntiction
+}
+
+
+urls.py
+path(public/,views.Public_view,)
+path(private/,viewprivate_view)
+
+
+
+views.py
+
+from rest_famework .decorator import api_viwew
+from rest_framewok.respose import Response
+from rest_framwork.pemissions import IsAuthenticated,AllowAny
+
+
+@api_view([GET])
+@permision_classes([AllowAny])
+df public_view(request):
+retrun response ({message;his is a public view})
+say kr skty acs Esko
+
+@api_view([GET])
+@permision_classes([IsAuthenticated]) login wala only
+df private_view(request):
+retrun response ({message;his is a private view})
 
 
 
 
 
+Sesion Authnetication + IsAuthenticatedOrReadOnly
+
+get har koi kr ksta put delete sirf auhentcate user ko allow hai IsAuthenticatedOrReadOnly eski waja sy ya krta handle ya
 
 
 
+
+
+Rest_FRAMWEORK={
+DEFAULT_PERMISSION_CLASSES:[
+rest.framerok.athenticted.sssionAuthenticated
+}
+DEFUAKLT_PERMISSION_CLASSES:[
+rest.framerok.permiison.IsAuthenticatedOrReadOnly
+]
+
+
+
+ak class banye ga ham
+
+titile
+content
+
+
+serlizer.py
+from re
+st_framwerwork import srilizer
+model import
+
+class BlogSerializer(Serilizer.ModelSeliizer):
+class meta:
+model=bog
+fields=[id,titile,coentent]
+
+
+urls.py
+
+path(blogs/,view.blog_list)
+
+
+views.py
+
+
+from rst_framewok.cecortor import apview
+from import re4sponse
+model import
+serlizr import
+from import status
+
+@api_view([GET,POST])
+def blog_list(request)
+if request.method=='GET'
+same code opr wala logic get r post a ondtion lsga kr
+
+
+
+
+Toekn Authenitcation + isAdminUSER
+
+USER k pas unique token hota authentication k lya use hota hai ya header ma dyga api rquets chaye hoti apko
+
+isadminuser
+isadminuer=true sko cess api ki hogi
+
+
+seting.py
+installedapi
+rest_framewrok.authtoken
+
+migrate chalye a table create hojaye ga Django kud deta hai
+tokens ko
+
+
+Rest_FRAMWEORK={
+DEFAULT_PERMISSION_CLASSES:[
+rest.framerok.athenticted.toeknAuthenticaton
+}
+DEFUAKLT_PERMISSION_CLASSES:[
+rest.framerok.permiison.isAuthenticated
+]
+
+
+
+signal.py
+token signal k zariya dety hai hamny
+
+import settings
+import psot_save
+import reciver
+import token
+
+@reciver(post_save,sendfer=settings.AUTH_USER_MODEL)
+def create(sender,instance=None,created=False,**Kwargs):
+if create:
+Token.objets.create(user=instance)
+
+
+
+app.py
+
+def readt()
+register singal
+
+
+
+urls.py
+
+from rest_framweokr.aauthtoke.views import obtain_auth_toekn
+es sy print krwaty jo b token hota
+
+path(auth-token,obatn_auth_token,) token niklany k liya
+path(profile,views.user_profile)
+path(admin-panel,view.admin_panel)
+
+
+
+
+views.py
+
+
+from test_framewrok.decorators import api_view,autehntciation.class,permission_lass
+import response
+import isAuthenticated,IsAdminUser
+import TokenAuthentication
+import Token
+
+
+
+@api_view([GET])
+@authentcstion_class([ToeknAuthenicatedon])
+@permission_classes([isAuthentciated])
+def usr(rquest)
+user=requests.user
+return response({
+username:user.username,
+email,user.email,
+is_staf:user.isstaff
+
+
+@api_view([GET)]
+@authentcstion_class([ToeknAuthenicatedon])
+@permission_classes([iAdminUse])
+def amin_panel(rquest):
+return response message welocome to the admin panel
+
+get token ap sy token mil jaye ga hmy phr use krky data access kr skty hai wo khud handle krta tokens ko
+
+admin wla wohi kryga acess ap johamny createsueruser y admin banaya name wo bhjy ga token k sath us ap pr
+
+
+
+JWT authentication+ ISAuthentcatedReadOnly
+
+json web token 
+token based authentication hai ya feature reuetsk sath bhjna pry ga
+
+header algorithm 
+payload user data hta 
+signature key ak unique
+
+ak token hai key ki tararhai header+payload+sganture
+ya statless hhai ession ma store nhi krna hta hmy
+
+
+pip djangorestfrwamerok-simplejwt
+
+
+setting,py
+rest_fremwok
+rest_fraewrok_simplejwt
+
+Rest_FRAMWEORK={
+DEFAULT_PERMISSION_CLASSES:[
+rest.framerok_SIMPLEJWT.athenticted.JWTAuthentication
+}
+DEFUAKLT_PERMISSION_CLASSES:[
+rest.framerok.permiison.isAuthenticatedRedOnly
+]
+
+
+simple_jwt={
+access_toejnLifetime:timedelta(minuere=5}
+
+url.py
+import TokenObtainedPariView,TokenRefreshView
+
+path(api
+path(api/token,TokenObtainedPariView.as_view()
+path(api/token.refresh,TokenRefreshView.as_view()
+
+
+api/url.py
+
+path('posts/.view.postlist)
+
+
+views.py
+from rest fremaerok.respsne import Resonse
+from decorator import api_view,permision_classes
+from import IsAuthentcatedReadOnlty
+
+
+@api_view([GET[)
+@permiison_classes([IsAuthentcatedReadOnlty])
+def post)lst(request)
+if request.method==GET:
+return response({message:public})
+esif request.methd==PST:
+return Response({message data created by this user)}
+
+
+
+🔐 SECURITY (INTERVIEW FAVORITE)
+
+CSRF, CORS
+SQL Injection prevention
+XSS
+Django security settings
+Environment variables (.env)
+Secrets management
 
 Lifecycle hooks# NESTJS
 There are 3 useful lifecycle hooks available. All of them have corresponding interfaces and are described in the following table:
