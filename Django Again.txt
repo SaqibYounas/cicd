@@ -2084,6 +2084,266 @@ agr fancy use krna emailalternatoves use kro
 Cache(LocMemCache)
 
 in-memory-cache
+cache is a tencnuqe store data frequenlty
+jo frequtly data jo db sy othana jesko use krna zayda chache ma dal skty
+jab next time use krna fast ajaye ga processing ma time lgy ga jaldi resuce kr ksty hai
+improve performance reduce data loss fatser page reload
+
+types manage djnaog manage cahce
+inmemory sab sy fast 
+django ma ram ma store krty hai
+medium project k liya 
+advantage
+super fast inmemry
+limitations
+jab process tart kry dleet hojata
+cache ko store krty drive ya diske ki fiel ma store krty 
+cche per view
+template freqement
+thirdparty cache
+
+
+setting.py
+
+CACHES={
+Backend:django.core.cahce.,backend.locemem.LoMemoryCache
+LOCATION:unique-snowflak kha store krna inmemory ko save krna
+}
+
+urlspy
+path(users,views.user_list)
+
+model.py
+class YoutubrUser(model.Model)
+name=models.CharField()
+email=models.EmailField()
+subscribers=models.IntegerField()
+
+def __str__(self):
+return self.name
+
+views.py
+from django.core.cahe import cahce
+from .models import YotubeUser
+
+def users_list(request):
+users=cache.get(users_data)
+if not users:
+print(cahce nhi hai,fetchin data from database)
+cahce.set(users_data,users,timeout=300) 300 second
+else:
+print(cahce hit fecthng data)
+
+return render(request,userlist.html,{users:users})
+
+admin.py
+form .models import YoutbeUser
+
+@admin.regoister(name)
+class YoutbueAdmin(admin.ModeAdmin)
+list_display=(name,email,subscribe)
+
+
+templates
+user_list.html
+
+5️⃣ LocMemCache ki limitations ⚠️
+Server restart → cache clear ❌
+Multiple servers ho → share nahi hota ❌
+Production ke liye reliable nahi ❌
+
+✅ Learning
+✅ Local development
+❌ Large / production apps
+
+dleete chache manually
+adminpy
+from django.core.cahce import cahce
+@admin.action(description=Clear users cahce)
+deg (clear_user_cache(modeladmin,request,queryset)
+cahce.detelte(users_data)
+
+ya action mdoel ma dyga jha fields di opr
+
+actions=[clear_user_cahce]
+
+
+
+2.file based cahce
+
+ya cahce data system k filder ma save hoga memory ma nhi hoga 
+usecase
+agr shared hosting
+mid level size project 100 sy lykr 1000 hits ati users aty tu usky iya file
+based cahce sy krna chaye
+setup simple rkhan server ki zarorat na hn
+
+
+setting.py
+
+CACHES={
+default:{
+BACKED:django.core.cache.backedn.filebased.FileBasedCache
+LOCATION:BASE_DIR/my_cache
+TimeOut:300
+options{
+MAX_ENTITIES:1000
+}}
+
+maxium 300 hi hota eska
+
+
+model.py 
+
+class UserPorfile(model.models)
+name
+email
+sub
+
+def__str__(self)
+return efl.name
+
+
+views.py
+from .models import UserProfile
+from django.core.cahce import cache
+
+def userProfiel(request):
+user_data=cahce.get(user_data)
+
+if user_data is None:
+print(fetching data fron db)
+userdata=UserPrfoile.objects.all()
+cache.set(users_data,users_data)
+else:
+print (fecthng data cahce)
+
+return render(rquest,html,users:userdata)
+
+
+adminpanel sy tets kry ga user create krky
+
+
+
+3.Per view cache
+differnt view k liya differnt cache
+ak view bar bar call hota usko cahce ma rkh deta htp repsosne cahce ma ata
+db call ko skip kr ksty particular view k liya cahce banana
+
+
+settings.py
+CACHES={
+default:{
+BACKED:django.core.cache.backedn.filebased.FileBasedCache
+LOCATION:BASE_DIR/my_cache
+}}
+
+
+model.py
+class Userlist(model.Model):
+name
+sbscriber
+
+def __str__
+return self.name
+
+admin.py
+@admin.register(model.Model)
+class userlistadmin
+list_diusplay=(name,subscribe)
+db ma entry kr ksty estara
+
+
+views.py
+from .models import userProfile
+from django.views.decoratore.cache import chahce_page
+
+@cahce_page(30) lg gya 30 seocnd ka cahce particular view ma
+def user_list()
+users=UserList.objects.all()
+return render(request,{users:users})
+
+from django.core import cahce
+def clear_cahce()
+cache.clear()
+return httpresposne cache clear
+
+
+
+
+4.Tempalet Fragment Cache
+pora page ni krna chace ak part ak blog sidebar comment add section profielbox cace\krna
+wo tmepalte fregemnt sy sue rty hai
+
+ak topsection hai dynamic hai jab b user login krta ak button section jo list of userd 
+kp dehta apny db section ko cahce krna bottm section slow ham usko db ma
+rkh dyga
+
+
+setting.py
+chche opr wala same efine krna view wala
+
+models.py ma create krna
+
+views.py
+
+def user_list(requets)
+users=usewrlist.object.all()
+return render(request,html,{user:user})
+
+users.html
+yha lagaye ga cahce
+
+{%load cache%} lg jaye ga cahce apka
+{%cahce 30 user_lits_section%} time unique name diya bas
+<ul>
+
+
+
+{%endcahce%} jha tk krna chche
+
+
+
+Databse cahce
+django ak specal table banata jha cahce data store htoa 
+db ma save hota realworld ma use hota zayda bgi nhi
+
+
+setting.py
+
+CACHE={
+defult:{
+BACEKND:django.core.cahce.backends.db.DatabseCache
+LOCATION:my_cahce_table
+}}
+
+python manage.py createcahcetable my_cahce_table
+ya command run kry ga ham
+
+
+model banana
+
+views.py
+from django/core.cache improt chahcre
+
+def cahce_slist()
+users=cache.get(users_list)
+if not users
+cahce miss print
+users=Userprofile.objects.gel()
+cache.ste(userlisyt,users,300)
+
+
+
+
+
+
+
+4.template fargemnt cahce
+html ma ak particular section k liya
+
+
+
 
 
 
@@ -2101,4 +2361,5 @@ There are 3 useful lifecycle hooks available. All of them have corresponding int
 OnGatewayInit	Forces to implement the afterInit() method. Takes library-specific server instance as an argument (and spreads the rest if required).
 OnGatewayConnection	Forces to implement the handleConnection() method. Takes library-specific client socket instance as an argument.
 OnGatewayDisconnect	Forces to implement the handleDisconnect() method. Takes library-specific client socket instance as an argument.
+
 
