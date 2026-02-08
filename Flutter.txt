@@ -18,7 +18,7 @@ esmy js bridge hota jo allow krta ios andriod sy kasy communciate krta
 react native ki performance hojati es sy
 fluter ki performace better hai  
 apko aniamtion ui dkehni haevay calculation dekhani fluter k sath jaye
-flutter ka ui apna hai render krta smoot grpagpc hoti
+fl utter ka ui apna hai render krta smoot grpagpc hoti
 
 ya ak kis sdk google laya tha
 alibaba
@@ -67,6 +67,7 @@ http://localhost:5000
 
 weidgth
 every feature is a weidgth
+Har cheez jo screen pe dikhai deti hai ya interact kar sakti hai, woh ek widget hoti hai.
 
 statelessfull weidget or statlesfull weidght
 stl sy statless
@@ -113,6 +114,53 @@ by default opr rhy ga header hai phr nhi chpeky ga
 backgroundColr:colr.red,),
 body:Text("Saqib");
   }
+@override
+
+Ye Dart ka annotation hai.
+Matlab: parent class ke method ko hum yahan change kar rahe hain.
+Yahan, StatelessWidget class ka build() method override kar rahe hain.
+🔹 Widget build(BuildContext context)
+
+build() method har Flutter widget ka main function hai.
+Ye screen pe UI draw karta hai.
+
+context → widget ka current location tree me (parent, child info) provide karta hai.
+return MaterialApp(
+
+MaterialApp → Flutter app ka root widget.
+Iske andar app ke theme, routes, home page define hote hain.
+home: Scaffold(
+
+
+Scaffold → App ka basic visual layout provide karta hai.
+Screen structure ke liye use hota hai:
+App bar
+Body
+Floating button
+
+Drawer etc.
+appBar: AppBar(title: Text('Hello Flutter')),
+
+
+AppBar → Top bar of the app
+Text('Hello Flutter') → Bar me title show karega
+body: Center(child: Text('Welcome!')),
+
+
+body → Screen ka main content
+Center → Child widget ko screen ke center me place karta hai
+Text('Welcome!') → Screen pe text show karega
+
+🔹 Flow Summary:
+
+MaterialApp → App ka root
+Scaffold → Page ka structure
+AppBar → Top bar
+body → Center → Text → Screen ka content
+
+🔹 Screen pe kya dikhega?
+Top bar → “Hello Flutter”
+Center me → “Welcome!”
 
 apppBar opr jaye ga
 ya ak property deta har ak area ko lag lag treat kr ksy ham
@@ -145,10 +193,15 @@ jab ham dkehty kint message aye wo chnage hota ya
 statefull hota wo chnage hota
 jah chnage horha wo statfull hai wo
 
-
+Library/Framework	Use case
+Google Fonts	Custom fonts
+VelocityX	Fast styling, padding, text, boxes
+Neumorphic	Modern soft UI
+GetWidget (GF)	Prebuilt styled widgets (cards, buttons)
+Flutter EasyLoading	Custom loading indicators
 
 AppBar
-appbar hamesha scafold k andr rhy ga scalford hi hmy wo property deti appbar ko useknry ka
+appbar hamesha scafold k andr rhy ga scalford hi hmy wo property deti appbar ko use knry ka
 appbar mtlb abr rhy ga paty rhy gi opr
 
 Appbar pr hover kro wo koi prefreed weidht lyga jo hai usky pas
@@ -383,3 +436,30 @@ color:Colrs.White,
 
 
 
+
+
+Lab1
+Screen Name (Single Screen Only) 
+Lecture3SingleScreen 
+UI Requirements 
+Your screen must contain these sections (top to bottom): 
+1. Header Section (Container + Text + Icon) 
+ A Container with padding and rounded corners 
+ A title Text: "Lecture 3: Widgets in Flutter" 
+ An Icon next to the title 
+2. Image Section 
+ Display one image 
+o Use Image.network( ) (recommended) 
+3. StatelessWidget Section 
+ Create a separate StatelessWidget named: InfoCard 
+ It should display: 
+o name 
+o description 
+o icon 
+ Introduce yourself in the InfoCard 
+4. StatefulWidget Section (Counter) 
+ On the same screen, add: 
+o Text: Counter: X 
+o A + button to increment 
+o A Reset button to set counter back to 0 
+ Must update UI using setState()
