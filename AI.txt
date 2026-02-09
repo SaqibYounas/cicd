@@ -1,7 +1,7 @@
 🔹 Roman Urdu
 
 Artificial Intelligence wo technology hai jisme computer ya machine ko aisi ability di jati hai ke wo soch sake, seekh sake aur decision le sake, bilkul insaan ki tarah.
-AI systems data se learn karte hain aur phir us data ki madad se problems solve, predictions aur automation karte hain. 
+AI systems data se learn karte hain aur phir us data ki madad se problems solve, predictions aur automation karte hain.
 
 Examples:
 
@@ -94,6 +94,15 @@ Roman: GAI wo AI hoti hai jo naya content generate karti hai, jaise text, image,
 English: Generative AI creates new content like text, images, or code.
 
 
+
+Neural Network AI ka brain-style model hota hai 🧠
+
+Simple words mein:
+Neural network ek aisa system hai jo insani dimaag ki neurons ko copy karta hai, data se khud seekhta hai aur phir decision / prediction karta hai.
+
+AI mein role:
+
+Data lo → process karo → pattern samjho → result do
 
 
 
@@ -201,41 +210,531 @@ Examples: Self-driving cars, facial recognition, voice assistant
 4️⃣ Generative AI (GAI)
 
 Definition: Generative AI creates new content, such as text, images, or code.
-export const DEPARTMENTS = {
-    1: { id: 1, label: "IT" },
-    2: { id: 2, label: "HR" },
-    3: { id: 3, label: "Finance" },
-};
 
-export const PERMISSIONS = {
-    1: { id: 1, label: "Admin" },
-    2: { id: 2, label: "Manager" },
-    3: { id: 3, label: "Editor" },
-    4: { id: 4, label: "Viewer" },
-};
 
-export const USERS = [
-    {
-        id: 1,
-        name: "Ali Khan",
-        email: "ali@gmail.com",
-        departmentId: 1,
-        permissionId: 1,
-    },
-    {
-        id: 2,
-        name: "Sara Ahmed",
-        email: "sara@gmail.com",
-        departmentId: 2,
-        permissionId: 3,
-    },
-    {
-        id: 3,
-        name: "Usman Raza",
-        email: "usman@gmail.com",
-        departmentId: 3,
-        permissionId: 4,
-    },
-];
+
+
+
+
+
+4️⃣ Reactive Machine AI
+
+👉 Sirf current situation pe react karti hai
+
+Memory nahi hoti
+
+Past experience use nahi karti
+
+Example:
+Chess AI jo sirf current move dekhta hai
+
+🧠 Memory ❌
+
+5️⃣ Limited Memory AI
+
+👉 Past data se seekh sakti hai
+
+Thori memory hoti hai
+
+Training data use karti hai
+
+Examples:
+Self-driving cars, Recommendation systems
+
+🧠 Memory ✅ (limited)
+
+6️⃣ Theory of Mind AI
+
+👉 Human emotions samajhne wali AI
+
+Khushi, gussa, sadness samajh sakti hai
+
+Human behavior predict kar sakti hai
+
+Status:
+❌ Research stage mein
+
+🧠 Emotions samajhne wali AI
+
+7️⃣ Self-Aware AI
+
+👉 Khud ko pehchanne wali AI
+
+Apni identity ka ehsaas
+
+Emotions + self-consciousness
+
+Status:
+❌ Sirf sci-fi / future concept
+
+🧠 Insan jaisi consciousness
+
+
+
+
+
+Agent:
+Koi bhi cheez jo apne environment (mahol ya surroundings) ko sense (mehsoos ya detect) kar sakti hai aur us par action (kaam ya reaction) perform kar sakti hai, use agent kehte hain.
+
+Sensors: Woh tools ya organs jo environment ko perceive (mehsoos) karte hain.
+Actuators: Woh tools ya organs jo environment mein action perform karte hain.
+
+Examples:
+
+Human agent (Insani agent):
+
+Sensors: aankhein (eyes), kaan (ears), naak (nose), etc.
+→ Yeh environment se information gather karte hain.
+
+Actuators: haath (hands), paon (legs), zubaan (mouth), etc.
+→ Yeh environment mein action karte hain, jaise move karna, bolna, push karna.
+
+Robotic agent (Robot ya machine):
+
+Sensors: cameras, infrared range finders, temperature sensors, etc.
+→ Robot environment ka data collect karta hai.
+
+Actuators: motors, robotic arms, wheels, etc.
+→ Robot environment mein action karta hai, jaise move karna, pick & place karna.
+
+Simple words mein:
+Agent woh hota hai jo dekh sakta hai, sun sakta hai, mehsoos kar sakta hai aur phir kuch kar sakta hai. Human aur robots dono agents hain, bas tools alag hain.
+
+
+
+
+Agent:
+An agent is anything that can sense its environment using sensors and act on it using actuators.
+agent is something that percives environement through sensors and upon the environment throug its actuators.
+
+Examples:
+
+Human agent: Eyes and ears (sensors) → Hands and legs (actuators)
+
+Robot agent: Cameras and sensors → Motors and robotic arms
+
+human agent
+many ak pen nichy phnka ma hunman agent hn ya enviornemnt hai jha pen gira many percives kiya kuch gira 
+with help of sensors ankhu sy dkeh many apny envioemnt ko perceive kiya help of ensros 
+jo data wo mery dimag k pas gya dimag ny proces kiya chezo ko jawab dyga pen gira hai othna chaye apko
+jawab k bad action lyga with the help of acuators rkh dn ga envioenmt ko perseves kiya sensor
+jo action liya actutors k zariya
+
+
+robatic agent
+agent enviorment ko perves kiya woth the help sensors jo action liya acturaots
+ankhu ki jga camera hai or acturaots ma hat pao hogy rob k hoskty hai
+
+human egnet ma process hota robot ka b hota esmy program hota 
+code aisa hova kya krna wasy pr uski waja sy action leta hai
+
+sensors:camera
+acturaots:
+
+
+
+Intelleginece agent
+ya dekhta action goal oriented hn jo action perform kry 
+
+
+
+Relational Agent
+
+relational ka mtlb sensibale
+relation agent renlanal deciosn leta hai
+ak agent koi probelm solve krny k liya decison lyrha wo koi logical dicion inved hai 
+us descion ma relational agent hai
+jo right chezy kry right descion ly right behave kry 
+jo kam kry jemsy wo best outcome achive kr sky 
+
+jab knowdlege kam hn us codion ma b ya chata hai jo kam kr rha best outcome 
+achive kro ya relational agent hai
+rwlation agent wo jo decison leta koi insan hoskta machine hoksta
+koi agent task perform krta koi mistake kr deta outcome desire nhi
+deta tu wo us galti sy skehy ga 
+agli bar wo task perform kry ga usko dobara repeat nhi kry ga wo galti
+relational agent skehta hai galti sy agl bar wohi kam galti wala kry tu wo 
+dehta ma apna kam better kr kso pichli wali mistake na dn dobara
+
+ya relational agent lrta hai sab 
+
+A relational agent is an AI system designed to build and maintain long-term, social and emotional relationships with users through ongoing interaction.
+
+
+PEAS Agent model
+
+P Performance measure
+E environement
+A acturatos
+S sensors
+
+apny car dekhi slef enko banaty waqt peas ko madenazr rkhty banaya jata
+ak agent ka perfmornace dekh skty with the help of performance measure
+Enviornemnt agent ka as pas ka envoriemnt
+acturatos usky andr asi kya chezy jes sy wo action ly skta hai hamry hath pao hai
+Sensors ASI chezy jes sy wo input leta hai 
+
+
+Automated Car driving Agent
+performance meausre:
+asi kon kon c chezy honi chaye gari ma jes sy ham performace meaure kr ksty hai
+us gari ny acha perfmro kiya
+
+safety point a sy b safely acha perform kiya
+optimim speed rast ma speed brakers traffice or us ko dkehty hovy ak optimum 
+speed rkhi us gari ny acha perform kiya
+comfortable ak point sy dosry point customer sai poncha sia hai
+maximum proferit ak pesenger ko gari ny ak point sy dosrty point ponchya 
+kam sy kam petrol ma usny acha perform kiya kam sy kam pertorl ma zayda distance kiya
+
+
+Environemnt
+enviromet kya hai uska
+rroad 
+traffice condtion usky as pas kya hai coty ma zayda hai gao ma kam traffic hogi uski
+clients jo bhty gari ma cleints hai
+
+Acturators
+Steraring wear ghumye ga dirction chage hoga
+break ki waja sy gari action sy lyrhi hai
+accelaort kry ga speed brhy gi
+Light horn
+
+Sensor
+asi kon kon c chey jes sy wo input ly rhi
+
+camera
+jab gari reverse lythy gari dekhti pichy kya hai
+cmeare sy sourding areasy input ly rha
+gps traker jes sy direction ly ksty
+sonar system darmyan ma gari ajati do distance kitna wo break dba lati
+usko kasy pata chly sonar system sy pata lga sense kr ksi input ly pae
+
+
+
+Agent types
+
+simple reflex agent:
+ya agent envioemtn ko percesv krta sensors or pohcta current state pochta hai 
+janata hai wo action pochta 
+rules hoty jo cinrtion true wo action perform kro wo k rule pckup krta wo action 
+perform krta
+
+ya ganet eneviment ko percesv krta sensors sy apny envioment ka state agnta
+dekhta kya action lena chaye then wo action ak leta hai condtions sy jo b rule ma bola
+gya wo wo acturatos sy lyleta hai
+
+wo sirf current state pr kam krta previous ko ignore krta hai bhol jata hai
+limitataions:
+very less hai conditon rules hai har chez define hai rule
+ya ak partial envioenmt ma kam kr rha usmy loop ma sack kr ksta hai
+
+
+Model Based relfex agent
+apny envioment sy input leta sensors sy what is the current state kya hai
+previous state dekhta kya tha state previous
+world kasy develop horha
+jo b action lyga uska effect kya hoga
+yha action rule batat kya lena action apny
+acturatos sy action liya jata
+
+advantages:
+ya partial ma kam kr ksta
+ya previous input consider kr ksta hai
+
+
+Goal based agent
+sirf sy soirf ak target apny goal tk pochna
+jo b decion leta es chez sy decion liya jata wo apny goal sy kitna dor hai
+ya jo action leta hai usky pichy mksad hai 
+esky or gol k beach jitna distance hai usko kitna minimuze kr ksta hai
+
+yha condtion nhi goal hai
+ma koi action ln ga goal k pas jao ga ya dor 
+
+limitation:
+ya flexible nhi ak goal pr jaye ga
+
+
+Utility based agent
+eska ak focus hota utility hai
+ya apny goal ponchy ga eska main focus utility hai
+jab agent ak action leta hai wo happy ya unhappy state ma ponchy ga
+ak car jarhi target distnacetk pochna ak short rasta ak bara 
+gari sortas rasta jaye gi
+wo dekhti samny acsiendt hogya agy tarffic hai wo goal tk nhi ponch sky
+woi unhappy stste ma hai wo phr 2nd rasty ma jaye gi wo phr happy state ma ajaye gi
+
+
+yha goal ki jaga utility aye ga 
+jo b action perform kiya jata us sy happy ya unhappy ma jaye g
+
+
+Learning agent:
+learning ma or baki agent ma ak differnce hai 
+learning agent chezo ko learn kr ksta statring ma basic hoti info
+bad ma grow krta rhta koi task perform kiya agr koi mistake ki agli
+dafa nhi kry ga learn kiya next time nhi hogi mistake 
+
+ciritic
+ya feedback deta learning ki
+jab b input keta sensor sy jo input ati usko efect deta 
+usko pata usky acion sy kya hona chaye 
+esky envioment sy jo effect hony wo feedback learning elemt ko deta
+learning eleemnt agent ko new chey skehny k liya enbale krta hai
+performance lement ko learnieng elemnt sy input milt akon sa action perfmron krna ya dekhta
+problem generator k
+
+
+
+Types of enviorment
+kasy akagent repsone krta wo envioemtn ma krta
+
+6 types hai ya
+
+
+fully oservable partialy  obversable
+fully ka maltb pora dekh sako ananlysis r ksy
+partial ma thoa analysis
+chess player sary oard ko dkehta hai fully obserb 
+partial observ ma cards diffetrnt logo k pas apny dekh skta hai
+
+determinsitoic and stochics
+tic tac toe game
+phla 0 kiya wo pata agla ya kry ga wo mujhe cros k liya kry ga ma line na banao
+jasy ludo game hai nhi pata kya game ana
+
+ak agent ka current state wo next state bata skta ya hai state next hoksta
+
+Episodic
+jasy ak robot hai kafi chezy pick krni wo eposidci hai
+sequential jasy chess game ak khela dosra kehly ga
+ak chez dosry pr depend nhi krti hai
+
+single agent 
+sirf ak agent
+multi agent fotbal hoga zayda hoty agent
+
+static and dynamic
+static mtlb jo chnage na hn dynamic jo chnage hojaye
+static ma envioment chnage nhi ga dynamic ma car chla rhy chnage hroha
+
+
+
+
+discrete continuos
+discrete ka mtlb number fo steps infinte ly ga jasy chess game hai action infinte haic
+continous ma action ko numbering nhi dyga jasy slef car hai action nhi kr ksty
+
+
+
+
+
+
+
+
+
+
+
+
+Simple Reflex Agent
+koi action perform kr rhy simple action perform kry
+currently action peform krna jo ab sense kiya usny wo
+enviorment:
+obersable enviroment
+vacume:
+dekhy ga kya gnda left pr jaye ga righr pr usko enviorment pata hai
+if else lgi hai if ya gnda hai ya clean kry ga
+
+current location kya usmy diret hai wo kry ga nhi tu right ma jaye ga
+agr state sirty hai tu clean kry ga nhi tu return right kry ga
+else if location b hai agr left saf right right safe let pr
+
+room ma automatic heater hai bahir kitni sardi temparture
+wo hit tepalrtaire k hisba sy on hoga less then 10 hai
+agr koi kamra ma na hn problem hai on hojay ega
+ya if else ma condtion pr chlta ya hoajye gya kya krna
+histry kya kuch nhi pata
+
+eski limeation hai ya fully iobservable ma kam kry ga
+partial ko nhi kry ga wo model krta
+
+
+
+Model Based agent
+simple if then pr work krta rule pr
+
+esmy work krta the hostry ki base pr aisa expience kiya kya hova tha phly
+action kya hova tha usky accridong kya kry ga
+disadvantge partial obersevblr pr kam krta hai
+ya perscpet hostry store krta hai
+2 factors important
+model:kasy hoti cheesy store hojati hai store hoti hai
+internal state:k histry ma aisa action hova tha kya tha succesful hova es sy phly ka kya action 
+tha
+
+phly glt action liya us sy expernce mila usko update kry ga
+apny experce sy sekhta update krta
+how the would evolve;
+
+advantage:
+partialy enviorment
+perviouse state consierd krta
+
+
+
+Goal Based agent
+mtlb mujhe ya achive krna aim
+esmsy additonal chezy add ki hai
+exma chal rha hai 2 din bad 4 section hai half half kr rha hn ak section jo ma 2 kr rha
+planing kr rha hn pass hony k liya search krty konsa easy konsa aprt
+palaing searching kr rhy 
+
+searching and planning kr rhy effiecnt chez kr ksy
+ya current state dkehta phly kya tha
+mery action ka kya effect hova us sy action lytha ya ln kya hoga
+agr past ma nhi apny acridng leta
+wo action leta wo goal ko condred krta achive krlo ga 
+
+Asaan Misal (Self-Driving Car):
+
+Sensors: Camera ne dekha agay gaari hai.
+State: Agent ko yaad hai ke peeche se ek bike bhi aa rahi thi (jo shayad ab nazar nahi aa rahi).
+What my actions do: Agar mein break marn ga to gaari ruk jayegi.
+Rules: Agar agay gaari rukay to break maro.
+Actuators: Break apply ho gaye.
+
+
+
+
+
+
+Utility based agent
+ya goal pr focus nhi krta
+agr goal tk pochny k way hai wo usko choose kry ga
+differnt alternatives hn utility baty apka agent happy hai ya nhi
+jasy location ma hai
+
+happy batny k liya utility bataye ga
+
+
+
+Learning based agent
+k jo apny expiernce sy learn krty past expiernce sy
+starting ms baisc knwodledge bad ma addapt krlaty hai 
+
+critic
+jo b action horha sensor sy feedback deta kitna acha perform kr rha
+learning elemnt improve krta action improve kry ga agr acha nhi kiyaa
+perofrmace elemnt ya action selct kry ga kya perform krna
+agr chnahes krna khr leranign ek pas
+learnign goal problem gentor k pas jaye y epxierce ly ga
+
+feedback dyga agent kasa perform kr rha hai
+ya changes hogy perofmrce ko dyga 
+perormace eemnt ny apny expice sy gain kiya hoga wo learning elemnt ko bataye ga
+problem genrotr action elct kry ga ya ya skeha tha esmy
+
+
+
+
+
+
+| **Agent Type**          | **Key Characteristics**                                                         | **Advantages**                             | **Limitations**                                                                                             | **Real Example**                             |
+| ----------------------- | ------------------------------------------------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| **Simple Reflex Agent** | Reacts only to **current input** using **If-Then rules**, **no memory** of past | ✅ Fast response <br> ✅ Simple to implement | ❌ Cannot handle complex situations <br> ❌ Cannot learn from past <br> ❌ Limited to predictable environments | Robot Vacuum, Automatic Faucet, Light Sensor |
+
+
+
+| **Agent Type**               | **Key Characteristics**                                                                | **Advantages**                                                                                            | **Limitations**                                                     | **Real Example**                                                 |
+| ---------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Model-Based Reflex Agent** | Uses **current input + internal model** of environment; keeps track of **world state** | ✅ Can handle **dynamic/complex environments** <br> ✅ Makes **better decisions** than simple reflex agents | ❌ More **complex** to design <br> ❌ Needs **memory and processing** | Robot vacuum with map memory, Smart thermostat, Self-driving car |
+
+
+
+
+| **Agent Type**       | **Key Characteristics**                                                                                 | **Advantages**                                                                                                 | **Limitations**                                                                                  | **Real Example**                                           |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| **Goal-Based Agent** | - Has a **specific goal** <br> - Plans actions to achieve goal <br> - Considers **future consequences** | ✅ Can achieve **complex goals** <br> ✅ Plans ahead for better results <br> ✅ Works in **dynamic environments** | ❌ Needs **more processing power** <br> ❌ Planning takes **time** <br> ❌ Harder to design/program | Robot Vacuum with route planning, GPS Navigation, Chess AI |
+
+
+
+| **Agent Type**          | **Key Characteristics**                                                                                                        | **Advantages**                                                                              | **Limitations**                                                                                   | **Real Example**                              |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **Utility-Based Agent** | Uses **utility function** to evaluate actions <br> Chooses action with **highest score** <br> Can handle **conflicting goals** | ✅ Makes best decisions <br> ✅ Handles conflicting goals <br> ✅ Works in dynamic environment | ❌ Needs more computation <br> ❌ Designing utility function is hard <br> ❌ Slow for large problems | Self-driving car, Online shopping AI, Game AI |
+
+
+
+| **Agent Type**           | **Key Characteristics**                                                                                          | **Advantages**                                                                                                | **Limitations**                                                                                | **Real Example**                                           |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **Learning-Based Agent** | - Learns from **past experiences** <br> - Improves **performance over time** <br> - Adapts to **new situations** | ✅ Gets better over time <br> ✅ Can handle unknown or changing environments <br> ✅ Can discover new strategies | ❌ Needs lots of data <br> ❌ Learning takes time <br> ❌ Designing learning algorithm is complex | Self-driving car, Netflix/YouTube recommendation, Chess AI |
+
+
+
+
+
+
+Types of enviorment
+Fully observabal vs partally observable
+agent 
+jab a agent ka senor as pas k enviormet  ko detect observe kr ksta memoty ma store n krna pry
+usko fully kry ga
+agent ko full track nhi krna kya smjha kya kya seekha
+sara usko visible hai 
+unibserable usko khty jab senosr na hn usky pas
+
+example
+chess ma usko sara observabl hai 
+drivving car agent ko track record rkhna hota asa pas dekhana prta
+
+agr aisa nhi wo partially enviorment
+
+
+Determinstic
+jab aent curren state ma wo action perform hn next state milna hai
+chess esmy ata esky pices momone kuch b hosjty hai previous record k sath agr ya pice
+pr hao next state kya hoga
+
+stochastic
+unique na hn agent ko nhi pata hota
+next state ko predict nhi kr ksty
+self driving car
+ya random hai asapas ka enviornemt random hoga sourding same nhi hoga
+
+Episodic
+esmy series action hota usko perform krny k liya current undersatndign ki zarorat
+past ki zarorat nhi har bar series new bnti pichli sy nhi match krta
+
+pcik and place robot agent dekhna cureent past ma krta hai 
+
+sequetial 
+esmy agent ko past rkhna taky next best action ly wo
+pichla move next sy krta past memory rkhni hoti
+checkers expale eski
+
+
+Static
+agr ak agent ka as pas enviormetn change nhi hota usko staic khty
+
+dynamic
+agr chnage hota 
+empty house
+
+
+discrete
+ak agent infinite number pfrom kry ak waqt ma wo discrete
+
+
+continous
+agr nhi infinit tu wo continus enviorment khty hai
+
+
+single agent
+ak enviorment ma ak hi agent hai usko single agent kthy
+a p
+
+multi agent
+agr ak sy zayda agent
+footbal multi agent
 
 
