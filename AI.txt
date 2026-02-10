@@ -738,3 +738,162 @@ agr ak sy zayda agent
 footbal multi agent
 
 
+
+
+
+🔹 State
+
+Definition:
+State environment ki current condition / situation hoti hai jahan agent is waqt mojood hota hai aur usi base par action leta hai.
+
+Simple words:
+👉 Abhi environment ka kya haal hai.
+
+Examples:
+
+Chess: board par pieces ki current positions
+Self-driving car: speed, position, traffic signal, nearby cars
+Maze agent ki current location
+
+🔹 State Space
+
+Definition:
+State Space environment ki tamam possible states ka set hota hai jin me agent move kar sakta hai.
+
+Simple words:
+👉 Environment me kitni different situations ho sakti hain.
+
+Examples:
+
+Chess: board ki saari possible arrangements
+Maze: maze ke saare cells
+Car driving: speed, direction aur position ke tamam possible combinations
+
+
+
+
+
+
+🔹 Action
+
+Definition:
+Action wo step / move hota hai jo agent current state me perform karta hai taake environment change ho.
+
+Simple words:
+👉 Agent ab kya karega?
+
+✅ Examples:
+
+Chess: move karna (pawn aagay, rook side)
+
+Self-driving car: accelerate, brake, left turn, right turn
+
+Maze: up, down, left, right
+
+🔹 Action Space
+
+Definition:
+Action Space tamam possible actions ka set hota hai jo agent kisi bhi state me perform kar sakta hai.
+
+Simple words:
+👉 Agent ke paas kitne options hain?
+
+✅ Examples:
+
+Chess: sab legal moves
+Car driving: speed increase/decrease, steering angle
+Robot: pick, place, rotate, move
+
+
+
+🔹 Initial State
+
+Definition:
+Initial State wo starting condition hoti hai jahan se agent apna kaam start karta hai.
+
+Simple words:
+👉 Agent ka start point
+
+✅ Examples:
+
+Chess: game start hone wali position
+Maze: jahan agent khara hota hai
+Robot: object uthane se pehle ki position
+Self-driving car: current location
+
+🔹 Goal State
+
+Definition:
+Goal State wo desired condition hoti hai jahan agent ko pohanchna hota hai.
+
+Simple words:
+👉 Agent ka target / destination
+
+✅ Examples:
+
+Chess: checkmate
+Maze: exit point
+Robot: object ko correct place par rakhna
+Car: destination par safely pohanchna
+
+
+
+
+
+🔹 Agent–Environment Interaction
+📌 Definition:
+
+Agent aur environment ke darmiyan continuous interaction hoti hai.
+
+Agent observe karta hai (sensors)
+
+Phir decision leta hai
+
+Action perform karta hai (actuators)
+
+Environment change hota hai
+
+🔄 Interaction Cycle:
+
+Environment → Percept
+
+Agent → Decision
+
+Agent → Action
+
+Environment → New State
+
+🧠 Simple Diagram (exam me aise likh sakte ho):
+Environment → Sensors → Agent → Actuators → Environment
+
+✅ Example: Self-driving car
+
+Sensors: camera, radar
+
+Percept: traffic, road
+
+Action: brake, accelerate
+
+Environment: road condition change
+
+🔹 Search Problem Formulation
+📌 Definition:
+
+Search Problem wo hota hai jahan agent best path / solution dhoondta hai taake goal state tak pohanch sake.
+
+🔑 Components of Search Problem:
+
+1️⃣ Initial State
+→ jahan se agent start karta hai
+
+2️⃣ Actions
+→ agent kya kya moves kar sakta hai
+
+3️⃣ Transition Model
+→ action lene se state kaise change hoti hai
+
+4️⃣ Goal Test
+→ check karna ke goal mila ya nahi
+
+5️⃣ Path Cost
+→ har move ka cost (time, distance, etc.)
