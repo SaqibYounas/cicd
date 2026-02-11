@@ -737,7 +737,63 @@ multi agent
 agr ak sy zayda agent
 footbal multi agent
 
+1. Fully Observable vs Partially Observable
 
+Fully Observable: Agent ko poori information milti hai environment ki.
+Example: Chess → player saari board dekhta hai.
+Roman: Agent ko sab kuch nazar aata hai, pura analysis kar sakta hai.
+
+Partially Observable: Agent ko sirf kuch information milti hai, poora pata nahi.
+Example: Card game → har player sirf apne cards dekhta hai.
+Roman: Agent ko sirf thodi cheezein nazar aati hain, pura analysis nahi kar sakta.
+
+2. Deterministic vs Stochastic
+
+Deterministic: Next state exactly predict kar sakte ho.
+Example: Tic Tac Toe → agar main X lagaon, agla move kya hoga, pata hai.
+Roman: Result bilkul certain hai, koi chance nahi.
+
+Stochastic: Next state uncertain hai, probability se hota hai.
+Example: Ludo → dice roll ka result pata nahi.
+Roman: Result chance pe  karta hai, uncertain hai.
+
+3. Episodic vs Sequential
+Episodic: Har action independent hai, previous actions matter nahi karte.
+Example: Robot picking objects → ek cheez pick karna dusri pe depend nahi karta.
+Roman: Action ka sequence important nahi, alag alag episodes hain.
+
+Sequential: Har action future pe effect dalta hai.
+Example: Chss → agla move previous moves pe depend karta hai.
+Roman: Pehle ka kaam next actions ko affect karta hai.
+
+4. Single Agent vs Multi-Agent
+Single Agent: Sirf ek agent environment me.
+Example: Maze solving robot.
+Roman: Ek agent kaam karta hai, koi competition nahi.
+
+Multi-Agent: Multiple agents environment me interact karte hain.
+Example: Football → multiple players interact karte hain.
+Roman: Zyada agents hain, ek dusre se effect lete hain.
+
+5. Static vs Dynamic
+
+Static: Environment change nahi hota jab agent action leta hai.
+Example: Crossword puzzle.
+Roman: Environment fixed hai, koi change nahi.
+
+Dynamic:Environment continuously change hota hai.
+Example: Self-driving car → road, traffic change hote rehte hain.
+Roman: Environment change hota rehta hai, agent ko adapt karna padta hai.
+
+6. Discrete vs Continuous
+
+Discrete: Limited actions or steps, countable.
+Example: Chess → moves are countable.
+Roman: Action aur steps ginni ja sakti hain, finite.
+
+Continuous: Infinite actions or states, not countable.
+Example: Self-driving car → steering, acceleration infinite values le sakte hain.
+Roman: Actions aur states infinite hain, number assign nahi hota.
 
 
 
@@ -756,6 +812,25 @@ Self-driving car: speed, position, traffic signal, nearby cars
 Maze agent ki current location
 
 🔹 State Space
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Definition:
 State Space environment ki tamam possible states ka set hota hai jin me agent move kar sakta hai.
@@ -897,3 +972,4 @@ Search Problem wo hota hai jahan agent best path / solution dhoondta hai taake g
 
 5️⃣ Path Cost
 → har move ka cost (time, distance, etc.)
+
