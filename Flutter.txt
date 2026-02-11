@@ -199,6 +199,35 @@ VelocityX	Fast styling, padding, text, boxes
 Neumorphic	Modern soft UI
 GetWidget (GF)	Prebuilt styled widgets (cards, buttons)
 Flutter EasyLoading	Custom loading indicators
+return → ye function (build()) ko batata hai ki ye widget sceen pe render hoga
+
+MaterialApp → ye ek special widget hai jo poore app ka wrapper hai, aur Material Design ke features provide karta hai
+
+Braces { ... } ke andar → ye properties set karte hain jaise:
+home: → pehli screen
+theme: → color scheme
+routes: → navigation paths
+So basically: return MaterialApp( → “Ye meri Flutter app ka main container hai, aur iske andar sari screens aur settings define karunga.”
+
+contorl+f5 hot reload k liya hai
+
+
+1️⃣ StatelessWidget immutable hai → iska matlab:
+
+Tumhare widget ka structure change nahi hota
+Jaise ek photo frame: frame ek baar ban gaya, shape same raheg
+
+2️⃣ const lagane ka fayda → ye aur bhi smart banata hai:
+
+Flutter ko pata chal jata hai ki ye widget kabhi change nahi hoga
+Isliye har bar naya widget banane ki zarurat nahi
+Matlab app thoda fast aur memory efficient ho jata hai
+
+💡 Easy example:
+
+Text('Hello')      // normal → har rebuild me naya object banta hai
+const Text('Hello') // const → ek hi object bar-bar use hota hai
+
 
 AppBar
 appbar hamesha scafold k andr rhy ga scalford hi hmy wo property deti appbar ko use knry ka
@@ -276,6 +305,26 @@ docration:BoxDecoration(
 borderRadius:BorderRadius.circular(20.0), hover krna nazr ajye ga kya likhna
 child:Text("Saqib) conter k andr child bnye ga
 height:300),
+
+
+1️⃣ flutter clean
+flutter clean
+Ye command app ke build folder ko delete kar deta hai
+
+Matlab: Flutter ke old compiled files, cache aur temporary data remove ho jata hai
+Useful jab UI changes ya plugin changes apply nahi ho rahe
+
+2️⃣ flutter pub get
+flutter pub get
+
+Ye dependencies (plugins / packages) ko download karta hai jo tumhare pubspec.yaml me defined hain
+Matlab: Flutter ko pata chal jata hai ki kaunse packages use karne hain
+
+3️⃣ flutter run
+flutter run
+
+Ye app ko build karke device/emulator pe run karta hai
+Ye latest code load karta hai aur app start ho jata hai
 
 
 image
