@@ -1,0 +1,810 @@
+FastApi
+
+
+🔹 1️⃣ Virtual environment banana (recommended)
+python -m venv venv
+
+Activate karo:
+Widows:
+venv\Scripts\activate
+Mac/Linux:
+source venv/bin/activate
+
+🔹 2️⃣ FastAPI install karo
+pip install fastapi
+
+
+Server chalane ke liye uvicorn bhi install karo:
+pip install uvicorn
+
+Ya dono ek saath:
+pip install fastapi uvicorn
+
+🔹 3️⃣ Simple FastAPI app banao
+
+main.py file banao:
+from fastapi import FastAPI
+app = FastAPI()
+@app.get("/")
+def read_root():
+    return {"message": "Hello World"}
+
+🔹 4️⃣ Server run karo
+uvicorn main:app --reload
+
+
+🔹 Uvicorn kya hai?
+
+Uvicorn ek ASGI server hai jo FastAPI app ko run karta hai.
+Simple shabdon mein:
+👉 FastAPI app likhne ke baad usko chalane ke liye ek server chahiye hota hai — Uvicorn wahi server hai.
+
+🔹 Kyu use karte hain?
+Fast hai ⚡ – Async support karta hai
+Production-ready – Real projects me use hota hai
+FastAPI ke saath best compatible
+Auto reload option – --reload se code change karte hi server restart
+
+
+
+
+🔹 1️⃣ FastAPI aur Django ka difference in server
+Feature	FastAPI	Django
+Framework Type	Lightweight, async-ready	Full-stack framework
+Default Server Requirement	ASGI server (uvicorn, hypercorn)	WSGI server (runserver for dev)
+Async Support	Yes, built-in	Limited (Django 4+ supports async, but traditionally sync)
+
+
+1️⃣ WSGI ka matlab
+
+WSGI = Web Server Gateway Interface
+Ye Python web aps (like Django, Flask) aur web server (like Gunicorn, Apache) ke beech bridge ka kaam karta hai.
+Sirf synchronous (sync) requests ko handle karta hai.
+💡 Example:
+Client → HTTP Request → Web Server (Gunicorn) → WSGI → Django App → Response → Client
+
+
+✅ Features:
+Traditional Python web frameworks ke liye
+Sync code ke liye best
+❌ Limitation:
+Async / real-time connections (WebSocket) handle nahi karta
+
+🔹 2️⃣ ASGI ka matlab
+
+ASGI = Asynchronous Server Gateway Interface
+Ye WSGI ka modern version hai
+Sync + Async dono requests handle kar sakta hai
+WebSocket, long-polling, HTTP2 jaise modern features support karta hai
+
+💡 Example:
+
+Client → HTTP/WebSocket → ASGI Server (Uvicorn) → FastAPI App → Response → Client
+
+
+✅ Features:
+
+Async requests handle karta hai
+FastAPI, Starlette, Django 3+ ke async features ke liye
+
+
+
+Django REST Framework vs FastAPI – Notes
+1. Definition
+
+Django REST Framework (DRF): Django ka extension for building APIs. Mostly synchronous, built on top of Django.
+
+FastAPI: Modern, lightweight Python framework for APIs. Fully async-ready, uses type hints and Pydantic for validation.
+
+2. Performance
+
+DRF: Mostly synchronous, moderate speed (~100–200 requests/sec). Suitable for standard CRUD APIs.
+
+FastAPI: Fully asynchronous (async/await), high performance (~1000+ requests/sec). Suitable for high-performance and modern APIs.
+
+3. Development Experience
+
+DRF: Optional type hints, uses serializer classes for data validation, manual or auto-generated docs, requires more boilerplate code.
+
+FastAPI: Type hints are core, uses Pydantic models for automatic validation and parsing, automatic Swagger & Redoc docs, concise code.
+
+4. Features
+
+Authentication: DRF has built-in token/session authentication; FastAPI uses OAuth2/JWT via dependencies.
+
+Database: DRF uses Django ORM by default; FastAPI can use any ORM (SQLAlchemy, Tortoise, etc.).
+
+WebSocket Support: DRF limited; FastAPI supports natively.
+
+Async Support: DRF limited; FastAPI fully supports async.
+
+Automatic Documentation: DRF requires manual setup; FastAPI generates Swagger & Redoc docs automatically.
+
+5. Learning Curve
+
+DRF: Easy if Django is already known; you need to learn serializers, viewsets, routers.
+
+FastAPI: Easy if Python is strong; you need to learn async/await, type hints, and Pydantic models.
+
+6. Analogy
+
+DRF is like an SUV – reliable, everything included, a bit slower.
+
+FastAPI is like a sports car – fast, modern, flexible, async-ready.
+
+7. Server & Deployment
+
+Development Server: DRF uses python manage.py runserver; FastAPI uses uvicorn main:app --reload.
+
+Production Server: DRF uses Gunicorn + Nginx; FastAPI uses Uvicorn/Gunicorn + Nginx.
+
+Async Support: DRF limited, FastAPI native.
+
+
+
+Start FastApi
+
+fasapi[standard] ya sai hai jitney haye packages khu krly ga install ya
+
+uv pip freeze > requirement.txt 
+jitney packages important install krdy ga or store krdy ga
+
+
+main.py
+
+from fasapi import FastAPI
+
+app=FastAPI()
+
+@app.get("/")
+def root():
+return {message:Hello world}
+
+
+ya 2 route dyga ak document khud bana dy ga apko nhi banai pry gi
+define api test kr skty hai work kr rhi 
+
+
+routing
+dynamic id chaye 
+@app.get("/{id}"}
+def root(id:int):
+return {message:Hello Fastapi}
+
+
+@app.pot("/todo")
+def create_todo(item:dict):
+return {message:todo created,item:item}
+
+
+from fastapi import request
+
+@app.get("/")
+def root(request:Request):
+params=request.query_param
+return {parms:params}
+
+
+ap custom type define kry pydnatic library validation hai type define kr skty hai
+
+test.py
+
+from pydnatic import BaseModel,
+class QueryParams(BaseModel):
+name:str
+age:int
+
+
+ab age or name mandatory hai server erro dyga agr na di
+
+main.py
+
+from typing import annotated,Depend
+from test import QueryParams
+
+
+@app.get("/")
+def root(query:Annotated[QUERYparms,Depend()):koi b chez dekhi check krni depends krty hai
+return message;
+
+annotated ak keyword hai Jha define krty kis type ka data hai
+depend dekhta hai
+
+
+
+
+agr optional bana apny parameter
+
+from typing import Optional
+
+name:Optional[str]=None
+age:Optional[int]=None
+
+ya int hogi value ya None
+ab null return kry ga khali pr
+
+
+ app folder
+app bana ln usky compoents hogy parts emsy hogy
+esky bahir main or test file hogi
+
+app/model
+routing
+
+routing ma routes define kry ga ham
+folder structure
+app/
+model
+config 
+helper.py common method define kry ga ham
+app.py main file hogi server run hoga wo
+__init__.py ya file bnay hai usko package treate krta hai
+
+
+__init__ ko kyo use kry
+
+my_package/
+    __init__.py
+    math_ops.py
+math_ops.py ke andar:
+
+def add(a, b):
+    return a + b
+Step 2: __init__.py ka kaam
+__init__.py me likh sakte ho:
+
+from .math_ops import add
+Step 3: Bahar se import karna
+Ab ye code Python me kaam karega:
+
+from my_package import add
+
+print(add(2, 3))  # Output: 5
+Bina __init__.py ke, Python purane versions me ye kaam nahi karta tha, kyunki Python ko pata nahi hota tha ki my_package folder ek package hai.
+
+
+main.py bahir hogi app k ya file
+
+from app.app import app
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)
+
+
+
+
+models/todo.py
+
+from pydnatic import BaseModel
+from typing import optinal
+
+class CreateTodo(BaseModel)
+content:str
+is_completed:bool=false
+
+
+routing/todo.py
+
+from fastapi imprt APIRouter
+
+router=APIRouter(prefix=("/todo") ya start ma aye ga prefix
+
+@router.get('/todo')
+def index():
+return message{}
+
+
+ab batye ga hamny route file bane hai 
+routing/__init__.py
+
+app.py
+from app.routing import todo
+
+
+include all routes
+app.include_router(todo.router)
+todo.router kyo file ma router diya hai
+
+ab pata chal gya todo route b hai 
+
+
+
+todo.py
+from app.models.todo import CreateTodo
+
+
+@router.post('/')
+def store(item:CreateTodo):
+return {message:todo.model_dump} pydnatic deta model_dump hmy
+
+model_dump() Pydantic (v2) ka method hai jo model ke data ko dictionary me convert karta hai.
+
+Matlab ye Pydantic object ko JSON compatible format me le aata hai.
+
+
+
+ab return horha reable nhi formate kry ga ham
+jo json hota validation error sy parse nhi hva validarion error hai 5 chaye 3 dyrha
+usko erro handle krny k liya fastapi event fire krta hai
+
+
+
+app.py
+from fastapi.expection import ReuestValdationError
+from fastapi.responses import JsonResponse
+
+@app.exception_handler(RequestVaalidationError)
+async def validation(request,exec):
+error={}
+fro error in exec.errors():
+errors[error['loc'][-1]]=error['msg]
+
+return JSONResponse(
+422 hot validation ka
+{message validation error,error:error,status_code=422}
+
+
+by default detail ka array of object hota type hota location body wagira content msg chaye hamy
+
+
+ab clean structure aye ga clean wo use send kry ga response ma ham
+
+error ma location ma last field -1 last wala
+
+
+SQLAlchemy 
+jo js ka ecosystem python ma nhi hai
+
+
+
+pip install sqlalchemy
+Python me databases ke sath interact karne ke liye
+
+SQL queries likhne ke liye high-level Python interface provide karta hai
+Object Relational Mapper (ORM) ka kaam karta hai
+Matlab: Python classes → database tables
+Python objects → row
+
+pip install alembic
+
+Ye database migrations ke liye use hota hai
+
+Migrations ka matlab: database schema ko update karna (tables, columns, constraints etc.)
+
+Agar aap database change karte ho, manual SQL likhne ki zarurat nahi
+
+
+
+database/db.py
+schema folder banye ga yha schema banye ga ham sab
+
+db.py
+from sqlalchemy.ext.declarative import declarative_base
+
+base=declarative
+
+schema.py
+
+from sqlalchemy import Column,Integer,String,VARCHAR,Boolean
+ya column ki types hai sql ki
+from ..db import Base
+from datetime import datetime,timezone
+
+class TodoSchema(Base):
+__table__name="todods" tablename hai ya
+
+id=Columns(Interger,Primary_key=True,index=True,autoincrment=True)
+content=Column(String,nullable=False)
+is_comppleted=Column(Boolena)
+created_at=Column(DateTime,nullable=false,default=datetime.noew(timezone)
+updated_at=Column(DateTime,nullable=false,default=datetime.noew(timezone)
+
+ya columns hai db ma postgress ma
+
+dbngin
+use kr skty download kr ksty 3 databse support krta ya
+
+
+env 
+AppNAME="FASTAPI"
+APP_ENV="development"
+DATABASE_URL=db connection
+
+by default 5432 hota pg admin ka locahost port number
+
+
+env read krny k liya 2 tareky ha
+ak tarika ya hai fastapi khta hai hmy
+app.py
+from dotenv import loadenv
+import os
+loadenv()
+
+appname=os.getenv(AppNaem) ya key hai estara get kr skty hai
+
+use pydnatic typescrip match hogi ya use kro
+
+
+config/app_config.py
+
+from pydnatic_setting import BaseSettins,SettingConfigDict
+
+class AppConfig(BaseSettongs)
+app_name:str=FASTAPI
+app_env:str=developemt
+databse_url:str
+
+
+mode_config=settingConfigDict(env_file=".env")ya import kr ha .env ko
+
+
+def getConfig():
+return AppConfg() #type ignore
+
+Esko call kry ga apko env read krna file ko bar bar read krna kha hai file ya
+
+from Llucache import
+
+@lu_cahce
+ya use kry ga har bar path read krky dy file yaha sy read kry chahce sy
+def getConfig():
+return AppConfg() #type ignore
+
+
+
+app.py
+
+ap import krky config sy yha get kr ksty hai paramters app.env waly
+
+env ma capiral name config ma small wo handle krly ga khud hi ya name change na hn 
+
+
+db.py
+
+from sqlalchemy.ext.declarative import declarative_base
+
+
+from sqlalchemy.orm. import sessionmaker,session
+fromsqlalchemy import create_engine ya pool contection dyg db sy
+from app.cinfg.app_config import getappconfig
+
+base=declarative_base
+
+config=getappConfig()
+engine=create_engine(config.databse_url)
+
+sessionLocal=sessionmaker(autocomit=false,autoflush=false,bind=engine
+
+jo b request aye ga session maker pool kry ga
+engine 5 pool aty by defult ya us engine sy bind krly ga 
+request krky lyga db k sath kryga
+
+
+
+def get_dn -> Generator[Session,Nonde,Node] db instce banya
+db=sessionLocal()
+try:
+yield db
+
+finally:
+db.close
+
+
+5 wire di usmy koi b ak session bnaya wo pochta koi wire hai wo bat kry dosry sy jasy use hojaye chor dn suy
+
+powershell
+python run alembic init alembic 
+
+alembic/env.py
+from app.databse.db import Base
+from app.databse.schema.todoSceham import * 
+todo_schema,user_schema
+targe_metdata=Base.metadata
+yha base dena hoga 
+
+
+appConfig=getAppconifg()
+configration=config.get_section(config_ini_section,{})
+configration['sqlalchemy.url]=app_config.databse_url
+
+connectbale=engine_from_config(
+configuration,
+prefix=sqlalchemy
+poolclass=pool.nullpool) ya areedy hoga
+
+
+elembric.ini
+sqlalechemy comment kry ga ya url use kry ga jo hai agy
+
+
+schema/__init.py
+from todo_schema import tododchema
+
+__all__=["todoschema"]
+
+
+
+powershell
+
+uv run alembic revision --autogenerate -m todo_schema 
+schema banye ga ya file 
+alembic/versions/ptchache
+yha bany ga schema
+
+pip install psycopg2 postgress k liya
+
+ab ya db ma defiene nhi ki db ma
+python run alembic upgrade head
+ab db ban jye ga tabale apply hojaye ga
+
+
+database opr khtm hogya part setup
+
+data db ma add krna ab todo ka
+
+
+todo.py
+from typing import annotated
+from sqlalchemy import session
+from app.databse.db import get_db
+from 
+
+@router.post(\)
+def store(item:createTodo,db:Annotated[Session,Depend(get_db])
+
+todo=TodoSchema(content=item.content,is_completed=false)
+db.todo(todo{
+db.commit() db ma add haojye wo
+db.refresh(todo) db refresh krwa rhy add hojaye jo add kiya hamny
+
+
+@rouet('/get')
+def index(db:Annoted[Session,Depend(get_db))]
+todos=db.query(TodoSchema).all()
+
+return {todo}
+
+
+selstec field chaye hamy sql trika deta ak
+
+todo.py
+from sqlalhemy import selelct
+@rouet('/get')
+def index(db:Annoted[Session,Depend(get_db))]
+todos=select(Todochema.d,Todocheam,coentn,todoSchem.s_completed)
+
+todo=db.excute(stmt).mappings().all()
+return todo
+
+mapping sy jo b actual type hai wo matchkrdy ga 
+
+
+@router.get(/{id})
+def show)id:int,db:Annotated[Session,depend*get_d)
+todo=db.query(TodoSchema).filter(TodoSchema.id==id).first()
+
+@router.delete(/{id})
+def show)id:int,db:Annotated[Session,depend*get_d)
+todo=db.query(TodoSchema).filter(TodoSchema.id==id).first()
+if not todo
+return message notfound
+
+db.delete(todo)
+db.commit()
+return message
+
+
+new sqlalchmy ma
+id:Mapped[int]=mapping(integer,primary)
+ya syntac hai new use krna hai schema ma define krty waqt
+mapped krdu integret ma mapped column k sath
+
+server run kry ga ham
+
+
+
+Auth API
+
+schema/user_schema.py
+from sqlalcehmy import datatyepes
+from qlalcemy orm
+fron db import ase
+
+class userSchema(Base):
+schem define kry ga ham opr jaisa map k sath
+
+SCHEMA/__inti__.py
+
+__all__=[uSERSCHEMA]
+
+
+pip run alembic revision --autgenarate table
+bana dy ga schema ab ya es command sy
+
+uv run alembic upgrade head db ma apply changes
+
+
+
+models/auth.py
+
+class Login(BseModel):
+email:emailstr
+password:t=field(...,min_lenght=6,x_;lenth*(
+
+
+
+class register(BseModel):
+email:emailstr
+password:str=field(...,min_lenght=6,x_;lenth)
+confir+password:str=ield(...,min_lenght=6,x_;lenth)
+
+
+@field_validator(confitm_password)
+@classmethod()
+
+def passwords_mathc(cls,v,info,vlationInfo)
+if password in info.data and = infor.ata[password]
+raise vlaueerro()
+
+return v
+
+pydantic ma dekh skty docuemntion ma validations
+
+
+
+helper.py
+from pwlib import passwordhash
+
+def aspassword(password:str)->str:
+password_hash=PasswordHash()
+reutnr password_hash.hash(password)
+
+def verifypassword(password)
+gpt sy krlo ya
+
+
+
+routing/auth.py
+from fastapi import apiRouter,depends
+from app.a=modelsauth import Register
+from slamchemt
+from db.orm
+rom fastapi.jsonrpeosse
+
+router-ApiRouter(prefix='auth)
+
+@router.post(/login)
+
+
+
+router.register('/regotser)
+
+def register(data:register,db:nnoated[session,pends(et_db)
+
+exisitnguser=db.query(iserchema)filer(userschema.email=data.email).first()
+
+newuser=UserSchema(
+name=data.email,
+email=data.email,
+password=data.password
+)
+
+db.add(new_user)
+db.commit()
+db.refrsh(new_user)
+
+return message()
+
+hasing k packegs use kry ga
+uv pip install *pwdlib[aragon2]
+
+jwt token use kr ksty route private kr ksty hai
+
+
+pip install pyjwt
+
+env ma key or refresh token dyga 
+
+
+herpler.py
+
+def createtokeN(data:Dict,secret_key)->str
+to_encode=data.copy()
+ecncoded_jwt=jwt.encode(to_encode,onfig.secret_ket,gorthom=config
+algorithm orHS256)
+expire=datetime.noew(timezone.utc)+timedelta(minutes=expire)
+to_encode.update({exp:expire})
+encoded_jwt=jwt.encode(to_encode,config.secret_key,lgotithm)
+
+
+def decodeAccessToke() gpt sy
+
+
+auth.py
+
+@router.post(/login)
+def login*data:Loign,db:Annoted[Session,Dependsget_db)
+user=db.qury(Userschema).filter(Userschema.ail=daya.mail)first()
+if not user or user.passwrdo=haspassword(data.password)
+if not user or user.verifypassword=verofypassword(data.password)
+return jsonResposne(message)
+
+payload={
+id:
+email
+}
+token=createACESSTOKEN(payload)
+payload=bearer+token
+
+return message
+
+
+authorization
+
+dependencis.py
+
+
+from fasapi.ecurity mport Oauth2PasswordBerer
+from fastapi import Depeds,HttpEcpection,stauts
+
+autho2_schema=OAith2Passwrodeare(tokenIrl=api.l/ogin)
+
+def authentication_user(token:Annoted[str,depends(uth_schema)
+try:
+payload=decodeAcesstoek(token)
+return payload
+expect invalidexption
+reutn httpexception( status_code=status.http_401
+detial=unouthirzed
+)
+
+
+
+
+
+next advanced move
+
+⚡ Important topics jo abhi optionally cover kar sakte ho (optional but good for real projects):
+
+Background Tasks
+
+BackgroundTasks in FastAPI for async jobs
+
+WebSockets
+
+Real-time communication
+
+Middleware
+
+Custom request/response processing
+
+Dependencies advanced
+
+Hierarchical dependencies, reusable dependencies
+
+Testing FastAPI
+
+TestClient from FastAPI / pytest integration
+
+CORS & Security headers
+
+fastapi.middleware.cors.CORSMiddleware
+
+File uploads / downloads
+
+UploadFile, File types
+
+Rate limiting / throttling
+
+For production API security
+
+Background scheduler
+
+For periodic jobs (APScheduler / Celery integration)
+
+Advanced SQLAlchemy
+
+Relationships (one-to-many, many-to-many)
+
+Async ORM with async_session
